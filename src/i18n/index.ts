@@ -1,5 +1,6 @@
 import {createI18n} from 'vue-i18n'
 import {navBarMsg} from './nav-bar.ts'
+import {aboutMeMsg} from './about-me.ts'
 
 
 const i18n = createI18n({
@@ -7,10 +8,12 @@ const i18n = createI18n({
     fallbackLocale: 'en',
     messages: {
         en: {
-            navBarMsg: navBarMsg.en
+            navBarMsg: navBarMsg.en,
+            aboutMeMsg: aboutMeMsg.en,
         },
         zh: {
-            navBarMsg: navBarMsg.zh
+            navBarMsg: navBarMsg.zh,
+            aboutMeMsg: aboutMeMsg.zh,
         }
     }
 })

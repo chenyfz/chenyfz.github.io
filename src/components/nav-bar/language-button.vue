@@ -27,12 +27,12 @@ const emit = defineEmits(['click:en', 'click:zh'])
 
   span
     color: var(--text-color-secondary)
-    transition .1s
+    transition .15s
 
   .lang-button
     padding: 4px
     margin: 0 2px
-    transition .2s
+    transition .15s
     border-radius 4px
 
     &:hover

@@ -31,15 +31,16 @@ const props = defineProps<{ mode: string }>()
   border-radius 100px
   padding 6px
   display flex
+  width fit-content
   align-items center
   position: relative
   top 1px
-  transition .2s
+  transition .15s
   user-select none
   cursor pointer
   fill var(--text-color-secondary)
+
   &:hover
     background var(--text-color-hightlight)
     fill var(--text-color)
-
 </style>

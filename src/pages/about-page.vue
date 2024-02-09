@@ -26,8 +26,9 @@
 
 <style scoped lang="stylus">
 .about-page
-  padding: 0 32px
-  margin: 16px auto
+  padding: 0 var(--page-padding)
+  margin: 8px auto 16px auto
+  max-width 800px
 
 .cv
   display grid

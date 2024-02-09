@@ -9,7 +9,7 @@ interface Content {
 export const navBarMsg : Record<Languages, Content> = {
     en: {
         labsTab: 'Labs',
-        aboutTab: 'About me',
+        aboutTab: 'About',
         photosTab: 'Photographs'
     },
     zh: {

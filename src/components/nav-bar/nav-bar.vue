@@ -29,7 +29,7 @@ const isHighlighted = (pageName: string) => {
       :class="{'menu-icon-opened': isMenuOpen}"
       @click="onClickMenu"
     >menu</span>
-    <div class="title">ohyangfan.github.io</div>
+    <div class="title">chenyfz.github.io</div>
 
     <language-button
       class="nb-language-button"

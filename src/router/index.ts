@@ -1,24 +1,35 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import AboutPage from '../pages/about-page.vue'
-import PhotosPage from '../pages/photos-page.vue'
-import LabsPage from '../pages/labs-page.vue'
-// const baseUrl = import.meta.env.VITE_BASE_URL;
+import BlogPage from '../pages/blog-page.vue'
+import PortfolioPage from '../pages/portfolio-page.vue'
+import HomePage from '../pages/home-page.vue'
+import ResumePage from '../pages/resume-page.vue'
+import DevLabPage from '../pages/dev-lab-page.vue'
 
 const routes = [
     {
         path: '/',
-        name: 'about',
-        component: AboutPage,
+        name: 'home',
+        component: HomePage,
     },
     {
-        path: '/photos',
-        name: 'photos',
-        component: PhotosPage,
+        path: '/blog',
+        name: 'blog',
+        component: BlogPage,
     },
     {
-        path: '/labs',
-        name: 'labs',
-        component: LabsPage
+        path: '/dev-lab',
+        name: 'dev-lab',
+        component: DevLabPage,
+    },
+    {
+        path: '/portfolio',
+        name: 'portfolio',
+        component: PortfolioPage,
+    },
+    {
+        path: '/resume',
+        name: 'resume',
+        component: ResumePage,
     }
 ]
 

@@ -1,8 +1,17 @@
 <script setup lang="ts">
-const props = withDefaults(
-    defineProps<{ direction?: 'up' | 'down' }>(),
-    {direction: 'down'}
-)
+import {computed} from 'vue'
+
+interface Props {
+  durationSecond: number,
+  direction?: 'up' | 'down',
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  durationSecond: 0.3,
+  direction: 'down'
+})
+
+const durationCssString = computed(() => props.durationSecond + 's')
 </script>
 
 <template>
@@ -14,7 +23,7 @@ const props = withDefaults(
 <style scoped lang="stylus">
 .transform-down-enter-active,
 .transform-down-leave-active
-  transition .15s
+  transition v-bind(durationCssString) ease
 
 .transform-down-enter-from,
 .transform-down-leave-to

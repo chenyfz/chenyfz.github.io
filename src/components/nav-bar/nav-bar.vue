@@ -4,9 +4,8 @@ import {useWatchLanguage} from './use-watch-language.ts'
 import LanguageButton from './language-button.vue'
 import DarkModeButton from './dark-mode-button.vue'
 import {computed, ref} from 'vue'
-import TransformTransition from '../transitions/transform-transition.vue'
+import TransformTransition from '../../transitions/transform-transition.vue'
 import {useRoute} from 'vue-router'
-
 const { mode, toggleMode } = useWatchColor()
 const { language, toggleLanguage} = useWatchLanguage()
 
@@ -16,6 +15,29 @@ const isMenuOpen = ref(false)
 const onClickMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
 }
+
+const tabs = [{
+  pageName: 'home',
+  textKey: 'navBarMsg.homeTab',
+  to: '/'
+},{
+  pageName: 'blog',
+  textKey: 'navBarMsg.blogTab',
+  to: '/blog'
+}, {
+  pageName: 'dev-lab',
+  textKey: 'navBarMsg.devLabTab',
+  to: '/dev-lab'
+}, {
+  pageName: 'portfolio',
+  textKey: 'navBarMsg.portfolioTab',
+  to: '/portfolio'
+}, {
+  pageName: 'resume',
+  textKey: 'navBarMsg.resumeTab',
+  to: '/resume'
+}]
+
 const currentPageName = computed(() => route.name)
 const isHighlighted = (pageName: string) => {
   return pageName === currentPageName.value
@@ -29,7 +51,11 @@ const isHighlighted = (pageName: string) => {
       :class="{'menu-icon-opened': isMenuOpen}"
       @click="onClickMenu"
     >menu</span>
-    <div class="title">chenyfz.github.io</div>
+    <div class="title">
+      <router-link to="/">
+        chenyfz.github.io
+      </router-link>
+    </div>
 
     <language-button
       class="nb-language-button"
@@ -42,54 +68,28 @@ const isHighlighted = (pageName: string) => {
     </div>
 
     <router-link
+      v-for="tab in tabs"
+      :key="tab.pageName"
       class="nb-button"
-      :class="{'nb-button-highlighted': isHighlighted('labs')}"
-      to="/labs"
+      :class="{'nb-button-highlighted': isHighlighted(tab.pageName)}"
+      :to="tab.to"
     >
-      {{ $t('navBarMsg.labsTab') }}
-    </router-link>
-    <router-link
-      class="nb-button"
-      :class="{'nb-button-highlighted': isHighlighted('photos')}"
-      to="/photos"
-    >
-      {{ $t('navBarMsg.photosTab') }}
-    </router-link>
-    <router-link
-      class="nb-button"
-      to="/"
-      :class="{'nb-button-highlighted': isHighlighted('about')}"
-    >
-      {{ $t('navBarMsg.aboutTab') }}
+      {{ $t(tab.textKey) }}
     </router-link>
   </div>
 
   <Teleport to="body">
-    <transform-transition>
+    <transform-transition :duration-second="0.5" direction="down">
       <div v-if="isMenuOpen" class="nb-side-penal">
         <router-link
+          v-for="tab in tabs"
+          :key="tab.pageName"
           class="menu-item menu-item-link"
-          :class="{'menu-item-highlighted': isHighlighted('labs')}"
-          to="/labs"
+          :class="{'menu-item-highlighted': isHighlighted(tab.pageName)}"
+          :to="tab.to"
           @click="isMenuOpen = false"
         >
-          {{ $t('navBarMsg.labsTab') }}
-        </router-link>
-        <router-link
-          class="menu-item menu-item-link"
-          :class="{'menu-item-highlighted': isHighlighted('photos')}"
-          to="/photos"
-          @click="isMenuOpen = false"
-        >
-          {{ $t('navBarMsg.photosTab') }}
-        </router-link>
-        <router-link
-          class="menu-item menu-item-link"
-          :class="{'menu-item-highlighted': isHighlighted('about')}"
-          to="/"
-          @click="isMenuOpen = false"
-        >
-          {{ $t('navBarMsg.aboutTab') }}
+          {{ $t(tab.textKey) }}
         </router-link>
         <div class="menu-item menu-item-switches">
           <language-button
@@ -105,6 +105,7 @@ const isHighlighted = (pageName: string) => {
 </template>
 
 <style scoped lang="stylus">
+@import "../../styles/stylus-variables.styl";
 nb-height = 64px
 
 .nav-bar
@@ -115,7 +116,7 @@ nb-height = 64px
   backdrop-filter blur(16px)
   display grid
   align-items center
-  grid-template-columns auto auto 1fr auto auto auto
+  grid-template-columns auto auto 1fr auto auto auto auto auto
   gap 8px
   position: sticky
   top: 0
@@ -151,7 +152,7 @@ nb-height = 64px
 .menu-icon-opened
   background var(--text-color-hightlight)
 
-@media screen and (max-width: 720px)
+@media screen and (max-width: $layout-break-point)
   .nb
     grid-template-columns auto 1fr
 
@@ -177,7 +178,6 @@ nb-height = 64px
   position relative
   color: var(--text-color-secondary)
 
-  &:first-child
   &:last-child
     &:before
       content ''

@@ -1,20 +1,26 @@
 import {Languages} from './types.ts'
 
 interface Content {
-    labsTab: string,
-    aboutTab: string,
-    photosTab: string
+    homeTab: string,
+    blogTab: string,
+    devLabTab: string,
+    portfolioTab: string,
+    resumeTab: string,
 }
 
 export const navBarMsg : Record<Languages, Content> = {
     en: {
-        labsTab: 'Labs',
-        aboutTab: 'About',
-        photosTab: 'Photographs'
+        homeTab: 'Home',
+        blogTab: 'Thoughts',
+        devLabTab: 'DevLab',
+        portfolioTab: 'Portfolio',
+        resumeTab: 'Resume',
     },
     zh: {
-        labsTab: '实验',
-        aboutTab: '关于',
-        photosTab: '照片'
+        homeTab: '主页',
+        blogTab: '随想',
+        devLabTab: '实验室',
+        portfolioTab: '作品集',
+        resumeTab: '简历',
     }
 }

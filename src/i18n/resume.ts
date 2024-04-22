@@ -17,7 +17,7 @@ interface Content {
 
 export const aboutMeMsg : Record<Languages, Content> = {
     en: {
-        cvTitle: 'Curriculum Vitae',
+        cvTitle: 'Resume',
         estimated: '(estimated)',
         educationTitle: 'Education',
         masterTitle: 'Master Human-Computer Interaction',

@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div>home</div>
+  <div>👋Hi, This is Yangfan</div>
 </template>
 
 <style scoped lang="stylus">

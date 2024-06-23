@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import NavBar from './components/nav-bar/nav-bar.vue'
 import FadeTransition from './transitions/fade-transition.vue'
+
+setTimeout(() => {
+  document.body.style.transition = '0.2s'
+})
 </script>
 
 <template>

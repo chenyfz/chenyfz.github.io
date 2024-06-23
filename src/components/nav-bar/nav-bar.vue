@@ -25,10 +25,10 @@ const tabs = [{
   textKey: 'navBarMsg.blogTab',
   to: '/blog'
 }, {
-  pageName: 'dev-lab',
-  textKey: 'navBarMsg.devLabTab',
-  to: '/dev-lab'
-}, {
+//   pageName: 'dev-lab',
+//   textKey: 'navBarMsg.devLabTab',
+//   to: '/dev-lab'
+// }, {
   pageName: 'portfolio',
   textKey: 'navBarMsg.portfolioTab',
   to: '/portfolio'
@@ -145,6 +145,8 @@ nb-height = 64px
 
 .title
   margin-right 24px
+  &:hover
+    text-decoration underline
 
 .menu-icon
   display none

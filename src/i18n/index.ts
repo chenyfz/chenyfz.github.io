@@ -1,6 +1,6 @@
 import {createI18n} from 'vue-i18n'
 import {navBarMsg} from './nav-bar.ts'
-import {aboutMeMsg} from './resume.ts'
+import {cvMsg} from './cv.ts'
 
 
 const i18n = createI18n({
@@ -9,11 +9,11 @@ const i18n = createI18n({
     messages: {
         en: {
             navBarMsg: navBarMsg.en,
-            aboutMeMsg: aboutMeMsg.en,
+            cvMsg: cvMsg.en,
         },
         zh: {
             navBarMsg: navBarMsg.zh,
-            aboutMeMsg: aboutMeMsg.zh,
+            cvMsg: cvMsg.zh,
         }
     }
 })

@@ -33,9 +33,9 @@ const tabs = [{
   textKey: 'navBarMsg.portfolioTab',
   to: '/portfolio'
 }, {
-  pageName: 'resume',
-  textKey: 'navBarMsg.resumeTab',
-  to: '/resume'
+  pageName: 'cv',
+  textKey: 'navBarMsg.cvTab',
+  to: '/cv'
 }]
 
 const currentPageName = computed(() => route.name)
@@ -80,6 +80,7 @@ const isHighlighted = (pageName: string) => {
 
   <Teleport to="body">
     <transform-transition :duration-second="0.5" direction="down">
+      <!--      <div v-if="isMenuOpen" class="mask" />-->
       <div v-if="isMenuOpen" class="nb-side-penal">
         <router-link
           v-for="tab in tabs"
@@ -134,6 +135,13 @@ nb-height = 64px
 .nb-button-highlighted
   color: var(--text-color)
 
+.mask
+  position: fixed
+  left 0
+  right 0
+  top 0
+  bottom 0
+  background red
 
 .title
   margin-right 24px

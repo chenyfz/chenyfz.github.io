@@ -5,7 +5,7 @@ interface Content {
     blogTab: string,
     devLabTab: string,
     portfolioTab: string,
-    resumeTab: string,
+    cvTab: string,
 }
 
 export const navBarMsg : Record<Languages, Content> = {
@@ -14,13 +14,13 @@ export const navBarMsg : Record<Languages, Content> = {
         blogTab: 'Thoughts',
         devLabTab: 'DevLab',
         portfolioTab: 'Portfolio',
-        resumeTab: 'Resume',
+        cvTab: 'CV',
     },
     zh: {
         homeTab: '主页',
         blogTab: '随想',
         devLabTab: '实验室',
         portfolioTab: '作品集',
-        resumeTab: '简历',
+        cvTab: '简历',
     }
 }

@@ -6,11 +6,41 @@
 body
   margin 0
   padding 0
+  line-height 1.6
   background-color: var(--background-color)
   color: var(--text-color)
   transition: .15s
   font-family 'Lexend', sans-serif
   -webkit-tap-highlight-color: transparent
+
+ul
+  list-style: none
+  padding: 0
+
+li
+  list-style: none
+  padding: 0 0 0 24px
+  margin: 4px 0 0 0
+  position: relative;
+  &:before
+    content: ''
+    position: absolute;
+    left 1px
+    top: 8px
+    width 6px
+    height 6px
+    border 1.5px solid var(--text-color)
+    border-radius 10px
+
+li.new-ul-container
+  margin: 0
+  &:before
+    content: none
+
+
+.link
+  color: var(--link-color)
+  text-decoration underline
 
 body
   --page-padding: 32px
@@ -29,3 +59,10 @@ html
 a
   color var(--text-color)
   text-decoration none
+
+for $i in 1..6
+  .mt-{$i}
+    margin-top: 4px * (2 ** ($i - 1))
+
+  .mb-{$i}
+    margin-bottom: 4px * (2 ** ($i - 1))

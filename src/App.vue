@@ -5,9 +5,11 @@ import FadeTransition from './transitions/fade-transition.vue'
 
 <template>
   <nav-bar />
-  <fade-transition :duration-second="0.5">
-    <router-view />
-  </fade-transition>
+  <router-view v-slot="{ Component }">
+    <fade-transition :duration-second="0.3">
+      <component :is="Component" />
+    </fade-transition>
+  </router-view>
 </template>
 
 <style lang="stylus">

@@ -13,7 +13,7 @@ const durationCssString = computed(() => props.durationSecond + 's')
 </script>
 
 <template>
-  <transition name="fade">
+  <transition name="fade" mode="out-in">
     <slot />
   </transition>
 </template>

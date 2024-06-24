@@ -4,7 +4,10 @@
 
 <template>
   <div class="home-page">
-    <p>{{ $t('homeMsg.introP1') }}</p>
+    <p class="with-large-emoji">
+      {{ $t('homeMsg.introP1') }}
+      <span class="hi-emoji">👋</span>
+    </p>
     <p>{{ $t('homeMsg.introP2') }}</p>
     <p>{{ $t('homeMsg.introP3') }}</p>
     <p>{{ $t('homeMsg.introP4') }}</p>
@@ -27,9 +30,19 @@
 <style scoped lang="stylus">
 .home-page
   padding: 0 var(--page-padding)
-  margin: 64px auto 56px auto
+  margin: 32px auto 56px auto
   max-width 730px
-  font-size 17px
+  font-size 18px
+
+p
+  margin 16px 0
+
+.with-large-emoji
+  line-height 40px
+
+.hi-emoji
+  font-size 100px
+  position relative
 
 .email-button
   padding 12px 16px

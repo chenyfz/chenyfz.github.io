@@ -35,7 +35,7 @@ export const cvMsg: Record<Languages, Content> = {
         cvTitle: 'Curriculum Vitae',
         educationTitle: 'Education',
         workExperienceTitle: 'Work Experience',
-        name: 'Chen Yangfan',
+        name: 'CHEN Yangfan',
         mscTitle: 'MSc Human-Computer Interaction',
         mscTime: 'Sept. 2023 - Now',
         mscUni: 'Utrecht University',

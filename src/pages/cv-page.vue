@@ -24,7 +24,7 @@
         <li>{{ $t('cvMsg.mscGPA') }}</li>
         <li>
           {{ $t('cvMsg.spBefore') }}
-          <router-link to="" class="link">{{ $t('cvMsg.spLink') }}</router-link>
+          <router-link to="portfolio" class="link">{{ $t('cvMsg.spLink') }}</router-link>
           {{ $t('cvMsg.spAfter') }}
         </li>
       </ul>
@@ -85,8 +85,8 @@
 <style scoped lang="stylus">
 .about-page
   padding: 0 var(--page-padding)
-  margin: 32px auto 16px auto
-  max-width 600px
+  margin: 32px auto 56px auto
+  max-width 730px
 
 .cv-title
   span

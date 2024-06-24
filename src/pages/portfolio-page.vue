@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import I18nParagraphs from '../components/i18n-paragraphs/i18n-paragraphs.vue'
+
 const scrollToId = (id: string) => {
   document.querySelector(`#${id}`)?.scrollIntoView({ behavior: 'smooth' })
 }
@@ -36,18 +38,49 @@ const scrollToId = (id: string) => {
     <hr>
     <div class="content">
       <div class="title">{{ $t('portfolioMsg.coursesTitle') }}</div>
-      <h4 id="mcsp-title">{{ $t('portfolioMsg.mcspTitle') }}</h4>
+      <h4 id="mcsp-title" class="first-course-title">{{ $t('portfolioMsg.mcspTitle') }}</h4>
+      <i18n-paragraphs :length="6" t-key="portfolioMsg.mcspParagraphs" />
+
       <h4 id="mlhvl-title">{{ $t('portfolioMsg.mlhvlTitle') }}</h4>
+
+      <i18n-paragraphs :length="7" t-key="portfolioMsg.mlhvlParagraphs" />
       <h4 id="mvis-title">{{ $t('portfolioMsg.mvisTitle') }}</h4>
+      <i18n-paragraphs :length="6" t-key="portfolioMsg.mvisParagraphs" />
+      <img src="/infovis-demo.png" alt="illustration about Information Visualization course project">
+      <p class="label">Screenshot of our course project</p>
+
       <h4 id="mqlm-title">{{ $t('portfolioMsg.mqlmTitle') }}</h4>
+      <i18n-paragraphs :length="6" t-key="portfolioMsg.mqlmParagraphs" />
+
       <h4 id="miti-title">{{ $t('portfolioMsg.mitiTitle') }}</h4>
+      <i18n-paragraphs :length="6" t-key="portfolioMsg.mitiParagraphs" />
+
       <h4 id="mmmi-title">{{ $t('portfolioMsg.mmmiTitle') }}</h4>
+      <i18n-paragraphs :length="6" t-key="portfolioMsg.mmmiParagraphs" />
+      <video controls>
+        <source src="/infommmi-demo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p class="label">The first gesture is by Meta. The second and third gestures are what I implemented</p>
+
       <h4 id="mqnm-title">{{ $t('portfolioMsg.mqnmTitle') }}</h4>
+      <i18n-paragraphs :length="6" t-key="portfolioMsg.mqnmParagraphs" />
+
       <h4 id="mmob-title">{{ $t('portfolioMsg.mmobTitle') }}</h4>
+      <i18n-paragraphs :length="6" t-key="portfolioMsg.mmobParagraphs" />
+
       <h4 id="mdm-title">{{ $t('portfolioMsg.mdmTitle') }}</h4>
+      <i18n-paragraphs :length="1" t-key="portfolioMsg.mdmParagraphs" />
+
       <h4 id="mr-title">{{ $t('portfolioMsg.mrTitle') }}</h4>
+      <i18n-paragraphs :length="1" t-key="portfolioMsg.mrParagraphs" />
+
       <h4 id="magr-title">{{ $t('portfolioMsg.magrTitle') }}</h4>
+      <i18n-paragraphs :length="1" t-key="portfolioMsg.magrParagraphs" />
+
       <h4 id="mcv-title">{{ $t('portfolioMsg.mcvTitle') }}</h4>
+      <i18n-paragraphs :length="1" t-key="portfolioMsg.mcvParagraphs" />
+      <i18n-paragraphs :length="1" t-key="portfolioMsg.mcvParagraphs" />
     </div>
   </div>
 </template>
@@ -60,7 +93,17 @@ const scrollToId = (id: string) => {
 
 h4
   margin-bottom 8px
+  margin-top 48px
   scroll-margin-top: 72px;
+
+.first-course-title
+  margin-top 8px
+
+img
+video
+  margin-top 24px
+  border-radius 8px
+  width 100%
 
 hr
   margin: 32px 0
@@ -72,6 +115,12 @@ hr
 .year-title
   margin-top 12px
   font-weight bold
+
+.label
+  color: var(--text-color-secondary)
+  text-align center
+  margin-top: 4px
+  margin-bottom 24px
 
 .overview
   display grid
@@ -133,6 +182,9 @@ hr
     grid-template-columns auto
     grid-template-rows auto
     align-self start
+    padding-bottom 32px
+    max-height calc(100vh - 64px - 72px)
+    overflow auto
 
     .full-line
       grid-column unset

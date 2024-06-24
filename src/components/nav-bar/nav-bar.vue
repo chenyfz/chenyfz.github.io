@@ -114,7 +114,8 @@ nb-height = 64px
   padding 0 var(--page-padding)
   font-size 18px
   font-weight 600
-  backdrop-filter blur(16px)
+  background-color: var(--background-semi-transparent)
+  backdrop-filter blur(40px)
   display grid
   align-items center
   grid-template-columns auto auto 1fr auto auto auto auto auto
@@ -180,7 +181,8 @@ nb-height = 64px
   left 0
   right 0
   top nb-height
-  backdrop-filter blur(16px)
+  backdrop-filter blur(40px)
+  background-color: var(--background-semi-transparent)
 
 .menu-item
   display block

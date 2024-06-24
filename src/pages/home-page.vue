@@ -15,6 +15,7 @@
       <router-link to="portfolio" class="link">{{ $t('homeMsg.linkToStudyPlan') }}</router-link>
       {{ $t('homeMsg.descAfterStudyPlan') }}
     </p>
+
     <div class="email-button-container">
       <a class="email-button" href="mailto:x.chenyangfan@gmail.com">
         {{ $t('homeMsg.reachOut') }}
@@ -26,7 +27,7 @@
 <style scoped lang="stylus">
 .home-page
   padding: 0 var(--page-padding)
-  margin: 32px auto 56px auto
+  margin: 64px auto 56px auto
   max-width 730px
   font-size 17px
 
@@ -54,5 +55,5 @@
     background var(--text-color-hightlight)
 
 .email-button-container
-  margin-top: 32px
+  margin: 24px 0
 </style>

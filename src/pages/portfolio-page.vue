@@ -39,24 +39,28 @@ const scrollToId = (id: string) => {
     <div class="content">
       <div class="title">{{ $t('portfolioMsg.coursesTitle') }}</div>
       <h4 id="mcsp-title" class="first-course-title">{{ $t('portfolioMsg.mcspTitle') }}</h4>
-      <i18n-paragraphs :length="6" t-key="portfolioMsg.mcspParagraphs" />
+      <i18n-paragraphs :length="5" t-key="portfolioMsg.mcspParagraphs" />
 
       <h4 id="mlhvl-title">{{ $t('portfolioMsg.mlhvlTitle') }}</h4>
 
-      <i18n-paragraphs :length="7" t-key="portfolioMsg.mlhvlParagraphs" />
+      <i18n-paragraphs :length="6" t-key="portfolioMsg.mlhvlParagraphs" />
       <h4 id="mvis-title">{{ $t('portfolioMsg.mvisTitle') }}</h4>
-      <i18n-paragraphs :length="6" t-key="portfolioMsg.mvisParagraphs" />
+      <i18n-paragraphs :length="5" t-key="portfolioMsg.mvisParagraphs" />
+      <a href="https://superfashion.walzen.org/" class="link" target="_blank">{{ $t('portfolioMsg.mvisParagraphs[5]') }}</a>
       <img src="/infovis-demo.png" alt="illustration about Information Visualization course project">
       <p class="label">Screenshot of our course project</p>
 
       <h4 id="mqlm-title">{{ $t('portfolioMsg.mqlmTitle') }}</h4>
-      <i18n-paragraphs :length="6" t-key="portfolioMsg.mqlmParagraphs" />
+      <i18n-paragraphs :length="7" t-key="portfolioMsg.mqlmParagraphs" />
+      <a href="/Group_30_Final_Paper.pdf" class="link" target="_blank">{{ $t('portfolioMsg.mqlmParagraphs[7]') }}</a>
 
       <h4 id="miti-title">{{ $t('portfolioMsg.mitiTitle') }}</h4>
-      <i18n-paragraphs :length="6" t-key="portfolioMsg.mitiParagraphs" />
+      <i18n-paragraphs :length="1" t-key="portfolioMsg.mitiParagraphs" />
+      <a href="/Reflective_Diary_Yangfan.pdf" class="link" target="_blank">{{ $t('portfolioMsg.mitiParagraphs[1]') }}</a>
 
       <h4 id="mmmi-title">{{ $t('portfolioMsg.mmmiTitle') }}</h4>
-      <i18n-paragraphs :length="6" t-key="portfolioMsg.mmmiParagraphs" />
+      <i18n-paragraphs :length="9" t-key="portfolioMsg.mmmiParagraphs" />
+      <a href="/INFOMMMI_Super_VR_Power_paper.pdf" class="link" target="_blank">{{ $t('portfolioMsg.mmmiParagraphs[9]') }}</a>
       <video controls>
         <source src="/infommmi-demo.mp4" type="video/mp4">
         Your browser does not support the video tag.
@@ -64,10 +68,11 @@ const scrollToId = (id: string) => {
       <p class="label">The first gesture is by Meta. The second and third gestures are what I implemented</p>
 
       <h4 id="mqnm-title">{{ $t('portfolioMsg.mqnmTitle') }}</h4>
-      <i18n-paragraphs :length="6" t-key="portfolioMsg.mqnmParagraphs" />
+      <i18n-paragraphs :length="8" t-key="portfolioMsg.mqnmParagraphs" />
+      <a href="/infomqnm-report.pdf" class="link" target="_blank">{{ $t('portfolioMsg.mqnmParagraphs[8]') }}</a>
 
       <h4 id="mmob-title">{{ $t('portfolioMsg.mmobTitle') }}</h4>
-      <i18n-paragraphs :length="6" t-key="portfolioMsg.mmobParagraphs" />
+      <i18n-paragraphs :length="1" t-key="portfolioMsg.mmobParagraphs" />
 
       <h4 id="mdm-title">{{ $t('portfolioMsg.mdmTitle') }}</h4>
       <i18n-paragraphs :length="1" t-key="portfolioMsg.mdmParagraphs" />
@@ -79,7 +84,6 @@ const scrollToId = (id: string) => {
       <i18n-paragraphs :length="1" t-key="portfolioMsg.magrParagraphs" />
 
       <h4 id="mcv-title">{{ $t('portfolioMsg.mcvTitle') }}</h4>
-      <i18n-paragraphs :length="1" t-key="portfolioMsg.mcvParagraphs" />
       <i18n-paragraphs :length="1" t-key="portfolioMsg.mcvParagraphs" />
     </div>
   </div>

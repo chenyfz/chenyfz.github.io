@@ -13,14 +13,14 @@ export const navBarMsg : Record<Languages, Content> = {
         homeTab: 'Home',
         blogTab: 'Thoughts',
         devLabTab: 'DevLab',
-        portfolioTab: 'Portfolio',
+        portfolioTab: 'Study Plan',
         cvTab: 'CV',
     },
     zh: {
         homeTab: '主页',
         blogTab: '随想',
         devLabTab: '实验室',
-        portfolioTab: '作品集',
+        portfolioTab: '课程计划',
         cvTab: '简历',
     }
 }

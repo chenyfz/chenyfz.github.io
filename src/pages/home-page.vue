@@ -4,10 +4,7 @@
 
 <template>
   <div class="home-page">
-    <p class="with-large-emoji">
-      {{ $t('homeMsg.introP1') }}
-      <span class="hi-emoji">👋</span>
-    </p>
+    <p class="with-large-emoji">{{ $t('homeMsg.introP1') }}<span class="hi-emoji">👋</span></p>
     <p>{{ $t('homeMsg.introP2') }}</p>
     <p>{{ $t('homeMsg.introP3') }}</p>
     <p>{{ $t('homeMsg.introP4') }}</p>
@@ -36,13 +33,6 @@
 
 p
   margin 16px 0
-
-.with-large-emoji
-  line-height 40px
-
-.hi-emoji
-  font-size 100px
-  position relative
 
 .email-button
   padding 12px 16px

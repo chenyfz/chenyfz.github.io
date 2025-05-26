@@ -50,6 +50,21 @@
 
     <section class="work">
       <div class="lr-layout highlight line">
+        <div>{{ $t('cvMsg.traineeTitle') }}</div>
+        <div>{{ $t('cvMsg.traineeTime') }}</div>
+      </div>
+      <div class="lr-layout">
+        <div>{{ $t('cvMsg.traineeUni') }}</div>
+        <div class="uni-location">{{ $t('cvMsg.traineeLocation') }}</div>
+      </div>
+      <ul class="line">
+        <li>{{ $t('cvMsg.traineeTeam') }}, {{ $t('cvMsg.traineeSupervisor') }}</li>
+        <li>{{ $t('cvMsg.traineeThesis') }}</li>
+      </ul>
+    </section>
+
+    <section class="work mt-3">
+      <div class="lr-layout highlight line">
         <div>{{ $t('cvMsg.workTitle') }}</div>
         <div>{{ $t('cvMsg.workTime') }}</div>
       </div>
@@ -67,6 +82,7 @@
             </li>
           </ul>
         </li>
+        <li>{{ $t('cvMsg.workAchievement') }}</li>
       </ul>
     </section>
 
@@ -112,4 +128,6 @@
 .line
   margin-top 8px
 
+.mt-3
+  margin-top 30px
 </style>

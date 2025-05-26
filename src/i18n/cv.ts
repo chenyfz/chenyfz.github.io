@@ -19,6 +19,13 @@ interface Content {
     spLink: string,
     spAfter: string,
     bscAchievement: string,
+    traineeTitle: string,
+    traineeTime: string,
+    traineeUni: string,
+    traineeLocation: string,
+    traineeTeam: string,
+    traineeSupervisor: string,
+    traineeThesis: string,
     workTitle: string,
     workTime: string,
     workUni: string,
@@ -26,6 +33,7 @@ interface Content {
     workTeam: string,
     workContentTitle: string,
     workContent: string[],
+    workAchievement: string,
     skillTitle: string,
     skills: string[]
 }
@@ -49,7 +57,14 @@ export const cvMsg: Record<Languages, Content> = {
         spBefore: 'See',
         spLink: 'Study Plan',
         spAfter: 'for more information',
-        bscAchievement: 'Excellent Bachelor’s Dissertation Awards by both Nanjing University and Jiangsu Province',
+        bscAchievement: 'Excellent Bachelor\'s Dissertation Awards by both Nanjing University and Jiangsu Province',
+        traineeTitle: 'Trainee',
+        traineeTime: 'March 2025 - Now',
+        traineeUni: 'Centrum Wiskunde & Informatica (CWI)',
+        traineeLocation: 'Amsterdam, Netherlands',
+        traineeTeam: 'Human-Centered Data Analytics Group',
+        traineeSupervisor: 'supervisor: Lynda Hardman',
+        traineeThesis: 'Master\'s Thesis: Accurate and Drift-Robust Gaze Pointing with On-the-fly Recalibration',
         workTitle: 'Frontend Developer at WeChat',
         workTime: 'July 2020 - May 2022',
         workUni: 'Tencent',
@@ -61,13 +76,14 @@ export const cvMsg: Record<Languages, Content> = {
             'WeChat Channels (short video platform) and WeChat Channels Live front-end development',
             'Full stack internal information systems development',
         ],
-        skillTitle: 'Skills',
+        workAchievement: 'Tencent Good+ Contributor (top 15%) in 2021H1 and 2021H2',
+        skillTitle: 'Technical Skills:',
         skills: [
-            'Solid academic training (e.g., in qualitative and quantitative research methods); knowledge of state-of-the-art HCI research and psychology',
-            'Solid software engineering knowledge and experience',
-            'Solid coding experience in web development (HTML & JavaScript & CSS, etc.), Python, and Java',
-            'Recently, some experience on AI, web 3D, Unity, VR application',
-            'Languages: fluent English (C1) and native Chinese'
+            'Web development (frontend, backend, database, DevOps)',
+            'Software architecture',
+            'Python (data processing and machine learning)',
+            'C# (Windows App and Unity)',
+            '3D modelling and 3D printing'
         ]
     },
     zh: {
@@ -89,6 +105,13 @@ export const cvMsg: Record<Languages, Content> = {
         spLink: '课程计划',
         spAfter: '',
         bscAchievement: '江苏省、南京大学本科优秀毕业论文',
+        traineeTitle: '实习生',
+        traineeTime: '2025年3月至今',
+        traineeUni: '荷兰数学和计算机科学研究中心 (CWI)',
+        traineeLocation: '荷兰阿姆斯特丹',
+        traineeTeam: 'Human-Centered Data Analytics Group',
+        traineeSupervisor: '导师: Lynda Hardman',
+        traineeThesis: '硕士论文: Accurate and Drift-Robust Gaze Pointing with On-the-fly Recalibration',
         workTitle: '微信 - 前端开发',
         workTime: '2020年 - 2022年',
         workUni: '腾讯',
@@ -100,13 +123,14 @@ export const cvMsg: Record<Languages, Content> = {
             '微信视频号和视频号直播前端开发',
             '内部工具系统全栈开发',
         ],
-        skillTitle: '专长',
+        workAchievement: '2021年上半年和下半年腾讯Good+贡献者（前15%）',
+        skillTitle: '技术专长',
         skills: [
-            '扎实的学术技能（例如定性与定量研究）和心理学知识，了解HCI领域前沿研究',
-            '丰富的软件工程知识和经验',
-            '专业的前端开发（HTML & JavaScript & CSS等）、Python、Java能力',
-            '硕士期间：一些人工智能、web 3D、Unity和VR应用经验',
-            '语言：英语（流畅，C1）、中文'
+            'Web开发（前端、后端、数据库、DevOps）',
+            '软件架构',
+            'Python（数据处理和机器学习）',
+            'C#（Windows应用和Unity）',
+            '3D建模和3D打印'
         ]
     }
 }

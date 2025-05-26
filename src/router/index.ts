@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import BlogPage from '../pages/blog-page.vue'
-import PortfolioPage from '../pages/portfolio-page.vue'
+import StudyPlanPage from '../pages/study-plan-page.vue'
 import HomePage from '../pages/home-page.vue'
 import CvPage from '../pages/cv-page.vue'
 import DevLabPage from '../pages/dev-lab-page.vue'
+import PortfolioPage from '../pages/portfolio-page.vue'
 
 const routes = [
     {
@@ -25,6 +26,11 @@ const routes = [
         path: '/portfolio',
         name: 'portfolio',
         component: PortfolioPage,
+    },
+    {
+        path: '/study-plan',
+        name: 'study-plan',
+        component: StudyPlanPage,
     },
     {
         path: '/cv',

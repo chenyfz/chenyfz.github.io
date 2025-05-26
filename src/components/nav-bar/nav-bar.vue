@@ -21,17 +21,21 @@ const tabs = [{
   textKey: 'navBarMsg.homeTab',
   to: '/'
 },{
-  pageName: 'blog',
-  textKey: 'navBarMsg.blogTab',
-  to: '/blog'
-}, {
+//   pageName: 'portfolio',
+//   textKey: 'navBarMsg.portfolioTab',
+//   to: '/portfolio'
+// }, {
+//   pageName: 'blog',
+//   textKey: 'navBarMsg.blogTab',
+//   to: '/blog'
+// }, {
 //   pageName: 'dev-lab',
 //   textKey: 'navBarMsg.devLabTab',
 //   to: '/dev-lab'
 // }, {
-  pageName: 'portfolio',
-  textKey: 'navBarMsg.portfolioTab',
-  to: '/portfolio'
+  pageName: 'study-plan',
+  textKey: 'navBarMsg.studyPlanTab',
+  to: '/study-plan'
 }, {
   pageName: 'cv',
   textKey: 'navBarMsg.cvTab',

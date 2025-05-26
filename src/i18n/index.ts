@@ -3,7 +3,7 @@ import {navBarMsg} from './nav-bar.ts'
 import {cvMsg} from './cv.ts'
 import {blogMsg} from './blog.ts'
 import {devLabMsg} from './dev-lab.ts'
-import {portfolioMsg} from './portfolio.ts'
+import {portfolioMsg} from './study-plan.ts'
 import { homeMsg } from './home'
 
 

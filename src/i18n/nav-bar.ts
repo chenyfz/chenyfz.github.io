@@ -4,6 +4,7 @@ interface Content {
     homeTab: string,
     blogTab: string,
     devLabTab: string,
+    studyPlanTab: string,
     portfolioTab: string,
     cvTab: string,
 }
@@ -13,14 +14,16 @@ export const navBarMsg : Record<Languages, Content> = {
         homeTab: 'Home',
         blogTab: 'Thoughts',
         devLabTab: 'DevLab',
-        portfolioTab: 'Study Plan',
+        studyPlanTab: 'Study Plan',
+        portfolioTab: 'Portfolio',
         cvTab: 'CV',
     },
     zh: {
         homeTab: '主页',
         blogTab: '随想',
         devLabTab: '实验室',
-        portfolioTab: '课程计划',
+        studyPlanTab: '课程计划',
+        portfolioTab: '作品集',
         cvTab: '简历',
     }
 }

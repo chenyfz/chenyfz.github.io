@@ -24,7 +24,7 @@
         <li>{{ $t('cvMsg.mscGPA') }}</li>
         <li>
           {{ $t('cvMsg.spBefore') }}
-          <router-link to="portfolio" class="link">{{ $t('cvMsg.spLink') }}</router-link>
+          <router-link to="study-plan" class="link">{{ $t('cvMsg.spLink') }}</router-link>
           {{ $t('cvMsg.spAfter') }}
         </li>
       </ul>

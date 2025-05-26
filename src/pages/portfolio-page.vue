@@ -29,11 +29,10 @@ const scrollToId = (id: string) => {
       <div class="full-line year-title">{{ $t('portfolioMsg.secondYearTitle') }}</div>
       <div class="left">Period 5</div>
       <div class="right" @click="scrollToId('mdm-title')">{{ $t('portfolioMsg.mdmTitle') }}</div>
-      <div class="right" @click="scrollToId('mr-title')">{{ $t('portfolioMsg.mrTitle') }}</div>
       <div class="left">Period 6</div>
-      <div class="right" @click="scrollToId('magr-title')">{{ $t('portfolioMsg.magrTitle') }}</div>
-      <div class="left">Period 7</div>
-      <div class="right" @click="scrollToId('mcv-title')">{{ $t('portfolioMsg.mcvTitle') }}</div>
+      <div class="right" @click="scrollToId('mcm-title')">{{ $t('portfolioMsg.mcmTitle') }}</div>
+      <div class="left">Remaining</div>
+      <div class="right" @click="scrollToId('thesis-title')">{{ $t('portfolioMsg.thesisTitle') }}</div>
     </div>
     <hr>
     <div class="content">
@@ -77,14 +76,11 @@ const scrollToId = (id: string) => {
       <h4 id="mdm-title">{{ $t('portfolioMsg.mdmTitle') }}</h4>
       <i18n-paragraphs :length="1" t-key="portfolioMsg.mdmParagraphs" />
 
-      <h4 id="mr-title">{{ $t('portfolioMsg.mrTitle') }}</h4>
-      <i18n-paragraphs :length="1" t-key="portfolioMsg.mrParagraphs" />
+      <h4 id="mcm-title">{{ $t('portfolioMsg.mcmTitle') }}</h4>
+      <i18n-paragraphs :length="1" t-key="portfolioMsg.mcmParagraphs" />
 
-      <h4 id="magr-title">{{ $t('portfolioMsg.magrTitle') }}</h4>
-      <i18n-paragraphs :length="1" t-key="portfolioMsg.magrParagraphs" />
-
-      <h4 id="mcv-title">{{ $t('portfolioMsg.mcvTitle') }}</h4>
-      <i18n-paragraphs :length="1" t-key="portfolioMsg.mcvParagraphs" />
+      <h4 id="thesis-title">{{ $t('portfolioMsg.thesisTitle') }}</h4>
+      <i18n-paragraphs :length="1" t-key="portfolioMsg.thesisParagraphs" />
     </div>
   </div>
 </template>

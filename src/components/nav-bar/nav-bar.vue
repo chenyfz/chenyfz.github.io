@@ -6,8 +6,11 @@ import DarkModeButton from './dark-mode-button.vue'
 import {computed, ref} from 'vue'
 import TransformTransition from '../../transitions/transform-transition.vue'
 import {useRoute} from 'vue-router'
+import { useI18n } from 'vue-i18n'
+
 const { mode, toggleMode } = useWatchColor()
 const { language, toggleLanguage} = useWatchLanguage()
+const { t } = useI18n()
 
 const route = useRoute()
 
@@ -18,27 +21,27 @@ const onClickMenu = () => {
 
 const tabs = [{
   pageName: 'home',
-  textKey: 'navBarMsg.homeTab',
+  textKey: 'homeTab',
   to: '/'
 },{
 //   pageName: 'portfolio',
-//   textKey: 'navBarMsg.portfolioTab',
+//   textKey: 'portfolioTab',
 //   to: '/portfolio'
 // }, {
 //   pageName: 'blog',
-//   textKey: 'navBarMsg.blogTab',
+//   textKey: 'blogTab',
 //   to: '/blog'
 // }, {
 //   pageName: 'dev-lab',
-//   textKey: 'navBarMsg.devLabTab',
+//   textKey: 'devLabTab',
 //   to: '/dev-lab'
 // }, {
   pageName: 'study-plan',
-  textKey: 'navBarMsg.studyPlanTab',
+  textKey: 'studyPlanTab',
   to: '/study-plan'
 }, {
   pageName: 'cv',
-  textKey: 'navBarMsg.cvTab',
+  textKey: 'cvTab',
   to: '/cv'
 }]
 
@@ -78,7 +81,7 @@ const isHighlighted = (pageName: string) => {
       :class="{'nb-button-highlighted': isHighlighted(tab.pageName)}"
       :to="tab.to"
     >
-      {{ $t(tab.textKey) }}
+      {{ t(tab.textKey) }}
     </router-link>
   </div>
 
@@ -94,7 +97,7 @@ const isHighlighted = (pageName: string) => {
           :to="tab.to"
           @click="isMenuOpen = false"
         >
-          {{ $t(tab.textKey) }}
+          {{ t(tab.textKey) }}
         </router-link>
         <div class="menu-item menu-item-switches">
           <language-button
@@ -109,6 +112,24 @@ const isHighlighted = (pageName: string) => {
   </Teleport>
 </template>
 
+<i18n lang="yaml" locale="en">
+homeTab: "Home"
+blogTab: "Thoughts"
+devLabTab: "DevLab"
+studyPlanTab: "Study Plan"
+portfolioTab: "Portfolio"
+cvTab: "CV"
+</i18n>
+
+<i18n lang="yaml" locale="zh">
+homeTab: "主页"
+blogTab: "随想"
+devLabTab: "实验室"
+studyPlanTab: "课程计划"
+portfolioTab: "作品集"
+cvTab: "简历"
+</i18n>
+
 <style scoped lang="stylus">
 @import "../../styles/stylus-variables.styl";
 nb-height = 64px
@@ -122,7 +143,7 @@ nb-height = 64px
   backdrop-filter blur(40px)
   display grid
   align-items center
-  grid-template-columns auto auto 1fr auto auto auto auto auto
+  grid-template-columns auto auto 1fr auto auto auto auto auto auto
   gap 8px
   position: sticky
   top: 0

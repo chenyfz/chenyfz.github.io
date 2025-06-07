@@ -2,14 +2,17 @@
 import {computed} from 'vue'
 
 interface Props {
-  durationSecond: number
+  durationSecond?: number,
+  delaySecond?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  durationSecond: 0.3
+  durationSecond: 0.3,
+  delaySecond: 0
 })
 
 const durationCssString = computed(() => props.durationSecond + 's')
+const delayCssString = computed(() => props.delaySecond + 's')
 </script>
 
 <template>
@@ -21,7 +24,7 @@ const durationCssString = computed(() => props.durationSecond + 's')
 <style scoped lang="stylus">
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity v-bind(durationCssString) ease;
+  transition: opacity v-bind(durationCssString) v-bind(delayCssString) ease;
 }
 
 .fade-enter-from,

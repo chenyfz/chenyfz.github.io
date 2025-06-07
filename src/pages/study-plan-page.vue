@@ -244,7 +244,7 @@ hr
   grid-template-rows: auto;
   grid-gap 8px
   column-gap: 10px
-  color: var(--text-color-less-important)
+  color: var(--text-color-70)
 
   .full-line
     grid-column 1 / 3

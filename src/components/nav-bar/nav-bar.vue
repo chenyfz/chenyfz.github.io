@@ -4,7 +4,7 @@ import {useWatchLanguage} from './use-watch-language.ts'
 import LanguageButton from './language-button.vue'
 import DarkModeButton from './dark-mode-button.vue'
 import {computed, ref} from 'vue'
-import TransformTransition from '../../transitions/transform-transition.vue'
+import DrawerTransition from '../../transitions/drawer-transition.vue'
 import {useRoute} from 'vue-router'
 import { useI18n } from 'vue-i18n'
 
@@ -86,7 +86,7 @@ const isHighlighted = (pageName: string) => {
   </div>
 
   <Teleport to="body">
-    <transform-transition :duration-second="0.5" direction="down">
+    <drawer-transition :duration-second="0.5" direction="down">
       <!--      <div v-if="isMenuOpen" class="mask" />-->
       <div v-if="isMenuOpen" class="nb-side-penal">
         <router-link
@@ -108,7 +108,7 @@ const isHighlighted = (pageName: string) => {
           <dark-mode-button :mode="mode" @click="toggleMode" />
         </div>
       </div>
-    </transform-transition>
+    </drawer-transition>
   </Teleport>
 </template>
 
@@ -139,8 +139,8 @@ nb-height = 64px
   padding 0 var(--page-padding)
   font-size 18px
   font-weight 600
-  background-color: var(--background-semi-transparent)
-  backdrop-filter blur(40px)
+  background-color: transparent
+  backdrop-filter blur(20px)
   display grid
   align-items center
   grid-template-columns auto auto 1fr auto auto auto auto auto auto
@@ -148,6 +148,7 @@ nb-height = 64px
   position: sticky
   top: 0
   z-index 2
+  transition .2s
 
 .nb-button
   padding: 6px 8px
@@ -206,8 +207,8 @@ nb-height = 64px
   left 0
   right 0
   top nb-height
-  backdrop-filter blur(40px)
-  background-color: var(--background-semi-transparent)
+  backdrop-filter blur(20px)
+  background-color: transparent
 
 .menu-item
   display block

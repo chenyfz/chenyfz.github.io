@@ -2,7 +2,7 @@
 import {computed} from 'vue'
 
 interface Props {
-  durationSecond?: number,
+  durationSecond: number,
   direction?: 'up' | 'down',
 }
 
@@ -15,7 +15,7 @@ const durationCssString = computed(() => props.durationSecond + 's')
 </script>
 
 <template>
-  <Transition :name="`transform-${props.direction}`" mode="out-in">
+  <Transition :name="`transform-${props.direction}`">
     <slot />
   </Transition>
 </template>
@@ -24,26 +24,9 @@ const durationCssString = computed(() => props.durationSecond + 's')
 .transform-down-enter-active,
 .transform-down-leave-active
   transition v-bind(durationCssString) ease
-  transform translateY(0)
 
-.transform-down-enter-from
-  transform translateY(-30px)
-  opacity 0
-
+.transform-down-enter-from,
 .transform-down-leave-to
-  transform translateY(0)
-  opacity 0
-
-.transform-up-enter-active,
-.transform-up-leave-active
-  transition v-bind(durationCssString) ease
-  transform translateY(0)
-
-.transform-up-enter-from
-  transform translateY(30px)
-  opacity 0
-
-.transform-up-leave-to
-  transform translateY(0)
+  transform translateY(-100%)
   opacity 0
 </style>

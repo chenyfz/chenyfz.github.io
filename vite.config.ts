@@ -6,7 +6,14 @@ import { fileURLToPath } from 'node:url'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(),
+  plugins: [
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: tag => tag.startsWith('swiper-')
+        }
+      }
+    }),
     VueI18nPlugin({
       compositionOnly: true,
       include: resolve(dirname(fileURLToPath(import.meta.url)), './path/to/src/locales/**'),

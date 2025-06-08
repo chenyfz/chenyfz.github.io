@@ -53,19 +53,19 @@ const currentMasterTab = ref(masterTabs[0])
 
     <div class="tencent">
       <div class="bubbles-bar">
-        <chat-bubble>Let me tell you more about my work at Tencent! 🧐</chat-bubble>
+        <chat-bubble>Wait, I haven't told you about my role in WeChat. 🧐</chat-bubble>
       </div>
       <div class="tencent-content-container">
-
+        todo
       </div>
     </div>
 
     <div class="skills">
       <div class="bubbles-bar">
-        <chat-bubble>Let me tell you more about my work at Tencent! 🧐</chat-bubble>
+        <chat-bubble>Let's summarize my skills and knowledge. 😎</chat-bubble>
       </div>
-      <div class="tencent-content-container">
-
+      <div class="skills-content-container">
+        todo
       </div>
     </div>
   </div>
@@ -168,6 +168,9 @@ master:
   color  red
 
 @media (max-width: 768px)
+  .tab
+    font-size 14px
+
   .master-content-container
     grid-template-columns 1fr
 

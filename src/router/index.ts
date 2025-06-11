@@ -1,31 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import BlogPage from '../pages/blog-page.vue'
-import StudyPlanPage from '../pages/study-plan-page.vue'
 import HomePage from '../pages/home-page.vue'
+import StudyPlanPage from '../pages/study-plan-page.vue'
 import CvPage from '../pages/cv-page.vue'
-import DevLabPage from '../pages/dev-lab-page.vue'
-import PortfolioPage from '../pages/portfolio-page.vue'
+import GraduationThesisPage from '../pages/graduation-thesis-page.vue'
 
 const routes = [
     {
         path: '/',
         name: 'home',
         component: HomePage,
-    },
-    {
-        path: '/blog',
-        name: 'blog',
-        component: BlogPage,
-    },
-    {
-        path: '/dev-lab',
-        name: 'dev-lab',
-        component: DevLabPage,
-    },
-    {
-        path: '/portfolio',
-        name: 'portfolio',
-        component: PortfolioPage,
     },
     {
         path: '/study-plan',
@@ -36,7 +19,12 @@ const routes = [
         path: '/cv',
         name: 'cv',
         component: CvPage,
-    }
+    },
+    {
+        path: '/graduation-thesis',
+        name: 'graduation-thesis',
+        component: GraduationThesisPage,
+    },
 ]
 
 const router = createRouter({

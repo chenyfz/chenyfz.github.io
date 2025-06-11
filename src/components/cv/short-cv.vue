@@ -47,11 +47,11 @@ const { t } = useI18n()
 education:
   title: "Education"
   master:
-    degree: "MSc Human-Computer Interaction [Sept. 2023 - Aug. 2025]"
+    degree: "MSc Human-Computer Interaction (Sept. 2023 - Aug. 2025)"
     university: "Utrecht University"
     gpa: "CGPA: 8.29/10"
   bachelor:
-    degree: "B.Eng. in Software Engineering [Sept. 2016 - June 2020]"
+    degree: "B.Eng. in Software Engineering (Sept. 2016 - June 2020)"
     university: "Nanjing University"
     gpa: "CGPA: 4.10/5"
 experience:

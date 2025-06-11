@@ -1,9 +1,7 @@
 <script lang="ts" setup>
-const {type} = withDefaults(defineProps<{
+const { type = 'from-system' } = defineProps<{
   type?: 'from-system' | 'from-user' | 'button'
-}>(), {
-  type: 'from-system'
-})
+}>()
 </script>
 
 <template>

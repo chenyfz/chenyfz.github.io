@@ -5,9 +5,8 @@ import ChatBubble from "../components/ui/chat-bubble.vue";
 import ShortCv from "../components/cv/short-cv.vue";
 import {ref} from "vue";
 import TransformTransition from "../transitions/transform-transition.vue";
-
 const { t } = useI18n()
-const masterTabs = ['graduationProject', 'vrMrCourses', 'researchMethods', 'others']
+const masterTabs = ['graduationProject', 'VR/AR/MR', 'researchMethods', 'prototyping']
 const currentMasterTab = ref(masterTabs[0])
 </script>
 
@@ -43,8 +42,18 @@ const currentMasterTab = ref(masterTabs[0])
         </div>
         <div class="master-content">
           <transform-transition direction="up" :duration-second="0.3">
-            <div :key="currentMasterTab">
-              <p>{{ t(`master.content.${currentMasterTab}`) }}</p>
+            <div :key="currentMasterTab" v-if="currentMasterTab === 'graduationProject'">
+              <h4 class="sub-title">{{ t('master.content.whatIsIt') }}</h4>
+              <p>{{ t('master.content.graduationProjectSummary') }}</p>
+              <h4 class="sub-title">{{ t('master.content.whatLearnedTitle') }}</h4>
+              <p>{{ t('master.content.whatLearnedContent') }}</p>
+              <router-link class="link" to="/graduation-thesis">{{ t('master.content.viewDetails') }}</router-link>
+            </div>
+            <div :key="currentMasterTab" v-if="currentMasterTab === 'VR/AR/MR'">
+            </div>
+            <div :key="currentMasterTab" v-if="currentMasterTab === 'researchMethods'">
+            </div>
+            <div :key="currentMasterTab" v-if="currentMasterTab === 'prototyping'">
             </div>
           </transform-transition>
         </div>
@@ -79,14 +88,19 @@ master:
   title: "You must be curious about what I did during my master's study! 🤔"
   tabs:
     graduationProject: "Graduation Project"
-    vrMrCourses: "VR/MR Courses"
+    "VR/AR/MR": "VR/AR/MR Courses"
     researchMethods: "Research Methods"
-    others: "Others"
+    prototyping: "Prototyping"
   content:
     graduationProject: "Content for Graduation Project."
-    vrMrCourses: "Content for VR/MR Courses."
+    "VR/AR/MR": "Content for VR/AR/MR Courses."
     researchMethods: "Content for Research Methods."
-    others: "Content for Others."
+    prototyping: "Content for Prototyping."
+    graduationProjectSummary: "Zoom Pursuit, my ongoing thesis, introduces a radial-zoom stimulus to overcome calibration drift and lets users accurately point with their eyes in any unmodified desktop GUI."
+    viewDetails: "> Read more"
+    whatIsIt: "What is it about?"
+    whatLearnedTitle: "What have I learned?"
+    whatLearnedContent: "A full-stack journey covering literature review, requirement discovery, interaction design, iterative prototyping, production-level implementation, and a complete quantitative + qualitative evaluation. "
 </i18n>
 
 <i18n lang="yaml" locale="zh">
@@ -97,14 +111,19 @@ master:
   title: "你一定很想知道我在硕士期间干了什么吧！🤔"
   tabs:
     graduationProject: "毕业设计"
-    vrMrCourses: "VR/MR课程"
+    "VR/AR/MR": "VR/AR/MR 课程"
     researchMethods: "研究方法"
-    others: "其他"
+    prototyping: "原型设计"
   content:
     graduationProject: "毕业设计的内容。"
-    vrMrCourses: "VR/MR相关课程设计的内容。"
+    "VR/AR/MR": "VR/AR/MR 相关课程设计的内容。"
     researchMethods: "研究方法的内容。"
-    others: "其他内容。"
+    prototyping: "原型设计相关内容。"
+    graduationProjectSummary: "正在进行的毕业论文 \"Zoom Pursuit\" 通过径向放大刺激修正校准漂移，使用户在无需修改软件的情况下，于任意桌面界面精准进行凝视指向。"
+    viewDetails: "> 查看详情"
+    whatIsIt: "项目简介"
+    whatLearnedTitle: "我学到了什么？"
+    whatLearnedContent: "从文献调研、需求发现、交互设计、迭代试错、形成可用设计，到复杂代码实现，以及完整的定量+定性实验设计与数据分析，全链路实践。"
 </i18n>
 
 <style scoped lang="stylus">
@@ -165,7 +184,13 @@ master:
 
 
 .master-content
-  color  red
+  p
+    margin 0 0 8px 0
+  .link
+    margin-top 4px
+  .sub-title
+    font-weight 600
+    margin 0 0 4px 0
 
 @media (max-width: 768px)
   .tab

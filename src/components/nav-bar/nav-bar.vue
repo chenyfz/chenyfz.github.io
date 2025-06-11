@@ -23,19 +23,7 @@ const tabs = [{
   pageName: 'home',
   textKey: 'homeTab',
   to: '/'
-},{
-//   pageName: 'portfolio',
-//   textKey: 'portfolioTab',
-//   to: '/portfolio'
-// }, {
-//   pageName: 'blog',
-//   textKey: 'blogTab',
-//   to: '/blog'
-// }, {
-//   pageName: 'dev-lab',
-//   textKey: 'devLabTab',
-//   to: '/dev-lab'
-// }, {
+}, {
   pageName: 'study-plan',
   textKey: 'studyPlanTab',
   to: '/study-plan'
@@ -43,6 +31,10 @@ const tabs = [{
   pageName: 'cv',
   textKey: 'cvTab',
   to: '/cv'
+}, {
+  pageName: 'graduation-thesis',
+  textKey: 'graduationThesisTab',
+  to: '/graduation-thesis'
 }]
 
 const currentPageName = computed(() => route.name)
@@ -114,20 +106,16 @@ const isHighlighted = (pageName: string) => {
 
 <i18n lang="yaml" locale="en">
 homeTab: "Home"
-blogTab: "Thoughts"
-devLabTab: "DevLab"
 studyPlanTab: "Study Plan"
-portfolioTab: "Portfolio"
 cvTab: "CV"
+graduationThesisTab: "Thesis"
 </i18n>
 
 <i18n lang="yaml" locale="zh">
 homeTab: "主页"
-blogTab: "随想"
-devLabTab: "实验室"
 studyPlanTab: "课程计划"
-portfolioTab: "作品集"
 cvTab: "简历"
+graduationThesisTab: "毕业论文"
 </i18n>
 
 <style scoped lang="stylus">
@@ -143,7 +131,7 @@ nb-height = 64px
   backdrop-filter blur(20px)
   display grid
   align-items center
-  grid-template-columns auto auto 1fr auto auto auto auto auto auto
+  grid-template-columns auto auto 1fr auto auto auto auto auto auto auto
   gap 8px
   position: sticky
   top: 0

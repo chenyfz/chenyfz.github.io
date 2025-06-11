@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-// import I18nParagraphs from '../components/i18n-paragraphs/i18n-paragraphs.vue' // Removed import
 
-const { t } = useI18n() // Only t is needed if accessing array elements directly
+const { t } = useI18n()
 
 const scrollToId = (id: string) => {
   document.querySelector(`#${id}`)?.scrollIntoView({ behavior: 'smooth' })
@@ -38,6 +37,20 @@ const scrollToId = (id: string) => {
     </div>
     <hr>
     <div class="content">
+      <div class="reflection-card">
+        <div class="reflection-title">{{ t('reflection.title') }}</div>
+        <div class="reflection-content">
+          <p>{{ t('reflection.p1Intro') }}</p>
+          <ul class="direction-list">
+            <li>{{ t('reflection.directionResearch') }}</li>
+            <li>{{ t('reflection.directionDataViz') }}</li>
+            <li>{{ t('reflection.directionPsychology') }}</li>
+            <li>{{ t('reflection.directionInteraction') }}</li>
+          </ul>
+          <p>{{ t('reflection.foundation') }}</p>
+          <p>{{ t('reflection.outlook') }}</p>
+        </div>
+      </div>
       <div class="title">{{ t('coursesTitle') }}</div>
       <h4 id="mcsp-title" class="first-course-title">{{ t('mcsp.title') }}</h4>
       <p>{{ t('mcsp.description') }}</p>
@@ -90,9 +103,10 @@ const scrollToId = (id: string) => {
 <i18n lang="yaml" locale="en">
 firstYearTitle: "First Year"
 secondYearTitle: "Second Year"
+
 title: "Study Plan for Utrecht University's HCI program"
 contentTitle: "Table of Contents"
-coursesTitle: "Course detail and reflection"
+coursesTitle: "Course detail"
 mcsp:
   title: "Advanced cognitive and social psychology for HCI"
   description: |
@@ -142,6 +156,22 @@ graduationThesis:
   title: "Research Project (Graduation Thesis)"
   description: |
     The graduation thesis project is actively in progress, involving dedicated research and development efforts towards its completion.
+reflection:
+  title: "Reflection on my study plan"
+  p1Intro: |
+    Looking back at the courses I have completed or plan to take, I have followed a "breadth-first, depth-later" strategy. Driven by curiosity, I have explored four broad areas:
+  directionResearch: |
+    Research methods (e.g., Advanced HCI Qualitative & Quantitative Research Methods)
+  directionDataViz: |
+    Data science and visualisation (Information Visualisation, Machine Learning for Human Vision & Language)
+  directionPsychology: |
+    Psychology and cognitive science (Advanced Cognitive and Social Psychology for HCI; Cognitive Modeling planned)
+  directionInteraction: |
+    Interaction design and technology implementation – covering multimodal and mobile interaction, immersive VR/MR experiences, embedded systems, and rapid prototyping with 3-D modelling & 3-D printing (courses: Multimodal Interaction, Interaction Technology Innovation, Mobile Interaction, etc.)
+  foundation: |
+    This lateral layout has given me a complementary and solid foundation: I can apply both qualitative and quantitative tools to research, use data-science and visualisation techniques to uncover insights, understand users' psychological and perceptual mechanisms, and translate designs into prototypes through multimodal and embedded technologies. Such multi-faceted training naturally leads me to analyse problems from several perspectives at once and equips me for deeper study.
+  outlook: |
+    As my studies progress my interest in interaction-innovation research grows stronger, particularly in immersive VR/MR interaction and tangible design that blends the virtual and physical worlds. I hope to pursue this direction in my future PhD or EngD career.
 </i18n>
 
 <i18n lang="yaml" locale="zh">
@@ -199,6 +229,22 @@ graduationThesis:
   title: "研究项目 (毕业论文)"
   description: |
     毕业论文项目正在积极推进中，我正投入研究与开发工作以期顺利完成。
+reflection:
+  title: "学习计划回顾"
+  p1Intro: |
+    回顾已修及计划修读的课程，我走了一条"先广后深"的路线。出于对不同课题的好奇，我陆续涉猎了四个方向：
+  directionResearch: |
+    研究方法（Advanced HCI Qualitative & Quantitative Research Methods 等）
+  directionDataViz: |
+    数据科学与可视化（Information Visualization、Machine Learning for Human Vision & Language）
+  directionPsychology: |
+    心理学与认知科学（Advanced Cognitive and Social Psychology for HCI；计划修读 Cognitive Modeling）
+  directionInteraction: |
+    交互设计与技术实现——涵盖多模态与移动交互、沉浸式 VR/MR、嵌入式系统，以及结合三维建模和 3D 打印的快速原型（相关课程：Multimodal Interaction、Interaction Technology Innovation、Mobile Interaction 等）。
+  foundation: |
+    这种横向布局为我奠定了互补而扎实的基础：我既能运用定性与定量工具开展研究，也能借助数据科学与可视化方法挖掘洞见；同时，我理解用户的心理与感知机制，并能通过多模态及嵌入式技术将设计落地为原型。多角度的训练促使我在分析问题时自然地从多个维度综合思考，这成为我未来聚焦研究的坚实底座。
+  outlook: |
+    随着学习的深入，我对交互创新研究的兴趣日益浓厚，尤其关注融合虚拟与现实的 VR/MR 沉浸式交互与 tangible design。我希望在未来的 PhD 或 EngD 生涯中延续并深化这一方向。
 </i18n>
 
 <style scoped lang="stylus">
@@ -224,6 +270,20 @@ video
 hr
   margin: 32px 0
 
+.reflection-card
+  width fit-content
+  background var(--background-50-transparent)
+  border: 1.5px solid var(--border-chat-bubble)
+  box-sizing border-box
+  backdrop-filter blur(50px)
+  padding 24px
+  margin-bottom 24px
+  border-radius 20px
+
+.reflection-content
+  margin-top 8px
+
+.reflection-title
 .title
   font-size 20px
   font-weight bold
@@ -308,4 +368,17 @@ hr
       grid-column unset
       width unset
       padding: 0 16px
+
+.reflection-content p
+  margin 8px 0
+  line-height 1.6
+
+.direction-list
+  margin 4px 0 16px 0
+  padding 0
+  list-style-type disc
+  list-style-position inside
+
+  li
+    margin 4px 0
 </style>

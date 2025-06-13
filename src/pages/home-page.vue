@@ -109,6 +109,12 @@ const currentMasterTab = ref(masterTabs[0])
         <p>{{ t('skills.summary') }}</p>
       </div>
     </div>
+
+    <div class="code-base">
+      {{ t('codebase') }}<a href="https://github.com/chenyfz/chenyfz.github.io"  class="link" target="_blank">
+      https://github.com/chenyfz/chenyfz.github.io
+    </a>
+    </div>
   </div>
 </template>
 
@@ -159,6 +165,7 @@ wechat:
 skills:
   title: "Let's summarise my skills and knowledge 😎"
   summary: "My skill set spans user research (qualitative & quantitative), data analysis and visualisation, front-end and full-stack web engineering, VR/AR prototyping with Unity and ESP32, and 3-D modelling & printing. Master's courses trained me to design rigorous studies and analyse data, while industry work at WeChat honed large-scale architecture design, rapid iteration and close collaboration with designers. These experiences enable me to bridge research and production and build human-centred, scalable interactive systems."
+codebase: "Souce code of this website: "
 </i18n>
 
 <i18n lang="yaml" locale="zh">
@@ -208,6 +215,7 @@ wechat:
 skills:
   title: "来盘点一下我的技能吧！😎"
   summary: "我的能力涵盖定性与定量用户研究、数据分析与可视化、前后端 Web 工程、基于 Unity 与 ESP32 的 VR/AR 原型开发，以及 3D 建模与打印。硕士课程让我掌握严谨的研究设计与数据分析方法，微信的工作经历则锻炼了大规模架构设计、快速迭代和跨职能协作能力。凭借这样的组合，我能在研究与落地之间搭建桥梁，打造兼具人本关怀与可扩展性的交互系统。"
+codebase: "网站源代码："
 </i18n>
 
 <style scoped lang="stylus">
@@ -301,4 +309,8 @@ skills:
   p
     margin 0 0 8px 4px
 
+.code-base
+  opacity 0.7;
+  margin-top 48px
+  font-size 12px
 </style>

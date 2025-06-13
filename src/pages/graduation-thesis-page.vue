@@ -31,6 +31,12 @@ const { t } = useI18n()
         <h3 class="section-subtitle">{{ t('smoothTitle') }}</h3>
         <p>{{ t('smooth1') }}</p>
         <p>{{ t('smooth2') }}</p>
+        <div class="paper-links">
+          <a href="https://dl.acm.org/doi/10.1145/2468356.2479632" class="link" target="_blank">1. Pursuits: eye-based interaction with moving targets</a>
+          <a href="https://dl.acm.org/doi/10.1145/3313831.3376438" class="link" target="_blank">2. Outline Pursuits: Gaze-assisted Selection of Occluded Objects in Virtual Reality</a>
+          <a href="https://dl.acm.org/doi/10.1145/3206505.3206522" class="link" target="_blank">3. VRpursuits: interaction in virtual reality using smooth pursuit eye movements</a>
+          <a href="https://dl.acm.org/doi/10.1145/2807442.2807499" class="link" target="_blank">4. Orbits: Gaze Interaction for Smart Watches using Smooth Pursuit Eye Movements</a>
+        </div>
       </div>
     </section>
 
@@ -100,13 +106,13 @@ const { t } = useI18n()
 
 <style scoped lang="stylus">
 .thesis-page
-  max-width 960px
+  max-width 1010px
   margin 24px auto 64px
   padding 0 var(--page-padding)
 
 .heading
   margin-bottom 24px
-  font-size 28px
+  font-size 24px
   font-weight 700
 
 .section-subtitle
@@ -164,4 +170,9 @@ const { t } = useI18n()
 
 .single-col
   grid-template-columns 1fr !important
+
+.paper-links .link
+  display block
+  font-size 12px
+  margin 4px 0
 </style> 

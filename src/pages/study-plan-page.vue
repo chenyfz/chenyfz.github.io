@@ -111,6 +111,8 @@ onMounted(() => {
 
       <h4 id="mdm-title">{{ t('mdm.title') }}</h4>
       <p>{{ t('mdm.description') }}</p>
+      <a href="/DM-A1-Yangfan-Yilun-Reem.zip" class="link" target="_blank">{{ t('mdm.linkA1') }}</a> |
+      <a href="/INFOMDM2024-A2-Yangfan-Yilun-Reem.pdf" class="link" target="_blank">{{ t('mdm.linkA2') }}</a>
 
       <h4 id="mcm-title">{{ t('mcm.title') }}</h4>
       <p>{{ t('mcm.description') }}</p>
@@ -156,6 +158,7 @@ miti:
   title: "Interaction technology innovation"
   description: |
     This hands-on course challenged us to create an "Enchanted Everyday Object". Using the lab's electronics, 3-D printers and workshop tools, we built a pair of connected snow-globes that sense each other's ambient light. When one globe is shaken, both display a shared snowfall scene; users can leave romantic messages that appear inside the partner globe, helping two people in different time zones feel a sense of togetherness. Further details are available in my reflective diary.
+  linkText: Reflective Diary (PDF)
 mqnm:
   title: "Advanced HCI quantitative research methods"
   description: |
@@ -163,13 +166,18 @@ mqnm:
   linkText: "Paper link (PDF)"
 mmob:
   title: "Mobile Interaction"
-  description: "todo"
+  description: |
+    A specialised course on interaction with smartphones, tablets and wearables. Nine lectures each addressed one theme: (1) introduction, (2) enabling technologies, (3) touch screens, (4) human aspects & UI design, (5) evaluation methods, (6) touch interaction & gestures, (7) mobile gaming, (8) 3-D & virtual reality, and (9) augmented reality. Through slides, research papers and demo videos we analysed how hardware capabilities, human factors and context of use shape design choices for mobile interfaces.
 mdm:
   title: "Data Mining"
-  description: "todo"
+  description: |
+    A core course for the Data Science master's programme. Lectures and tutorials cover both theoretical foundations (PAC learning, VC-dimension, bias–variance trade-off, over-fitting, curse of dimensionality) and a toolbox of algorithms such as decision trees, bagging / boosting / random forests, SVMs, logistic regression, Bayesian networks, frequent-pattern mining and text classification. Students learn how to select appropriate algorithms for a given problem and to run comparative experiments in a sound manner. Assessment consists of a digital exam, homework and one or more practical assignments.
+  linkA1: "Assignment 1 (ZIP)"
+  linkA2: "Assignment 2 (PDF)"
 mcm:
   title: "Cognitive Modeling"
-  description: "todo"
+  description: |
+    This course explores three complementary approaches to cognitive modeling: processing models, machine-learning based models, and probabilistic (Bayesian) models. For each approach we completed a medium-scale assignment to build and evaluate a model, followed by a written exam covering theoretical foundations and practical trade-offs.
 graduationThesis:
   title: "Research Project (Graduation Thesis)"
   description: |
@@ -186,7 +194,7 @@ reflection:
   directionPsychology: |
     Psychology and cognitive science (Advanced Cognitive and Social Psychology for HCI; Cognitive Modeling planned)
   directionInteraction: |
-    Interaction design and technology implementation – covering multimodal and mobile interaction, immersive VR/MR experiences, embedded systems, and rapid prototyping with 3-D modelling & 3-D printing (courses: Multimodal Interaction, Interaction Technology Innovation, Mobile Interaction, etc.)
+    Interaction design and technology implementation – covering multimodal and mobile interaction, immersive VR/MR experiences, embedded systems, and rapid prototyping with 3D modelling & 3D printing (courses: Multimodal Interaction, Interaction Technology Innovation, Mobile Interaction, etc.)
   foundation: |
     This lateral layout has given me a complementary and solid foundation: I can apply both qualitative and quantitative tools to research, use data-science and visualisation techniques to uncover insights, understand users' psychological and perceptual mechanisms, and translate designs into prototypes through multimodal and embedded technologies. Such multi-faceted training naturally leads me to analyse problems from several perspectives at once and equips me for deeper study.
   outlook: |
@@ -226,6 +234,7 @@ miti:
   title: "交互技术创新 (Interaction technology innovation)"
   description: |
     这门实践性极强的课程要求以"魔法化日常物品"为主题进行设计与原型开发。借助实验室提供的电子元件、3D 打印机等资源，我们制作了一对互联的雪球：两只雪球可感知彼此的环境光；摇动任意一只，双方都会呈现飘雪景象；还可以浪漫地留言，帮助因时区分隔的两个人保持陪伴感。更多细节见我的反思日志。
+  linkText: 日志（PDF）
 mqnm:
   title: "高级HCI定量研究方法 (Advanced HCI quantitative research methods)"
   description: |
@@ -233,13 +242,18 @@ mqnm:
   linkText: "论文链接（PDF）"
 mmob:
   title: "移动交互 (Mobile Interaction)"
-  description: "todo"
+  description: |
+    本课程聚焦手机、平板与可穿戴设备的交互设计。九场讲座分别涵盖：1) 概论，2) 支撑技术，3) 触摸屏，4) 人因与界面设计，5) 评估方法，6) 触摸与手势交互，7) 移动游戏，8) 3D 与虚拟现实，9) 增强现实。通过讲义、论文与演示视频，我们讨论了硬件能力、人因特性与使用情境如何共同影响移动界面的设计选择。
 mdm:
   title: "数据挖掘 (Data Mining)"
-  description: "todo"
+  description: |
+    数据科学硕士项目的必修课。课程通过讲座和习题课讲解数据挖掘的理论基础（PAC 学习、VC 维、偏差-方差分解、过拟合与维度灾难等）以及常用算法工具箱，包括决策树、Bagging/Boosting/随机森林、支持向量机、逻辑回归、贝叶斯网络、频繁模式挖掘、文本分类等。学生将学会根据分析任务选择合适算法，并以严谨方式完成对比实验。成绩由数字考试、作业与实践项目构成。
+  linkA1: "作业1（ZIP）"
+  linkA2: "作业2（PDF）"
 mcm:
   title: "认知建模 (Cognitive Modeling)"
-  description: "todo"
+  description: |
+    这门课程探讨了三种互为补充的认知建模方法：处理模型、基于机器学习的模型，以及概率（贝叶斯）模型。针对每种方法，我们都完成了一个中等规模的建模与评估作业，随后还进行了涵盖理论基础和实际权衡的笔试。
 graduationThesis:
   title: "研究项目 (毕业论文)"
   description: |

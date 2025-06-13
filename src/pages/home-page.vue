@@ -295,9 +295,10 @@ skills:
     display grid
     grid-template-columns auto 1fr
 
+.skills-content-container
 .tencent-content-container
   margin-top 8px
   p
-    margin 0 0 8px 0
+    margin 0 0 8px 4px
 
 </style>

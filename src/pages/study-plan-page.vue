@@ -1,11 +1,32 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import { onMounted } from 'vue'
 
 const { t } = useI18n()
 
 const scrollToId = (id: string) => {
-  document.querySelector(`#${id}`)?.scrollIntoView({ behavior: 'smooth' })
+  const el = document.querySelector(`#${id}`)
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth' })
+    // 更新地址栏但不产生新历史记录
+    history.replaceState(null, '', `#${id}`)
+  }
 }
+
+const onContentClick = (e: MouseEvent) => {
+  const target = e.target as HTMLElement
+  if (target.tagName === 'H4' && target.id) {
+    scrollToId(target.id)
+  }
+}
+
+// 进入页面时，若 URL 已含锚点则滚动到对应位置
+onMounted(() => {
+  const hash = window.location.hash.replace('#', '')
+  if (hash) {
+    scrollToId(hash)
+  }
+})
 </script>
 
 <template>
@@ -36,7 +57,7 @@ const scrollToId = (id: string) => {
       <div class="right" @click="scrollToId('thesis-title')">{{ t('graduationThesis.title') }}</div>
     </div>
     <hr>
-    <div class="content">
+    <div class="content" @click.capture="onContentClick">
       <div class="reflection-card">
         <div class="reflection-title">{{ t('reflection.title') }}</div>
         <div class="reflection-content">
@@ -96,6 +117,7 @@ const scrollToId = (id: string) => {
 
       <h4 id="thesis-title">{{ t('graduationThesis.title') }}</h4>
       <p>{{ t('graduationThesis.description') }}</p>
+      <router-link class="link" to="/graduation-thesis">{{ t('graduationThesis.linkText') }}</router-link>
     </div>
   </div>
 </template>
@@ -133,8 +155,7 @@ mmmi:
 miti:
   title: "Interaction technology innovation"
   description: |
-    As a practical, hands-on course, it provided access to laboratory space, electronic components, 3D printers, and other tools for student projects. The central theme for our project was an "Enchanted Everyday Object." More details about this project can be found in my Reflective Diary.
-  linkText: "Reflective Diary (PDF)"
+    This hands-on course challenged us to create an "Enchanted Everyday Object". Using the lab's electronics, 3-D printers and workshop tools, we built a pair of connected snow-globes that sense each other's ambient light. When one globe is shaken, both display a shared snowfall scene; users can leave romantic messages that appear inside the partner globe, helping two people in different time zones feel a sense of togetherness. Further details are available in my reflective diary.
 mqnm:
   title: "Advanced HCI quantitative research methods"
   description: |
@@ -142,20 +163,18 @@ mqnm:
   linkText: "Paper link (PDF)"
 mmob:
   title: "Mobile Interaction"
-  description: |
-    This course is currently ongoing, and I am actively engaged in its learning modules and project work.
+  description: "todo"
 mdm:
   title: "Data Mining"
-  description: |
-    Enrollment for this course is planned for a future semester.
+  description: "todo"
 mcm:
   title: "Cognitive Modeling"
-  description: |
-    Enrollment for this course is planned for a future semester.
+  description: "todo"
 graduationThesis:
   title: "Research Project (Graduation Thesis)"
   description: |
-    The graduation thesis project is actively in progress, involving dedicated research and development efforts towards its completion.
+    Zoom Pursuit, my ongoing thesis, introduces a radial-zoom stimulus to overcome calibration drift and lets users accurately point with their eyes in any unmodified desktop GUI. The full paper is in preparation and will be linked here upon completion.
+  linkText: "> View project page"
 reflection:
   title: "Reflection on my study plan"
   p1Intro: |
@@ -206,8 +225,7 @@ mmmi:
 miti:
   title: "交互技术创新 (Interaction technology innovation)"
   description: |
-    作为一门实践性极强的课程，它为学生的项目提供了实验室空间、电子元件、3D打印机及其他工具。我们的项目主题是'魔法日常物品'。关于此项目的更多细节，请参阅我的反思日志。
-  linkText: "日志（PDF）"
+    这门实践性极强的课程要求以"魔法化日常物品"为主题进行设计与原型开发。借助实验室提供的电子元件、3D 打印机等资源，我们制作了一对互联的雪球：两只雪球可感知彼此的环境光；摇动任意一只，双方都会呈现飘雪景象；还可以浪漫地留言，帮助因时区分隔的两个人保持陪伴感。更多细节见我的反思日志。
 mqnm:
   title: "高级HCI定量研究方法 (Advanced HCI quantitative research methods)"
   description: |
@@ -215,20 +233,18 @@ mqnm:
   linkText: "论文链接（PDF）"
 mmob:
   title: "移动交互 (Mobile Interaction)"
-  description: |
-    本课程目前正在进行中，我正积极参与其学习模块与项目任务。
+  description: "todo"
 mdm:
   title: "数据挖掘 (Data Mining)"
-  description: |
-    我计划在未来的学期参加本课程。
+  description: "todo"
 mcm:
   title: "认知建模 (Cognitive Modeling)"
-  description: |
-    我计划在未来的学期参加本课程。
+  description: "todo"
 graduationThesis:
   title: "研究项目 (毕业论文)"
   description: |
-    毕业论文项目正在积极推进中，我正投入研究与开发工作以期顺利完成。
+    毕业论文项目 Zoom Pursuit 通过在当前凝视点触发径向放大动画，实时修正漂移误差，使用户无需改动现有软件即可在任意桌面 GUI 中精准完成凝视指向。论文全文完成后将在此处提供链接。
+  linkText: "> 查看项目页面"
 reflection:
   title: "学习计划回顾"
   p1Intro: |
@@ -257,6 +273,8 @@ h4
   margin-bottom 8px
   margin-top 48px
   scroll-margin-top: 72px;
+  cursor pointer
+  user-select none
 
 .first-course-title
   margin-top 8px

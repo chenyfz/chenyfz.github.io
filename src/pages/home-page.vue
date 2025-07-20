@@ -165,7 +165,7 @@ future:
   title: "What's Next? My Future Plans 🚀"
   motivation:
     title: "Why Pursue a PhD?"
-    content: "I am seeking a PhD position in Human-Computer Interaction to pursue curiosity-driven research. I am drawn to the academic freedom of rigorously investigating complex problems, a contrast to product-cycle constraints."
+    content: "I am seeking a PhD position in Human-Computer Interaction to pursue curiosity-driven research. In contrast to working as a component within a large corporate team, I am more attracted to the academic freedom of a small team, which allows for deeper and more focused exploration of complex problems."
   interests:
     title: "Primary Research Interests"
     interest1: "VR/AR/MR Interaction"
@@ -227,7 +227,7 @@ future:
   title: "下一步？我的未来规划 🚀"
   motivation:
     title: "为什么想读博？"
-    content: "我正在寻求人机交互（HCI）领域的博士研究机会，希望从事由好奇心驱动的深度研究。相比于受产品周期限制的开发，我更向往学术研究所提供的、能严谨探索复杂问题的自由。"
+    content: "我正在寻求人机交互（HCI）领域的博士研究机会，以从事由好奇心驱动的深度研究。相比于在大型企业中作为庞大团队的一名“螺丝钉”，我更向往小团队所能提供的学术自由，它允许我们更深入、更专注地探索复杂问题。"
   interests:
     title: "主要研究兴趣"
     interest1: "VR/AR/MR中的交互"

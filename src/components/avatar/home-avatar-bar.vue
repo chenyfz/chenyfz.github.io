@@ -29,7 +29,7 @@ greeting: "Hi! I'm Yangfan :D"
 vision: "My passion is building novel interactive systems by bridging deep engineering with human-centered design."
 engineeringStrength: "My time at WeChat taught me how to build robust, scalable systems. I'm experienced in navigating the complexities of large codebases and delivering high-quality front-end solutions."
 hciStrength: "My HCI master's gave me the tools to ground my work in research, from conducting user studies to systematically evaluating new interaction techniques."
-ambition: "I'm now seeking a PhD position to combine these skills: using rigorous research to guide the creation of technically sound and meaningful user experiences."
+ambition: "I'm now seeking a PhD position to combine these skills: create technically sound and meaningful user experiences."
 transition: "Let me briefly introduce my experience 👀"
 </i18n>
 

@@ -111,8 +111,6 @@ h3
   &:before
     position: absolute
     content: ''
-    z-index: -1
-    opacity: 0.7
     left: 0
     top: 6px
     display: block

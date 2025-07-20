@@ -18,22 +18,25 @@ const { t } = useI18n()
       <chat-bubble>{{ t('summary') }}</chat-bubble>
       <chat-bubble>{{ t('interests') }}</chat-bubble>
       <chat-bubble>{{ t('lookingFor') }}</chat-bubble>
+      <chat-bubble>{{ t('cvTitle') }}</chat-bubble>
     </div>
   </div>
 </template>
 
 <i18n lang="yaml" locale="en">
-introduction: "Hi! I am Yangfan :D"
-summary: "I have a background in software engineering. My strength is working within real-world constraints to find the best balance and deliver reliable, thoughtful products."
-interests: "I love innovating in interaction tech, especially in fields like mixed reality, eye-tracking, and tangible interaction. My goal is to combine deep technical skills with a human-centered approach to create more natural and immersive experiences."
-lookingFor: "I'm looking for PhD or EngD opportunities right now."
+introduction: "Hi! I'm Yangfan :D"
+summary: "I love bridging the gap between deep engineering and human-centered design. My experience at WeChat taught me how to build robust, scalable systems, while my HCI Master's gave me the tools to rigorously research and create novel interactions."
+interests: "This passion drives my work on future interfaces. For my thesis, ZoomPursuit, I developed a novel eye-tracking technique that works on any standard computer—a small step toward making interaction more natural and immersive."
+lookingFor: "Now, I'm looking for a PhD or EngD position where I can tackle these kinds of challenges head-on."
+cvTitle: "Let me briefly introduce my experience 👀"
 </i18n>
 
 <i18n lang="yaml" locale="zh">
 introduction: "Hi！我是陈扬帆 :D"
-summary: "我拥有软件工程的背景，擅长在各种现实条件的约束下，寻找最佳平衡点，最终交付出可靠又经过深思熟虑的好产品。"
-interests: "我着迷于交互技术的创新，尤其是混合现实、眼动追踪和实体交互等方向。我希望将技术深度与以人为本的设计理念相结合，去创造更自然、更沉浸的体验。"
-lookingFor: "我正在找PhD或者EngD的岗位。"
+summary: "我热衷于在深度工程实现与人本设计之间搭建桥梁。在微信的经历教会我如何构建稳健、可扩展的系统，而人机交互硕士的训练则让我掌握了严谨研究并创造新颖交互的方法。"
+interests: "这份热情驱动着我对未来交互的探索。我的硕士论文项目 ZoomPursuit 就是一个例子：我独立研发了一种适用于任何普通电脑的眼动追踪新技术——这是我为实现更自然、更沉浸的交互所迈出的一小步。"
+lookingFor: "现在，我正在积极寻找相关的博士（PhD）或工程博士（EngD）的机会，希望能直面这些领域的挑战。"
+cvTitle: "先简要介绍一下我的经历 👀"
 </i18n>
 
 <style scoped lang="stylus">
@@ -57,6 +60,7 @@ lookingFor: "我正在找PhD或者EngD的岗位。"
 
 .chat-bubble
   margin-top 6px
+  max-width 640px
 
 @media (max-width: 768px)
   .home-avatar-bar

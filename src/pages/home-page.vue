@@ -173,8 +173,8 @@ future:
     interest3: "Human-AI Interaction"
     interest4: "Interaction Design for Specialized Hardware"
   commitment:
-    title: "Commitment to Growth"
-    content: "My engineering background and research skills provide a solid foundation for this goal. I am a quick learner, a self-driven researcher, and I am prepared to expand my skill set to tackle new challenges, especially in domains like AI."
+    title: "Foundation for Future Research"
+    content: "My master's program has prepared me for PhD-level research. My engineering background is for technical implementation, while my HCI training is for user-centered design and analysis. My projects demonstrate that I can combine these skills: I have developed and evaluated a new algorithm for my thesis, built working VR and tangible prototypes from scratch, and applied rigorous research methods. This ability to connect design with implementation is my foundation for pursuing research in tangible and immersive interaction."
 </i18n>
 
 <i18n lang="yaml" locale="zh">
@@ -235,8 +235,8 @@ future:
     interest3: "人机协同（Human-AI Interaction）"
     interest4: "面向专用硬件的交互设计"
   commitment:
-    title: "对成长的承诺"
-    content: "我的工程背景和研究训练为这一目标提供了坚实的基础。我具备快速学习的能力和自我驱动的研究精神，并已准备好为应对新挑战（尤其是在AI等领域）而扩展我的技能。"
+    title: "未来研究的基石"
+    content: "我的硕士学习为我的博士研究做好了准备。我的工程师背景负责技术实现，人机交互训练则负责以用户为中心的设计与分析。我的项目证明了我有能力结合这两种技能：我为毕业设计开发和评估了新算法，从零开始构建了可用的VR和实体原型，并应用了严谨的研究方法。这种将设计与实现相结合的能力，是我追求实体与沉浸式交互研究方向的基础。"
 </i18n>
 
 <style scoped lang="stylus">
@@ -326,6 +326,7 @@ future:
   font-size 18px
   font-weight 600
   margin-bottom 4px
+  margin-top 4px
 
 .showcase-subtitle
   color var(--text-color-secondary)

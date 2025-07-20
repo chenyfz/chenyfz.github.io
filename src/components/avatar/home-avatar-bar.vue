@@ -14,29 +14,26 @@ const { t } = useI18n()
     </div>
 
     <div>
-      <chat-bubble>{{ t('introduction') }}</chat-bubble>
-      <chat-bubble>{{ t('summary') }}</chat-bubble>
-      <chat-bubble>{{ t('interests') }}</chat-bubble>
-      <chat-bubble>{{ t('lookingFor') }}</chat-bubble>
-      <chat-bubble>{{ t('cvTitle') }}</chat-bubble>
+      <chat-bubble>{{ t('greeting') }}</chat-bubble>
+      <chat-bubble>{{ t('coreStrength') }}</chat-bubble>
+      <chat-bubble>{{ t('ambition') }}</chat-bubble>
+      <chat-bubble>{{ t('transition') }}</chat-bubble>
     </div>
   </div>
 </template>
 
 <i18n lang="yaml" locale="en">
-introduction: "Hi! I'm Yangfan :D"
-summary: "I love bridging the gap between deep engineering and human-centered design. My experience at WeChat taught me how to build robust, scalable systems, while my HCI Master's gave me the tools to rigorously research and create novel interactions."
-interests: "This passion drives my work on future interfaces. For my thesis, ZoomPursuit, I developed a novel eye-tracking technique that works on any standard computer—a small step toward making interaction more natural and immersive."
-lookingFor: "Now, I'm looking for a PhD or EngD position where I can tackle these kinds of challenges head-on."
-cvTitle: "Let me briefly introduce my experience 👀"
+greeting: "Hi! I'm Yangfan :D"
+coreStrength: "I bring two key strengths to my work: experience in building large-scale, robust systems from my time at WeChat, and a foundation in human-centered design and research from my HCI studies."
+ambition: "My goal is to combine these skills—to not only design novel user experiences but also bring them to life with effective engineering. I'm now seeking a PhD position where I can apply this integrated approach to challenges in tangible and immersive interaction."
+transition: "Let me show you some of my work 👀"
 </i18n>
 
 <i18n lang="yaml" locale="zh">
-introduction: "Hi！我是陈扬帆 :D"
-summary: "我热衷于在深度工程实现与人本设计之间搭建桥梁。在微信的经历教会我如何构建稳健、可扩展的系统，而人机交互硕士的训练则让我掌握了严谨研究并创造新颖交互的方法。"
-interests: "这份热情驱动着我对未来交互的探索。我的硕士论文项目 ZoomPursuit 就是一个例子：我独立研发了一种适用于任何普通电脑的眼动追踪新技术——这是我为实现更自然、更沉浸的交互所迈出的一小步。"
-lookingFor: "现在，我正在积极寻找相关的博士（PhD）或工程博士（EngD）的机会，希望能直面这些领域的挑战。"
-cvTitle: "先简要介绍一下我的经历 👀"
+greeting: "Hi！我是陈扬帆 :D"
+coreStrength: "我的工作立足于两大优势：其一是在微信锻炼出的大规模、稳健的系统构建经验，其二是HCI学习所奠定的人本设计与研究方法的基础。"
+ambition: "我的目标是结合这两种技能——不仅能设计出新颖的用户体验，更能通过高效的工程技术将其实现。我正在寻求博士职位，以应用这种整合的思路来应对实体及沉浸式交互领域的挑战。"
+transition: "下面就带你看看我的项目吧 👀"
 </i18n>
 
 <style scoped lang="stylus">

@@ -49,11 +49,11 @@ education:
   master:
     degree: "MSc Human-Computer Interaction (Sept. 2023 - Aug. 2025)"
     university: "Utrecht University"
-    gpa: "CGPA: 8.29/10"
+    gpa: "GPA: 8.39/10"
   bachelor:
     degree: "B.Eng. in Software Engineering (Sept. 2016 - June 2020)"
     university: "Nanjing University"
-    gpa: "CGPA: 4.10/5"
+    gpa: "GPA: 4.1/5"
 experience:
   title: "Work Experience"
   trainee:
@@ -70,7 +70,7 @@ education:
   master:
     degree: "硕士 - 人机交互 (2023.9 - 2025.8)"
     university: "乌特勒支大学（Utrecht University，荷兰）"
-    gpa: "绩点: 8.29/10"
+    gpa: "绩点: 8.39/10"
   bachelor:
     degree: "本科 - 软件工程 (2016.9 - 2020.7)"
     university: "南京大学"
@@ -90,7 +90,7 @@ experience:
   color: var(--text-color-50)
 
 h3
-  margin-bottom 8px
+  margin 0 0 12px 0
 
 .highlight
   font-weight 600

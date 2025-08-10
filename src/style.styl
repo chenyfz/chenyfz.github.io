@@ -39,10 +39,28 @@ li.new-ul-container
   &:before
     content: none
 
-
 .link
+  position: relative
   color: var(--link-color)
-  text-decoration underline
+  text-decoration: none
+  z-index: 1
+  &:before
+    content: ''
+    position: absolute
+    bottom: -2px
+    top: -2px
+    left: -4px
+    right: -4px
+    background: var(--background-30-transparent)
+    border-radius: 4px
+    z-index: -1
+    transition: all .2s ease-in-out
+  &:hover:before
+    background: var(--background-50-transparent)
+    bottom: -2px
+    top: -2px
+    left: -4px
+    right: -4px
 
 body
   --page-padding: 32px

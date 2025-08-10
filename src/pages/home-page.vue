@@ -67,16 +67,6 @@ const { t } = useI18n()
       </div>
     </div>
 
-    <div class="tencent">
-      <chat-bubble>{{ t('wechat.title') }}</chat-bubble>
-      <div class="tencent-content-container">
-        <h4>{{ t('wechat.wechatSearch.title') }}</h4>
-        <p>{{ t('wechat.wechatSearch.content') }}</p>
-        <h4>{{ t('wechat.wechatChannels.title') }}</h4>
-        <p>{{ t('wechat.wechatChannels.content') }}</p>
-      </div>
-    </div>
-
     <div class="skills">
       <chat-bubble>{{ t('skills.title') }}</chat-bubble>
       <div class="skills-content-container">
@@ -141,21 +131,13 @@ master:
     description: "Applied rigorous qualitative (focus groups) and quantitative (statistical analysis of sensor data) methods in various projects to validate designs and uncover user insights."
     link1: "Quantitative Paper ↗"
     link2: "Qualitative Paper ↗"
-wechat:
-  title: "Let me tell you about my role at WeChat 🧐"
-  wechatSearch:
-    title: "WeChat Search: Leading a Revamp"
-    content: "From 2020 to 2021, as part of a three-person team, I became the main developer during a major overhaul of WeChat Search. I led the design of a new, highly extensible results-page architecture."
-  wechatChannels:
-    title: "WeChat Channels: Building for Business"
-    content: "In 2021–2022, I joined the Channels team to build B-side features. I delivered complex campaign-configuration pages and settlement workflows, meeting custom requirements under tight schedules."
 skills:
   title: "Let's summarise my skills and knowledge 😎"
   intro: "My experiences enable me to bridge research and production to build human-centered, scalable interactive systems. My key skills include:"
   skill1_title: "User Research (Qualitative & Quantitative)"
   skill1_description: "Designing rigorous studies, conducting focus groups, and performing statistical analysis of sensor data to validate designs and uncover user insights."
   skill2_title: "Web & Software Engineering"
-  skill2_description: "Scalable front-end architecture, full-stack development, and maintaining large-scale applications."
+  skill2_description: "Scalable front-end architecture, full-stack development, and maintaining large-scale applications. For example, at WeChat (2020-2022), I led a major overhaul of the Search results page architecture and delivered complex B-side features for Channels, such as campaign-configuration pages and settlement workflows."
   skill3_title: "VR/AR Prototyping"
   skill3_description: "Using Unity and C# to build interactive VR experiences and conduct user studies on novel interaction techniques."
   skill4_title: "Physical Prototyping"
@@ -203,21 +185,13 @@ master:
     description: "在多个项目中应用了严谨的定性（焦点小组）和定量（传感器数据统计分析）研究方法，以验证设计并洞察用户。"
     link1: "定量研究论文 ↗"
     link2: "定性研究论文 ↗"
-wechat:
-  title: "我们来聊聊我在微信的经历吧！🧐"
-  wechatSearch:
-    title: "微信搜一搜：主导重构"
-    content: "2020至2021年，在一个三人前端团队中，我作为主要开发者主导了微信搜一搜的重大改版，设计了全新的、高可扩展性的结果页架构。"
-  wechatChannels:
-    title: "微信视频号：B端功能建设"
-    content: "2021至2022年，我转入视频号团队，负责B端功能，如活动配置和结算工作流，在紧迫的排期内交付了复杂的定制化需求。"
 skills:
   title: "来盘点一下我的技能吧！😎"
   intro: "我的经验使我能够很好地结合研究与工程实践，构建以人为本、可扩展的交互系统。我的核心技能包括："
   skill1_title: "用户研究（定性与定量）"
   skill1_description: "设计严谨的研究方案，通过焦点小组、传感器数据统计分析等方法来验证设计、洞察用户。"
   skill2_title: "Web及软件工程"
-  skill2_description: "可扩展的前端架构设计、全栈开发能力，以及如微信般的大型应用维护经验。"
+  skill2_description: "可扩展的前端架构设计、全栈开发能力及大型应用维护经验。例如，在微信（2020-2022），我曾主导搜一搜结果页的重构，并为视频号设计和交付了复杂的B端功能（如活动配置、结算工作流）。"
   skill3_title: "VR/AR原型开发"
   skill3_description: "使用Unity和C#构建交互式VR体验，并就新颖的交互技术进行用户研究。"
   skill4_title: "物理原型设计"
@@ -247,7 +221,6 @@ future:
 
 .cv
 .master
-.tencent
 .skills
 .future-plans
   margin-bottom 24px
@@ -262,7 +235,6 @@ future:
 
 .master-showcase-container,
 .cv-container,
-.tencent-content-container,
 .skills-content-container,
 .future-plans-content-container
   margin-top 16px
@@ -270,17 +242,16 @@ future:
 .master-showcase-container
   display grid
   grid-template-columns 1fr 1fr
-  gap 24px
+  gap 12px
 
 .showcase-item,
 .cv-container,
-.tencent-content-container,
 .skills-content-container,
 .future-plans-content-container
   background var(--background-50-transparent)
   border 1.5px solid var(--border-chat-bubble)
   border-radius 12px
-  padding 24px
+  padding 16px 24px
   display flex
   flex-direction column
   text-decoration none

@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { onMounted } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 
 const { t } = useI18n()
+const activeId = ref('')
 
 const scrollToId = (id: string) => {
   const el = document.querySelector(`#${id}`)
   if (el) {
     el.scrollIntoView({ behavior: 'smooth' })
     // 更新地址栏但不产生新历史记录
-    history.replaceState(null, '', `#${id}`)
+    history.replaceState(null, '', `${window.location.pathname}#${id}`)
   }
 }
 
@@ -20,12 +21,34 @@ const onContentClick = (e: MouseEvent) => {
   }
 }
 
+let elements: HTMLElement[] = []
+const handleScroll = () => {
+  const scrollOffset = 72 // nav-bar height
+  let currentId = ''
+  for (const el of elements) {
+    if (el.getBoundingClientRect().top <= scrollOffset + 8) {
+      currentId = el.id
+    } else {
+      break
+    }
+  }
+  activeId.value = currentId
+}
+
 // 进入页面时，若 URL 已含锚点则滚动到对应位置
 onMounted(() => {
   const hash = window.location.hash.replace('#', '')
   if (hash) {
     scrollToId(hash)
   }
+  elements = Array.from(document.querySelectorAll('.content h4[id]'))
+
+  handleScroll() // set initial state
+  window.addEventListener('scroll', handleScroll, { passive: true })
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
 })
 </script>
 
@@ -36,90 +59,67 @@ onMounted(() => {
       <div class="title full-line">{{ t('contentTitle') }}</div>
       <div class="full-line year-title">{{ t('firstYearTitle') }}</div>
       <div class="left">Period 1</div>
-      <div class="right" @click="scrollToId('mcsp-title')">{{ t('mcsp.title') }}</div>
-      <div class="right" @click="scrollToId('mlhvl-title')">{{ t('mlhvl.title') }}</div>
+      <div class="right" :class="{ active: activeId === 'mcsp' }" @click="scrollToId('mcsp')">{{ t('mcsp.title') }}</div>
+      <div class="right" :class="{ active: activeId === 'mlhvl' }" @click="scrollToId('mlhvl')">{{ t('mlhvl.title') }}</div>
       <div class="left">Period 2</div>
-      <div class="right" @click="scrollToId('mvis-title')">{{ t('mvis.title') }}</div>
-      <div class="right" @click="scrollToId('mqlm-title')">{{ t('mqlm.title') }}</div>
+      <div class="right" :class="{ active: activeId === 'mvis' }" @click="scrollToId('mvis')">{{ t('mvis.title') }}</div>
+      <div class="right" :class="{ active: activeId === 'mqlm' }" @click="scrollToId('mqlm')">{{ t('mqlm.title') }}</div>
       <div class="left">Period 3</div>
-      <div class="right" @click="scrollToId('miti-title')">{{ t('miti.title') }}</div>
-      <div class="right" @click="scrollToId('mmmi-title')">{{ t('mmmi.title') }}</div>
+      <div class="right" :class="{ active: activeId === 'miti' }" @click="scrollToId('miti')">{{ t('miti.title') }}</div>
+      <div class="right" :class="{ active: activeId === 'mmmi' }" @click="scrollToId('mmmi')">{{ t('mmmi.title') }}</div>
       <div class="left">Period 4</div>
-      <div class="right" @click="scrollToId('mqnm-title')">{{ t('mqnm.title') }}</div>
-      <div class="right" @click="scrollToId('mmob-title')">{{ t('mmob.title') }}</div>
+      <div class="right" :class="{ active: activeId === 'mqnm' }" @click="scrollToId('mqnm')">{{ t('mqnm.title') }}</div>
+      <div class="right" :class="{ active: activeId === 'mmob' }" @click="scrollToId('mmob')">{{ t('mmob.title') }}</div>
 
       <div class="full-line year-title">{{ t('secondYearTitle') }}</div>
       <div class="left">Period 5</div>
-      <div class="right" @click="scrollToId('mdm-title')">{{ t('mdm.title') }}</div>
+      <div class="right" :class="{ active: activeId === 'mdm' }" @click="scrollToId('mdm')">{{ t('mdm.title') }}</div>
       <div class="left">Period 6</div>
-      <div class="right" @click="scrollToId('mcm-title')">{{ t('mcm.title') }}</div>
+      <div class="right" :class="{ active: activeId === 'mcm' }" @click="scrollToId('mcm')">{{ t('mcm.title') }}</div>
       <div class="left">Remaining</div>
-      <div class="right" @click="scrollToId('thesis-title')">{{ t('graduationThesis.title') }}</div>
+      <div class="right" :class="{ active: activeId === 'thesis' }" @click="scrollToId('thesis')">{{ t('graduationThesis.title') }}</div>
     </div>
     <hr>
     <div class="content" @click.capture="onContentClick">
-      <div class="reflection-card">
-        <div class="reflection-title">{{ t('reflection.title') }}</div>
-        <div class="reflection-content">
-          <p>{{ t('reflection.p1Intro') }}</p>
-          <ul class="direction-list">
-            <li>{{ t('reflection.directionResearch') }}</li>
-            <li>{{ t('reflection.directionDataViz') }}</li>
-            <li>{{ t('reflection.directionPsychology') }}</li>
-            <li>{{ t('reflection.directionInteraction') }}</li>
-          </ul>
-          <p>{{ t('reflection.foundation') }}</p>
-          <p>{{ t('reflection.outlook') }}</p>
-        </div>
-      </div>
       <div class="title">{{ t('coursesTitle') }}</div>
-      <h4 id="mcsp-title" class="first-course-title">{{ t('mcsp.title') }}</h4>
+      <h4 id="mcsp" class="first-course-title">{{ t('mcsp.title') }}</h4>
       <p>{{ t('mcsp.description') }}</p>
 
-      <h4 id="mlhvl-title">{{ t('mlhvl.title') }}</h4>
+      <h4 id="mlhvl">{{ t('mlhvl.title') }}</h4>
       <p>{{ t('mlhvl.description') }}</p>
 
-      <h4 id="mvis-title">{{ t('mvis.title') }}</h4>
+      <h4 id="mvis">{{ t('mvis.title') }}</h4>
       <p>{{ t('mvis.description') }}</p>
       <a href="https://superfashion.walzen.org/" class="link" target="_blank">{{ t('mvis.linkText') }}</a>
-      <img src="/infovis-demo.png" alt="illustration about Information Visualization course project">
-      <p class="label">Screenshot of our course project</p>
 
-      <h4 id="mqlm-title">{{ t('mqlm.title') }}</h4>
+      <h4 id="mqlm">{{ t('mqlm.title') }}</h4>
       <p>{{ t('mqlm.description') }}</p>
       <a href="/Group_30_Final_Paper.pdf" class="link" target="_blank">{{ t('mqlm.linkText') }}</a>
 
-      <h4 id="miti-title">{{ t('miti.title') }}</h4>
+      <h4 id="miti">{{ t('miti.title') }}</h4>
       <p>{{ t('miti.description') }}</p>
       <router-link to="/snow-globe" class="link">{{ t('miti.linkText') }}</router-link>
 
-      <h4 id="mmmi-title">{{ t('mmmi.title') }}</h4>
+      <h4 id="mmmi">{{ t('mmmi.title') }}</h4>
       <p>{{ t('mmmi.description') }}</p>
-      <p class="reflection-text">{{ t('mmmi.reflection') }}</p>
       <router-link to="/multimodal-interaction" class="link">{{ t('mmmi.linkText') }}</router-link>
-      <video controls>
-        <source src="/infommmi-demo.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <p class="label">The first gesture is by Meta. The second and third gestures are what I implemented</p>
 
-      <h4 id="mqnm-title">{{ t('mqnm.title') }}</h4>
+      <h4 id="mqnm">{{ t('mqnm.title') }}</h4>
       <p>{{ t('mqnm.description') }}</p>
-      <p class="reflection-text">{{ t('mqnm.reflection') }}</p>
       <a href="/infomqnm-report.pdf" class="link" target="_blank">{{ t('mqnm.linkText') }}</a>
 
-      <h4 id="mmob-title">{{ t('mmob.title') }}</h4>
+      <h4 id="mmob">{{ t('mmob.title') }}</h4>
       <p>{{ t('mmob.description') }}</p>
 
-      <h4 id="mdm-title">{{ t('mdm.title') }}</h4>
+      <h4 id="mdm">{{ t('mdm.title') }}</h4>
       <p>{{ t('mdm.description') }}</p>
       <a href="/DM-A1-Yangfan-Yilun-Reem.zip" class="link" target="_blank">{{ t('mdm.linkA1') }}</a> |
       <a href="/INFOMDM2024-A2-Yangfan-Yilun-Reem.pdf" class="link" target="_blank">{{ t('mdm.linkA2') }}</a>
 
-      <h4 id="mcm-title">{{ t('mcm.title') }}</h4>
+      <h4 id="mcm">{{ t('mcm.title') }}</h4>
       <p>{{ t('mcm.description') }}</p>
 
-      <h4 id="thesis-title">{{ t('graduationThesis.title') }}</h4>
+      <h4 id="thesis">{{ t('graduationThesis.title') }}</h4>
       <p>{{ t('graduationThesis.description') }}</p>
       <router-link class="link" to="/graduation-thesis">{{ t('graduationThesis.linkText') }}</router-link>
     </div>
@@ -130,7 +130,7 @@ onMounted(() => {
 firstYearTitle: "First Year"
 secondYearTitle: "Second Year"
 
-title: "HCI Master's Program at Utrecht University"
+title: "Master's Courses at Utrecht University"
 contentTitle: "Table of Contents"
 coursesTitle: "Course Details"
 mcsp:
@@ -155,7 +155,6 @@ mmmi:
   title: "Multimodal Interaction"
   description: |
     This course covered the physiological basis of multimodal interaction (vision, motion, auditory, tactile), VR/AR technologies, and the interplay between interaction and emotion. The core project was an original study on gesture interaction with distant 2D screens in VR. The study first used the Wizard of Oz technique to elicit user-preferred gestures, then implemented two common gestures for a qualitative comparison against Meta's default interaction, using the think-aloud protocol. The video shows the gestures we developed.
-  reflection: "This course sparked my interest in human-centered design and novel interaction experiences, solidifying my research focus in the VR/AR domain."
   linkText: "View Project Details"
 miti:
   title: "Interaction technology innovation"
@@ -166,7 +165,6 @@ mqnm:
   title: "Advanced HCI quantitative research methods"
   description: |
     This course covered advanced quantitative research methods for HCI, contrasting parametric and non-parametric approaches (e.g., ANOVA, regression, GLM). The main project required us to formulate a research question for a given dataset. Our team analyzed the K-EmoPhone dataset (data from 77 participants over one week via smartphones/bands) to investigate whether personality traits influence stress indicators (HRV, EDA) during social media use.
-  reflection: "This course, along with its qualitative counterpart, provided a solid foundation in scientific evaluation and shaped the methodology of my thesis project."
   linkText: "Paper link (PDF)"
 mmob:
   title: "Mobile Interaction"
@@ -187,28 +185,12 @@ graduationThesis:
   description: |
     My thesis, Zoom Pursuit, introduces a radial-zoom stimulus to overcome calibration drift, enabling accurate gaze pointing in any unmodified desktop GUI.
   linkText: "> View project page"
-reflection:
-  title: "My Study Plan"
-  p1Intro: |
-    My course selection followed a "breadth-first, depth-later" strategy, exploring four broad areas:
-  directionResearch: |
-    Research methods (e.g., Advanced HCI Qualitative & Quantitative Research Methods)
-  directionDataViz: |
-    Data science and visualisation (Information Visualisation, Machine Learning for Human Vision & Language)
-  directionPsychology: |
-    Psychology and cognitive science (Advanced Cognitive and Social Psychology for HCI; Cognitive Modeling)
-  directionInteraction: |
-    Interaction design and technology implementation – covering multimodal and mobile interaction, immersive VR/MR, and embedded systems (courses: Multimodal Interaction, Interaction Technology Innovation, etc.)
-  foundation: |
-    This broad training provided a solid, multi-faceted foundation: I can apply qualitative/quantitative methods to research, use data science to uncover insights, understand user psychology, and translate designs into prototypes. This equips me to analyze problems from multiple perspectives.
-  outlook: |
-    My interest in interaction research has grown, particularly in immersive VR/MR and tangible design. I plan to pursue this direction in my future PhD studies.
 </i18n>
 
 <i18n lang="yaml" locale="zh">
 firstYearTitle: "第一年"
 secondYearTitle: "第二年"
-title: "Utrecht University HCI 项目课程计划"
+title: "乌得勒支大学硕士课程"
 contentTitle: "目录"
 coursesTitle: "课程详情"
 mcsp:
@@ -233,7 +215,6 @@ mmmi:
   title: "多模态交互 (Multimodal Interaction)"
   description: |
     本课程探讨多模态交互的生理基础（视觉、运动、听觉、触觉）、VR/AR技术，以及交互与情感的关系。核心项目是一项关于VR中远距离2D屏幕手势交互的原创研究。研究首先用“绿野仙踪”法诱导用户偏好的手势，随后实现了两种常见手势，并运用出声思维法与Meta的默认交互进行定性对比。视频展示了我们开发的手势。
-  reflection: "这门课激发了我对以人为本的设计和创新交互体验的兴趣，并巩固了我在VR/AR领域的研究方向。"
   linkText: "查看项目详情"
 miti:
   title: "交互技术创新 (Interaction technology innovation)"
@@ -244,7 +225,6 @@ mqnm:
   title: "高级HCI定量研究方法 (Advanced HCI quantitative research methods)"
   description: |
     本课程涵盖HCI高级定量研究方法，对比参数化与非参数化方法（如方差分析、回归、GLM）。主要项目要求为给定数据集设计研究问题。我们小组分析了K-EmoPhone数据集（77名参与者一周的智能手机/手环数据），探究人格特质在使用社交媒体时是否影响压力指标（HRV、EDA）。
-  reflection: "这门课及其定性研究的“姐妹篇”为我提供了科学评估的坚实基础，并影响了我的毕业论文研究方法。"
   linkText: "论文链接（PDF）"
 mmob:
   title: "移动交互 (Mobile Interaction)"
@@ -265,22 +245,6 @@ graduationThesis:
   description: |
     我的毕业论文 Zoom Pursuit 提出一种径向缩放刺激来克服校准漂移，实现了在任何未经修改的桌面GUI中的精确凝视指向。
   linkText: "> 查看项目页面"
-reflection:
-  title: "我的学习规划"
-  p1Intro: |
-    我的选课遵循了“先广后深”的策略，探索了四个方向：
-  directionResearch: |
-    研究方法（如高级HCI定性/定量研究方法）
-  directionDataViz: |
-    数据科学与可视化（信息可视化、面向人类视觉与语言的机器学习）
-  directionPsychology: |
-    心理学与认知科学（面向HCI的认知与社会心理学、认知建模）
-  directionInteraction: |
-    交互设计与技术实现——涵盖多模态与移动交互、沉浸式VR/MR和嵌入式系统（课程：多模态交互、交互技术创新等）
-  foundation: |
-    这种广泛的训练为我提供了坚实、多维度的基础：我能应用定性/定量方法进行研究，使用数据科学发现洞见，理解用户心理，并将设计转化为原型。这使我能从多角度分析问题。
-  outlook: |
-    我对交互研究的兴趣日益增长，特别是沉浸式VR/MR和融合虚拟与现实的实体设计。我计划在未来的博士学习中继续这一方向。
 </i18n>
 
 <style scoped lang="stylus">
@@ -299,29 +263,9 @@ h4
 .first-course-title
   margin-top 8px
 
-img
-video
-  margin-top 24px
-  border-radius 8px
-  width 100%
-
 hr
   margin: 32px 0
 
-.reflection-card
-  width fit-content
-  background var(--background-50-transparent)
-  border: 1.5px solid var(--border-chat-bubble)
-  box-sizing border-box
-  backdrop-filter blur(50px)
-  padding 24px
-  margin-bottom 24px
-  border-radius 20px
-
-.reflection-content
-  margin-top 8px
-
-.reflection-title
 .title
   font-size 20px
   font-weight bold
@@ -329,12 +273,6 @@ hr
 .year-title
   margin-top 12px
   font-weight bold
-
-.label
-  color: var(--text-color-secondary)
-  text-align center
-  margin-top: 4px
-  margin-bottom 24px
 
 .overview
   display grid
@@ -354,21 +292,12 @@ hr
     width fit-content
     padding: 0 6px
     position: relative;
+    border-radius 4px
+    transition .1s
 
+    &.active,
     &:hover
       color: var(--text-color)
-
-    &:before
-      content: ''
-      position: absolute
-      left 0
-      right 0
-      bottom -4px
-      top -4px
-      border-radius 4px
-      transition .1s
-
-    &:hover:before
       background var(--text-color-hightlight)
 
   .period-title
@@ -405,27 +334,5 @@ hr
     .right
       grid-column unset
       width unset
-      padding: 0 16px
-
-.reflection-content p
-  margin 8px 0
-  line-height 1.6
-
-.reflection-text
-  margin-top 12px
-  padding 12px 16px
-  background var(--background-50-transparent)
-  border-left 3px solid var(--border-chat-bubble)
-  border-radius 0 4px 4px 0
-  color var(--text-color-secondary)
-  font-style italic
-
-.direction-list
-  margin 4px 0 16px 0
-  padding 0
-  list-style-type disc
-  list-style-position inside
-
-  li
-    margin 4px 0
+      padding: 4px 16px
 </style>

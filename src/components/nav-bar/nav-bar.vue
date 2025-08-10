@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {useWatchColor} from './use-watch-color.ts'
-import {useWatchLanguage} from './use-watch-language.ts'
+// import {useWatchLanguage} from './use-watch-language.ts' //
 import LanguageButton from './language-button.vue'
 import DarkModeButton from './dark-mode-button.vue'
 import {computed, ref} from 'vue'
@@ -9,7 +9,7 @@ import {useRoute} from 'vue-router'
 import { useI18n } from 'vue-i18n'
 
 const { mode, toggleMode } = useWatchColor()
-const { language, toggleLanguage} = useWatchLanguage()
+// const { language, toggleLanguage} = useWatchLanguage() //
 const { t } = useI18n()
 
 const route = useRoute()
@@ -22,19 +22,19 @@ const onClickMenu = () => {
 const tabs = [{
   pageName: 'home',
   textKey: 'homeTab',
-  to: '/'
+  name: 'home'
 }, {
-  pageName: 'study-plan',
-  textKey: 'studyPlanTab',
-  to: '/study-plan'
-}, {
+//   pageName: 'masters-courses',
+//   textKey: 'mastersCoursesTab',
+//   name: 'masters-courses'
+// }, {
   pageName: 'cv',
   textKey: 'cvTab',
-  to: '/cv'
+  name: 'cv'
 }, {
   pageName: 'graduation-thesis',
   textKey: 'graduationThesisTab',
-  to: '/graduation-thesis'
+  name: 'graduation-thesis'
 }]
 
 const currentPageName = computed(() => route.name)
@@ -51,51 +51,49 @@ const isHighlighted = (pageName: string) => {
       @click="onClickMenu"
     >menu</span>
     <div class="title">
-      <router-link to="/">
+      <router-link v-if="route.params.lang" :to="{ name: 'home', params: { lang: route.params.lang }}">
         chenyfz.github.io
       </router-link>
     </div>
 
     <language-button
       class="nb-language-button"
-      :lang="language"
-      @click:zh="toggleLanguage('zh')"
-      @click:en="toggleLanguage('en')"
     />
     <div class="dmb-container">
       <dark-mode-button :mode="mode" @click="toggleMode" />
     </div>
 
-    <router-link
-      v-for="tab in tabs"
-      :key="tab.pageName"
-      class="nb-button"
-      :class="{'nb-button-highlighted': isHighlighted(tab.pageName)}"
-      :to="tab.to"
-    >
-      {{ t(tab.textKey) }}
-    </router-link>
+    <template v-if="route.params.lang">
+      <router-link
+        v-for="tab in tabs"
+        :key="tab.pageName"
+        class="nb-button"
+        :class="{'nb-button-highlighted': isHighlighted(tab.pageName)}"
+        :to="{ name: tab.name, params: { lang: route.params.lang }}"
+      >
+        {{ t(tab.textKey) }}
+      </router-link>
+    </template>
   </div>
 
   <Teleport to="body">
     <drawer-transition :duration-second="0.5" direction="down">
       <!--      <div v-if="isMenuOpen" class="mask" />-->
       <div v-if="isMenuOpen" class="nb-side-penal">
-        <router-link
-          v-for="tab in tabs"
-          :key="tab.pageName"
-          class="menu-item menu-item-link"
-          :class="{'menu-item-highlighted': isHighlighted(tab.pageName)}"
-          :to="tab.to"
-          @click="isMenuOpen = false"
-        >
-          {{ t(tab.textKey) }}
-        </router-link>
+        <template v-if="route.params.lang">
+          <router-link
+            v-for="tab in tabs"
+            :key="tab.pageName"
+            class="menu-item menu-item-link"
+            :class="{'menu-item-highlighted': isHighlighted(tab.pageName)}"
+            :to="{ name: tab.name, params: { lang: route.params.lang }}"
+            @click="isMenuOpen = false"
+          >
+            {{ t(tab.textKey) }}
+          </router-link>
+        </template>
         <div class="menu-item menu-item-switches">
           <language-button
-            :lang="language"
-            @click:zh="toggleLanguage('zh')"
-            @click:en="toggleLanguage('en')"
           />
           <dark-mode-button :mode="mode" @click="toggleMode" />
         </div>
@@ -106,14 +104,14 @@ const isHighlighted = (pageName: string) => {
 
 <i18n lang="yaml" locale="en">
 homeTab: "Home"
-studyPlanTab: "Study Plan"
+mastersCoursesTab: "Master's Courses"
 cvTab: "CV"
 graduationThesisTab: "Thesis"
 </i18n>
 
 <i18n lang="yaml" locale="zh">
 homeTab: "主页"
-studyPlanTab: "课程计划"
+mastersCoursesTab: "硕士课程"
 cvTab: "简历"
 graduationThesisTab: "毕业论文"
 </i18n>

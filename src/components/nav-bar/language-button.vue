@@ -1,20 +1,31 @@
 <script setup lang="ts">
-const props = defineProps<{ lang: string }>()
-const emit = defineEmits(['click:en', 'click:zh'])
+import { useRoute, useRouter } from 'vue-router'
+
+const route = useRoute()
+const router = useRouter()
+
+function switchToLang(lang: 'en' | 'zh') {
+  router.push({
+    name: route.name!,
+    params: { ...route.params, lang },
+    query: route.query,
+    hash: route.hash,
+  })
+}
 </script>
 
 <template>
   <a class="language-switch-button">
     <span
-      :class="{ 'selected': props.lang === 'en' }"
+      :class="{ 'selected': route.params.lang === 'en' }"
       class="lang-button"
-      @click="emit('click:en')"
+      @click="switchToLang('en')"
     >EN</span>
     <span>/</span>
     <span
-      :class="{ 'selected': props.lang === 'zh' }"
+      :class="{ 'selected': route.params.lang === 'zh' }"
       class="lang-button"
-      @click="emit('click:zh')"
+      @click="switchToLang('zh')"
     >中文</span>
   </a>
 </template>

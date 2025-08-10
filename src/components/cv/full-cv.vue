@@ -1,104 +1,127 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import RichText from '../ui/rich-text.vue'
 
 const { t } = useI18n()
 </script>
 
 <template>
-  <div class="cv-component">
-    <h2 class="cv-title">
-      <span>{{ t('title') }}</span> -
-      {{ t('name') }}
-    </h2>
-
-    <hr>
-
+  <div class="cv-component full-cv">
     <h3>{{ t('education.title') }}</h3>
-    <section class="master">
-      <div class="lr-layout highlight line">
-        <div>{{ t('education.master.degree') }}</div>
-        <div>{{ t('education.master.time') }}</div>
+    <section class="entry">
+      <div class="master">
+        <div class="lr-layout highlight line">
+          <div>{{ t('education.master.degree') }}</div>
+          <div>{{ t('education.master.time') }}</div>
+        </div>
+        <div class="lr-layout">
+          <div><rich-text :text="t('education.master.university')" /></div>
+          <div class="uni-location">
+            {{ t('education.master.location') }}
+          </div>
+        </div>
       </div>
-      <div class="lr-layout">
-        <div>{{ t('education.master.university') }}</div>
-        <div class="uni-location">{{ t('education.master.location') }}</div>
+      <div class="entry-details">
+        <ul class="line">
+          <li><rich-text :text="t('education.master.skillsTitle')" /></li>
+          <li class="new-ul-container">
+            <ul>
+              <li><rich-text :text="t('education.master.skill1')" /></li>
+              <li><rich-text :text="t('education.master.skill2')" /></li>
+              <li><rich-text :text="t('education.master.skill3')" /></li>
+              <li><rich-text :text="t('education.master.skill4')" /></li>
+              <li><rich-text :text="t('education.master.skill5')" /></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="line">
+          <li><rich-text :text="t('education.master.thesisTitle')" /></li>
+          <li class="new-ul-container">
+            <ul>
+              <li>
+                <rich-text :text="t('education.master.thesisLinks')" />
+              </li>
+              <li>{{ t('education.master.thesisSupervisors') }}</li>
+            </ul>
+          </li>
+        </ul>
       </div>
-      <ul class="line">
-        <li>{{ t('education.master.gpa') }}</li>
-        <li>
-          {{ t('education.master.studyPlan.before') }}
-          <router-link to="study-plan" class="link">{{ t('education.master.studyPlan.link') }}</router-link>
-          {{ t('education.master.studyPlan.after') }}
-        </li>
-      </ul>
     </section>
 
-    <section class="bachelor">
-      <div class="lr-layout highlight line">
-        <div>{{ t('education.bachelor.degree') }}</div>
-        <div>{{ t('education.bachelor.time') }}</div>
+    <section class="entry">
+        <div class="bachelor">
+          <div class="lr-layout highlight line">
+            <div>{{ t('education.bachelor.degree') }}</div>
+            <div>{{ t('education.bachelor.time') }}</div>
+          </div>
+          <div class="lr-layout">
+            <div><rich-text :text="t('education.bachelor.university')" /></div>
+            <div class="uni-location">
+              {{ t('education.bachelor.location') }}
+            </div>
+          </div>
+        </div>
+      <div class="entry-details">
+        <ul class="line">
+          <li><rich-text :text="t('education.bachelor.mainSkillset')" /></li>
+          <li><rich-text :text="t('education.bachelor.highlightCourses')" /></li>
+          <li><rich-text :text="t('education.bachelor.achievement')" /></li>
+        </ul>
       </div>
-      <div class="lr-layout">
-        <div>{{ t('education.bachelor.university') }}</div>
-        <div class="uni-location">{{ t('education.bachelor.location') }}</div>
-      </div>
-      <ul class="line">
-        <li>{{ t('education.bachelor.gpa') }}</li>
-        <li>{{ t('education.bachelor.achievement') }}</li>
-      </ul>
     </section>
 
     <hr>
     <h3>{{ t('experience.title') }}</h3>
 
-    <section class="work">
-      <div class="lr-layout highlight line">
-        <div>{{ t('experience.trainee.role') }}</div>
-        <div>{{ t('experience.trainee.time') }}</div>
+    <section class="entry">
+        <div class="cwi">
+          <div class="lr-layout highlight line">
+            <div><rich-text :text="t('experience.trainee.role')" /></div>
+            <div>{{ t('experience.trainee.time') }}</div>
+          </div>
+          <div class="lr-layout">
+            <div><rich-text :text="t('experience.trainee.organization')" /></div>
+            <div class="uni-location">
+              {{ t('experience.trainee.location') }}
+            </div>
+          </div>
+        </div>
+      <div class="entry-details">
+        <ul class="line">
+          <li>{{ t('experience.trainee.description1') }}</li>
+          <li><rich-text :text="t('experience.trainee.team')" /></li>
+          <li><rich-text :text="t('experience.trainee.description2')" /></li>
+        </ul>
       </div>
-      <div class="lr-layout">
-        <div>{{ t('experience.trainee.organization') }}</div>
-        <div class="uni-location">{{ t('experience.trainee.location') }}</div>
-      </div>
-      <ul class="line">
-        <li>{{ t('experience.trainee.team') }}, {{ t('experience.trainee.supervisor') }}</li>
-        <li>{{ t('experience.trainee.thesis') }}</li>
-      </ul>
     </section>
 
-    <section class="work mt-3">
-      <div class="lr-layout highlight line">
-        <div>{{ t('experience.fullTime.role') }}</div>
-        <div>{{ t('experience.fullTime.time') }}</div>
+    <section class="entry">
+        <div class="wechat">
+          <div class="lr-layout highlight line">
+            <div><rich-text :text="t('experience.fullTime.role')" /></div>
+            <div>{{ t('experience.fullTime.time') }}</div>
+          </div>
+          <div class="lr-layout">
+            <div><rich-text :text="t('experience.fullTime.organization')" /></div>
+            <div class="uni-location">
+              {{ t('experience.fullTime.location') }}
+            </div>
+          </div>
+        </div>
+      <div class="entry-details">
+        <ul class="line">
+          <li><rich-text :text="t('experience.fullTime.team')" /></li>
+          <li><rich-text :text="t('experience.fullTime.responsibilities.title')" /></li>
+          <li class="new-ul-container">
+            <ul>
+              <li><rich-text :text="t('experience.fullTime.responsibilities.wechatSearch')" /></li>
+              <li><rich-text :text="t('experience.fullTime.responsibilities.wechatChannels')" /></li>
+              <li><rich-text :text="t('experience.fullTime.responsibilities.internalSystems')" /></li>
+            </ul>
+          </li>
+          <li><rich-text :text="t('experience.fullTime.achievement')" /></li>
+        </ul>
       </div>
-      <div class="lr-layout">
-        <div>{{ t('experience.fullTime.organization') }}</div>
-        <div class="uni-location">{{ t('experience.fullTime.location') }}</div>
-      </div>
-      <ul class="line">
-        <li>{{ t('experience.fullTime.team') }}</li>
-        <li>{{ t('experience.fullTime.responsibilities.title') }}</li>
-        <li class="new-ul-container">
-          <ul>
-            <li>{{ t('experience.fullTime.responsibilities.wechatSearch') }}</li>
-            <li>{{ t('experience.fullTime.responsibilities.wechatChannels') }}</li>
-            <li>{{ t('experience.fullTime.responsibilities.internalSystems') }}</li>
-          </ul>
-        </li>
-        <li>{{ t('experience.fullTime.achievement') }}</li>
-      </ul>
-    </section>
-
-    <hr>
-    <h3>{{ t('skills.title') }}</h3>
-    <section class="work">
-      <ul>
-        <li>{{ t('skills.webDevelopment') }}</li>
-        <li>{{ t('skills.softwareArchitecture') }}</li>
-        <li>{{ t('skills.pythonML') }}</li>
-        <li>{{ t('skills.csharpUnity') }}</li>
-        <li>{{ t('skills.threeDModelingPrinting') }}</li>
-      </ul>
     </section>
   </div>
 </template>
@@ -109,51 +132,49 @@ name: "CHEN Yangfan"
 education:
   title: "Education"
   master:
-    degree: "MSc Human-Computer Interaction"
-    time: "Sept. 2023 - Now"
-    university: "Utrecht University"
+    degree: "MSc in Human-Computer Interaction (Expected: Cum Laude, GPA: 8.39/10)"
+    time: "Sep. 2023 - Aug. 2025"
+    university: "[Utrecht University](https://www.uu.nl/)"
     location: "Utrecht, Netherlands"
-    gpa: "CGPA: 8.29/10"
-    studyPlan:
-      before: "See"
-      link: "Study Plan"
-      after: "for more information"
+    skillsTitle: "For course details, please see my [Study Plan](/study-plan)."
+    skill1: "**Research Methods:** [Quantitative](/study-plan#mqnm) (Grade: 9.4) and [Qualitative](/study-plan#mqlm) (7.8) Research Methods"
+    skill2: "**XR/VR/AR:** [Multimodal Interaction](/multimodal-interaction) (8), [Mobile Interaction](/study-plan#mmob) (7.9), MSc Thesis (8.7)"
+    skill3: "**Human Factors:** [Cognitive Modeling](/study-plan#mcm) (8.3), [Cognitive and Social Psychology for HCI](/study-plan#mcsp) (7.4)"
+    skill4: "**Digital Fabrication (3D modeling & printing, Arduino):** [Interaction Technology Innovation](/snow-globe) (8.3)"
+    skill5: "**Data Processing and Visualization:** [Data Mining](/study-plan#mdm) (8.5), [Information Visualization](/study-plan#mvis) (9)"
+    thesisTitle: "MSc Thesis: [ZoomPursuit: Smooth Pursuit-based Gaze Interaction for General-Purpose GUIs](/graduation-thesis)"
+    thesisSupervisors: "Supervisor: Lynda Hardman, Grade: 8.7/10"
+    thesisLinks: "[Paper (PDF)](/thesis-illustration.png), [Video (MP4)](/infommmi-demo.mp4), [Codebase (GitHub)](https://github.com/chenyfz/zoom-pursuit)"
   bachelor:
-    degree: "B.Eng. in Software Engineering"
-    time: "Sept. 2016 - June 2020"
-    university: "Nanjing University"
+    degree: "B.Eng. in Software Engineering (GPA: 4.1/5)"
+    time: "Sep. 2016 - Jun. 2020"
+    university: "[Nanjing University](https://www.nju.edu.cn/en/)"
     location: "Jiangsu, China"
-    gpa: "CGPA: 4.10/5"
-    achievement: "Excellent Bachelor's Dissertation Team Awards by Nanjing University and Jiangsu Province"
+    highlightCourses: "**Relevant Coursework:** Human-Computer Interaction Systems (96/100), Graduation Design (96/100)"
+    mainSkillset: "**Core Competencies:** Acquired solid knowledge in computer science and versatile software engineering skills applicable to many domains"
+    achievement: "**Excellent Graduation Design** (Team Award) by both Nanjing University and Jiangsu Province"
 experience:
   title: "Work Experience"
   trainee:
-    role: "Trainee"
-    time: "March 2025 - Now"
-    organization: "Centrum Wiskunde & Informatica (CWI)"
+    role: "Research Trainee"
+    time: "Mar. 2025 - Aug. 2025"
+    organization: "[Centrum Wiskunde & Informatica (CWI)](https://www.cwi.nl/)"
     location: "Amsterdam, Netherlands"
-    team: "Human-Centered Data Analytics Group"
-    supervisor: "supervisor: Lynda Hardman"
-    thesis: "Master's Thesis: Accurate and Drift-Robust Gaze Pointing with On-the-fly Recalibration"
+    description1: "The national research institute for mathematics and computer science in the Netherlands."
+    team: "**Human-Centered Data Analytics Group**, Supervisor: Lynda Hardman"
+    description2: "**LLMs, bias, data analytics, cultural heritage.** Gained insight into academic research"
   fullTime:
-    role: "Frontend Developer at WeChat"
-    time: "July 2020 - May 2022"
-    organization: "Tencent"
+    role: "Web Developer"
+    time: "Jul. 2020 - May 2022"
+    organization: "[Weixin Group, Tencent](https://www.tencent.com/en-us/)"
     location: "Guangdong, China"
-    team: "Department: Design Center, Core Product Department, WeChat Group"
+    team: "Department: Design Center, Core Product Department (基础产品部, 设计中心)"
     responsibilities:
-      title: "Main responsibilities:"
-      wechatSearch: "WeChat Search frond-end development"
-      wechatChannels: "WeChat Channels (short video platform) and WeChat Channels Live front-end development"
-      internalSystems: "Full stack internal information systems development"
-    achievement: "Tencent Good+ Contributor (top 15%) in 2021H1 and 2021H2"
-skills:
-  title: "Technical Skills:"
-  webDevelopment: "Web development (frontend, backend, database, DevOps)"
-  softwareArchitecture: "Software architecture"
-  pythonML: "Python (data processing and machine learning)"
-  csharpUnity: "C# (Windows App and Unity)"
-  threeDModelingPrinting: "3D modelling and 3D printing"
+      title: "**Key responsibilities:**"
+      wechatSearch: "**Weixin Search** (微信搜一搜) front-end development, one of three main developers"
+      wechatChannels: "**Weixin Channels & Channels Live** (微信视频号 & 视频号直播) front-end development"
+      internalSystems: "**Weixin infrastructure library, toolkit and internal systems** full stack development"
+    achievement: "**Tencent Good+ Contributor (top 15%)** for H1 2021 and H2 2021"
 </i18n>
 
 <i18n lang="yaml" locale="zh">
@@ -162,62 +183,60 @@ name: "陈扬帆"
 education:
   title: "教育经历"
   master:
-    degree: "硕士 - 人机交互"
-    time: "2023年9月至今"
-    university: "乌特勒支大学（Utrecht University）"
-    location: "荷兰"
-    gpa: "绩点: 8.29/10"
-    studyPlan:
-      before: "详见"
-      link: "课程计划"
-      after: ""
+    degree: "硕士 - 人机交互（预计 Cum Laude, GPA: 8.39/10）"
+    time: "2023年9月 - 2025年8月"
+    university: "[乌特勒支大学](https://www.uu.nl/)"
+    location: "荷兰，乌特勒支"
+    skillsTitle: "课程请参考：[学习计划](/study-plan)"
+    skill1: "**研究方法：** [定量](/study-plan#mqnm)（9.4分）和[定性](/study-plan#mqlm)（7.8分）研究方法"
+    skill2: "**XR/VR/AR：** [多模态交互](/multimodal-interaction)（8分），[移动交互](/study-plan#mmob)（7.9分），硕士论文（8.7分）"
+    skill3: "**人因：** [认知建模](/study-plan#mcm)（8.3分），[人机交互中的认知与社会心理学](/study-plan#mcsp)（7.4分）"
+    skill4: "**数字制造（3D建模与打印, Arduino）：** [交互技术创新](/snow-globe)（8.3分）"
+    skill5: "**数据处理与可视化：** [数据挖掘](/study-plan#mdm)（8.5分），[信息可视化](/study-plan#mvis)（9分）"
+    thesisTitle: "硕士论文：[ZoomPursuit: 用于通用图形用户界面的平滑追踪注视交互](/graduation-thesis)"
+    thesisSupervisors: "导师：Lynda Hardman，成绩：8.7/10"
+    thesisLinks: "[论文 (PDF)](/thesis-illustration.png)，[视频 (MP4)](/infommmi-demo.mp4)，[代码 (GitHub)](https://github.com/chenyfz/zoom-pursuit)"
   bachelor:
-    degree: "本科 - 软件工程"
-    time: "2016年 - 2020年"
-    university: "南京大学"
-    location: "江苏南京"
-    gpa: "绩点：4.1/5"
-    achievement: "江苏省、南京大学本科优秀毕业论文（团队奖）"
+    degree: "本科 - 软件工程（GPA: 4.1/5）"
+    time: "2016年9月 - 2020年6月"
+    university: "[南京大学](https://www.nju.edu.cn/main.htm)"
+    location: "中国，江苏"
+    highlightCourses: "人机交互相关课程：人机交互系统（96/100），毕业设计（96/100）"
+    mainSkillset: "掌握了坚实的计算机科学知识和能够迁移到诸多领域的软件工程素养"
+    achievement: "江苏省优秀毕业设计（团队奖），南京大学优秀毕业设计（团队奖）"
 experience:
   title: "工作经历"
   trainee:
-    role: "实习生"
-    time: "2025年3月至今"
-    organization: "荷兰数学和计算机科学研究中心 (CWI)"
-    location: "荷兰阿姆斯特丹"
-    team: "Human-Centered Data Analytics Group"
-    supervisor: "导师: Lynda Hardman"
-    thesis: "硕士论文: Accurate and Drift-Robust Gaze Pointing with On-the-fly Recalibration"
+    role: "Trainee"
+    time: "2025年3月 - 2025年8月"
+    organization: "[Centrum Wiskunde & Informatica (CWI)](https://www.cwi.nl/)"
+    location: "荷兰，阿姆斯特丹"
+    description1: "荷兰数学与计算机科学中心"
+    team: "**以人为本数据分析小组**，导师：Lynda Hardman"
+    description2: "**研究方向：** 大语言模型、偏见、数据分析、文化遗产。深入学术界"
   fullTime:
-    role: "微信 - 前端开发"
-    time: "2020年 - 2022年"
-    organization: "腾讯"
-    location: "广东广州"
+    role: "Web开发工程师"
+    time: "2020年7月 - 2022年5月"
+    organization: "[微信事业群, 腾讯](https://www.tencent.com/zh-cn/)"
+    location: "中国，广东"
     team: "部门：微信事业群 - 设计中心 - 前端重构组"
     responsibilities:
-      title: "主要职责："
-      wechatSearch: "微信搜一搜前端开发"
-      wechatChannels: "微信视频号和视频号直播前端开发"
-      internalSystems: "内部工具系统全栈开发"
-    achievement: "2021年上半年和下半年腾讯Good+贡献者（前15%）"
-skills:
-  title: "技术专长"
-  webDevelopment: "Web开发（前端、后端、数据库、DevOps）"
-  softwareArchitecture: "软件架构"
-  pythonML: "Python（数据处理和机器学习）"
-  csharpUnity: "C#（Windows应用和Unity）"
-  threeDModelingPrinting: "3D建模和3D打印"
+      title: "**主要职责：**"
+      wechatSearch: "**微信搜索**（微信搜一搜）前端开发，三位主要开发者之一"
+      wechatChannels: "**微信视频号与视频号直播** 前端开发"
+      internalSystems: "**微信基础设施库、工具包和内部系统** 全栈开发"
+    achievement: "**腾讯Good+贡献者 (top 15%)** in 2021H1 and 2021H2"
 </i18n>
 
 <style scoped lang="stylus">
-.cv-title
-  span
-    color: var(--text-color-secondary)
+h3
+  margin 12px 0 4px 0
+  padding 0
 
 .uni-location
   display none
 
-@media (min-width: 600px)
+@media (min-width: 840px)
   .lr-layout
     display flex
     justify-content space-between
@@ -227,13 +246,48 @@ skills:
 .highlight
   font-weight 600
 
-.bachelor
-  margin-top 40px
-  margin-bottom 24px
-
 .line
   margin-top 8px
 
 .mt-3
   margin-top 30px
+
+.entry
+  margin-bottom: 24px
+
+.new-ul-container ul
+  margin-top: 4px;
+  padding-left: 20px;
+
+.master,
+.bachelor,
+.cwi,
+.wechat
+  position: relative
+  padding-left: 52px
+  &:before
+    position: absolute
+    content: ''
+    left: 0
+    top: 6px
+    display: block
+    width: 40px
+    height: 40px
+    background-repeat: no-repeat
+    background-position: center
+    background-size: contain
+
+.master:before
+  background-image: url('/UU_logo.png')
+
+.bachelor:before
+  background-image: url('/NJU_logo.png')
+
+.cwi:before
+  background-image: url('/CWI_logo.png')
+  background-position: top
+  top: 8px
+
+.wechat:before
+  background-image: url('/wechat_logo.png')
 </style>

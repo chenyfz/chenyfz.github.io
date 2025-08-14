@@ -47,7 +47,7 @@ const { t } = useI18n()
 education:
   title: "Education"
   master:
-    degree: "MSc Human-Computer Interaction (Sept. 2023 - Aug. 2025)"
+    degree: "(Cum Laude) MSc Human-Computer Interaction (Sept. 2023 - Aug. 2025)"
     university: "Utrecht University"
     gpa: "GPA: 8.39/10"
   bachelor:
@@ -68,7 +68,7 @@ experience:
 education:
   title: "教育经历"
   master:
-    degree: "硕士 - 人机交互 (2023.9 - 2025.8)"
+    degree: "硕士 - 人机交互 (预期 Cum Laude 毕业，2023.9 - 2025.8)"
     university: "乌特勒支大学（Utrecht University，荷兰）"
     gpa: "绩点: 8.39/10"
   bachelor:

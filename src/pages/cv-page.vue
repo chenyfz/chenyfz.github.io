@@ -10,7 +10,7 @@ import FullCv from "../components/cv/full-cv.vue";
         CV - Yangfan CHEN, 陈扬帆
       </h2>
       <div class="contact-info">
-        Email: <a href="mailto:x.chenyangfan@gmail.com" class="link">x.chenyangfan@gmail.com ↗</a>
+        Email: <a href="mailto:x.chenyangfan@gmail.com" class="link">x.chenyangfan@gmail.com</a>
       </div>
     </div>
     <full-cv></full-cv>
@@ -20,7 +20,7 @@ import FullCv from "../components/cv/full-cv.vue";
 <style scoped lang="stylus">
 .cv-page
   padding: 0 var(--page-padding)
-  margin: 32px auto 56px auto
+  margin: 48px auto 56px auto
   max-width 910px
 
 .cv-header
@@ -35,10 +35,11 @@ import FullCv from "../components/cv/full-cv.vue";
   .contact-info
     color: var(--text-color-secondary)
     font-size: 14px
+    margin-top: 2px
 
 .full-cv
   background var(--background-50-transparent)
   border 1.5px solid var(--border-chat-bubble)
-  border-radius 12px
+  border-radius 4px
   padding 8px 24px
 </style>

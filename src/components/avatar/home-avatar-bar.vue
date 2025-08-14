@@ -15,9 +15,7 @@ const { t } = useI18n()
 
     <div>
       <chat-bubble>{{ t('greeting') }}</chat-bubble>
-      <chat-bubble>{{ t('vision') }}</chat-bubble>
-      <chat-bubble>{{ t('engineeringStrength') }}</chat-bubble>
-      <chat-bubble>{{ t('hciStrength') }}</chat-bubble>
+      <chat-bubble>{{ t('passion') }}</chat-bubble>
       <chat-bubble>{{ t('ambition') }}</chat-bubble>
       <chat-bubble>{{ t('transition') }}</chat-bubble>
     </div>
@@ -26,20 +24,16 @@ const { t } = useI18n()
 
 <i18n lang="yaml" locale="en">
 greeting: "Hi! I'm Yangfan :D"
-vision: "My passion is building novel interactive systems by bridging deep engineering with human-centered design."
-engineeringStrength: "My time at WeChat taught me how to build robust, scalable systems. I'm experienced in navigating the complexities of large codebases and delivering high-quality front-end solutions."
-hciStrength: "My HCI master's gave me the tools to ground my work in research, from conducting user studies to systematically evaluating new interaction techniques."
-ambition: "I'm now seeking a PhD position to combine these skills: create technically sound and meaningful user experiences."
-transition: "Let me briefly introduce my experience 👀"
+passion: "I'm passionate about exploring novel interactions, a process that consistently sparks my creativity."
+ambition: "I leverage my engineering background from WeChat and HCI research skills from my master's to assess ideas for value and feasibility. My goal is to pursue a PhD, applying an approach that combines creativity with rigorous analysis to envision and build the next generation of interactive systems."
+transition: "Below is a brief overview of my journey 👀"
 </i18n>
 
 <i18n lang="yaml" locale="zh">
 greeting: "Hi！我是陈扬帆 :D"
-vision: "我的热情在于通过连接深度工程与人本设计，来构建新颖的交互系统。"
-engineeringStrength: "在微信的工作经验让我学会了如何构建稳健、可扩展的系统，使我能熟练驾驭复杂的大型代码库并交付高质量的前端解决方案。"
-hciStrength: "而HCI硕士的训练则为我的工作提供了研究的根基，让我掌握了从执行用户研究到系统性地评估新交互技术的全套方法。"
-ambition: "我正在寻求博士职位，以结合这些技能——用严谨的研究来指导创造技术上可靠且有意义的用户体验。"
-transition: "下面就简单介绍一下我的经历吧 👀"
+passion: "我热衷于探索新颖的交互设计，这总能激发我的创造力。"
+ambition: "我在微信的工程经验与HCI的学术训练，帮助我严谨地评估这些想法的价值与可行性。我希望攻读博士学位，将这种结合了创造性与严谨分析的模式，用于构想并实现下一代交互系统。"
+transition: "以下是我的过往经历简介 👀"
 </i18n>
 
 <style scoped lang="stylus">

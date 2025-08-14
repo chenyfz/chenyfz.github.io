@@ -130,121 +130,127 @@ onUnmounted(() => {
 firstYearTitle: "First Year"
 secondYearTitle: "Second Year"
 
-title: "Master's Courses at Utrecht University"
+title: "Master's Courses Overview"
+intro:
+  title: "My Coursework in HCI"
+  description: "This page details the courses I completed during my HCI Master's at Utrecht University. I've included summaries and links to final projects or papers, reflecting my foundational knowledge and practical skills in the field."
 contentTitle: "Table of Contents"
 coursesTitle: "Course Details"
 mcsp:
   title: "Advanced cognitive and social psychology for HCI"
   description: |
-    This course focused on social and cognitive psychology and their applications in HCI. Key projects included designing an interactive class on "Cognition, Motivation & Emotion" with a focus on Gamification, and developing a research proposal on Gamification. The proposal involved a literature review and outlining research methods, analysis, and discussion. A final exam contributed to the assessment.
+    This course explored the application of social and cognitive psychology in HCI. In a group of five, we designed a 3D-minute interactive lecture on "Cognition, Motivation & Emotion," focusing on gamification. I also collaborated with a partner to develop a full research proposal on Gamification, which included a comprehensive literature review, research methods, and an analysis plan. Assessment was based on these projects and a final exam.
 mlhvl:
   title: "Machine learning for human vision and language"
   description: |
-    This course covered two primary areas: the neuroscience foundations of vision, including its parallels with deep learning networks (e.g., CNNs); and the principles of natural language processing using AI networks (e.g., RNNs, Word2Vec, LSTM). Practical projects required implementing a CNN from scratch and building an RNN/GloVe model for NLP. Assessment included mid-term and final exams.
+    This course covered two main areas: the neuroscience of vision and its parallels with deep learning networks like CNNs, and the principles of NLP using models such as RNNs, Word2Vec, and LSTMs. Practical assignments required implementing a CNN from scratch in Python and building separate RNN and GloVe models for NLP tasks. The course was assessed via mid-term and final exams.
 mvis:
   title: "Information Visualization"
   description: |
-    This course introduced information visualization, covering data types, perception, color, interaction design, and evaluation. The main project involved designing effective visualizations for a chosen dataset. Our team chose to visualize the sustainability performance of fast fashion brands, creating two standard charts and one innovative chart to help consumers compare brands.
+    This course introduced the principles of information visualization, from data types and perception to interaction design and evaluation. For the main project, our team chose to visualize the sustainability performance of fast fashion brands. We designed and implemented three visualizations—two standard charts and one innovative chart—to help consumers understand and compare the brands.
   linkText: "Project link (website)"
 mqlm:
   title: "Advanced HCI qualitative research methods"
   description: |
-    This course provided a grounding in advanced qualitative research methods for HCI, covering data collection, analysis, and visualization. The central project involved a complete qualitative study on a self-selected topic. Our group investigated user perceptions of smart home cameras, using focus groups and creative problem-solving to understand attitudes and propose solutions.
+    This course covered advanced qualitative research methods, including data collection, analysis, and visualization. The main project involved conducting a complete qualitative study. Our group investigated user perceptions of smart home cameras, using focus groups and creative problem-solving to understand their attitudes and propose solutions to alleviate their concerns.
   linkText: "Paper link (PDF)"
 mmmi:
   title: "Multimodal Interaction"
   description: |
-    This course covered the physiological basis of multimodal interaction (vision, motion, auditory, tactile), VR/AR technologies, and the interplay between interaction and emotion. The core project was an original study on gesture interaction with distant 2D screens in VR. The study first used the Wizard of Oz technique to elicit user-preferred gestures, then implemented two common gestures for a qualitative comparison against Meta's default interaction, using the think-aloud protocol. The video shows the gestures we developed.
+    This course explored multimodal interaction, from its physiological basis (vision, motion, etc.) to VR/AR technologies and its interplay with emotion. My main project was a two-part study on gesture interaction with distant 2D screens in VR. First, I used the Wizard of Oz method to elicit user-defined gestures. Second, I implemented two of the most common gestures and conducted a qualitative comparison against Meta's default interaction using the think-aloud protocol.
   linkText: "View Project Details"
 miti:
   title: "Interaction technology innovation"
   description: |
-    This hands-on course challenged us to create an "Enchanted Everyday Object". Using lab equipment, we built a pair of connected snow globes that sense each other's ambient light. Shaking one globe triggers a shared snowfall effect in both; users can also exchange voice messages. The project aimed to help people in different time zones feel connected.
+    In this project-based course, I designed and built a tangible interactive system for social connection. The project provided hands-on experience across the full prototyping stack: 3D modeling, ESP32-based electronics, and IoT firmware development.
   linkText: "View Project Details"
 mqnm:
   title: "Advanced HCI quantitative research methods"
   description: |
-    This course covered advanced quantitative research methods for HCI, contrasting parametric and non-parametric approaches (e.g., ANOVA, regression, GLM). The main project required us to formulate a research question for a given dataset. Our team analyzed the K-EmoPhone dataset (data from 77 participants over one week via smartphones/bands) to investigate whether personality traits influence stress indicators (HRV, EDA) during social media use.
+    This course covered advanced quantitative research methods, from parametric and non-parametric approaches (e.g., ANOVA, regression) to General Linear Models (GLM). For the main project, we were required to analyze a given dataset to answer a research question with at least two independent and two dependent variables. Our team analyzed the K-EmoPhone dataset to investigate whether personality traits influence physiological stress indicators (HRV, EDA) during social media use.
   linkText: "Paper link (PDF)"
 mmob:
   title: "Mobile Interaction"
   description: |
-    A course on interaction with smartphones, tablets, and wearables. Lectures covered enabling technologies, touch screens, UI design, evaluation, gestures, mobile gaming, and VR/AR. Through papers and demos, we analyzed how hardware, human factors, and context shape mobile interface design.
+    This course examined interaction with smartphones, tablets, and wearables, covering enabling technologies, UI design, evaluation, gestures, and mobile AR/VR. Through papers and demos, we analyzed how hardware, human factors, and context shape mobile interface design.
 mdm:
   title: "Data Mining"
   description: |
-    A core course for the Data Science master's program. It covered theoretical foundations (PAC learning, VC-dimension) and algorithms (decision trees, SVMs, logistic regression, etc.). Students learned to select appropriate algorithms and run comparative experiments. Assessment included an exam, homework, and practical assignments.
+    A core course in the Data Science master's program, covering theoretical foundations (PAC learning, VC-dimension) and key algorithms (decision trees, SVMs, logistic regression). I learned to select appropriate algorithms for given problems and conduct comparative experiments.
   linkA1: "Assignment 1 (ZIP)"
   linkA2: "Assignment 2 (PDF)"
 mcm:
   title: "Cognitive Modeling"
   description: |
-    This course explored three approaches to cognitive modeling: processing models, machine-learning models, and probabilistic (Bayesian) models. For each, we completed an assignment to build and evaluate a model, followed by a written exam on theory and trade-offs.
+    This course explored three cognitive modeling approaches: symbolic (processing) models, connectionist (machine-learning) models, and probabilistic (Bayesian) models. For each, I completed an assignment to build and evaluate a model.
 graduationThesis:
   title: "Research Project (Graduation Thesis)"
   description: |
-    My thesis, Zoom Pursuit, introduces a radial-zoom stimulus to overcome calibration drift, enabling accurate gaze pointing in any unmodified desktop GUI.
-  linkText: "> View project page"
+    My thesis, "ZoomPursuit," addresses the inaccuracy and calibration drift that limit gaze interaction in standard GUIs. I designed and evaluated a novel technique that adapts calibration-free smooth pursuit to any unmodified application by repurposing system magnification. Through two sequential user studies (N=16 and N=7), I developed and refined a two-stage model integrating automated correction with manual refinement. The final design achieves a high pointing accuracy (0.10° error) from an uncalibrated state.
+  linkText: "View project page"
 </i18n>
 
 <i18n lang="yaml" locale="zh">
 firstYearTitle: "第一年"
 secondYearTitle: "第二年"
-title: "乌得勒支大学硕士课程"
+title: "硕士课程概览"
+intro:
+  title: "我的HCI课程"
+  description: "本页面详细介绍了我在乌得勒支大学HCI硕士期间完成的课程。我包含了课程总结和最终项目或论文的链接，反映了我在该领域的基础知识和实践技能。"
 contentTitle: "目录"
 coursesTitle: "课程详情"
 mcsp:
-  title: "面向HCI的认知与社会心理学 (Advanced cognitive and social psychology for HCI)"
+  title: "面向HCI的认知与社会心理学"
   description: |
-    本课程聚焦于社会与认知心理学及其在人机交互（HCI）领域的应用。主要项目包括：以“认知、动机与情感”为主题（侧重游戏化）设计一节互动课程；合作撰写关于游戏化的研究提案，包含文献回顾、研究方法、分析方案与讨论。期末考试是课程评估的一部分。
+    本课程探讨社会与认知心理学在人机交互（HCI）领域的应用。我们以5人小组的形式，设计了一节以“认知、动机与情感”为主题的30分钟互动课程，并重点探讨了游戏化。我还与一位同学合作，完成了一份关于游戏化的完整研究提案，涵盖了文献综述、研究方法及分析讨论。课程评估包括这些项目和一次期末考试。
 mlhvl:
-  title: "面向人类视觉与语言的机器学习 (Machine learning for human vision and language)"
+  title: "面向人类视觉与语言的机器学习"
   description: |
-    本课程探讨两大领域：视觉的神经科学基础及其与深度学习网络（如CNN）的关联；利用AI网络（如RNN、Word2Vec、LSTM）进行自然语言处理的原理。实践项目要求从零实现CNN模型，并构建用于自然语言处理的RNN/GloVe模型。通过期中、期末考试评估。
+    本课程涵盖两大领域：视觉的神经科学基础及其与CNN等深度学习网络的关联；自然语言处理的原理，包括RNNs、Word2Vec及LSTM等模型。实践作业要求我从零开始用Python实现一个CNN模型，并分别为自然语言处理任务构建了RNN和GloVe模型。课程通过期中和期末考试进行评估。
 mvis:
   title: "信息可视化 (Information Visualization)"
   description: |
-    本课程介绍信息可视化，涵盖数据类型、感知、色彩、交互设计与评估。主要项目要求为自选数据集设计有效的可视化方案。我们小组选择可视化快时尚品牌的可持续性表现，创建了两个标准图表和一个创新图表以帮助消费者比较品牌。
+    本课程介绍了信息可视化的核心原则，从数据类型、人类感知到交互设计与评估方法。在主要项目中，我们小组选择可视化快时尚品牌的可持续性表现，为此设计并实现了三种图表——两种常规图表和一种创新图表，以帮助消费者理解和比较各个品牌。
   linkText: "项目链接（网页）"
 mqlm:
   title: "高级HCI定性研究方法 (Advanced HCI qualitative research methods)"
   description: |
-    本课程为HCI领域的高级定性研究方法提供基础，涵盖数据收集、分析与可视化。核心项目是围绕自选主题进行一项完整的定性研究。我们小组研究了用户对智能家居摄像头的看法，采用焦点小组和创造性问题解决方法，以理解用户态度并提出解决方案。
+    本课程涵盖了高级定性研究方法，包括数据收集、分析与可视化。主要项目是进行一项完整的定性研究。我们小组选择了“用户对智能家居摄像头的看法”为主题，采用焦点小组和创造性问题解决方法，深入探究了用户的态度，并为缓解他们的顾虑提出了相应的设计方案。
   linkText: "文章链接（PDF）"
 mmmi:
   title: "多模态交互 (Multimodal Interaction)"
   description: |
-    本课程探讨多模态交互的生理基础（视觉、运动、听觉、触觉）、VR/AR技术，以及交互与情感的关系。核心项目是一项关于VR中远距离2D屏幕手势交互的原创研究。研究首先用“绿野仙踪”法诱导用户偏好的手势，随后实现了两种常见手势，并运用出声思维法与Meta的默认交互进行定性对比。视频展示了我们开发的手势。
+    本课程探讨了多模态交互，从其生理基础（视觉、运动等）到VR/AR技术及其与情感的关联。我的主要项目是一项关于VR中与远处2D屏幕进行手势交互的两阶段研究。首先，我采用“Wizard of Oz”方法来诱导用户自定义手势。然后，我实现了两种最常见的手势，并运用“Think-aloud”方法，将它们与Meta的默认交互方式进行了定性对比研究。
   linkText: "查看项目详情"
 miti:
   title: "交互技术创新 (Interaction technology innovation)"
   description: |
-    这门实践课程要求我们创造一个“魔法化的日常物品”。我们用实验室设备制作了一对互联雪球，可感知彼此环境光。摇动其中一个，两边会同步飘雪；用户还可交换语音信息。项目旨在帮助身处不同时区的人感受连接。
+    在这门以项目为导向的课程中，我设计并实现了一个用于增进社交连接的实体交互系统。项目提供了全面的全栈原型技能实践：3d建模、基于esp32的电子原型开发，以及物联网固件开发。
   linkText: "查看项目详情"
 mqnm:
   title: "高级HCI定量研究方法 (Advanced HCI quantitative research methods)"
   description: |
-    本课程涵盖HCI高级定量研究方法，对比参数化与非参数化方法（如方差分析、回归、GLM）。主要项目要求为给定数据集设计研究问题。我们小组分析了K-EmoPhone数据集（77名参与者一周的智能手机/手环数据），探究人格特质在使用社交媒体时是否影响压力指标（HRV、EDA）。
+    本课程涵盖高级定量研究方法，内容从参数化与非参数化方法（如方差分析、回归分析）到广义线性模型（GLM）。主要项目要求我们为给定的数据集提出一个研究问题（至少包含两个自变量和两个因变量）并进行分析。我们小组分析了K-EmoPhone数据集，旨在探究当人们使用社交媒体时，其人格特质是否会影响心率变异性（HRV）和皮肤电活动（EDA）等生理压力指标。
   linkText: "论文链接（PDF）"
 mmob:
   title: "移动交互 (Mobile Interaction)"
   description: |
-    一门关于智能手机、平板和可穿戴设备交互的课程。讲座涵盖了支撑技术、触摸屏、UI设计、评估、手势、移动游戏和VR/AR。通过论文和演示，我们分析了硬件、人因和使用情境如何影响移动界面设计。
+    本课程探讨智能手机、平板和可穿戴设备的交互，涵盖了支撑技术、ui设计、评估方法、手势、移动游戏及ar/vr。我们通过分析论文与产品，学习硬件、人因和使用情境如何共同影响移动界面设计。
 mdm:
   title: "数据挖掘 (Data Mining)"
   description: |
-    数据科学硕士项目的核心课程。涵盖理论基础（PAC学习、VC维）和算法（决策树、SVM、逻辑回归等）。学生学习为给定问题选择合适算法并进行对比实验。评估包括考试、作业和实践项目。
+    数据科学硕士项目的核心课程，涵盖理论基础（如pac学习、vc维）与核心算法（如决策树、svm、逻辑回归）。我学习了为给定问题选择合适算法并进行对比实验。
   linkA1: "作业1（ZIP）"
   linkA2: "作业2（PDF）"
 mcm:
   title: "认知建模 (Cognitive Modeling)"
   description: |
-    本课程探讨三种认知建模方法：处理模型、机器学习模型和概率（贝叶斯）模型。我们为每种方法完成一个建模与评估作业，并通过笔试考察理论与权衡。
+    本课程探讨了三种认知建模方法：符号（处理）模型、联结（机器学习）模型与概率（贝叶斯）模型。我为每种方法构建并评估了一个模型。
 graduationThesis:
   title: "研究项目 (毕业论文)"
   description: |
-    我的毕业论文 Zoom Pursuit 提出一种径向缩放刺激来克服校准漂移，实现了在任何未经修改的桌面GUI中的精确凝视指向。
-  linkText: "> 查看项目页面"
+    我的毕业论文《ZoomPursuit》旨在解决标准GUI中眼动交互的定位不准与校准漂移问题。我设计并评估了一种新颖的交互技术，它通过复用系统级放大功能，将免校准的平滑追视交互扩展至任意未经修改的应用程序。通过两项连续的用户研究（N=16与N=7），我开发并迭代出一个整合了自动校正和手动微调的两阶段模型。最终设计从未校准状态实现了高指向精度（0.10°误差）。
+  linkText: "查看项目页面"
 </i18n>
 
 <style scoped lang="stylus">
@@ -302,6 +308,10 @@ hr
 
   .period-title
     margin-top: 8px
+
+.content
+  margin-bottom 75vh
+
 
 @media (min-width: 1200px)
   .portfolio-page

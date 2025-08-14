@@ -88,7 +88,7 @@ const { t } = useI18n()
         </div>
       <div class="entry-details">
         <ul class="line">
-          <li>{{ t('experience.trainee.description1') }}</li>
+          <li v-if="t('experience.trainee.description1')">{{ t('experience.trainee.description1') }}</li>
           <li><rich-text :text="t('experience.trainee.team')" /></li>
           <li><rich-text :text="t('experience.trainee.description2')" /></li>
         </ul>
@@ -136,12 +136,12 @@ education:
     time: "Sep. 2023 - Aug. 2025"
     university: "[Utrecht University](https://www.uu.nl/)"
     location: "Utrecht, Netherlands"
-    skillsTitle: "For course details, please see my [Study Plan](/study-plan)."
-    skill1: "**Research Methods:** [Quantitative](/study-plan#mqnm) (Grade: 9.4) and [Qualitative](/study-plan#mqlm) (7.8) Research Methods"
-    skill2: "**XR/VR/AR:** [Multimodal Interaction](/multimodal-interaction) (8), [Mobile Interaction](/study-plan#mmob) (7.9), MSc Thesis (8.7)"
-    skill3: "**Human Factors:** [Cognitive Modeling](/study-plan#mcm) (8.3), [Cognitive and Social Psychology for HCI](/study-plan#mcsp) (7.4)"
-    skill4: "**Digital Fabrication (3D modeling & printing, Arduino):** [Interaction Technology Innovation](/snow-globe) (8.3)"
-    skill5: "**Data Processing and Visualization:** [Data Mining](/study-plan#mdm) (8.5), [Information Visualization](/study-plan#mvis) (9)"
+    skillsTitle: "For course details, please see my [Master''s Courses](/masters-courses)."
+    skill1: "**Research Methods:** [Quantitative](/masters-courses#mqnm) (Grade: 9.4) and [Qualitative](/masters-courses#mqlm) (7.8) Research Methods"
+    skill2: "**XR/VR/AR:** [Multimodal Interaction](/multimodal-interaction) (8), [Mobile Interaction](/masters-courses#mmob) (7.9), MSc Thesis (8.7)"
+    skill3: "**Data Science:** Data Mining (9.5)"
+    skill4: "**Visualization:** Information Visualization (8.2)"
+    skill5: "**Digital Fabrication (3D modeling & printing, Arduino):** [Interaction Technology Innovation](/snow-globe) (8.3)"
     thesisTitle: "MSc Thesis: [ZoomPursuit: Smooth Pursuit-based Gaze Interaction for General-Purpose GUIs](/graduation-thesis)"
     thesisSupervisors: "Supervisor: Lynda Hardman, Grade: 8.7/10"
     thesisLinks: "[Paper (PDF)](/thesis-illustration.png), [Video (MP4)](/infommmi-demo.mp4), [Codebase (GitHub)](https://github.com/chenyfz/zoom-pursuit)"
@@ -187,12 +187,12 @@ education:
     time: "2023年9月 - 2025年8月"
     university: "[乌特勒支大学](https://www.uu.nl/)"
     location: "荷兰，乌特勒支"
-    skillsTitle: "课程请参考：[学习计划](/study-plan)"
-    skill1: "**研究方法：** [定量](/study-plan#mqnm)（9.4分）和[定性](/study-plan#mqlm)（7.8分）研究方法"
-    skill2: "**XR/VR/AR：** [多模态交互](/multimodal-interaction)（8分），[移动交互](/study-plan#mmob)（7.9分），硕士论文（8.7分）"
-    skill3: "**人因：** [认知建模](/study-plan#mcm)（8.3分），[人机交互中的认知与社会心理学](/study-plan#mcsp)（7.4分）"
+    skillsTitle: "课程请参考：[硕士课程](/masters-courses)"
+    skill1: "**研究方法：** [定量](/masters-courses#mqnm)（9.4分）和[定性](/masters-courses#mqlm)（7.8分）研究方法"
+    skill2: "**XR/VR/AR：** [多模态交互](/multimodal-interaction)（8分），[移动交互](/masters-courses#mmob)（7.9分），硕士论文（8.7分）"
+    skill3: "**人因：** [认知建模](/masters-courses#mcm)（8.3分），[人机交互中的认知与社会心理学](/masters-courses#mcsp)（7.4分）"
     skill4: "**数字制造（3D建模与打印, Arduino）：** [交互技术创新](/snow-globe)（8.3分）"
-    skill5: "**数据处理与可视化：** [数据挖掘](/study-plan#mdm)（8.5分），[信息可视化](/study-plan#mvis)（9分）"
+    skill5: "**数据处理与可视化：** [数据挖掘](/masters-courses#mdm)（8.5分），[信息可视化](/masters-courses#mvis)（9分）"
     thesisTitle: "硕士论文：[ZoomPursuit: 用于通用图形用户界面的平滑追踪注视交互](/graduation-thesis)"
     thesisSupervisors: "导师：Lynda Hardman，成绩：8.7/10"
     thesisLinks: "[论文 (PDF)](/thesis-illustration.png)，[视频 (MP4)](/infommmi-demo.mp4)，[代码 (GitHub)](https://github.com/chenyfz/zoom-pursuit)"
@@ -209,9 +209,9 @@ experience:
   trainee:
     role: "Trainee"
     time: "2025年3月 - 2025年8月"
-    organization: "[Centrum Wiskunde & Informatica (CWI)](https://www.cwi.nl/)"
+    organization: "[荷兰数学和计算机科学研究中心 (CWI)](https://www.cwi.nl/)"
     location: "荷兰，阿姆斯特丹"
-    description1: "荷兰数学与计算机科学中心"
+    description1: ""
     team: "**以人为本数据分析小组**，导师：Lynda Hardman"
     description2: "**研究方向：** 大语言模型、偏见、数据分析、文化遗产。深入学术界"
   fullTime:

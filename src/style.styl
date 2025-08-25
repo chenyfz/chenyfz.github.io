@@ -6,16 +6,15 @@
 body
   margin 0
   padding 0
-  line-height 1.6
+  line-height 1.8
   background-color: var(--background-color)
   color: var(--text-color)
   font-family 'Lexend', sans-serif
   -webkit-tap-highlight-color: transparent
   overflow-x hidden
 
-
 p
-  margin: 8px 0
+  margin: 12px 0
 
 ul
   list-style: none
@@ -63,17 +62,25 @@ li.new-ul-container
   &:hover:before
     background: var(--background-50-transparent)
 
+.card .link:hover:before
+  background: var(--background-color)
+
 .card
-  background: var(--background-50-transparent)
+  background: var(--background-75-transparent)
   border: 1.5px solid var(--border-chat-bubble)
   border-radius: 4px
   padding: 16px 24px
-  display: flex
-  flex-direction: column
   text-decoration: none
   color: var(--text-color)
   transition: transform 0.2s ease, box-shadow 0.2s ease
   position: relative
+
+a.card, a.card:visited
+  display: block
+  color: var(--text-color)
+  &:hover
+    transform: translateY(-2px)
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08)
 
 body
   --page-padding: 32px

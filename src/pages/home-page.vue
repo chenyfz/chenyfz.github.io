@@ -10,10 +10,10 @@ const { t } = useI18n()
   <div class="home-page">
     <home-avatar-bar />
 
-    <section class="card cv-card">
+    <router-link to="/cv" class="card cv-card">
       <short-cv />
-      <router-link class="link" to="/cv">{{ t('cv.viewFullCv') }}</router-link>
-    </section>
+      <div class="link">{{ t('cv.viewFullCv') }}</div>
+    </router-link>
 
     <section class="showcase">
       <chat-bubble>{{ t('master.title') }}</chat-bubble>
@@ -104,23 +104,23 @@ master:
   graduationProject:
     title: "Graduation Project"
     subtitle: "ZoomPursuit: Smooth Pursuit-based Gaze Interaction for General-Purpose GUIs"
-    description: "I present a technique that extends smooth pursuit to any GUI by repurposing system magnification, retaining its high accuracy, robustness, and calibration-free nature."
+    description: "By repurposing system-level magnification, I extended the core advantages of Smooth Pursuit interaction—accuracy, robustness, and calibration-free operation—to general-purpose GUIs."
     cta: "View Details & Download Paper"
     badge: "Freshly completed!"
   vrArMrProject:
     title: "VR/AR/MR"
     subtitle: "Natural Gesture in VR: An Elicitation Study and Implementation"
-    description: "We conducted a 'Wizard of Oz' user study to elicit and collect user-defined natural gestures, then designed and implemented two novel gestures based on the findings. These were evaluated in Unity against Meta's default interaction method."
+    description: "We conducted a Wizard of Oz elicitation study for natural gestures in VR. Based on the findings, we designed and implemented two novel gestures, then evaluated them in Unity against Meta's default interaction method."
     cta: "View Study & Reflection"
   prototypingProject:
     title: "Prototyping"
     subtitle: "The Enchanted Snow Globes"
-    description: "A tangible interaction project to enhance social connection. I contributed to its development, including 3D modeling and printing, ESP32-based electronics, and embedded programming."
+    description: "A tangible interaction project aimed at enhancing remote social connection. My main contributions included interaction, industrial, and mechanical design, as well as ESP32-based embedded development."
     cta: "View Project & Reflection"
   researchMethods:
     title: "Foundations"
     subtitle: "HCI Research Methods"
-    description: "Applied qualitative and quantitative methods in various projects to validate designs and uncover user insights."
+    description: "Through systematic coursework in qualitative and quantitative research, I have applied these methods across various projects."
     link1: "Quantitative Paper ↗"
     link2: "Qualitative Paper ↗"
 codebase: "Source code of this website: "
@@ -141,23 +141,23 @@ master:
   graduationProject:
     title: "毕业设计"
     subtitle: "ZoomPursuit: 基于平滑追视的通用GUI眼动交互"
-    description: "我提出了一种将平滑追视技术扩展到任意GUI的方法，它通过复用系统级放大功能，保留了平滑追视高精度、高鲁棒性和免校准的优点。"
+    description: "通过复用系统级放大功能，我将 Smooth Pursuit 交互的核心优点（精度高、鲁棒性强、免校准）扩展至任意通用2D GUI。"
     cta: "查看详情并下载论文"
     badge: "新鲜出炉！"
   vrArMrProject:
     title: "VR/AR/MR"
     subtitle: "VR自然手势的诱导式研究与实现"
-    description: "我们通过“Wizard of Oz”方法诱导并收集用户定义的自然手势，并基于此设计、实现了两种新手势。最终，在Unity中将它们与Meta的默认交互方式进行对比验证。"
+    description: "我们进行了一项VR自然手势的 Wizard of Oz 诱导式研究。基于研究发现，我们设计并实现了两种新手势，并最终在Unity中与Meta的默认交互方式进行了对比评估。"
     cta: "查看研究与反思"
   prototypingProject:
     title: "原型设计"
     subtitle: "魔法雪球"
-    description: "一个旨在增进远程社交连接的实体交互项目。我参与了3D建模与打印、基于ESP32的电路原型、以及嵌入式开发等工作。"
+    description: "一个旨在增进远程社交连接的实体交互项目。我的主要贡献包括交互、外形与机械结构设计，以及基于ESP32的嵌入式开发。"
     cta: "查看项目与反思"
   researchMethods:
     title: "基础"
     subtitle: "HCI研究方法"
-    description: "在多个项目中综合运用定性与定量方法，以验证设计并洞察用户需求。"
+    description: "通过系统性地学习定性与定量研究课程，我在多个项目中综合运用这些方法，以验证设计并提炼用户洞见。"
     link1: "定量研究论文 ↗"
     link2: "定性研究论文 ↗"
 codebase: "网站源代码："
@@ -214,8 +214,6 @@ future:
     margin-bottom: 8px
 
 .showcase-card
-  transition: background 0.2s ease
-
   .badge
     position: absolute
     top: -1px
@@ -261,13 +259,10 @@ future:
     color: var(--accent-color)
 
   &.informational
-    background: var(--background-30-transparent)
+    background: var(--background-50-transparent)
 
-  &:hover
-    background: var(--background-75-transparent)
-
-  &.informational:hover
-    background: var(--background-30-transparent)
+    &:hover
+      background: var(--background-50-transparent)
 
 .showcase-links
   display: flex

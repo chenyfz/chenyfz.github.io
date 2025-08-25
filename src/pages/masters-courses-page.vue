@@ -14,13 +14,6 @@ const scrollToId = (id: string) => {
   }
 }
 
-const onContentClick = (e: MouseEvent) => {
-  const target = e.target as HTMLElement
-  if (target.tagName === 'H4' && target.id) {
-    scrollToId(target.id)
-  }
-}
-
 let elements: HTMLElement[] = []
 const handleScroll = () => {
   const scrollOffset = 72 // nav-bar height
@@ -55,73 +48,76 @@ onUnmounted(() => {
 <template>
   <div class="portfolio-page">
     <h2 class="heading">{{ t('title') }}</h2>
-    <div class="overview">
-      <div class="title full-line">{{ t('contentTitle') }}</div>
-      <div class="full-line year-title">{{ t('firstYearTitle') }}</div>
-      <div class="left">Period 1</div>
-      <div class="right" :class="{ active: activeId === 'mcsp' }" @click="scrollToId('mcsp')">{{ t('mcsp.title') }}</div>
-      <div class="right" :class="{ active: activeId === 'mlhvl' }" @click="scrollToId('mlhvl')">{{ t('mlhvl.title') }}</div>
-      <div class="left">Period 2</div>
-      <div class="right" :class="{ active: activeId === 'mvis' }" @click="scrollToId('mvis')">{{ t('mvis.title') }}</div>
-      <div class="right" :class="{ active: activeId === 'mqlm' }" @click="scrollToId('mqlm')">{{ t('mqlm.title') }}</div>
-      <div class="left">Period 3</div>
-      <div class="right" :class="{ active: activeId === 'miti' }" @click="scrollToId('miti')">{{ t('miti.title') }}</div>
-      <div class="right" :class="{ active: activeId === 'mmmi' }" @click="scrollToId('mmmi')">{{ t('mmmi.title') }}</div>
-      <div class="left">Period 4</div>
-      <div class="right" :class="{ active: activeId === 'mqnm' }" @click="scrollToId('mqnm')">{{ t('mqnm.title') }}</div>
-      <div class="right" :class="{ active: activeId === 'mmob' }" @click="scrollToId('mmob')">{{ t('mmob.title') }}</div>
+    <div class="heading-subtitle">{{ t('title-subtitle') }}</div>
+    <div class="card main-content-card">
+      <div class="overview">
+        <div class="title full-line">{{ t('contentTitle') }}</div>
+        <div class="full-line year-title">{{ t('firstYearTitle') }}</div>
+        <div class="left">Period 1</div>
+        <div class="right" :class="{ active: activeId === 'mcsp' }" @click="scrollToId('mcsp')">{{ t('mcsp.title') }}</div>
+        <div class="right" :class="{ active: activeId === 'mlhvl' }" @click="scrollToId('mlhvl')">{{ t('mlhvl.title') }}</div>
+        <div class="left">Period 2</div>
+        <div class="right" :class="{ active: activeId === 'mvis' }" @click="scrollToId('mvis')">{{ t('mvis.title') }}</div>
+        <div class="right" :class="{ active: activeId === 'mqlm' }" @click="scrollToId('mqlm')">{{ t('mqlm.title') }}</div>
+        <div class="left">Period 3</div>
+        <div class="right" :class="{ active: activeId === 'miti' }" @click="scrollToId('miti')">{{ t('miti.title') }}</div>
+        <div class="right" :class="{ active: activeId === 'mmmi' }" @click="scrollToId('mmmi')">{{ t('mmmi.title') }}</div>
+        <div class="left">Period 4</div>
+        <div class="right" :class="{ active: activeId === 'mqnm' }" @click="scrollToId('mqnm')">{{ t('mqnm.title') }}</div>
+        <div class="right" :class="{ active: activeId === 'mmob' }" @click="scrollToId('mmob')">{{ t('mmob.title') }}</div>
 
-      <div class="full-line year-title">{{ t('secondYearTitle') }}</div>
-      <div class="left">Period 5</div>
-      <div class="right" :class="{ active: activeId === 'mdm' }" @click="scrollToId('mdm')">{{ t('mdm.title') }}</div>
-      <div class="left">Period 6</div>
-      <div class="right" :class="{ active: activeId === 'mcm' }" @click="scrollToId('mcm')">{{ t('mcm.title') }}</div>
-      <div class="left">Remaining</div>
-      <div class="right" :class="{ active: activeId === 'thesis' }" @click="scrollToId('thesis')">{{ t('graduationThesis.title') }}</div>
-    </div>
-    <hr>
-    <div class="content" @click.capture="onContentClick">
-      <div class="title">{{ t('coursesTitle') }}</div>
-      <h4 id="mcsp" class="first-course-title">{{ t('mcsp.title') }}</h4>
-      <p>{{ t('mcsp.description') }}</p>
+        <div class="full-line year-title">{{ t('secondYearTitle') }}</div>
+        <div class="left">Period 5</div>
+        <div class="right" :class="{ active: activeId === 'mdm' }" @click="scrollToId('mdm')">{{ t('mdm.title') }}</div>
+        <div class="left">Period 6</div>
+        <div class="right" :class="{ active: activeId === 'mcm' }" @click="scrollToId('mcm')">{{ t('mcm.title') }}</div>
+        <div class="left">Remaining</div>
+        <div class="right" :class="{ active: activeId === 'thesis' }" @click="scrollToId('thesis')">{{ t('graduationThesis.title') }}</div>
+      </div>
+      <hr>
+      <div class="content">
+        <div class="title">{{ t('coursesTitle') }}</div>
+        <h4 id="mcsp" class="first-course-title">{{ t('mcsp.title') }}</h4>
+        <p>{{ t('mcsp.description') }}</p>
 
-      <h4 id="mlhvl">{{ t('mlhvl.title') }}</h4>
-      <p>{{ t('mlhvl.description') }}</p>
+        <h4 id="mlhvl">{{ t('mlhvl.title') }}</h4>
+        <p>{{ t('mlhvl.description') }}</p>
 
-      <h4 id="mvis">{{ t('mvis.title') }}</h4>
-      <p>{{ t('mvis.description') }}</p>
-      <a href="https://superfashion.walzen.org/" class="link" target="_blank">{{ t('mvis.linkText') }}</a>
+        <h4 id="mvis">{{ t('mvis.title') }}</h4>
+        <p>{{ t('mvis.description') }}</p>
+        <a href="https://superfashion.walzen.org/" class="link" target="_blank">{{ t('mvis.linkText') }}</a>
 
-      <h4 id="mqlm">{{ t('mqlm.title') }}</h4>
-      <p>{{ t('mqlm.description') }}</p>
-      <a href="/Group_30_Final_Paper.pdf" class="link" target="_blank">{{ t('mqlm.linkText') }}</a>
+        <h4 id="mqlm">{{ t('mqlm.title') }}</h4>
+        <p>{{ t('mqlm.description') }}</p>
+        <a href="/Group_30_Final_Paper.pdf" class="link" target="_blank">{{ t('mqlm.linkText') }}</a>
 
-      <h4 id="miti">{{ t('miti.title') }}</h4>
-      <p>{{ t('miti.description') }}</p>
-      <router-link to="/snow-globe" class="link">{{ t('miti.linkText') }}</router-link>
+        <h4 id="miti">{{ t('miti.title') }}</h4>
+        <p>{{ t('miti.description') }}</p>
+        <router-link to="/snow-globe" class="link">{{ t('miti.linkText') }}</router-link>
 
-      <h4 id="mmmi">{{ t('mmmi.title') }}</h4>
-      <p>{{ t('mmmi.description') }}</p>
-      <router-link to="/multimodal-interaction" class="link">{{ t('mmmi.linkText') }}</router-link>
+        <h4 id="mmmi">{{ t('mmmi.title') }}</h4>
+        <p>{{ t('mmmi.description') }}</p>
+        <router-link to="/multimodal-interaction" class="link">{{ t('mmmi.linkText') }}</router-link>
 
-      <h4 id="mqnm">{{ t('mqnm.title') }}</h4>
-      <p>{{ t('mqnm.description') }}</p>
-      <a href="/infomqnm-report.pdf" class="link" target="_blank">{{ t('mqnm.linkText') }}</a>
+        <h4 id="mqnm">{{ t('mqnm.title') }}</h4>
+        <p>{{ t('mqnm.description') }}</p>
+        <a href="/infomqnm-report.pdf" class="link" target="_blank">{{ t('mqnm.linkText') }}</a>
 
-      <h4 id="mmob">{{ t('mmob.title') }}</h4>
-      <p>{{ t('mmob.description') }}</p>
+        <h4 id="mmob">{{ t('mmob.title') }}</h4>
+        <p>{{ t('mmob.description') }}</p>
 
-      <h4 id="mdm">{{ t('mdm.title') }}</h4>
-      <p>{{ t('mdm.description') }}</p>
-      <a href="/DM-A1-Yangfan-Yilun-Reem.zip" class="link" target="_blank">{{ t('mdm.linkA1') }}</a> |
-      <a href="/INFOMDM2024-A2-Yangfan-Yilun-Reem.pdf" class="link" target="_blank">{{ t('mdm.linkA2') }}</a>
+        <h4 id="mdm">{{ t('mdm.title') }}</h4>
+        <p>{{ t('mdm.description') }}</p>
+        <a href="/DM-A1-Yangfan-Yilun-Reem.zip" class="link" target="_blank">{{ t('mdm.linkA1') }}</a> |
+        <a href="/INFOMDM2024-A2-Yangfan-Yilun-Reem.pdf" class="link" target="_blank">{{ t('mdm.linkA2') }}</a>
 
-      <h4 id="mcm">{{ t('mcm.title') }}</h4>
-      <p>{{ t('mcm.description') }}</p>
+        <h4 id="mcm">{{ t('mcm.title') }}</h4>
+        <p>{{ t('mcm.description') }}</p>
 
-      <h4 id="thesis">{{ t('graduationThesis.title') }}</h4>
-      <p>{{ t('graduationThesis.description') }}</p>
-      <router-link class="link" to="/graduation-thesis">{{ t('graduationThesis.linkText') }}</router-link>
+        <h4 id="thesis">{{ t('graduationThesis.title') }}</h4>
+        <p>{{ t('graduationThesis.description') }}</p>
+        <router-link class="link" to="/graduation-thesis">{{ t('graduationThesis.linkText') }}</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -130,18 +126,19 @@ onUnmounted(() => {
 firstYearTitle: "First Year"
 secondYearTitle: "Second Year"
 
-title: "Master's Courses Overview"
+title: "Overview of Enrolled Master's Courses"
+title-subtitle: "Utrecht University (HCI MSc Programme)"
 intro:
   title: "My Coursework in HCI"
   description: "This page details the courses I completed during my HCI Master's at Utrecht University. I've included summaries and links to final projects or papers, reflecting my foundational knowledge and practical skills in the field."
 contentTitle: "Table of Contents"
 coursesTitle: "Course Details"
 mcsp:
-  title: "Advanced cognitive and social psychology for HCI"
+  title: "Advanced Cognitive and Social Psychology for HCI"
   description: |
     This course explored the application of social and cognitive psychology in HCI. In a group of five, we designed a 3D-minute interactive lecture on "Cognition, Motivation & Emotion," focusing on gamification. I also collaborated with a partner to develop a full research proposal on Gamification, which included a comprehensive literature review, research methods, and an analysis plan. Assessment was based on these projects and a final exam.
 mlhvl:
-  title: "Machine learning for human vision and language"
+  title: "Machine Learning for Human Vision and Language"
   description: |
     This course covered two main areas: the neuroscience of vision and its parallels with deep learning networks like CNNs, and the principles of NLP using models such as RNNs, Word2Vec, and LSTMs. Practical assignments required implementing a CNN from scratch in Python and building separate RNN and GloVe models for NLP tasks. The course was assessed via mid-term and final exams.
 mvis:
@@ -150,7 +147,7 @@ mvis:
     This course introduced the principles of information visualization, from data types and perception to interaction design and evaluation. For the main project, our team chose to visualize the sustainability performance of fast fashion brands. We designed and implemented three visualizations—two standard charts and one innovative chart—to help consumers understand and compare the brands.
   linkText: "Project link (website)"
 mqlm:
-  title: "Advanced HCI qualitative research methods"
+  title: "Advanced HCI Qualitative Research Methods"
   description: |
     This course covered advanced qualitative research methods, including data collection, analysis, and visualization. The main project involved conducting a complete qualitative study. Our group investigated user perceptions of smart home cameras, using focus groups and creative problem-solving to understand their attitudes and propose solutions to alleviate their concerns.
   linkText: "Paper link (PDF)"
@@ -160,12 +157,12 @@ mmmi:
     This course explored multimodal interaction, from its physiological basis (vision, motion, etc.) to VR/AR technologies and its interplay with emotion. My main project was a two-part study on gesture interaction with distant 2D screens in VR. First, I used the Wizard of Oz method to elicit user-defined gestures. Second, I implemented two of the most common gestures and conducted a qualitative comparison against Meta's default interaction using the think-aloud protocol.
   linkText: "View Project Details"
 miti:
-  title: "Interaction technology innovation"
+  title: "Interaction Technology Innovation"
   description: |
     In this project-based course, I designed and built a tangible interactive system for social connection. The project provided hands-on experience across the full prototyping stack: 3D modeling, ESP32-based electronics, and IoT firmware development.
   linkText: "View Project Details"
 mqnm:
-  title: "Advanced HCI quantitative research methods"
+  title: "Advanced HCI Quantitative Research Methods"
   description: |
     This course covered advanced quantitative research methods, from parametric and non-parametric approaches (e.g., ANOVA, regression) to General Linear Models (GLM). For the main project, we were required to analyze a given dataset to answer a research question with at least two independent and two dependent variables. Our team analyzed the K-EmoPhone dataset to investigate whether personality traits influence physiological stress indicators (HRV, EDA) during social media use.
   linkText: "Paper link (PDF)"
@@ -193,18 +190,19 @@ graduationThesis:
 <i18n lang="yaml" locale="zh">
 firstYearTitle: "第一年"
 secondYearTitle: "第二年"
-title: "硕士课程概览"
+title: "硕士修读课程概览"
+title-subtitle: "Utrecht University (HCI硕士项目)"
 intro:
   title: "我的HCI课程"
   description: "本页面详细介绍了我在乌得勒支大学HCI硕士期间完成的课程。我包含了课程总结和最终项目或论文的链接，反映了我在该领域的基础知识和实践技能。"
 contentTitle: "目录"
 coursesTitle: "课程详情"
 mcsp:
-  title: "面向HCI的认知与社会心理学"
+  title: "面向HCI的认知与社会心理学 (Advanced Cognitive and Social Psychology for HCI)"
   description: |
     本课程探讨社会与认知心理学在人机交互（HCI）领域的应用。我们以5人小组的形式，设计了一节以“认知、动机与情感”为主题的30分钟互动课程，并重点探讨了游戏化。我还与一位同学合作，完成了一份关于游戏化的完整研究提案，涵盖了文献综述、研究方法及分析讨论。课程评估包括这些项目和一次期末考试。
 mlhvl:
-  title: "面向人类视觉与语言的机器学习"
+  title: "面向人类视觉与语言的机器学习 (Machine Learning for Human Vision and Language)"
   description: |
     本课程涵盖两大领域：视觉的神经科学基础及其与CNN等深度学习网络的关联；自然语言处理的原理，包括RNNs、Word2Vec及LSTM等模型。实践作业要求我从零开始用Python实现一个CNN模型，并分别为自然语言处理任务构建了RNN和GloVe模型。课程通过期中和期末考试进行评估。
 mvis:
@@ -213,7 +211,7 @@ mvis:
     本课程介绍了信息可视化的核心原则，从数据类型、人类感知到交互设计与评估方法。在主要项目中，我们小组选择可视化快时尚品牌的可持续性表现，为此设计并实现了三种图表——两种常规图表和一种创新图表，以帮助消费者理解和比较各个品牌。
   linkText: "项目链接（网页）"
 mqlm:
-  title: "高级HCI定性研究方法 (Advanced HCI qualitative research methods)"
+  title: "高级HCI定性研究方法 (Advanced HCI Qualitative Research Methods)"
   description: |
     本课程涵盖了高级定性研究方法，包括数据收集、分析与可视化。主要项目是进行一项完整的定性研究。我们小组选择了“用户对智能家居摄像头的看法”为主题，采用焦点小组和创造性问题解决方法，深入探究了用户的态度，并为缓解他们的顾虑提出了相应的设计方案。
   linkText: "文章链接（PDF）"
@@ -223,12 +221,12 @@ mmmi:
     本课程探讨了多模态交互，从其生理基础（视觉、运动等）到VR/AR技术及其与情感的关联。我的主要项目是一项关于VR中与远处2D屏幕进行手势交互的两阶段研究。首先，我采用“Wizard of Oz”方法来诱导用户自定义手势。然后，我实现了两种最常见的手势，并运用“Think-aloud”方法，将它们与Meta的默认交互方式进行了定性对比研究。
   linkText: "查看项目详情"
 miti:
-  title: "交互技术创新 (Interaction technology innovation)"
+  title: "交互技术创新 (Interaction Technology Innovation)"
   description: |
     在这门以项目为导向的课程中，我设计并实现了一个用于增进社交连接的实体交互系统。项目提供了全面的全栈原型技能实践：3d建模、基于esp32的电子原型开发，以及物联网固件开发。
   linkText: "查看项目详情"
 mqnm:
-  title: "高级HCI定量研究方法 (Advanced HCI quantitative research methods)"
+  title: "高级HCI定量研究方法 (Advanced HCI Quantitative Research Methods)"
   description: |
     本课程涵盖高级定量研究方法，内容从参数化与非参数化方法（如方差分析、回归分析）到广义线性模型（GLM）。主要项目要求我们为给定的数据集提出一个研究问题（至少包含两个自变量和两个因变量）并进行分析。我们小组分析了K-EmoPhone数据集，旨在探究当人们使用社交媒体时，其人格特质是否会影响心率变异性（HRV）和皮肤电活动（EDA）等生理压力指标。
   linkText: "论文链接（PDF）"
@@ -257,7 +255,20 @@ graduationThesis:
 .portfolio-page
   padding: 0 var(--page-padding)
   margin: 32px auto 56px auto
-  max-width 1200px
+  max-width 1280px
+
+.heading
+  margin-bottom: 4px
+
+.heading-subtitle
+  color: var(--text-color-secondary)
+  font-size: 18px
+  font-weight: 600
+  margin-bottom: 16px
+
+.card
+  padding-top: 24px
+  padding-bottom: 24px
 
 h4
   margin-bottom 8px
@@ -314,18 +325,14 @@ hr
 
 
 @media (min-width: 1200px)
-  .portfolio-page
+  .main-content-card
     display grid
-    grid-template-columns 320px 1fr
-    grid-template-rows: auto;
+    grid-template-columns 360px 1fr
     grid-gap 8px
     column-gap: 40px
 
   hr
     display none
-
-  .heading
-    grid-column 1 / 3
 
   .overview
     position sticky
@@ -338,6 +345,14 @@ hr
     max-height calc(100vh - 64px - 72px)
     overflow auto
 
+    &::-webkit-scrollbar
+      width 8px
+    &::-webkit-scrollbar-track
+      background transparent
+    &::-webkit-scrollbar-thumb
+      background var(--text-color-hightlight)
+      border-radius 4px
+
     .full-line
       grid-column unset
 
@@ -345,4 +360,5 @@ hr
       grid-column unset
       width unset
       padding: 4px 16px
+      margin-right 8px
 </style>

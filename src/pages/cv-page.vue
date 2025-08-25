@@ -13,7 +13,9 @@ import FullCv from "../components/cv/full-cv.vue";
         Email: <a href="mailto:x.chenyangfan@gmail.com" class="link">x.chenyangfan@gmail.com</a>
       </div>
     </div>
-    <full-cv></full-cv>
+    <div class="card">
+      <full-cv></full-cv>
+    </div>
   </div>
 </template>
 
@@ -36,10 +38,4 @@ import FullCv from "../components/cv/full-cv.vue";
     color: var(--text-color-secondary)
     font-size: 14px
     margin-top: 2px
-
-.full-cv
-  background var(--background-50-transparent)
-  border 1.5px solid var(--border-chat-bubble)
-  border-radius 4px
-  padding 8px 24px
 </style>

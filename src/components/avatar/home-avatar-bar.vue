@@ -15,25 +15,25 @@ const { t } = useI18n()
 
     <div>
       <chat-bubble>{{ t('greeting') }}</chat-bubble>
-      <chat-bubble>{{ t('passion') }}</chat-bubble>
-      <chat-bubble>{{ t('ambition') }}</chat-bubble>
+      <chat-bubble>{{ t('experience') }}</chat-bubble>
+      <chat-bubble>{{ t('philosophy') }}</chat-bubble>
       <chat-bubble>{{ t('transition') }}</chat-bubble>
     </div>
   </div>
 </template>
 
 <i18n lang="yaml" locale="en">
-greeting: "Hi! I'm Yangfan :D"
-passion: "I'm passionate about exploring novel interactions, a process that consistently sparks my creativity."
-ambition: "I leverage my engineering background from WeChat and HCI research skills from my master's to assess ideas for value and feasibility. My goal is to pursue a PhD, applying an approach that combines creativity with rigorous analysis to envision and build the next generation of interactive systems."
-transition: "Below is a brief overview of my journey 👀"
+greeting: "Hi! I'm Yangfan Chen. I recently completed my master's in HCI and am currently seeking a PhD position."
+experience: "I previously worked as a software engineer at the WeChat Design Center for two years, alongside excellent product managers, designers, and engineers. There, I witnessed the considerations and trade-offs in iterating a product for a massive user base. This experience shaped my pragmatic mindset: designing interactions from user, product, and technical perspectives, while solving complex problems incrementally."
+philosophy: "Of course, I enjoy exploring novel interaction design ideas. However, I believe that beyond the initial 'wow,' for a design to be truly adopted by users, it must navigate compromises and address complex problems under various constraints. This underlying complexity is often overlooked. My key strength is combining creative thinking with the ability to solve complex problems. This combination prepares me to contribute to the research of interactive systems, which is my passion."
+transition: "Feel free to explore more about me below! 👀"
 </i18n>
 
 <i18n lang="yaml" locale="zh">
-greeting: "Hi！我是陈扬帆 :D"
-passion: "我热衷于探索新颖的交互设计，这总能激发我的创造力。"
-ambition: "我在微信的工程经验与HCI的学术训练，帮助我严谨地评估这些想法的价值与可行性。我希望攻读博士学位，将这种结合了创造性与严谨分析的模式，用于构想并实现下一代交互系统。"
-transition: "以下是我的过往经历简介 👀"
+greeting: "Hi！我是陈扬帆。我最近完成了我的HCI硕士项目，正在寻求PhD职位。"
+experience: "此前，我曾在微信设计中心做了两年软件工程师，与一群优秀的产品经理、设计师和工程师共事，深入见证了一款国民级产品在迭代中的思考与权衡。这段经历塑造了我务实的思维方式：从用户、产品和技术等角度进行交互设计，循序渐进地逐一解决复杂的问题。"
+philosophy: "当然啦，我非常享受探索很酷的新奇的交互设计想法的过程。只是我认为，在大家最初 wow 地赞叹之后，一个设计要真正落地，就必须在各种限制中平衡妥协、处理诸多复杂问题，而这背后的复杂性常常被忽视。我相信我独特的优势就在于：既拥有创造性思维，也具备解决复杂问题的能力。这两者的结合，能帮助我更好地投身到交互系统的研究之中，这也是我的热情所在。"
+transition: "往下接着看看我的一些其他信息吧！👀"
 </i18n>
 
 <style scoped lang="stylus">
@@ -57,7 +57,7 @@ transition: "以下是我的过往经历简介 👀"
 
 .chat-bubble
   margin-top 6px
-  max-width 640px
+  max-width 670px
 
 @media (max-width: 768px)
   .home-avatar-bar

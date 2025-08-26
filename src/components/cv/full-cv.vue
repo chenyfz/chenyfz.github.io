@@ -132,11 +132,11 @@ name: "CHEN Yangfan"
 education:
   title: "Education"
   master:
-    degree: "MSc in Human-Computer Interaction (Expected: Cum Laude, GPA: 8.39/10)"
+    degree: "MSc in Human-Computer Interaction (GPA: 8.39/10), Cum Laude"
     time: "Sep. 2023 - Aug. 2025"
     university: "[Utrecht University](https://www.uu.nl/)"
     location: "Utrecht, Netherlands"
-    skillsTitle: "For course details, please see my [Master''s Courses](/masters-courses)."
+    skillsTitle: "For course details, please see my [Master's Courses](/masters-courses)."
     skill1: "**Research Methods:** [Quantitative](/masters-courses#mqnm) (Grade: 9.4) and [Qualitative](/masters-courses#mqlm) (7.8) Research Methods"
     skill2: "**XR/VR/AR:** [Multimodal Interaction](/multimodal-interaction) (8), [Mobile Interaction](/masters-courses#mmob) (7.9), MSc Thesis (8.7)"
     skill3: "**Data Science:** Data Mining (9.5)"
@@ -183,7 +183,7 @@ name: "陈扬帆"
 education:
   title: "教育经历"
   master:
-    degree: "硕士 - 人机交互（预计 Cum Laude, GPA: 8.39/10）"
+    degree: "硕士 - 人机交互（GPA: 8.39/10），Cum Laude（荣誉毕业）"
     time: "2023年9月 - 2025年8月"
     university: "[乌特勒支大学](https://www.uu.nl/)"
     location: "荷兰，乌特勒支"

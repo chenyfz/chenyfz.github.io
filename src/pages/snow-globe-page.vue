@@ -56,7 +56,7 @@ const { t } = useI18n()
       </div>
     </section>
 
-    <section class="section">
+    <section class="section card">
       <h3 class="section-subtitle">{{ t('myRole.title') }}</h3>
       <div class="text-block">
         <p>{{ t('myRole.introduction') }}</p>

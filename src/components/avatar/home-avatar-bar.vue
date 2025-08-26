@@ -23,10 +23,10 @@ const { t } = useI18n()
 </template>
 
 <i18n lang="yaml" locale="en">
-greeting: "Hi! I'm Yangfan Chen. I recently completed my master's in HCI and am currently seeking a PhD position."
-experience: "I previously worked as a software engineer at the WeChat Design Center for two years, alongside excellent product managers, designers, and engineers. There, I witnessed the considerations and trade-offs in iterating a product for a massive user base. This experience shaped my pragmatic mindset: designing interactions from user, product, and technical perspectives, while solving complex problems incrementally."
-philosophy: "Of course, I enjoy exploring novel interaction design ideas. However, I believe that beyond the initial 'wow,' for a design to be truly adopted by users, it must navigate compromises and address complex problems under various constraints. This underlying complexity is often overlooked. My key strength is combining creative thinking with the ability to solve complex problems. This combination prepares me to contribute to the research of interactive systems, which is my passion."
-transition: "Feel free to explore more about me below! 👀"
+greeting: "Hi! I'm Yangfan Chen, an HCI Master's graduate currently seeking a PhD position."
+experience: "As a software engineer at WeChat's Design Center, I collaborated with talented product managers, designers, and engineers, gaining firsthand insight into the trade-offs of iterating a product for a massive user base. This experience forged my pragmatic mindset: designing interactions by balancing user, product, and technical perspectives, while solving complex problems incrementally."
+philosophy: "I am passionate about exploring novel interaction design ideas. However, I believe that beyond the initial 'wow,' true user adoption requires navigating trade-offs and solving problems under constraints. My key strength is bridging creative thinking with pragmatic problem-solving, a synthesis that fuels my passion for research in interactive systems."
+transition: "Feel free to discover more about me below! 👀"
 </i18n>
 
 <i18n lang="yaml" locale="zh">

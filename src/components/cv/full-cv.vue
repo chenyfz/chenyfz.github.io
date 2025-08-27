@@ -26,11 +26,12 @@ const { t } = useI18n()
           <li><rich-text :text="t('education.master.skillsTitle')" /></li>
           <li class="new-ul-container">
             <ul>
-              <li><rich-text :text="t('education.master.skill1')" /></li>
-              <li><rich-text :text="t('education.master.skill2')" /></li>
-              <li><rich-text :text="t('education.master.skill3')" /></li>
-              <li><rich-text :text="t('education.master.skill4')" /></li>
-              <li><rich-text :text="t('education.master.skill5')" /></li>
+              <li><rich-text :text="t('education.master.skill_research')" /></li>
+              <li><rich-text :text="t('education.master.skill_ai')" /></li>
+              <li><rich-text :text="t('education.master.skill_xr')" /></li>
+              <li><rich-text :text="t('education.master.skill_hf')" /></li>
+              <li><rich-text :text="t('education.master.skill_fab')" /></li>
+              <li><rich-text :text="t('education.master.skill_data')" /></li>
             </ul>
           </li>
         </ul>
@@ -39,9 +40,14 @@ const { t } = useI18n()
           <li class="new-ul-container">
             <ul>
               <li>
-                <rich-text :text="t('education.master.thesisLinks')" />
+                <rich-text :text="t('education.master.thesisLinkPaper')" />
               </li>
-              <li>{{ t('education.master.thesisSupervisors') }}</li>
+              <li>
+                <rich-text :text="t('education.master.thesisLinkCodebase')" />
+              </li>
+              <li>
+                <rich-text :text="t('education.master.thesisSupervisors')" />
+              </li>
             </ul>
           </li>
         </ul>
@@ -136,33 +142,35 @@ education:
     time: "Sep. 2023 - Aug. 2025"
     university: "[Utrecht University](https://www.uu.nl/)"
     location: "Utrecht, Netherlands"
-    skillsTitle: "For course details, please see my [Master's Courses](/masters-courses)."
-    skill1: "**Research Methods:** [Quantitative](/masters-courses#mqnm) (Grade: 9.4) and [Qualitative](/masters-courses#mqlm) (7.8) Research Methods"
-    skill2: "**XR/VR/AR:** [Multimodal Interaction](/multimodal-interaction) (8), [Mobile Interaction](/masters-courses#mmob) (7.9), MSc Thesis (8.7)"
-    skill3: "**Data Science:** Data Mining (9.5)"
-    skill4: "**Visualization:** Information Visualization (8.2)"
-    skill5: "**Digital Fabrication (3D modeling & printing, Arduino):** [Interaction Technology Innovation](/snow-globe) (8.3)"
+    skillsTitle: "Skills and Knowledge from Courses ([All Courses](/masters-courses))"
+    skill_research: "**Research Methods:** [Quantitative](/masters-courses#mqnm) (Grade: 9.4) and [Qualitative](/masters-courses#mqlm) (7.8)"
+    skill_ai: "**AI:** [Machine Learning for Human Vision and Language](/masters-courses#mlhvl) (8.3), [Data Mining](/masters-courses#mdm) (8.5)"
+    skill_xr: "**XR/VR/AR:** [Multimodal Interaction](/multimodal-interaction) (8), [Mobile Interaction](/masters-courses#mmob) (7.9), [MSc Thesis](/graduation-thesis) (8.7)"
+    skill_hf: "**Human Factors:** [Cognitive Modeling](/masters-courses#mcm) (8.3), [Cognitive and Social Psychology for HCI](/masters-courses#mcsp) (7.4)"
+    skill_fab: "**Digital Fabrication (3D modeling & printing, Arduino):** [Interaction Technology Innovation](/snow-globe) (8.3)"
+    skill_data: "**Data Processing and Visualization:** [Data Mining](/masters-courses#mdm) (8.5), [Information Visualization](/masters-courses#mvis) (9)"
     thesisTitle: "MSc Thesis: [ZoomPursuit: Smooth Pursuit-based Gaze Interaction for General-Purpose GUIs](/graduation-thesis)"
-    thesisSupervisors: "Supervisor: Lynda Hardman, Grade: 8.7/10"
-    thesisLinks: "[Paper (PDF)](/thesis-illustration.png), [Video (MP4)](/infommmi-demo.mp4), [Codebase (GitHub)](https://github.com/chenyfz/zoom-pursuit)"
+    thesisSupervisors: "Supervisor: [Lynda Hardman](https://www.cwi.nl/en/people/lynda-hardman/), Examiner: [Wolfgang Hürst](https://www.uu.nl/staff/WOHurst), Grade: 8.7/10"
+    thesisLinkPaper: "[Paper - UU Thesis Repository](/250805-Yangfan-MScThesis-ZoomPursuit-Submission.pdf)"
+    thesisLinkCodebase: "[Codebase - GitHub](https://github.com/chenyfz/GazeControl)"
   bachelor:
     degree: "B.Eng. in Software Engineering (GPA: 4.1/5)"
-    time: "Sep. 2016 - Jun. 2020"
+    time: "Sep. 2016 - June 2020"
     university: "[Nanjing University](https://www.nju.edu.cn/en/)"
     location: "Jiangsu, China"
-    highlightCourses: "**Relevant Coursework:** Human-Computer Interaction Systems (96/100), Graduation Design (96/100)"
-    mainSkillset: "**Core Competencies:** Acquired solid knowledge in computer science and versatile software engineering skills applicable to many domains"
+    highlightCourses: "**Highlight courses:** Human-Computer Interaction Systems (96/100), Graduation Design (96/100)"
+    mainSkillset: "**Main Skillset:** software engineering and computer science."
     achievement: "**Excellent Graduation Design** (Team Award) by both Nanjing University and Jiangsu Province"
 experience:
   title: "Work Experience"
   trainee:
-    role: "Research Trainee"
+    role: "Trainee"
     time: "Mar. 2025 - Aug. 2025"
     organization: "[Centrum Wiskunde & Informatica (CWI)](https://www.cwi.nl/)"
     location: "Amsterdam, Netherlands"
     description1: "The national research institute for mathematics and computer science in the Netherlands."
-    team: "**Human-Centered Data Analytics Group**, Supervisor: Lynda Hardman"
-    description2: "**LLMs, bias, data analytics, cultural heritage.** Gained insight into academic research"
+    team: "**Human-Centered Data Analytics Group**, Supervisor: [Lynda Hardman](https://www.cwi.nl/en/people/lynda-hardman/)"
+    description2: "**Key themes:** LLMs, bias, data analytics, cultural heritage."
   fullTime:
     role: "Web Developer"
     time: "Jul. 2020 - May 2022"
@@ -174,7 +182,7 @@ experience:
       wechatSearch: "**Weixin Search** (微信搜一搜) front-end development, one of three main developers"
       wechatChannels: "**Weixin Channels & Channels Live** (微信视频号 & 视频号直播) front-end development"
       internalSystems: "**Weixin infrastructure library, toolkit and internal systems** full stack development"
-    achievement: "**Tencent Good+ Contributor (top 15%)** for H1 2021 and H2 2021"
+    achievement: "**Tencent Good+ Contributor (top 15%)** in 2021H1 and 2021H2"
 </i18n>
 
 <i18n lang="yaml" locale="zh">
@@ -187,22 +195,24 @@ education:
     time: "2023年9月 - 2025年8月"
     university: "[乌特勒支大学](https://www.uu.nl/)"
     location: "荷兰，乌特勒支"
-    skillsTitle: "课程请参考：[硕士课程](/masters-courses)"
-    skill1: "**研究方法：** [定量](/masters-courses#mqnm)（9.4分）和[定性](/masters-courses#mqlm)（7.8分）研究方法"
-    skill2: "**XR/VR/AR：** [多模态交互](/multimodal-interaction)（8分），[移动交互](/masters-courses#mmob)（7.9分），硕士论文（8.7分）"
-    skill3: "**人因：** [认知建模](/masters-courses#mcm)（8.3分），[人机交互中的认知与社会心理学](/masters-courses#mcsp)（7.4分）"
-    skill4: "**数字制造（3D建模与打印, Arduino）：** [交互技术创新](/snow-globe)（8.3分）"
-    skill5: "**数据处理与可视化：** [数据挖掘](/masters-courses#mdm)（8.5分），[信息可视化](/masters-courses#mvis)（9分）"
+    skillsTitle: "课程技能：([所有课程](/masters-courses))"
+    skill_research: "**研究方法：** [定量研究方法](/masters-courses#mqnm)（9.4分）和[定性研究方法](/masters-courses#mqlm)（7.8分）"
+    skill_ai: "**人工智能：** [机器学习：人类视觉与语言](/masters-courses#mlhvl)（8.3分），[数据挖掘](/masters-courses#mdm)（8.5分）"
+    skill_xr: "**XR/VR/AR：** [多模态交互](/multimodal-interaction)（8分），[移动交互](/masters-courses#mmob)（7.9分），[硕士论文](/graduation-thesis)（8.7分）"
+    skill_hf: "**人因：** [认知建模](/masters-courses#mcm)（8.3分），[人机交互中的认知与社会心理学](/masters-courses#mcsp)（7.4分）"
+    skill_fab: "**数字制造（3D建模与打印, Arduino）：** [交互技术创新](/snow-globe)（8.3分）"
+    skill_data: "**数据处理与可视化：** [数据挖掘](/masters-courses#mdm)（8.5分），[信息可视化](/masters-courses#mvis)（9分）"
     thesisTitle: "硕士论文：[ZoomPursuit: 用于通用图形用户界面的平滑追踪注视交互](/graduation-thesis)"
-    thesisSupervisors: "导师：Lynda Hardman，成绩：8.7/10"
-    thesisLinks: "[论文 (PDF)](/thesis-illustration.png)，[视频 (MP4)](/infommmi-demo.mp4)，[代码 (GitHub)](https://github.com/chenyfz/zoom-pursuit)"
+    thesisSupervisors: "导师：[Lynda Hardman](https://www.cwi.nl/en/people/lynda-hardman/)，考官：[Wolfgang Hürst](https://www.uu.nl/staff/WOHurst)，成绩：8.7/10"
+    thesisLinkPaper: "[论文 - UU Thesis Repository](/250805-Yangfan-MScThesis-ZoomPursuit-Submission.pdf)"
+    thesisLinkCodebase: "[代码 - GitHub](https://github.com/chenyfz/GazeControl)"
   bachelor:
     degree: "本科 - 软件工程（GPA: 4.1/5）"
     time: "2016年9月 - 2020年6月"
     university: "[南京大学](https://www.nju.edu.cn/main.htm)"
     location: "中国，江苏"
-    highlightCourses: "人机交互相关课程：人机交互系统（96/100），毕业设计（96/100）"
-    mainSkillset: "掌握了坚实的计算机科学知识和能够迁移到诸多领域的软件工程素养"
+    highlightCourses: "亮点课程：人机交互系统（96/100），毕业设计（96/100）"
+    mainSkillset: "主要技能：软件工程与计算机科学"
     achievement: "江苏省优秀毕业设计（团队奖），南京大学优秀毕业设计（团队奖）"
 experience:
   title: "工作经历"
@@ -212,8 +222,8 @@ experience:
     organization: "[荷兰数学和计算机科学研究中心 (CWI)](https://www.cwi.nl/)"
     location: "荷兰，阿姆斯特丹"
     description1: ""
-    team: "**以人为本数据分析小组**，导师：Lynda Hardman"
-    description2: "**研究方向：** 大语言模型、偏见、数据分析、文化遗产。深入学术界"
+    team: "**Human-Centered Data Analytics Group**，导师：[Lynda Hardman](https://www.cwi.nl/en/people/lynda-hardman/)"
+    description2: "**研究方向：** 大语言模型、偏见、数据分析、文化遗产。"
   fullTime:
     role: "Web开发工程师"
     time: "2020年7月 - 2022年5月"

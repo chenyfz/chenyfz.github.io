@@ -31,7 +31,6 @@ import FullCv from "../components/cv/full-cv.vue";
   align-items: center
   flex-wrap: wrap
   margin-bottom: 12px
-  padding: 0 24px
   .cv-name
     margin: 0
   .contact-info

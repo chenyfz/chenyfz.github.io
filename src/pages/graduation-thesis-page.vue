@@ -66,7 +66,7 @@ const reflectionParagraphs = computed(() => {
 <i18n lang="yaml" locale="en">
 downloadButton: "Download Paper"
 viewRepo: "View Repository on GitHub"
-githubUrl: "https://github.com/oh-yangfan/zoom-pursuit"
+githubUrl: "https://github.com/chenyfz/GazeControl"
 projectInfo:
   type: "Master's Graduation Thesis (Utrecht University)"
   duration: "Feb 2025 - Aug 2025"
@@ -95,10 +95,10 @@ reflections:
 <i18n lang="yaml" locale="zh">
 downloadButton: "下载论文"
 viewRepo: "在 GitHub 上查看代码库"
-githubUrl: "https://github.com/oh-yangfan/zoom-pursuit"
+githubUrl: "https://github.com/chenyfz/GazeControl"
 projectInfo:
   type: "硕士毕业设计 (Utrecht University)"
-  duration: "周期：约6个月（2025年2月 - 2025年7月）"
+  duration: "2025年2月 - 2025年7月"
   supervisorLabel: "导师："
 abstractTitle: "摘要"
 abstract:

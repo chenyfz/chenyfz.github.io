@@ -25,13 +25,13 @@ const tabs = [{
   textKey: 'homeTab',
   name: 'home'
 }, {
-  pageName: 'masters-courses',
-  textKey: 'mastersCoursesTab',
-  name: 'masters-courses'
-}, {
   pageName: 'graduation-thesis',
   textKey: 'graduationThesisTab',
   name: 'graduation-thesis'
+}, {
+  pageName: 'masters-courses',
+  textKey: 'mastersCoursesTab',
+  name: 'masters-courses'
 }, {
   pageName: 'cv',
   textKey: 'cvTab',

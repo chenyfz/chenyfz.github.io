@@ -67,7 +67,6 @@ transition: "往下接着看看我的一些其他信息吧！👀"
 
   .home-avatar
     justify-self self-end
-    margin-bottom -48px
 
   .hi-emoji
     position absolute

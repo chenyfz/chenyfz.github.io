@@ -267,7 +267,6 @@ h3
 
 .new-ul-container ul
   margin-top: 4px;
-  padding-left: 20px;
 
 .master,
 .bachelor,

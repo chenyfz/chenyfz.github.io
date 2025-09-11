@@ -1,18 +1,35 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref, watch } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 const { t } = useI18n()
+const router = useRouter()
+const route = useRoute()
 const activeId = ref('')
 
 const scrollToId = (id: string) => {
-  const el = document.querySelector(`#${id}`)
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth' })
-    // 更新地址栏但不产生新历史记录
-    history.replaceState(null, '', `${window.location.pathname}#${id}`)
-  }
+  router.replace({ hash: `#${id}` })
 }
+
+watch(
+  () => route.hash,
+  (newHash) => {
+    if (newHash) {
+      // Use a timeout to ensure the element is available after navigation
+      setTimeout(() => {
+        const element = document.querySelector(newHash)
+        if (element) {
+          element.classList.add('highlighted')
+          setTimeout(() => {
+            element.classList.remove('highlighted')
+          }, 5000) // Animation duration
+        }
+      }, 100)
+    }
+  },
+  { immediate: true }
+)
 
 let elements: HTMLElement[] = []
 const handleScroll = () => {
@@ -28,13 +45,8 @@ const handleScroll = () => {
   activeId.value = currentId
 }
 
-// 进入页面时，若 URL 已含锚点则滚动到对应位置
 onMounted(() => {
-  const hash = window.location.hash.replace('#', '')
-  if (hash) {
-    scrollToId(hash)
-  }
-  elements = Array.from(document.querySelectorAll('.content h4[id]'))
+  elements = Array.from(document.querySelectorAll('.content .course-section[id]'))
 
   handleScroll() // set initial state
   window.addEventListener('scroll', handleScroll, { passive: true })
@@ -77,46 +89,58 @@ onUnmounted(() => {
       <hr>
       <div class="content">
         <div class="title">{{ t('coursesTitle') }}</div>
-        <h4 id="mcsp" class="first-course-title">{{ t('mcsp.title') }}</h4>
-        <p>{{ t('mcsp.description') }}</p>
-
-        <h4 id="mlhvl">{{ t('mlhvl.title') }}</h4>
-        <p>{{ t('mlhvl.description') }}</p>
-
-        <h4 id="mvis">{{ t('mvis.title') }}</h4>
-        <p>{{ t('mvis.description') }}</p>
-        <a href="https://superfashion.walzen.org/" class="link" target="_blank">{{ t('mvis.linkText') }}</a>
-
-        <h4 id="mqlm">{{ t('mqlm.title') }}</h4>
-        <p>{{ t('mqlm.description') }}</p>
-        <a href="/Group_30_Final_Paper.pdf" class="link" target="_blank">{{ t('mqlm.linkText') }}</a>
-
-        <h4 id="miti">{{ t('miti.title') }}</h4>
-        <p>{{ t('miti.description') }}</p>
-        <router-link to="/snow-globe" class="link">{{ t('miti.linkText') }}</router-link>
-
-        <h4 id="mmmi">{{ t('mmmi.title') }}</h4>
-        <p>{{ t('mmmi.description') }}</p>
-        <router-link to="/multimodal-interaction" class="link">{{ t('mmmi.linkText') }}</router-link>
-
-        <h4 id="mqnm">{{ t('mqnm.title') }}</h4>
-        <p>{{ t('mqnm.description') }}</p>
-        <a href="/infomqnm-report.pdf" class="link" target="_blank">{{ t('mqnm.linkText') }}</a>
-
-        <h4 id="mmob">{{ t('mmob.title') }}</h4>
-        <p>{{ t('mmob.description') }}</p>
-
-        <h4 id="mdm">{{ t('mdm.title') }}</h4>
-        <p>{{ t('mdm.description') }}</p>
-        <a href="/DM-A1-Yangfan-Yilun-Reem.zip" class="link" target="_blank">{{ t('mdm.linkA1') }}</a> |
-        <a href="/INFOMDM2024-A2-Yangfan-Yilun-Reem.pdf" class="link" target="_blank">{{ t('mdm.linkA2') }}</a>
-
-        <h4 id="mcm">{{ t('mcm.title') }}</h4>
-        <p>{{ t('mcm.description') }}</p>
-
-        <h4 id="thesis">{{ t('graduationThesis.title') }}</h4>
-        <p>{{ t('graduationThesis.description') }}</p>
-        <router-link class="link" to="/graduation-thesis">{{ t('graduationThesis.linkText') }}</router-link>
+        <div id="mcsp" class="course-section">
+          <h4>{{ t('mcsp.title') }}</h4>
+          <p>{{ t('mcsp.description') }}</p>
+        </div>
+        <div id="mlhvl" class="course-section">
+          <h4>{{ t('mlhvl.title') }}</h4>
+          <p>{{ t('mlhvl.description') }}</p>
+        </div>
+        <div id="mvis" class="course-section">
+          <h4>{{ t('mvis.title') }}</h4>
+          <p>{{ t('mvis.description') }}</p>
+          <a href="https://superfashion.walzen.org/" class="link" target="_blank">{{ t('mvis.linkText') }}</a>
+        </div>
+        <div id="mqlm" class="course-section">
+          <h4>{{ t('mqlm.title') }}</h4>
+          <p>{{ t('mqlm.description') }}</p>
+          <a href="/Group_30_Final_Paper.pdf" class="link" target="_blank">{{ t('mqlm.linkText') }}</a>
+        </div>
+        <div id="miti" class="course-section">
+          <h4>{{ t('miti.title') }}</h4>
+          <p>{{ t('miti.description') }}</p>
+          <router-link to="/snow-globe" class="link">{{ t('miti.linkText') }}</router-link>
+        </div>
+        <div id="mmmi" class="course-section">
+          <h4>{{ t('mmmi.title') }}</h4>
+          <p>{{ t('mmmi.description') }}</p>
+          <router-link to="/multimodal-interaction" class="link">{{ t('mmmi.linkText') }}</router-link>
+        </div>
+        <div id="mqnm" class="course-section">
+          <h4>{{ t('mqnm.title') }}</h4>
+          <p>{{ t('mqnm.description') }}</p>
+          <a href="/infomqnm-report.pdf" class="link" target="_blank">{{ t('mqnm.linkText') }}</a>
+        </div>
+        <div id="mmob" class="course-section">
+          <h4>{{ t('mmob.title') }}</h4>
+          <p>{{ t('mmob.description') }}</p>
+        </div>
+        <div id="mdm" class="course-section">
+          <h4>{{ t('mdm.title') }}</h4>
+          <p>{{ t('mdm.description') }}</p>
+          <a href="/DM-A1-Yangfan-Yilun-Reem.zip" class="link" target="_blank">{{ t('mdm.linkA1') }}</a> |
+          <a href="/INFOMDM2024-A2-Yangfan-Yilun-Reem.pdf" class="link" target="_blank">{{ t('mdm.linkA2') }}</a>
+        </div>
+        <div id="mcm" class="course-section">
+          <h4>{{ t('mcm.title') }}</h4>
+          <p>{{ t('mcm.description') }}</p>
+        </div>
+        <div id="thesis" class="course-section">
+          <h4>{{ t('graduationThesis.title') }}</h4>
+          <p>{{ t('graduationThesis.description') }}</p>
+          <router-link class="link" to="/graduation-thesis">{{ t('graduationThesis.linkText') }}</router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -270,18 +294,41 @@ graduationThesis:
   padding-top: 24px
   padding-bottom: 24px
 
-h4
-  margin-bottom 8px
-  margin-top 48px
-  scroll-margin-top: 72px;
-  cursor pointer
-  user-select none
+.course-section
+  position: relative
+  margin-top: 32px
+  scroll-margin-top: 72px
 
-.first-course-title
-  margin-top 8px
+.course-section.highlighted::before
+  content: ''
+  position: absolute
+  top: -16px
+  left: -16px
+  right: -16px
+  bottom: -16px
+  z-index: -1
+  border-radius: 12px
+  background-color: transparent
+  animation: highlight-fade 5s ease-out
+
+h4
+  margin-bottom: 0
+  margin-top: 16px
+  cursor: pointer
+  user-select: none
 
 hr
   margin: 32px 0
+
+@keyframes highlight-fade
+  0%
+    background-color: transparent
+  10%
+    background-color: var(--accent-background)
+  90%
+    background-color: var(--accent-background)
+  100%
+    background-color: transparent
 
 .title
   font-size 20px
@@ -321,7 +368,7 @@ hr
     margin-top: 8px
 
 .content
-  margin-bottom 75vh
+  margin-bottom 32px
 
 
 @media (min-width: 1200px)

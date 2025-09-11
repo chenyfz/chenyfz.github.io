@@ -52,6 +52,21 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(import.meta.env.VITE_BASE_URL),
     routes,
+    scrollBehavior(to, _, savedPosition) {
+        if (savedPosition) {
+            return savedPosition
+        }
+
+        if (to.hash) {
+            return {
+                el: to.hash,
+                behavior: 'smooth',
+                top: 72,
+            }
+        }
+        
+        return { top: 0, behavior: 'smooth' }
+    }
 })
 
 router.beforeEach((to, _, next) => {

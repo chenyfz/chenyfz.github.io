@@ -47,11 +47,11 @@ const { t } = useI18n()
 education:
   title: "Education"
   master:
-    degree: "MSc Human-Computer Interaction, Cum Laude, Sept. 2023 - Aug. 2025"
+    degree: "MSc Human-Computer Interaction, Cum Laude, 2023 - 2025"
     university: "Utrecht University"
     gpa: "GPA: 8.39/10"
   bachelor:
-    degree: "B.Eng. in Software Engineering, Sept. 2016 - June 2020"
+    degree: "B.Eng. in Software Engineering, 2016 - 2020"
     university: "Nanjing University"
     gpa: "GPA: 4.1/5"
 experience:
@@ -60,7 +60,7 @@ experience:
     role: "Trainee at Centrum Wiskunde & Informatica (CWI) (March 2025 - Sept. 2025)"
     organization: "Human-Centered Data Analytics Group"
   fullTime:
-    role: "Frontend Developer at Tencent (July 2020 - May 2022)"
+    role: "Frontend Developer at Tencent (2020 - 2022)"
     organization: "Design Center, Core Product Department, WeChat Group"
 </i18n>
 
@@ -68,11 +68,11 @@ experience:
 education:
   title: "教育经历"
   master:
-    degree: "硕士 - 人机交互, Cum Laude (荣誉毕业), 2023.9 - 2025.8"
+    degree: "硕士 - 人机交互, Cum Laude (荣誉毕业) (2023 - 2025)"
     university: "乌特勒支大学（Utrecht University，荷兰）"
     gpa: "绩点: 8.39/10"
   bachelor:
-    degree: "本科 - 软件工程 (2016.9 - 2020.7)"
+    degree: "本科 - 软件工程 (2016 - 2020)"
     university: "南京大学"
     gpa: "绩点: 4.1/5"
 experience:
@@ -81,8 +81,8 @@ experience:
     role: "毕业设计实习 - 荷兰数学和计算机科学研究中心 (CWI) (2025.3 - 2025.8)"
     organization: "Human-Centered Data Analytics Group"
   fullTime:
-    role: "前端开发 - 腾讯 (2020.7-2022.5)"
-    organization: "微信事业群 - 基础产品部 - 设计中心 - 前端重构组"
+    role: "前端开发 - 腾讯 (2020 - 2022)"
+    organization: "微信事业群 - 基础产品部 - 设计中心"
 </i18n>
 
 <style scoped lang="stylus">

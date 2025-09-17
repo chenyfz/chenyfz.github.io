@@ -55,18 +55,21 @@ const { t } = useI18n()
         <div class="card showcase-card informational">
           <div class="header">
             <h3 class="title">{{ t('master.researchMethods.title') }}</h3>
-            <div class="subtitle">{{ t('master.researchMethods.subtitle') }}</div>
+            <div class="subtitle" v-if="t('master.researchMethods.subtitle')">{{ t('master.researchMethods.subtitle') }}</div>
           </div>
           <p class="description">{{ t('master.researchMethods.description') }}</p>
           <div class="showcase-links">
+            <a class="link" href="/Group_30_Final_Paper.pdf" target="_blank">{{
+                t('master.researchMethods.link2')
+              }}</a>
             <a class="link" href="/infomqnm-report.pdf" target="_blank">{{
               t('master.researchMethods.link1')
             }}</a>
-            <a class="link" href="/Group_30_Final_Paper.pdf" target="_blank">{{
-              t('master.researchMethods.link2')
-            }}</a>
           </div>
         </div>
+        <router-link to="/masters-courses" class="link all-courses-link">
+          {{ t('master.viewAllCourses') }}
+        </router-link>
       </div>
     </section>
 
@@ -115,39 +118,40 @@ master:
   title: "You must be curious about what I did during my master's study! 🤔"
   graduationProject:
     title: "Graduation Project"
-    subtitle: "ZoomPursuit: Smooth Pursuit-based Gaze Interaction for General-Purpose GUIs"
-    description: "I extended the core advantages of Smooth Pursuit interaction (accuracy, robustness, and calibration-free) to general-purpose GUIs by repurposing system-level magnification."
+    subtitle: "ZoomPursuit: Smooth Pursuit Gaze Interaction for General-Purpose GUIs"
+    description: "Gaze interaction based on Smooth Pursuit offers high accuracy, robustness, and freedom from calibration, but often requires modifying the user interface to inject dynamic stimuli, limiting its use in general-purpose GUIs. My work extends Smooth Pursuit's core advantages to any 2D GUI by repurposing the system-level magnification function."
     cta: "View Paper & Reflection"
     badge: "Freshly completed!"
   vrArMrProject:
-    title: "VR/AR/MR"
-    subtitle: "Natural Gesture in VR: An Elicitation Study and Implementation"
-    description: "We conducted a Wizard of Oz elicitation study for natural gestures in VR. Based on our findings, we designed, implemented, and evaluated two novel gestures against Meta's default interaction method."
+    title: "XR"
+    subtitle: "Natural Gestures for Interacting with Distant 2D GUIs in XR"
+    description: "2D GUIs will likely persist in XR environments, where interaction gestures may differ from those for 3D objects. We conducted a Wizard of Oz elicitation study, and based on the results, we designed and implemented two novel gestures. Finally, we qualitatively evaluated them against Meta's hand-ray interaction. My graduation project also initially focused on XR."
     cta: "View Study & Reflection"
   prototypingProject:
-    title: "Prototyping"
-    subtitle: "The Enchanted Snow Globes"
-    description: "I lead a tangible interaction project for enhancing remote social connection. My roles spanned interaction, industrial, and mechanical design, through which I developed expertise in 3D modeling and 3D printing."
-    cta: "View Project & Reflection"
+    title: "Prototyping & Fabrication"
+    subtitle: "The Enchanted Snow Globes Course Project"
+    description: "In a course, we completed a tangible interaction prototype for enhancing remote social connection. My roles included interaction, industrial, and mechanical design, and I assisted with the ESP32-based embedded development. Through this process, I gained in-depth skills in 3D modeling, 3D printing, and IoT technologies."
+    cta: "View Project"
   researchMethods:
-    title: "Foundations"
-    subtitle: "HCI Research Methods"
-    description: "I learned qualitative and quantitative HCI research methods through systematic coursework, and applied them across various projects."
+    title: "HCI Academic Research Methods"
+    subtitle: ""
+    description: "Two solid courses on qualitative and quantitative research methods. In the qualitative course, we studied user attitudes towards smart locks and proposed solutions to increase their adoption. In the quantitative course, we used a public dataset to explore the relationship between the Big Five personality model and stress during social media use (based on HRV and EDA signals)."
     link1: "Quantitative Paper ↗"
     link2: "Qualitative Paper ↗"
+  viewAllCourses: "View All My Enrolled Master's Courses"
 codebase: "Source code of this website: "
 future:
   title: "What's Next? 🚀"
-  content: "I am currently seeking a PhD position in Human-Computer Interaction. My main research interests are:"
+  content: "I am currently seeking a PhD position in Human-Computer Interaction / Interaction Design. My main research interests are:"
   interest1:
     title: "XR Interaction Design"
-    description: "I am fascinated by the immersion of XR, an experience often broken by clunky interaction. This fuels my interest in how to design magical interactions that transcend physical rules yet remain intuitive for users accustomed to the physical world."
+    description: "I am fascinated by the immersion of XR, but current interactions often break this experience, driving me to explore alternatives. My main focus is on a key question: in XR, where the rendered world doesn't have to follow the laws of physics, how can we leverage various sensors and interaction designs to enable users, who are accustomed to the physical world, to transcend physical rules and achieve natural, efficient, and immersive interactions?"
   interest2:
     title: "Human-AI Interaction"
-    description: "The rise of LLMs offers new opportunities in interaction design. My interest lies in exploring AI's potential as a collaborative partner. I am particularly interested in how this new paradigm can enable systems to flexibly understand user intent, automate workflows, and support diverse needs through multi-modal and educational capabilities."
+    description: "The rise of LLMs presents vast possibilities. A key change is that the relatively low cost of AI can meet more long-tail needs, improving the quality of life for groups with smaller user populations. Before the rise of LLMs, mainstream needs were automated with costly pre-defined if-then logic, which served users at a low marginal cost due to economies of scale. Niche, long-tail needs lacked this scale and relied on expensive human labor. AI allows better coverage for long-tail needs. Furthermore, Human-AI Interaction may spawn new paradigms beyond current mainstream methods. For instance, AI can act as an 'intermediary' or 'collaborator' between humans and computers, more flexibly understanding user intent, automating complex workflows, and supporting users with special needs through its multimodal and educational capabilities."
   interest3:
     title: "Accessibility"
-    description: "My MSc graduation project originally aimed to optimize gaze interaction for users with motor disabilities. Though the project's scope changed due to time and ethical constraints, the process of literature review and interaction design deepened my understanding of how technology can support users with diverse needs. As an empathetic person, I am motivated by the potential of creating social value and contributing to a more equitable digital world."
+    description: "My MSc graduation project originally aimed to optimize gaze interaction assistive software for users with motor disabilities. Though the project's scope changed due to practical constraints like recruitment and ethics, the process deepened my understanding of how technology can support users with diverse needs. As an empathetic person, I am motivated by the potential of creating social value and contributing to a more equitable digital world."
   interest4:
     title: "Tangible Design & Specialized Hardware for XR"
     description: "Tasks like efficient text entry remain a challenge in XR, sparking my interest in designing specialized physical hardware to address these gaps. For example, I am thinking about conceptual designs for a portable text-entry device. I believe sophisticated hardware solutions can forge new paths in interaction design."
@@ -157,45 +161,46 @@ future:
 cv:
   viewFullCv: "查看完整的简历"
 master:
-  title: "你一定很想知道我在硕士期间干了什么吧！🤔"
+  title: "你一定好奇我在硕士期间干了什么吧！🤔"
   graduationProject:
     title: "毕业设计"
-    subtitle: "ZoomPursuit: 基于平滑追视的通用GUI眼动交互"
-    description: "通过复用系统级放大功能，我将 Smooth Pursuit 交互的核心优点（精度高、鲁棒性强、免校准）扩展至任意通用2D GUI。"
-    cta: "查看论文和一些想法"
+    subtitle: "ZoomPursuit: Smooth Pursuit-based Gaze Interaction for General-Purpose GUIs"
+    description: "基于Smooth Pursuit的眼动交互具有准确度高、鲁棒、免校准等优点，但常因为需要注入动态刺激而无法用于通用GUI中。本工作利用系统级的放大功能，在保留Smooth Pursuit方法的核心优势的同时将其扩展至任意通用2D GUI。"
+    cta: "查看论文和一些完成之后的感想"
     badge: "新鲜出炉！"
   vrArMrProject:
-    title: "VR/AR/MR"
-    subtitle: "VR自然手势的诱导式研究与实现"
-    description: "我们进行了一项VR自然手势的 Wizard of Oz 诱导式研究。基于研究发现，我们设计并实现了两种新手势，并最终在Unity中与Meta的默认交互方式进行了对比评估。"
+    title: "XR"
+    subtitle: "XR环境中与远处2D GUI交互的自然手势研究"
+    description: "XR环境中2D GUI仍将长期存在，而用户与其交互的手势可能与3D物件交互不同。我们设计了一个 Wizard of Oz的诱导式研究，然后基于结果设计并实现了两种手势，最后将它们与Meta的hand-ray交互一起定性评估。我的毕业设计初期也围绕XR展开。"
     cta: "查看研究与反思"
   prototypingProject:
-    title: "原型设计"
-    subtitle: "魔法雪球"
-    description: "我主导了一个旨在增强远程社交联系的实体交互项目。我的职责包括交互、工业与机械结构设计，以及基于ESP32的嵌入式开发。我在此过程中尤其深入学习了3D建模与3D打印技能。"
-    cta: "查看项目与反思"
+    title: "原型设计与制造"
+    subtitle: "魔法雪球课程项目"
+    description: "在一门课程中我们完成了一个旨在增强远程社交联系的实体交互原型。其中我的职责包括交互、工业和机械结构设计，并协助ESP32的嵌入式开发。在此过程中我尤其深入学习了3D建模、3D打印以及IoT技术。"
+    cta: "查看项目"
   researchMethods:
-    title: "基础"
-    subtitle: "HCI研究方法"
-    description: "我系统性地通过课程学习了定性与定量的HCI研究方法，并将它们应用到了多个项目中。"
+    title: "HCI学术研究方法"
+    subtitle: ""
+    description: "两门扎实的定性与定量研究课程。在定性研究课程中，我们研究用户对智能门锁的态度，并尝试提出提高智能门锁接受度的解决方案。在定量研究课程中，我们使用公开数据集探索Big Five人格模型与社交媒体使用时的压力（基于HRV和EDA信号）的关系。"
     link1: "定量研究论文 ↗"
     link2: "定性研究论文 ↗"
+  viewAllCourses: "进一步查看我所选修的硕士课程"
 codebase: "网站源代码："
 future:
-  title: "下一步？🚀"
-  content: "我正在寻求人机交互（HCI）领域的博士研究机会。我的主要研究兴趣如下："
+  title: "下一步想做什么？🚀"
+  content: "我正在寻找人机交互/交互设计领域的PhD研究机会。我主要的研究兴趣为："
   interest1:
     title: "XR 交互设计"
-    description: "XR 的沉浸感令我着迷，但当前的交互设计却时常打破这种体验。这让我一直思考一个问题：在 XR 这个可以超越物理规则的世界里，我们该如何为已经习惯于物理世界规则的用户，设计出真正直观、高效且不破坏沉浸感的交互方法？"
+    description: "我很着迷于XR的沉浸感，但当前XR中的交互却时常打破这种沉浸感，我想探索当前方案之外的交互方式。我主要的思考点在于：XR所渲染的世界并不一定需要遵守现实世界的物理规则，但用户却高度习惯于真实的物理世界。我们是否有可能利用各种传感器以及交互设计，让用户超越物理规则，达成自然、高效又不破坏沉浸感的交互方法？"
   interest2:
     title: "Human-AI Interaction"
-    description: "LLM 的兴起提供了新的交互设计的机会。例如，我感兴趣的是，AI 能否在人与计算机之间扮演一个中介或者伙伴的角色，形成新的交互范式？我想探索这种模式如何能更灵活地理解用户意图（而非限制于费时费力预先设定的程序逻辑）、自动化复杂工作流，并为有特殊需求的用户提供帮助（利用AI的多模态能力以及在教学方面的潜力）等。"
+    description: "LLM 的兴起带来了巨大的可能性。一个核心的变化是，AI 相对低廉的使用成本能够让更多长尾需求得到满足，从而改善许多小众人群的生活质量。在 AI 出现之前，大众化的需求通常依靠费时费力的 if-then 逻辑来实现自动化，由于具备规模效应，可以以较低的边际成本服务用户；而小众的长尾需求则缺乏这种规模效应，只能依赖昂贵的人力来解决。AI 的出现将改变这一现状，使长尾需求也能得到更好覆盖。更进一步，Human-AI Interaction 中可能催生出新的交互范式，而不仅仅是延续当前主流的交互方式。例如，AI 可以在人与计算机之间扮演“中介”或“合作者”的角色，更灵活地理解用户意图，自动化复杂的工作流，并借助多模态能力与教学潜力为有特殊需求的用户提供支持。"
   interest3:
     title: "Accessibility"
-    description: "我的毕业设计最初是想为运动障碍人士优化眼动交互。虽然项目因现实因素（招募难度、伦理考量等）调整了方向，但其过程让我深入了解技术可以如何帮助他人。我是一个非常有同理心的人，如果我的研究工作能够产出真实的社会价值，惠及有需要的人群，会让我很开心。"
+    description: "我的毕业设计最初是想为运动障碍人士优化眼动交互辅助软件。虽然项目因现实因素（招募难度、伦理考量等）调整了方向，但其过程让我深入了解技术可以如何帮助他人。我是一个非常有同理心的人，如果我的研究工作能够产出真实的社会价值，惠及有需要的人群，我会很开心。"
   interest4:
     title: "Tangible Design & XR 专用硬件设计"
-    description: "我认为一些交互，比如高效的文本输入，在XR中仍然是重大的挑战。我一直对设计专用的实体硬件来解决这类问题很感兴趣，并有一些关于便携式文本输入设备的想法想要探索。总的来说，我认为巧妙的硬件设计能够另辟蹊径。"
+    description: "我认为一些交互场景（比如高效的文本输入）在XR中仍然是重大挑战。我一直对设计专用的实体硬件来解决这类问题很感兴趣，并有好多点子想要探索。总的来说，我认为巧妙的硬件或许能够另辟蹊径解决一些XR中的难题。"
 </i18n>
 
 <style scoped lang="stylus">
@@ -210,7 +215,7 @@ future:
 .showcase > .showcase-grid
   margin-top: 16px
 
-.showcase .link
+.showcase-card .link
   margin-top: 16px
 
 .showcase-grid
@@ -292,6 +297,12 @@ future:
     &:hover
       background: var(--background-50-transparent)
 
+.all-courses-link
+  grid-column: 1 / -1
+  color: var(--link-color)
+  padding: 4px 0
+  margin: 0 4px
+
 .interest-item
   margin-top: 16px
 
@@ -305,6 +316,11 @@ future:
 .showcase-links
   display: flex
   gap: 16px
+
+.code-base
+  margin-top: 16px
+  font-size: 14px
+  color: var(--text-color-secondary)
 
 @media (max-width: 768px)
   .showcase-grid

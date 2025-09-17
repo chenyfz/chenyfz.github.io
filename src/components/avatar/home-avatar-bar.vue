@@ -24,16 +24,16 @@ const { t } = useI18n()
 
 <i18n lang="yaml" locale="en">
 greeting: "Hi! I'm Yangfan Chen, an HCI Master's graduate currently seeking a PhD position."
-experience: "As a software engineer at WeChat's Design Center, I collaborated with talented product managers, designers, and engineers, gaining firsthand insight into the trade-offs of iterating a product for a massive user base. This experience forged my pragmatic mindset: designing interactions by balancing user, product, and technical perspectives, while solving complex problems incrementally."
-philosophy: "I am passionate about exploring novel interaction design ideas. However, I believe that beyond the initial 'wow,' true user adoption requires navigating trade-offs and solving problems under constraints. My key strength is bridging creative thinking with pragmatic problem-solving, a synthesis that fuels my passion for research in interactive systems."
+experience: "Before my master's, I was a software engineer at WeChat's Design Center. I collaborated with talented product managers, designers, and engineers, gaining firsthand insight into the trade-offs of iterating a product for a massive user base. This experience forged my pragmatic mindset: designing interactions by balancing user, product, and technical perspectives under constraints."
+philosophy: "I always have many interaction design ideas and hope to spend my PhD exploring some of them in depth over several years. I believe that beyond the 'wow' moment, for an idea to be truly valuable, it must be developed by navigating trade-offs and constraints, and by identifying, breaking down, and incrementally solving complex problems. My key strength is bridging creative thinking with pragmatic problem-solving."
 transition: "Feel free to discover more about me below! 👀"
 </i18n>
 
 <i18n lang="yaml" locale="zh">
-greeting: "Hi！我是陈扬帆。我最近完成了我的HCI硕士项目，正在寻求PhD职位。"
-experience: "此前，我曾在微信设计中心做了两年软件工程师，与一群优秀的产品经理、设计师和工程师共事，深入见证了一款国民级产品在迭代中的思考与权衡。这段经历塑造了我务实的思维方式：从用户、产品和技术等角度进行交互设计，循序渐进地逐一解决复杂的问题。"
-philosophy: "当然啦，我非常享受探索很酷的新奇的交互设计想法的过程。只是我认为，在大家最初 wow 地赞叹之后，一个设计要真正落地，就必须在各种限制中平衡妥协、处理诸多复杂问题，而这背后的复杂性常常被忽视。我相信我独特的优势就在于：既拥有创造性思维，也具备解决复杂问题的能力。这两者的结合，能帮助我更好地投身到交互系统的研究之中，这也是我的热情所在。"
-transition: "往下接着看看我的一些其他信息吧！👀"
+greeting: "你好！我是陈扬帆。我刚刚HCI硕士毕业，正在寻找PhD机会。"
+experience: "读硕士之前，我曾经是微信设计中心的软件工程师，与一群优秀的产品经理、设计师和工程师共事。期间，我深入见证了一款国民级产品在迭代中的思考与权衡。这段经历尤其强化了我务实的思维方式：在用户、产品和技术等视角下，在限制和冲突中思考交互设计。"
+philosophy: "我总会有各种新奇的交互设计想法，希望PhD阶段有机会以几年的时间跨度长期深入地思考并落地一些想法。我还认为：一个新奇的很酷的点子在 “wow” 之后如果想要真正落地，就必须在各种限制中平衡、妥协，并能识别、拆分、循序渐进解决复杂问题。我独特的优势就在于同时拥有创造性思维和解决复杂问题的能力。"
+transition: "看看我的一些信息吧！👀"
 </i18n>
 
 <style scoped lang="stylus">

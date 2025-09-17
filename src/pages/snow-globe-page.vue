@@ -89,9 +89,9 @@ myRole:
   title: "My Role"
   introduction: "As the lead designer and prototyper, my main contributions included:"
   points:
-    p1: "I led the product's conceptual and core tangible interaction design."
-    p2: "I taught myself Fusion 360 to model all custom mechanical parts, including the dual-layer rotating platform and a functional turbofan."
-    p3: "I handled the entire fabrication and integration process, from hardware sourcing and 3D printing to the final mechatronic assembly."
+    p1: "Led the product's conceptual design and core tangible interaction design."
+    p2: "Designed all custom mechanical parts in Fusion 360, including the dual-layer rotating platform and a functional turbofan."
+    p3: "Managed the entire fabrication and integration process, from hardware sourcing and 3D printing to the final mechatronic assembly."
 gallery:
   title: "Gallery: From CAD Model to Final Product"
   captions:
@@ -121,7 +121,7 @@ myRole:
   introduction: "作为项目的主设计师与原型制作者，我的主要贡献包括："
   points:
     p1: "主导了产品的概念构思与核心实体交互设计。"
-    p2: "自学并使用 Fusion 360 设计了所有定制机械部件，包括双层旋转平台和功能性涡轮风扇。"
+    p2: "使用 Fusion 设计了所有定制机械部件，包括双层旋转平台和功能性涡轮风扇。"
     p3: "负责了从硬件选型、3D打印到最终机电组装的全部制造与集成工作。"
 gallery:
   title: "作品一览：从CAD模型到最终成品"
@@ -186,32 +186,41 @@ h4
   margin-top 24px
 
 .gallery-section
-  margin-left calc(-50vw + 50%)
-  margin-right calc(-50vw + 50%)
+  padding: 0 var(--page-padding)
+  box-sizing: border-box
+  margin-left calc(-1 * var(--page-padding))
+  margin-right calc(-1 * var(--page-padding))
+
+  @media (min-width: 1200px)
+    margin-left calc(-50vw + 50%)
+    margin-right calc(-50vw + 50%)
 
 .gallery-title
   margin-top 48px
 
 .gallery
   margin-top 16px
-  display flex
-  width 100%
-  gap 16px
-  overflow-x auto
-  scrollbar-width none
-  -ms-overflow-style none
+  display: grid
+  gap: 24px 16px
+  grid-template-columns: 1fr
+  max-width: 2064px
+  margin-left: auto
+  margin-right: auto
 
-  &::-webkit-scrollbar
-    display none
+  @media (max-width: 520px)
+    grid-template-columns: repeat(1, 1fr)
+
+  @media (min-width: 520px)
+    grid-template-columns: repeat(2, 1fr)
+
+  @media (min-width: 900px)
+    grid-template-columns: repeat(3, 1fr)
+
+  @media (min-width: 1200px)
+    grid-template-columns: repeat(5, 1fr)
 
   figure
-    margin 0
-    width 320px
-    flex-shrink 0
-    &:first-child
-      margin-left calc(50vw - 455px)
-    &:last-child
-      margin-right calc(50vw - 455px)
+    margin: 0
 
   img
     width 100%
@@ -219,7 +228,7 @@ h4
     object-fit cover
 
   figcaption
-    margin-top 8px
+    margin-top: 4px
     font-size 14px
     color var(--text-color-70)
 

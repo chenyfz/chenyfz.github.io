@@ -202,8 +202,8 @@ education:
     skill_hf: "**人因：** [认知建模](/masters-courses#mcm)（8.3分），[人机交互中的认知与社会心理学](/masters-courses#mcsp)（7.4分）"
     skill_fab: "**数字制造（3D建模与打印, Arduino）：** [交互技术创新](/snow-globe)（8.3分）"
     skill_data: "**数据处理与可视化：** [数据挖掘](/masters-courses#mdm)（8.5分），[信息可视化](/masters-courses#mvis)（9分）"
-    thesisTitle: "硕士论文：[ZoomPursuit: 用于通用图形用户界面的平滑追踪注视交互](/graduation-thesis)"
-    thesisSupervisors: "导师：[Lynda Hardman](https://www.cwi.nl/en/people/lynda-hardman/)，考官：[Wolfgang Hürst](https://www.uu.nl/staff/WOHurst)，成绩：8.7/10"
+    thesisTitle: "硕士论文：[ZoomPursuit: Smooth Pursuit-based Gaze Interaction for General-Purpose GUIs](/graduation-thesis)"
+    thesisSupervisors: "导师：[Lynda Hardman](https://www.cwi.nl/en/people/lynda-hardman/)，Examiner：[Wolfgang Hürst](https://www.uu.nl/staff/WOHurst)，成绩：8.7/10"
     thesisLinkPaper: "[论文 - UU Thesis Repository](/250805-Yangfan-MScThesis-ZoomPursuit-Submission.pdf)"
     thesisLinkCodebase: "[代码 - GitHub](https://github.com/chenyfz/GazeControl)"
   bachelor:

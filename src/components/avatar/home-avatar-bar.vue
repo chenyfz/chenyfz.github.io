@@ -26,7 +26,7 @@ const { t } = useI18n()
 greeting: "Hi! I'm Yangfan Chen, an HCI Master's graduate currently seeking a PhD position."
 experience: "Before my master's, I was a software engineer at WeChat's Design Center. I collaborated with talented product managers, designers, and engineers, gaining firsthand insight into the trade-offs of iterating a product for a massive user base. This experience forged my pragmatic mindset: designing interactions by balancing user, product, and technical perspectives under constraints."
 philosophy: "I always have many interaction design ideas and hope to spend my PhD exploring some of them in depth over several years. I believe that beyond the 'wow' moment, for an idea to be truly valuable, it must be developed by navigating trade-offs and constraints, and by identifying, breaking down, and incrementally solving complex problems. My key strength is bridging creative thinking with pragmatic problem-solving."
-transition: "Feel free to discover more about me below! 👀"
+transition: Check out more! 👀
 </i18n>
 
 <i18n lang="yaml" locale="zh">

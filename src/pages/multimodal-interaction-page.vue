@@ -1,7 +1,13 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useHead } from '@unhead/vue'
 
 const { t } = useI18n()
+useHead({
+  title: computed(() => t('pageTitle')),
+  meta: [{ name: 'description', content: computed(() => t('pageDescription')) }],
+})
 </script>
 
 <template>
@@ -69,6 +75,8 @@ const { t } = useI18n()
 </template>
 
 <i18n lang="yaml" locale="en">
+pageTitle: "Gesture Interaction in VR - Yangfan Chen"
+pageDescription: "Elicitation study and implementation of natural hand gestures for distant 2D GUI interaction in VR."
 title: "Project Retrospective: Gesture Interaction Study in VR"
 courseContext: "Course: Multimodal Interaction / Duration: Approx. 2.5 Months"
 paperLink: "Download Full Research Paper"
@@ -94,6 +102,8 @@ myRole:
 </i18n>
 
 <i18n lang="yaml" locale="zh">
+pageTitle: "VR手势交互研究 - 陈扬帆"
+pageDescription: "VR中与远处2D GUI交互的自然手势诱导研究与实现。"
 title: "课程项目回顾：VR中的手势交互研究"
 courseContext: "课程：多模态交互 (Multimodal Interaction) / 项目周期：约2.5个月"
 paperLink: "下载完整研究论文"

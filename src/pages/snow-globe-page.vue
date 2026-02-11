@@ -1,7 +1,13 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useHead } from '@unhead/vue'
 
 const { t } = useI18n()
+useHead({
+  title: computed(() => t('pageTitle')),
+  meta: [{ name: 'description', content: computed(() => t('pageDescription')) }],
+})
 </script>
 
 <template>
@@ -72,6 +78,8 @@ const { t } = useI18n()
 </template>
 
 <i18n lang="yaml" locale="en">
+pageTitle: "Enchanted Snow Globes - Yangfan Chen"
+pageDescription: "Tangible IoT prototype for remote social connection, featuring 3D printing, ESP32, and interaction design."
 title: "Project Retrospective: Enchanted Snow Globes"
 courseContext: "Course: Interaction Technology Innovation / Theme: Enchanted Everyday Objects / Duration: Approx. 3 Months"
 downloadButton: "Download Reflective Diary"
@@ -103,6 +111,8 @@ gallery:
 </i18n>
 
 <i18n lang="yaml" locale="zh">
+pageTitle: "魔法雪球 - 陈扬帆"
+pageDescription: "面向远程社交连接的实体交互IoT原型，涵盖3D打印、ESP32与交互设计。"
 title: "课程项目回顾：魔法雪球"
 courseContext: "课程：交互技术创新 / 主题：Enchanted Everyday Objects / 项目周期：约三个月"
 downloadButton: "下载项目反思日志"

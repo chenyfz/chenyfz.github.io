@@ -1,8 +1,7 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import { i18n } from '../i18n'
+import type { RouteRecordRaw } from 'vue-router'
 import LanguageLayout from './language-layout.vue'
 
-const routes = [
+export const routes: RouteRecordRaw[] = [
     {
         path: '/',
         redirect: '/en'
@@ -48,44 +47,3 @@ const routes = [
         redirect: '/en'
     }
 ]
-
-const router = createRouter({
-    history: createWebHistory(import.meta.env.VITE_BASE_URL),
-    routes,
-    scrollBehavior(to, _, savedPosition) {
-        if (savedPosition) {
-            return savedPosition
-        }
-
-        if (to.hash) {
-            return {
-                el: to.hash,
-                behavior: 'smooth',
-                top: 72,
-            }
-        }
-        
-        return { top: 0, behavior: 'smooth' }
-    }
-})
-
-router.beforeEach((to, _, next) => {
-    const lang = to.params.lang as string
-    const supportedLangs = ['en', 'zh']
-
-    if (lang && supportedLangs.includes(lang)) {
-        i18n.global.locale.value = lang
-        return next()
-    }
-
-    const currentLocale = i18n.global.locale.value
-    const newPath = `/${currentLocale}${to.path}`
-    
-    if (newPath !== to.path) {
-        return next({ path: newPath, query: to.query, hash: to.hash })
-    }
-
-    return next()
-})
-
-export default router

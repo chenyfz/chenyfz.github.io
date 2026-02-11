@@ -3,12 +3,15 @@ import { defineConfig } from 'vite'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+// Inline supportedLangs to avoid TypeScript composite project conflicts
+const supportedLangs = ['en', 'zh'] as const
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ isSsrBuild }) => ({
   resolve: {
     alias: {
-      'vue': 'vue/dist/vue.esm-bundler.js'
+      // Runtime compiler alias only for client — SSR needs vue/server-renderer to resolve correctly
+      ...(!isSsrBuild ? { 'vue': 'vue/dist/vue.esm-bundler.js' } : {}),
     }
   },
   plugins: [
@@ -24,12 +27,15 @@ export default defineConfig({
       include: resolve(dirname(fileURLToPath(import.meta.url)), './path/to/src/locales/**'),
     })
   ],
-  build: {
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'),
-        nested: resolve(__dirname, '404.html'),
-      },
+  ssgOptions: {
+    includedRoutes(paths, routes) {
+      const langRoute = routes?.find(r => r.path === '/:lang')
+      const childPaths = langRoute?.children?.map(c => c.path || '') ?? []
+      return supportedLangs.flatMap(lang =>
+        childPaths.map(page => `/${lang}${page ? '/' + page : ''}`)
+      )
     },
+    dirStyle: 'nested',
+    script: 'defer',
   },
-})
+}))

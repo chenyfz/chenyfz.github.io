@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import { useHead } from '@unhead/vue'
 import RichText from '../components/ui/rich-text.vue'
 import { computed } from 'vue'
 
 const { t, tm } = useI18n()
+useHead({
+  title: computed(() => t('pageTitle')),
+  meta: [{ name: 'description', content: computed(() => t('pageDescription')) }],
+})
 const reflectionParagraphs = computed(() => {
   const reflections = tm('reflections')
   if (typeof reflections === 'object' && reflections !== null) {
@@ -64,6 +69,8 @@ const reflectionParagraphs = computed(() => {
 </template>
 
 <i18n lang="yaml" locale="en">
+pageTitle: "ZoomPursuit: Smooth Pursuit Gaze Interaction - Yangfan Chen"
+pageDescription: "MSc thesis: ZoomPursuit extends Smooth Pursuit gaze interaction to general-purpose GUIs using system-level magnification."
 downloadButton: "Download Paper"
 viewRepo: "View Repository on GitHub"
 githubUrl: "https://github.com/chenyfz/GazeControl"
@@ -93,6 +100,8 @@ reflections:
 </i18n>
 
 <i18n lang="yaml" locale="zh">
+pageTitle: "ZoomPursuit: 面向通用GUI的平滑追视眼动交互 - 陈扬帆"
+pageDescription: "硕士毕业论文：ZoomPursuit利用系统级放大功能将Smooth Pursuit眼动交互扩展至通用GUI。"
 downloadButton: "下载论文"
 viewRepo: "在 GitHub 上查看代码库"
 githubUrl: "https://github.com/chenyfz/GazeControl"

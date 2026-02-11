@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import NavBar from './components/nav-bar/nav-bar.vue'
 import FadeTransition from './transitions/fade-transition.vue'
 
-setTimeout(() => {
+onMounted(() => {
   document.body.style.transition = '0.2s'
 })
 </script>

@@ -1,9 +1,16 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useHead } from '@unhead/vue'
 import HomeAvatarBar from '../components/avatar/home-avatar-bar.vue'
 import ChatBubble from '../components/ui/chat-bubble.vue'
 import ShortCv from '../components/cv/short-cv.vue'
+
 const { t } = useI18n()
+useHead({
+  title: computed(() => t('pageTitle')),
+  meta: [{ name: 'description', content: computed(() => t('pageDescription')) }],
+})
 </script>
 
 <template>
@@ -112,6 +119,8 @@ const { t } = useI18n()
 </template>
 
 <i18n lang="yaml" locale="en">
+pageTitle: "Chen, Y. (Yangfan) - HCI Researcher"
+pageDescription: "Yangfan Chen - HCI Master's graduate seeking PhD. Research interests: XR interaction, Human-AI interaction, accessibility."
 cv:
   viewFullCv: "View Full CV"
 master:
@@ -158,6 +167,8 @@ future:
 </i18n>
 
 <i18n lang="yaml" locale="zh">
+pageTitle: "陈扬帆 - HCI 研究者"
+pageDescription: "陈扬帆 - HCI硕士毕业，正在寻找PhD机会。研究兴趣：XR交互、Human-AI交互、无障碍设计。"
 cv:
   viewFullCv: "查看完整的简历"
 master:

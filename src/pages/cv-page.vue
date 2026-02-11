@@ -1,6 +1,11 @@
 <script setup lang="ts">
-
+import { useHead } from '@unhead/vue'
 import FullCv from "../components/cv/full-cv.vue";
+
+useHead({
+  title: 'CV - Yangfan Chen',
+  meta: [{ name: 'description', content: 'Curriculum vitae of Yangfan Chen - HCI researcher with software engineering background.' }],
+})
 </script>
 
 <template>

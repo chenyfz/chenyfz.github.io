@@ -5,12 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vue-tsc && vite-ssg build",
+    "postbuild": "node -e \"require('fs').copyFileSync('dist/index.html','dist/404.html')\"",
     "preview": "vite preview",
     "lint:script": "eslint --ext .ts,vue --ignore-path .gitignore .",
     "lint:markup": "vue-tsc --noEmit"
   },
   "dependencies": {
+    "@unhead/vue": "^2.1.4",
+    "vite-ssg": "^28.3.0",
     "vue": "^3.5.15",
     "vue-i18n": "^11.1.5",
     "vue-router": "^4.5.1"

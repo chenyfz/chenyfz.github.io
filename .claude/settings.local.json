@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git submodule:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(pnpm install:*)",
+      "Bash(timeout 15 pnpm dev:*)",
+      "Bash(pnpm add:*)",
+      "Bash(ls:*)",
+      "Bash(ffmpeg:*)",
+      "Bash(pnpm dev:*)",
+      "Bash(pnpm ls:*)",
+      "Bash(curl:*)",
+      "Bash(pnpm generate:*)",
+      "Bash(pnpm build:*)"
+    ]
+  }
+}

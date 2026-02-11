@@ -1,6 +1,10 @@
 import {ref, watchEffect} from 'vue'
 
 export const useWatchColor = () => {
+    if (import.meta.env.SSR) {
+        return { mode: ref('light'), toggleMode: () => {} }
+    }
+
     const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)')
 
     const colorSchemeChangeHandler = () =>

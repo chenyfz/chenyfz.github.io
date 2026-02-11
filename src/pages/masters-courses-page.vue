@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { onMounted, onUnmounted, ref, watch } from 'vue'
+import { useHead } from '@unhead/vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
 const { t } = useI18n()
+useHead({
+  title: computed(() => t('pageTitle')),
+  meta: [{ name: 'description', content: computed(() => t('pageDescription')) }],
+})
 const router = useRouter()
 const route = useRoute()
 const activeId = ref('')
@@ -15,6 +20,7 @@ const scrollToId = (id: string) => {
 watch(
   () => route.hash,
   (newHash) => {
+    if (!newHash || import.meta.env.SSR) return
     if (newHash) {
       // Use a timeout to ensure the element is available after navigation
       setTimeout(() => {
@@ -202,6 +208,8 @@ onUnmounted(() => {
 </template>
 
 <i18n lang="yaml" locale="en">
+pageTitle: "Master's Courses Overview - Yangfan Chen"
+pageDescription: "Overview of HCI Master's courses completed at Utrecht University, including grades and project details."
 firstYearTitle: "First Year"
 secondYearTitle: "Second Year"
 title: "Overview of Enrolled Master's Courses"
@@ -278,6 +286,8 @@ graduationThesis:
 </i18n>
 
 <i18n lang="yaml" locale="zh">
+pageTitle: "硕士课程概览 - 陈扬帆"
+pageDescription: "乌得勒支大学HCI硕士项目修读课程概览，包含成绩与项目详情。"
 firstYearTitle: "第一年"
 secondYearTitle: "第二年"
 title: "硕士修读课程概览"

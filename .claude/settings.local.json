@@ -13,7 +13,10 @@
       "Bash(pnpm ls:*)",
       "Bash(curl:*)",
       "Bash(pnpm generate:*)",
-      "Bash(pnpm build:*)"
+      "Bash(pnpm build:*)",
+      "Bash(pnpm remove:*)",
+      "Bash(git mv:*)",
+      "Bash(test:*)"
     ]
   }
 }

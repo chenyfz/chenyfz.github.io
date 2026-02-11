@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import "tailwindcss";
+
+/* ===== Tailwind Theme Extensions ===== */
+@theme inline {
+  /* Colors — reference CSS vars that switch with light/dark */
+  --color-surface: var(--c-surface);
+  --color-surface-semi: var(--c-surface-semi);
+  --color-surface-75: var(--c-surface-75);
+  --color-surface-50: var(--c-surface-50);
+  --color-surface-30: var(--c-surface-30);
+  --color-surface-10: var(--c-surface-10);
+  --color-surface-light: var(--c-surface-light);
+  --color-content: var(--c-content);
+  --color-content-70: var(--c-content-70);
+  --color-content-50: var(--c-content-50);
+  --color-muted: var(--c-muted);
+  --color-highlight: var(--c-highlight);
+  --color-shadow: var(--c-shadow);
+  --color-primary: var(--c-primary);
+  --color-primary-bg: var(--c-primary-bg);
+  --color-link: var(--c-link);
+  --color-chat-system: var(--c-chat-system);
+  --color-chat-user: var(--c-chat-user);
+  --color-chat-border: var(--c-chat-border);
+  --color-avatar: var(--c-avatar);
+  --color-card-border: var(--c-card-border);
+
+  /* Spacing */
+  --spacing-page: var(--page-padding);
+
+  /* Typography */
+  --font-sans: 'Lexend', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+
+  /* Custom breakpoint */
+  --breakpoint-layout: 900px;
+}
+
+/* ===== Color Scheme: Light Mode ===== */
+:root {
+  --c-surface: white;
+  --c-surface-semi: rgba(255,255,255,.5);
+  --c-surface-75: rgba(255,255,255,.75);
+  --c-surface-50: rgba(255,255,255,.5);
+  --c-surface-30: rgba(255,255,255,.3);
+  --c-surface-10: rgba(255,255,255,.1);
+  --c-surface-light: rgba(0,0,0,.03);
+  --c-content: black;
+  --c-content-70: rgba(0,0,0,.7);
+  --c-content-50: rgba(0,0,0,.5);
+  --c-muted: rgba(0,0,0,.5);
+  --c-highlight: rgba(0,0,0,.1);
+  --c-shadow: rgba(0,0,0,.3);
+  --c-primary: #ff4e50;
+  --c-primary-bg: #ff4e50cc;
+  --c-link: #2f38e4;
+  --c-chat-system: #eeffd9;
+  --c-chat-user: #14a100;
+  --c-chat-border: rgba(0,0,0,.1);
+  --c-avatar: rgba(0,0,0,.2);
+  --c-card-border: #eaeaea88;
+  --c-gradient-border: linear-gradient(135deg, #ff4e50, #f9d423, #a2cc2e);
+
+  --page-padding: 32px;
+}
+
+/* ===== Color Scheme: Dark Mode ===== */
+body[light-mode='dark'] {
+  --c-surface: rgb(20, 20, 20);
+  --c-surface-semi: rgba(20,20,20,.5);
+  --c-surface-75: rgba(20,20,20,.75);
+  --c-surface-50: rgba(20,20,20,.5);
+  --c-surface-30: rgba(20,20,20,.3);
+  --c-surface-10: rgba(20,20,20,.1);
+  --c-surface-light: rgba(255,255,255,.1);
+  --c-content: white;
+  --c-content-70: rgba(255,255,255,.7);
+  --c-content-50: rgba(255,255,255,.5);
+  --c-muted: rgba(255,255,255,.5);
+  --c-highlight: rgba(255,255,255,.1);
+  --c-shadow: rgba(255,255,255,.3);
+  --c-primary: #ff4e50;
+  --c-primary-bg: #ff4e50cc;
+  --c-link: rgb(160, 160, 255);
+  --c-chat-system: #424242;
+  --c-chat-user: #14a100;
+  --c-chat-border: rgba(255, 255, 255, .3);
+  --c-avatar: rgba(255,255,255,.2);
+  --c-card-border: #2a2a2a88;
+  --c-gradient-border: linear-gradient(135deg, #d84446, #dcbb20, #84a626);
+}
+
+@media screen and (max-width: 900px) {
+  :root {
+    --page-padding: 12px;
+  }
+}
+
+/* ===== Global Base Styles ===== */
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background-color: var(--c-surface);
+  color: var(--c-content);
+  font-family: 'Lexend', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+  min-height: 100vh;
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 0, 0, 0.2),
+    rgba(255, 165, 0, 0.2),
+    rgba(255, 255, 0, 0.2),
+    rgba(0, 255, 0, 0.2),
+    rgba(0, 191, 255, 0.2),
+    rgba(75, 0, 130, 0.2),
+    rgba(238, 130, 238, 0.2),
+    rgba(255, 0, 0, 0.2)
+  );
+  background-size: 400% 400%;
+}
+body[light-mode='dark'] {
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 0, 0, 0.15),
+    rgba(255, 165, 0, 0.15),
+    rgba(255, 255, 0, 0.15),
+    rgba(0, 255, 0, 0.15),
+    rgba(255, 0, 0, 0.15)
+  );
+}
+
+p { margin: 12px 0; }
+ul { list-style: none; padding: 0; }
+html { margin: 0; padding: 0; }
+#app { min-height: 100vh; }
+a { color: var(--c-content); text-decoration: none; }
+
+/* List bullet styling */
+li {
+  list-style: none;
+  padding: 0 0 0 24px;
+  margin: 4px 0 0 0;
+  position: relative;
+}
+li::before {
+  content: '';
+  position: absolute;
+  left: 1px;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border: 1.5px solid var(--c-content);
+  border-radius: 10px;
+}
+li.new-ul-container { margin: 0; }
+li.new-ul-container::before { content: none; }
+
+/* .link component */
+.link {
+  position: relative;
+  color: var(--c-link);
+  text-decoration: none;
+  z-index: 1;
+  max-width: fit-content;
+}
+.link::before {
+  content: '';
+  background: transparent;
+  bottom: -2px;
+  top: -2px;
+  left: -4px;
+  right: -4px;
+  position: absolute;
+  border-radius: 4px;
+  z-index: -1;
+  transition: all .2s ease-in-out;
+}
+.link:hover::before { background: var(--c-surface-50); }
+.card .link:hover::before { background: var(--c-surface); }
+
+/* .card component */
+.card {
+  background: var(--c-surface-75);
+  border: 1.5px solid var(--c-chat-border);
+  border-radius: 4px;
+  padding: 16px 24px;
+  text-decoration: none;
+  color: var(--c-content);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+a.card, a.card:visited { display: block; color: var(--c-content); }
+a.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Material Symbols */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}

@@ -2,6 +2,7 @@ import tailwindcss from '@tailwindcss/vite'
 import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
+import Icons from 'unplugin-icons/vite'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 // Inline supportedLangs to avoid TypeScript composite project conflicts
@@ -27,6 +28,9 @@ export default defineConfig(({ isSsrBuild }) => ({
     VueI18nPlugin({
       compositionOnly: true,
       include: resolve(dirname(fileURLToPath(import.meta.url)), './path/to/src/locales/**'),
+    }),
+    Icons({
+      autoInstall: true,
     })
   ],
   ssgOptions: {

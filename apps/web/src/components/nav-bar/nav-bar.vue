@@ -8,6 +8,7 @@ import DrawerTransition from '../../transitions/drawer-transition.vue'
 import FadeTransition from '../../transitions/fade-transition.vue'
 import {useRoute} from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import MenuIcon from '~icons/lucide/menu'
 
 const { mode, toggleMode } = useWatchColor()
 // const { language, toggleLanguage} = useWatchLanguage() //
@@ -46,11 +47,11 @@ const isHighlighted = (pageName: string) => {
 
 <template>
   <div class="nav-bar sticky top-0 z-3 min-h-16 px-page text-lg font-semibold bg-transparent backdrop-blur-[20px] grid items-center gap-2 transition duration-200">
-    <span
-      class="material-symbols-outlined block layout:hidden select-none cursor-pointer rounded p-1 -m-1 hover:bg-highlight"
+    <menu-icon
+      class="block layout:hidden select-none cursor-pointer rounded p-1 -m-1 w-6 h-6 hover:bg-highlight"
       :class="{'bg-highlight': isMenuOpen}"
       @click="onClickMenu"
-    >menu</span>
+    />
     <div class="mr-6 hover:underline">
       <router-link v-if="route.params.lang" :to="{ name: 'home', params: { lang: route.params.lang }}">
         chenyfz.github.io

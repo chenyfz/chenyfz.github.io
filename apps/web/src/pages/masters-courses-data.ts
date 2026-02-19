@@ -21,8 +21,6 @@ export interface YearSection {
   periods: Period[]
 }
 
-export type { Course, LinkItem, Period }
-
 // Table of contents structure: Year -> Period -> Courses
 export const coursePeriods: YearSection[] = [
   {

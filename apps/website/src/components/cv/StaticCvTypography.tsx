@@ -1,4 +1,5 @@
 import type { Locale } from '@/i18n/config';
+import { fontSubsetsManifest } from '@/generated/font-subsets-manifest';
 
 export const staticCvHeadingFontFamilyZh = "'StaticCvOppoSans', \"PingFang SC\", \"Microsoft YaHei\", \"Source Han Sans SC\", \"Noto Sans SC\", sans-serif";
 export const staticCvHeadingFontFamilyEn = "'Google Sans', 'Google Sans Text', 'DM Sans', 'Noto Sans', \"PingFang SC\", \"Microsoft YaHei\", \"Source Han Sans SC\", sans-serif";
@@ -15,6 +16,14 @@ export function getStaticCvBodyFontFamily(lang: Locale): string {
 
 export function StaticCvFontFace({ lang }: { lang: Locale }) {
   const locale = lang === 'zh' ? 'zh' : 'en';
+  const subsets = fontSubsetsManifest[locale];
+
+  if (!subsets) {
+    return null;
+  }
+
+  const oppoSubsetPath = `/fonts/subsets/${subsets.oppoSans400}`;
+  const zhuqueSubsetPath = `/fonts/subsets/${subsets.zhuqueFangsong400}`;
 
   if (locale === 'en') {
     return (
@@ -23,7 +32,7 @@ export function StaticCvFontFace({ lang }: { lang: Locale }) {
 
         @font-face {
           font-family: 'StaticCvFangsong';
-          src: url('/fonts/subsets/zhuque-fangsong-400-zh.woff2') format('woff2'),
+          src: url('${zhuqueSubsetPath}') format('woff2'),
                url('/fonts/ZhuqueFangsong-Regular.ttf') format('truetype');
           font-weight: normal;
           font-style: normal;
@@ -37,7 +46,7 @@ export function StaticCvFontFace({ lang }: { lang: Locale }) {
     <style>{`
       @font-face {
         font-family: 'StaticCvOppoSans';
-        src: url('/fonts/subsets/oppo-sans-400-${locale}.woff2') format('woff2'),
+        src: url('${oppoSubsetPath}') format('woff2'),
              url('/fonts/OPPO%20Sans%204.0.ttf') format('truetype');
         font-weight: 400;
         font-style: normal;
@@ -46,7 +55,7 @@ export function StaticCvFontFace({ lang }: { lang: Locale }) {
 
       @font-face {
         font-family: 'StaticCvFangsong';
-        src: url('/fonts/subsets/zhuque-fangsong-400-${locale}.woff2') format('woff2'),
+        src: url('${zhuqueSubsetPath}') format('woff2'),
              url('/fonts/ZhuqueFangsong-Regular.ttf') format('truetype');
         font-weight: normal;
         font-style: normal;

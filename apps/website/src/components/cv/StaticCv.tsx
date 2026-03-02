@@ -8,59 +8,16 @@ import type {
   StaticCvCapability,
   StaticCvBullet
 } from '@/i18n/pages/static-cv/types';
+import {
+  StaticCvFontFace,
+  getStaticCvBodyFontFamily,
+  getStaticCvHeadingFontFamily
+} from './StaticCvTypography';
 import RichText from './RichText';
 
 interface StaticCvProps {
   text: StaticCvPageCopy;
   lang: Locale;
-}
-
-const headingFontFamilyZh = `'StaticCvOppoSans', "PingFang SC", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans SC", sans-serif`;
-const headingFontFamilyEn = `'Google Sans', 'Google Sans Text', 'DM Sans', 'Noto Sans', "PingFang SC", "Microsoft YaHei", "Source Han Sans SC", sans-serif`;
-const bodyFontFamilyZh = `'StaticCvFangsong', 'Noto Serif SC', 'Source Han Serif SC', 'STSong', 'SimSun', serif`;
-const bodyFontFamilyEn = `'Newsreader', 'StaticCvFangsong', 'STSong', 'SimSun', 'Iowan Old Style', 'Times New Roman', serif`;
-
-function FontFace({ lang }: { lang: Locale }) {
-  const locale = lang === 'zh' ? 'zh' : 'en';
-
-  if (locale === 'en') {
-    return (
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap');
-
-        @font-face {
-          font-family: 'StaticCvFangsong';
-          src: url('/fonts/subsets/zhuque-fangsong-400-zh.woff2') format('woff2'),
-               url('/fonts/ZhuqueFangsong-Regular.ttf') format('truetype');
-          font-weight: normal;
-          font-style: normal;
-          font-display: swap;
-        }
-      `}</style>
-    );
-  }
-
-  return (
-    <style>{`
-      @font-face {
-        font-family: 'StaticCvOppoSans';
-        src: url('/fonts/subsets/oppo-sans-400-${locale}.woff2') format('woff2'),
-             url('/fonts/OPPO%20Sans%204.0.ttf') format('truetype');
-        font-weight: 400;
-        font-style: normal;
-        font-display: swap;
-      }
-
-      @font-face {
-        font-family: 'StaticCvFangsong';
-        src: url('/fonts/subsets/zhuque-fangsong-400-${locale}.woff2') format('woff2'),
-             url('/fonts/ZhuqueFangsong-Regular.ttf') format('truetype');
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-      }
-    `}</style>
-  );
 }
 
 function HeaderSection({ intro, theme, headingFontFamily }: { intro: StaticCvPageCopy['intro']; theme: ThemeMode; headingFontFamily: string }) {
@@ -247,15 +204,15 @@ export default function StaticCv({ text, lang }: StaticCvProps) {
   const theme = useThemeMode();
   const isDark = theme === 'dark';
   const useZhGridLayout = lang === 'zh';
-  const headingFontFamily = lang === 'zh' ? headingFontFamilyZh : headingFontFamilyEn;
-  const bodyFontFamily = lang === 'zh' ? bodyFontFamilyZh : bodyFontFamilyEn;
+  const headingFontFamily = getStaticCvHeadingFontFamily(lang);
+  const bodyFontFamily = getStaticCvBodyFontFamily(lang);
   const pageGridClass = useZhGridLayout
     ? '2xl:grid-cols-[920px_330px]'
     : '2xl:grid-cols-[1020px_330px]';
 
   return (
     <>
-      <FontFace lang={lang} />
+      <StaticCvFontFace lang={lang} />
       <main
         className={`min-h-[calc(100vh-4rem)] px-4 py-8 sm:px-6 sm:py-10 lg:px-10 ${
           lang === 'en' ? 'text-left' : 'text-justify'

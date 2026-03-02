@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-fill-mode: both;
+}
+
+::view-transition-old(root) {
+  animation-name: page-out;
+  animation-duration: 180ms;
+  animation-timing-function: ease-in;
+}
+
+::view-transition-new(root) {
+  animation-name: page-in;
+  animation-duration: 300ms;
+  animation-delay: 180ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes page-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 1ms;
+  }
+}
+
+:root {
+  --app-bg: #fdfcf8;
+  --app-fg: #121418;
+  --glass-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.68), rgba(232, 232, 228, 0.26));
+  --glass-bg-color: rgba(236, 236, 232, 0.16);
+  --glass-border-color: rgba(255, 255, 255, 0.62);
+  --glass-shadow: 0 16px 22px rgba(88, 92, 98, 0.17), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --glass-highlight-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(246, 246, 242, 0.38));
+  --glass-highlight-bg-color: rgba(252, 252, 248, 0.32);
+  --glass-highlight-border-color: rgba(255, 255, 255, 0.82);
+  --glass-highlight-shadow: 0 14px 18px rgba(82, 86, 92, 0.14), 0 0 18px rgba(255, 255, 255, 0.45), 0 0 38px rgba(255, 255, 255, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.92);
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+html,
+body {
+  scrollbar-color: auto transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html[data-theme='dark'] {
+  --app-bg: #0b1118;
+  --app-fg: #e6edf3;
+  --glass-gradient: linear-gradient(rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0));
+  --glass-bg-color: transparent;
+  --glass-border-color: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 16px 20px rgba(0, 0, 0, 0.16);
+  --glass-highlight-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0));
+  --glass-highlight-bg-color: rgba(255, 255, 255, 0.2);
+  --glass-highlight-border-color: rgba(255, 255, 255, 0.45);
+  --glass-highlight-shadow: 0 16px 20px rgba(0, 0, 0, 0.18), 0 0 24px rgba(255, 255, 255, 0.24), 0 0 52px rgba(255, 255, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* Chat Component Variables */
+:root {
+  --c-chat-system: #eeffd9;
+  --c-chat-user: #14a100;
+  --c-chat-border: rgba(0,0,0,.1);
+}
+
+html[data-theme='dark'] {
+  --c-chat-system: #424242;
+  --c-chat-user: #14a100;
+  --c-chat-border: rgba(255, 255, 255, .3);
+}
+
+/* Dynamic Background Animation */
+.bg-gradient-dynamic {
+  background-size: 400% 400%;
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 0, 0, 0.2),
+    rgba(255, 165, 0, 0.2),
+    rgba(255, 255, 0, 0.2),
+    rgba(0, 255, 0, 0.2),
+    rgba(0, 191, 255, 0.2),
+    rgba(75, 0, 130, 0.2),
+    rgba(238, 130, 238, 0.2),
+    rgba(255, 0, 0, 0.2)
+  );
+}
+
+html[data-theme='dark'] .bg-gradient-dynamic {
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 0, 0, 0.15),
+    rgba(255, 165, 0, 0.15),
+    rgba(255, 255, 0, 0.15),
+    rgba(0, 255, 0, 0.15),
+    rgba(255, 0, 0, 0.15)
+  );
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background-color: var(--page-bg, var(--app-bg));
+  color: var(--app-fg);
+  transition: background-color 280ms ease, color 280ms ease;
+}

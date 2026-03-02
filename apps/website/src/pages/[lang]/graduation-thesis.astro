@@ -1,0 +1,20 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { locales, requireLocaleParam } from '@/i18n/config';
+import { t } from '@/i18n/t';
+import graduationThesisEn from '@/i18n/pages/graduation-thesis/en';
+import graduationThesisZh from '@/i18n/pages/graduation-thesis/zh';
+import GraduationThesisPage from '@/components/graduation-thesis/GraduationThesisPage';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const rawLang = Astro.params.lang;
+const locale = requireLocaleParam(typeof rawLang === 'string' ? rawLang : undefined);
+const pageText = t({ en: graduationThesisEn, zh: graduationThesisZh }, locale);
+---
+
+<Layout lang={locale} title={pageText.meta.title} description={pageText.meta.description} pageId="graduation-thesis">
+  <GraduationThesisPage text={pageText} lang={locale} client:load />
+</Layout>

@@ -1,0 +1,14 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { locales, requireLocaleParam } from '@/i18n/config';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const rawLang = Astro.params.lang;
+const locale = requireLocaleParam(typeof rawLang === 'string' ? rawLang : undefined);
+---
+
+<Layout lang={locale} title="" description="">
+</Layout>

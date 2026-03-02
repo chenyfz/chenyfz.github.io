@@ -1,0 +1,14 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import LocaleRedirect from '@/components/LocaleRedirect.astro';
+import { defaultLocale } from '@/i18n/config';
+import { t } from '@/i18n/t';
+import playgroundEn from '@/i18n/pages/playground/en';
+import playgroundZh from '@/i18n/pages/playground/zh';
+
+const pageText = t({ en: playgroundEn, zh: playgroundZh }, defaultLocale);
+---
+
+<Layout lang={defaultLocale} title={pageText.meta.title} description={pageText.meta.description}>
+  <LocaleRedirect />
+</Layout>

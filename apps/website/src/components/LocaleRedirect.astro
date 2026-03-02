@@ -1,0 +1,11 @@
+<script is:inline>
+  const browserLanguages = Array.isArray(navigator.languages) && navigator.languages.length > 0
+    ? navigator.languages
+    : [navigator.language];
+
+  const hasChinese = browserLanguages.some((language) =>
+    String(language).toLowerCase().startsWith('zh')
+  );
+
+  window.location.replace(hasChinese ? '/zh/' : '/en/');
+</script>

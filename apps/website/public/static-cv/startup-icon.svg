@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="448" height="448"><svg width="448" height="448" viewBox="70 60 308 308" xmlns="http://www.w3.org/2000/svg">
+  <title>3D Paper Stack Logo</title>
+  <defs>
+    <!-- Green paper shadow -->
+    <filter id="SvgjsFilter1060" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10" result="blur"></feGaussianBlur>
+      <feOffset in="blur" dx="0" dy="15" result="offsetBlur"></feOffset>
+      <feFlood flood-color="rgba(0, 220, 130, 0.25)" result="greenColor"></feFlood>
+      <feComposite in="greenColor" in2="offsetBlur" operator="in" result="greenShadow"></feComposite>
+      <feGaussianBlur in="SourceAlpha" stdDeviation="7" result="blur2"></feGaussianBlur>
+      <feOffset in="blur2" dx="0" dy="10" result="offsetBlur2"></feOffset>
+      <feComponentTransfer in="offsetBlur2" result="shadow2">
+        <feFuncA type="linear" slope="0.15"></feFuncA>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode in="greenShadow"></feMergeNode>
+        <feMergeNode in="shadow2"></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+
+    <!-- White paper shadow -->
+    <filter id="SvgjsFilter1059" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4"></feGaussianBlur>
+      <feOffset dx="0" dy="4" result="offsetblur"></feOffset>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.1"></feFuncA>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Papers rendered from back to front -->
+  <!-- Paper 3 (offsetZ=-153.75) -->
+  <path d="M 246.32,150.85 L 346.99,227.62 L 218.43,360.11 L 117.76,283.33 Z" fill="#F0F0F0" fill-opacity="1.00" stroke="rgba(0, 0, 0, 0.1)" stroke-width="0.5" filter="url(#whiteShadow)"></path>
+  <!-- Paper 2 (offsetZ=-133.25) -->
+  <path d="M 246.13,138.12 L 346.80,214.89 L 218.25,347.37 L 117.58,270.60 Z" fill="#F0F0F0" fill-opacity="1.00" stroke="rgba(0, 0, 0, 0.1)" stroke-width="0.5" filter="url(#whiteShadow)"></path>
+  <!-- Paper 1 (offsetZ=-94.81) -->
+  <path d="M 245.79,114.25 L 346.46,191.02 L 217.90,323.51 L 117.23,246.73 Z" fill="#00DC82" fill-opacity="1.00" stroke="rgba(0, 0, 0, 0.1)" stroke-width="0.5" filter="url(#greenShadow)"></path>
+  <!-- Paper 0 (offsetZ=-20.50) -->
+  <path d="M 245.13,68.10 L 345.80,144.87 L 217.24,277.36 L 116.57,200.59 Z" fill="#F0F0F0" fill-opacity="0.90" stroke="rgba(0, 0, 0, 0.1)" stroke-width="0.5" filter="url(#whiteShadow)"></path>
+  <!-- Skeleton content for first paper -->
+  <path d="M 245.10,104.89 L 289.79,138.97 L 279.51,149.56 L 234.83,115.48 Z" fill="rgba(0, 0, 0, 0.1)"></path>
+  <path d="M 224.56,126.07 L 284.14,171.50 L 276.43,179.44 L 216.85,134.01 Z" fill="rgba(0, 0, 0, 0.1)"></path>
+  <path d="M 206.58,144.59 L 266.16,190.03 L 258.45,197.97 L 198.87,152.53 Z" fill="rgba(0, 0, 0, 0.1)"></path>
+  <path d="M 188.60,163.12 L 238.23,200.97 L 230.53,208.91 L 180.90,171.06 Z" fill="rgba(0, 0, 0, 0.1)"></path>
+  <path d="M 170.62,181.65 L 218.29,217.99 L 210.58,225.93 L 162.92,189.59 Z" fill="rgba(0, 0, 0, 0.1)"></path>
+</svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+@media (prefers-color-scheme: dark) { :root { filter: none; } }
+</style></svg>

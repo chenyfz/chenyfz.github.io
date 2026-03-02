@@ -1,0 +1,58 @@
+---
+import '../styles/global.css'
+import NavBar from '@/components/NavBar';
+import type { Locale } from '@/i18n/config';
+import { DEFAULT_THEME, THEME_STORAGE_KEY } from '@/styles/theme';
+
+interface Props {
+	lang?: Locale;
+	title?: string;
+	description?: string;
+	pageId?: string;
+}
+
+const {
+	lang = 'en',
+	title = 'Astro Basics',
+	description = 'Personal website',
+	pageId
+} = Astro.props;
+
+const initialTheme = DEFAULT_THEME;
+const themeInitScript = `
+(() => {
+  try {
+    const storageKey = ${JSON.stringify(THEME_STORAGE_KEY)};
+    const defaultTheme = ${JSON.stringify(initialTheme)};
+    const isThemeMode = (value) => value === 'dark' || value === 'light';
+    const rootTheme = document.documentElement.dataset.theme;
+    const saved = window.localStorage.getItem(storageKey);
+    const theme = isThemeMode(saved)
+      ? saved
+      : isThemeMode(rootTheme)
+      ? rootTheme
+      : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : defaultTheme);
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem(storageKey, theme);
+  } catch {}
+})();
+`;
+---
+
+<!doctype html>
+<html lang={lang} data-theme={initialTheme}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<script is:inline set:html={themeInitScript}></script>
+	</head>
+	<body data-page={pageId}>
+		<NavBar lang={lang} client:load />
+		<slot />
+	</body>
+</html>

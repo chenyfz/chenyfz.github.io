@@ -1,0 +1,26 @@
+{
+  "name": "apps-website",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "node ./scripts/build-font-subsets.mjs && astro build",
+    "build:fonts": "node ./scripts/build-font-subsets.mjs",
+    "optimize:services-png": "node ./scripts/optimize-service-pngs.mjs",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.4.2",
+    "@astrojs/sitemap": "^3.7.0",
+    "@gsap/react": "^2.1.2",
+    "@tailwindcss/vite": "^4.2.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^5.17.1",
+    "gsap": "^3.14.2",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "tailwindcss": "^4.2.0"
+  }
+}

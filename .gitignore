@@ -23,3 +23,9 @@ my-vue-app/.vscode/extensions.json
 *.njsproj
 *.sln
 *.sw?
+
+# Python virtual environments
+.venv/
+venv/
+env/
+ENV/

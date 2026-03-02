@@ -50,6 +50,8 @@
 :root {
   --app-bg: #fdfcf8;
   --app-fg: #121418;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
   --glass-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.68), rgba(232, 232, 228, 0.26));
   --glass-bg-color: rgba(236, 236, 232, 0.16);
   --glass-border-color: rgba(255, 255, 255, 0.62);
@@ -129,7 +131,15 @@ html[data-theme='dark'] .bg-gradient-dynamic {
 body {
   margin: 0;
   font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: var(--font-size-lg);
   background-color: var(--page-bg, var(--app-bg));
   color: var(--app-fg);
   transition: background-color 280ms ease, color 280ms ease;
+}
+
+/* Mobile font size */
+@media (max-width: 767px) {
+  body {
+    font-size: var(--font-size-base);
+  }
 }

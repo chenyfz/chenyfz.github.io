@@ -249,14 +249,14 @@ export default function StaticCv({ text, lang }: StaticCvProps) {
   const headingFontFamily = lang === 'zh' ? headingFontFamilyZh : headingFontFamilyEn;
   const bodyFontFamily = lang === 'zh' ? bodyFontFamilyZh : bodyFontFamilyEn;
   const pageGridClass = useZhGridLayout
-    ? 'xl:grid-cols-[920px_330px]'
+    ? '2xl:grid-cols-[920px_330px]'
     : '2xl:grid-cols-[1020px_330px]';
 
   return (
     <>
       <FontFace lang={lang} />
       <main
-        className={`min-h-[calc(100vh-4rem)] px-4 py-8 text-[18px] sm:px-6 sm:py-10 lg:px-10 ${
+        className={`min-h-[calc(100vh-4rem)] px-4 py-8 sm:px-6 sm:py-10 lg:px-10 ${
           lang === 'en' ? 'text-left' : 'text-justify'
         } ${
           isDark ? 'text-white' : 'text-neutral-900'

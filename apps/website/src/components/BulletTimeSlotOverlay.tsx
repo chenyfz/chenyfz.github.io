@@ -13,8 +13,10 @@ type MotionConfig = {
   startY: number;
   angle: number;
   velocity: number;
+  preEnterTime: number;
   enterTime: number;
   duration: number;
+  hasPreSlowed: boolean;
   startRotationZ: number;
   startRotationX: number;
   startRotationY: number;
@@ -46,6 +48,9 @@ type BulletTimeSlotOverlayProps = {
 
 const GRAVITY = 7500;
 const BULLET_ENTER_RATIO = 0.45;
+const PRE_BULLET_DEPTH_COMP_RATIO = 0.2;
+const PRE_BULLET_MIN_RATIO = 0.24;
+const PRE_BULLET_TIME_SCALE = 0.72;
 const MASK_BLUR_APPEAR_DELAY = 0.25;
 const MASK_BLUR_DISAPPEAR_DELAY = 0.4;
 const SELECTED_DROP_EXTRA_DELAY = 0.42;
@@ -82,8 +87,10 @@ const buildMotionConfig = (args: {
   targetX: number;
   targetY: number;
   sceneBottomY: number;
+  enterRatio: number;
+  preEnterRatio: number;
 }): MotionConfig => {
-  const { width, height, laneBase, targetX, targetY, sceneBottomY } = args;
+  const { width, height, laneBase, targetX, targetY, sceneBottomY, enterRatio, preEnterRatio } = args;
 
   const startY = sceneBottomY + height / 2 + 26 + gsap.utils.random(-8, 8, 1);
 
@@ -99,7 +106,8 @@ const buildMotionConfig = (args: {
   const angle = (Math.atan2(initialVelocityY, initialVelocityX) * 180) / Math.PI;
 
   const duration = Math.max(1.2, solveTimeToY(startY, sceneBottomY + height + 48, initialVelocityY));
-  const enterTime = apexTime * BULLET_ENTER_RATIO;
+  const preEnterTime = apexTime * preEnterRatio;
+  const enterTime = apexTime * enterRatio;
 
   return {
     width,
@@ -108,8 +116,10 @@ const buildMotionConfig = (args: {
     startY,
     angle,
     velocity,
+    preEnterTime,
     enterTime,
     duration,
+    hasPreSlowed: false,
     startRotationZ: gsap.utils.random(-32, 32, 1),
     startRotationX: gsap.utils.random(-26, 12, 1),
     startRotationY: gsap.utils.random(-18, 18, 1),
@@ -233,29 +243,48 @@ export default function BulletTimeSlotOverlay({
         };
       }
 
-      motionConfigsRef.current = items.map((_, index) => {
+      const layoutTargets = items.map((_, index) => {
         const laneBase = index - (items.length - 1) / 2;
         const layoutEl = layoutItemRefs.current[index];
 
         if (!layoutEl) {
-          return buildMotionConfig({
+          return {
             width: 150,
             height: 150,
             laneBase,
             targetX: laneBase * 64,
-            targetY: 0,
-            sceneBottomY
-          });
+            targetY: 0
+          };
         }
 
         const rect = layoutEl.getBoundingClientRect();
-        return buildMotionConfig({
+        return {
           width: rect.width,
           height: rect.height,
           laneBase,
           targetX: rect.left + rect.width / 2 - sceneCenterX,
-          targetY: rect.top + rect.height / 2 - sceneCenterY,
-          sceneBottomY
+          targetY: rect.top + rect.height / 2 - sceneCenterY
+        };
+      });
+
+      const targetYs = layoutTargets.map((target) => target.targetY);
+      const minTargetY = Math.min(...targetYs);
+      const maxTargetY = Math.max(...targetYs);
+      const targetYSpan = Math.max(1, maxTargetY - minTargetY);
+
+      motionConfigsRef.current = layoutTargets.map((target) => {
+        const depthProgress = (target.targetY - minTargetY) / targetYSpan;
+        const preEnterRatio = gsap.utils.clamp(
+          PRE_BULLET_MIN_RATIO,
+          BULLET_ENTER_RATIO,
+          BULLET_ENTER_RATIO - depthProgress * PRE_BULLET_DEPTH_COMP_RATIO
+        );
+
+        return buildMotionConfig({
+          ...target,
+          sceneBottomY,
+          enterRatio: BULLET_ENTER_RATIO,
+          preEnterRatio
         });
       });
 
@@ -323,6 +352,21 @@ export default function BulletTimeSlotOverlay({
 
       const detectBulletTime = () => {
         if (hasEnteredBulletRef.current || hasReleasedRef.current) return;
+
+        motionTweensRef.current.forEach((tween, index) => {
+          if (!tween) return;
+          const config = motionConfigsRef.current[index];
+          if (!config || config.hasPreSlowed) return;
+          if (tween.time() < config.preEnterTime) return;
+
+          config.hasPreSlowed = true;
+          const preSlowTween = gsap.to(tween, {
+            timeScale: PRE_BULLET_TIME_SCALE,
+            duration: 0.12,
+            ease: 'power2.out'
+          });
+          bulletSlowTweensRef.current.push(preSlowTween);
+        });
 
         // Enter bullet-time only when all cards reach their own pre-apex checkpoint.
         const allReachedEnterTime = motionTweensRef.current.every(

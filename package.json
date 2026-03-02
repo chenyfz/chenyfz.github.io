@@ -13,6 +13,6 @@
     "simple-git-hooks": "^2.13.1"
   },
   "simple-git-hooks": {
-    "pre-commit": "command -v node >/dev/null || eval \"$(fnm env --shell bash 2>/dev/null)\" || true; pnpm lint:script"
+    "pre-commit": "command -v node >/dev/null || eval \"$(fnm env --shell bash 2>/dev/null)\" || true; [ -f .venv/bin/activate ] && . .venv/bin/activate; pnpm --filter apps-website run build:fonts"
   }
 }

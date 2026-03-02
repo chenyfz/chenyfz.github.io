@@ -12,7 +12,7 @@ const OVERLAY_DEBUG = false;
 const OVERLAY_DEBUG_SHOW_LAYOUT = OVERLAY_DEBUG;
 
 const OVERLAY_LAYOUT_CLASS =
-  'inline-grid grid-cols-2 items-start content-start gap-x-4 gap-y-6 md:grid-cols-5 md:gap-x-6 md:gap-y-8';
+  'inline-grid grid-cols-[repeat(2,max-content)] items-start content-start gap-x-3 gap-y-4 md:grid-cols-[repeat(3,max-content)] md:gap-x-5 md:gap-y-6 lg:grid-cols-[repeat(5,max-content)] lg:gap-x-6 lg:gap-y-8';
 const OVERLAY_SWITCH_FRAME_CLASS = 'h-16 w-32 select-none';
 const OVERLAY_LANGUAGE_NAV_DELAY_MS = 980;
 const OVERLAY_MENU_NAV_DELAY_MS = 980;
@@ -30,10 +30,9 @@ const SWITCH_COUNT = 2;
 const OVERLAY_ITEM_COUNT = SWITCH_COUNT + MENU_CARD_DEFS.length;
 
 const OVERLAY_ITEM_CLASS_NAMES = Array.from({ length: OVERLAY_ITEM_COUNT }, (_, index) => {
-  if (index === 0) return 'col-span-1 justify-self-start self-start md:order-2 md:col-start-4 md:justify-self-end';
-  if (index === 1) return 'col-span-1 justify-self-start self-start md:order-2 md:col-start-5 md:justify-self-end';
-  if (index === SWITCH_COUNT) return 'col-start-1 md:order-1';
-  return 'md:order-1';
+  if (index < SWITCH_COUNT) return 'col-span-1 justify-self-start self-start';
+  if (index === SWITCH_COUNT) return 'col-start-1';
+  return '';
 });
 
 const OVERLAY_ITEM_CONFIGS = Array.from({ length: OVERLAY_ITEM_COUNT }, (_, index) => {
@@ -78,7 +77,7 @@ const NAV_TEXT: Record<Locale, NavText> = {
 };
 
 const getOverlayCardClass = (isDark: boolean) =>
-  `group block h-[96px] w-[152px] select-none rounded-[4px] px-3 py-2 md:h-[120px] md:w-[180px] md:px-4 md:py-3 no-underline transition-all duration-200 ${
+  `group block h-[92px] w-[148px] max-w-full select-none rounded-[4px] px-3 py-2 md:h-[108px] md:w-[168px] md:px-3.5 md:py-2.5 lg:h-[120px] lg:w-[180px] lg:px-4 lg:py-3 no-underline transition-all duration-200 ${
     isDark ? 'text-white hover:bg-white/8 active:bg-white/12' : 'text-neutral-900 hover:bg-black/6 active:bg-black/10'
   }`;
 
@@ -213,7 +212,7 @@ export default function NavBar({ lang }: NavBarProps) {
   return (
     <>
       <nav
-        className="sticky top-0 z-50 grid min-h-16 grid-cols-[auto_1fr_auto] items-center gap-4 px-4 py-2 text-lg font-semibold backdrop-blur-[20px] transition-colors duration-[280ms] sm:px-6 lg:px-10"
+        className="sticky top-0 z-50 grid min-h-16 grid-cols-[auto_1fr_auto] items-center gap-3 px-3 py-2 text-lg font-semibold backdrop-blur-[20px] transition-colors duration-[280ms] sm:px-4 lg:px-6"
         style={{ fontFamily: NAV_FONT_FAMILY }}
       >
         <a

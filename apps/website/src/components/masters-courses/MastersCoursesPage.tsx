@@ -124,7 +124,7 @@ export default function MastersCoursesPage({ text, lang }: MastersCoursesPagePro
   return (
     <>
       <StaticCvFontFace lang={lang} />
-      <main className={`min-h-[calc(100vh-4rem)] px-4 py-8 text-[18px] sm:px-6 sm:py-10 lg:px-10 ${lang === 'zh' ? 'text-justify' : 'text-left'}`} style={{ fontFamily: bodyFontFamily }}>
+      <main className={`min-h-[calc(100vh-4rem)] px-3 py-8 text-[16px] sm:px-4 sm:py-10 md:text-[18px] lg:px-6 ${lang === 'zh' ? 'text-justify' : 'text-left'}`} style={{ fontFamily: bodyFontFamily }}>
         <div className="mx-auto w-full max-w-6xl space-y-7">
           <header className="space-y-1 mb-4">
             <h1 className="text-2xl text-[var(--primary-color)]" style={{ fontFamily: headingFontFamily, fontWeight: 400 }}>{text.title}</h1>
@@ -136,7 +136,6 @@ export default function MastersCoursesPage({ text, lang }: MastersCoursesPagePro
                 <div className="space-y-11">
                   {text.courses.map((course) => {
                     const shouldFlash = flashId === course.id;
-                    const isExpandable = Boolean(course.media && course.media.length > 0);
                     const isExpanded = expandedCourseIds.includes(course.id);
                     const flashClass = shouldFlash
                       ? isDark
@@ -157,7 +156,7 @@ export default function MastersCoursesPage({ text, lang }: MastersCoursesPagePro
                             {courseNumber ? `${courseNumber}. ` : ''}
                             {getCourseDisplayTitle(course.title)}
                             {showGrades ? (
-                              <span className={`ml-2 text-[18px] font-medium ${mutedTextClass}`}>{formatGrade(text, course.grade)}</span>
+                              <span className={`ml-2 text-[16px] font-medium md:text-[18px] ${mutedTextClass}`}>{formatGrade(text, course.grade)}</span>
                             ) : null}
                           </h3>
                           {course.title.match(/\((.*?)\)/) && (
@@ -168,7 +167,7 @@ export default function MastersCoursesPage({ text, lang }: MastersCoursesPagePro
                         </div>
                         <RichText text={course.description} isDark={isDark} mode="block" className={`mt-2 ${detailTextClass}`} />
                         {course.links && course.links.length > 0 ? (
-                          <div className="mt-3 flex flex-wrap gap-3 text-[18px]">
+                          <div className="mt-3 flex flex-wrap gap-3 text-[16px] md:text-[18px]">
                             {course.links.map((link) => (
                               <a
                                 key={`${course.id}-${link.label}-${link.href}`}
@@ -203,7 +202,7 @@ export default function MastersCoursesPage({ text, lang }: MastersCoursesPagePro
 
               <aside className="self-start lg:sticky lg:top-24">
                 <h2 className="mt-2 text-xl text-[var(--primary-color)]" style={{ fontFamily: headingFontFamily, fontWeight: 400 }}>{text.tocTitle}</h2>
-                <div className="mt-3 space-y-4 text-[18px] lg:max-h-[calc(100vh-9.5rem)] lg:overflow-auto lg:pr-2">
+                <div className="mt-3 space-y-4 text-[16px] md:text-[18px] lg:max-h-[calc(100vh-9.5rem)] lg:overflow-auto lg:pr-2">
                   {text.years.map((year, yearIndex) => (
                     <section key={year.title} className="space-y-2">
                       <h3

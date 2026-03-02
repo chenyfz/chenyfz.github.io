@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from 'react';
 import type { Locale } from '@/i18n/config';
 import type { MastersCoursesPageCopy } from '@/i18n/pages/masters-courses/types';
 import useThemeMode from '@/hooks/useThemeMode';
+import RichText from '@/components/cv/RichText';
+import CourseMediaGallery from '@/components/masters-courses/CourseMediaGallery';
 import {
   StaticCvFontFace,
   getStaticCvBodyFontFamily,
@@ -13,8 +15,6 @@ type MastersCoursesPageProps = {
   lang: Locale;
 };
 
-const NAV_OFFSET = 88;
-
 function formatGrade(text: MastersCoursesPageCopy, grade: string): string {
   return `${text.gradePrefix}${grade}${text.gradeSuffix}`;
 }
@@ -24,12 +24,19 @@ function getLocalizedHref(lang: Locale, href: string, localized?: boolean): stri
   return `/${lang}${href}`;
 }
 
+function getCourseDisplayTitle(title: string): string {
+  return title.replace(/\s*\(.*?\)\s*/g, '').trim();
+}
+
 export default function MastersCoursesPage({ text, lang }: MastersCoursesPageProps) {
   const isDark = useThemeMode() === 'dark';
   const headingFontFamily = getStaticCvHeadingFontFamily(lang);
   const bodyFontFamily = getStaticCvBodyFontFamily(lang);
-  const [activeId, setActiveId] = useState('');
+  const [activeIds, setActiveIds] = useState<string[]>([]);
   const [flashId, setFlashId] = useState('');
+  const [expandedCourseIds, setExpandedCourseIds] = useState<string[]>([]);
+  const [isDesktopToc, setIsDesktopToc] = useState(false);
+  const showGrades = false;
 
   const coursesById = useMemo(() => {
     const map = new Map<string, MastersCoursesPageCopy['courses'][number]>();
@@ -39,19 +46,36 @@ export default function MastersCoursesPage({ text, lang }: MastersCoursesPagePro
     return map;
   }, [text.courses]);
 
+  const courseNumberById = useMemo(() => {
+    const map = new Map<string, number>();
+    text.courses.forEach((course, index) => {
+      map.set(course.id, index + 1);
+    });
+    return map;
+  }, [text.courses]);
+
   useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 1024px)');
+    const updateDesktopToc = () => setIsDesktopToc(mediaQuery.matches);
+    updateDesktopToc();
+
     const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-course-id]'));
 
     const updateActiveByScroll = () => {
-      let currentId = '';
+      const visibleIds: string[] = [];
+      const windowHeight = window.innerHeight;
+      
       for (const section of sections) {
-        if (section.getBoundingClientRect().top <= NAV_OFFSET + 8) {
-          currentId = section.dataset.courseId ?? '';
-        } else {
-          break;
+        const rect = section.getBoundingClientRect();
+        // 检查元素是否在视口内
+        if (rect.top <= windowHeight && rect.bottom >= 0) {
+          const courseId = section.dataset.courseId;
+          if (courseId) {
+            visibleIds.push(courseId);
+          }
         }
       }
-      setActiveId(currentId);
+      setActiveIds(visibleIds);
     };
 
     const flashByHash = () => {
@@ -71,24 +95,22 @@ export default function MastersCoursesPage({ text, lang }: MastersCoursesPagePro
 
     window.addEventListener('scroll', updateActiveByScroll, { passive: true });
     window.addEventListener('hashchange', flashByHash);
+    mediaQuery.addEventListener('change', updateDesktopToc);
 
     return () => {
       window.removeEventListener('scroll', updateActiveByScroll);
       window.removeEventListener('hashchange', flashByHash);
+      mediaQuery.removeEventListener('change', updateDesktopToc);
     };
   }, []);
 
   const mutedTextClass = isDark ? 'text-white/65' : 'text-neutral-600';
-  const tocActiveClass = isDark
-    ? 'text-amber-300 underline decoration-amber-300/85'
-    : 'text-amber-700 underline decoration-amber-700/70';
+  const tocActiveClass = 'text-[var(--primary-color)] hover:underline underline-offset-4';
   const tocIdleClass = isDark
-    ? 'text-white/80 underline decoration-transparent hover:decoration-white/55'
-    : 'text-neutral-700 underline decoration-transparent hover:decoration-neutral-500';
+    ? 'text-white/80 hover:text-white hover:underline underline-offset-4'
+    : 'text-neutral-700 hover:text-neutral-900 hover:underline underline-offset-4';
   const detailTextClass = isDark ? 'text-white/82' : 'text-neutral-800';
-  const detailLinkClass = isDark
-    ? 'text-white/85 decoration-white/40 hover:decoration-white/80'
-    : 'text-neutral-800 decoration-neutral-400 hover:decoration-neutral-700';
+  const detailLinkClass = 'text-[var(--primary-color)] decoration-[var(--primary-color)]/85 hover:text-[var(--primary-hover)] hover:decoration-[var(--primary-hover)]/95';
 
   const scrollToCourse = (id: string) => {
     const target = document.getElementById(id);
@@ -104,62 +126,24 @@ export default function MastersCoursesPage({ text, lang }: MastersCoursesPagePro
       <StaticCvFontFace lang={lang} />
       <main className={`min-h-[calc(100vh-4rem)] px-4 py-8 text-[18px] sm:px-6 sm:py-10 lg:px-10 ${lang === 'zh' ? 'text-justify' : 'text-left'}`} style={{ fontFamily: bodyFontFamily }}>
         <div className="mx-auto w-full max-w-6xl space-y-7">
-          <header className="space-y-1">
-            <h1 className="text-3xl text-amber-700" style={{ fontFamily: headingFontFamily, fontWeight: 400 }}>{text.title}</h1>
+          <header className="space-y-1 mb-4">
+            <h1 className="text-2xl text-[var(--primary-color)]" style={{ fontFamily: headingFontFamily, fontWeight: 400 }}>{text.title}</h1>
             <p className={mutedTextClass}>{text.subtitle}</p>
           </header>
 
-          <div className="grid gap-8 lg:grid-cols-[300px_minmax(0,1fr)]">
-              <aside className="self-start lg:sticky lg:top-24">
-                <h2 className="text-xl text-amber-700" style={{ fontFamily: headingFontFamily, fontWeight: 400 }}>{text.tocTitle}</h2>
-                <div className="mt-3 space-y-4 text-[18px] lg:max-h-[calc(100vh-9.5rem)] lg:overflow-auto lg:pr-2">
-                  {text.years.map((year) => (
-                    <section key={year.title} className="space-y-2">
-                      <h3 className="text-amber-700" style={{ fontFamily: headingFontFamily, fontWeight: 400 }}>
-                        {year.title}
-                      </h3>
-                      <div className="space-y-2">
-                        {year.periods.map((period) => (
-                          <div key={`${year.title}-${period.label}`} className="grid grid-cols-[92px_minmax(0,1fr)] gap-2">
-                            <div className={mutedTextClass}>{period.label}</div>
-                            <div className="flex flex-col gap-1.5">
-                              {period.courseIds.map((courseId) => {
-                                const course = coursesById.get(courseId);
-                                if (!course) return null;
-                                const selected = activeId === course.id;
-
-                                return (
-                                  <button
-                                    key={course.id}
-                                    type="button"
-                                    onClick={() => scrollToCourse(course.id)}
-                                    className={`w-fit px-0 py-0.5 text-left underline underline-offset-4 transition ${
-                                      selected ? tocActiveClass : tocIdleClass
-                                    }`}
-                                  >
-                                    {course.title}
-                                  </button>
-                                );
-                              })}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </section>
-                  ))}
-                </div>
-              </aside>
-
+          <div className="grid gap-16 lg:grid-cols-[minmax(0,1fr)_300px]">
               <section className="py-1">
-                <h2 className="text-xl text-amber-700" style={{ fontFamily: headingFontFamily, fontWeight: 400 }}>{text.detailsTitle}</h2>
-                <div className="mt-5 space-y-7">
+                <div className="space-y-11">
                   {text.courses.map((course) => {
                     const shouldFlash = flashId === course.id;
+                    const isExpandable = Boolean(course.media && course.media.length > 0);
+                    const isExpanded = expandedCourseIds.includes(course.id);
                     const flashClass = shouldFlash
                       ? isDark
-                        ? 'rounded-[4px] bg-amber-200/10 px-2'
-                        : 'rounded-[4px] bg-amber-100/45 px-2'
+                        ? 'relative isolate before:pointer-events-none before:absolute before:-inset-x-4 before:-inset-y-2 before:-z-10 before:rounded-[8px] before:bg-amber-200/10 before:content-[""]'
+                        : 'relative isolate before:pointer-events-none before:absolute before:-inset-x-4 before:-inset-y-2 before:-z-10 before:rounded-[8px] before:bg-amber-100/45 before:content-[""]'
                       : '';
+                    const courseNumber = courseNumberById.get(course.id);
 
                     return (
                       <article
@@ -168,11 +152,21 @@ export default function MastersCoursesPage({ text, lang }: MastersCoursesPagePro
                         data-course-id={course.id}
                         className={`scroll-mt-24 py-2 transition-colors ${flashClass}`}
                       >
-                        <h3 className="text-lg text-amber-700" style={{ fontFamily: headingFontFamily, fontWeight: 400 }}>
-                          {course.title}
-                          <span className={`ml-2 text-[18px] font-medium ${mutedTextClass}`}>{formatGrade(text, course.grade)}</span>
-                        </h3>
-                        <p className={`mt-2 leading-relaxed ${detailTextClass}`}>{course.description}</p>
+                        <div className="space-y-1">
+                          <h3 className="text-lg text-[var(--primary-color)]" style={{ fontFamily: headingFontFamily, fontWeight: 400 }}>
+                            {courseNumber ? `${courseNumber}. ` : ''}
+                            {getCourseDisplayTitle(course.title)}
+                            {showGrades ? (
+                              <span className={`ml-2 text-[18px] font-medium ${mutedTextClass}`}>{formatGrade(text, course.grade)}</span>
+                            ) : null}
+                          </h3>
+                          {course.title.match(/\((.*?)\)/) && (
+                            <p className={`text-[14px] lg:text-[16px] ${mutedTextClass}`}>
+                              ({course.title.match(/\((.*?)\)/)?.[1]})
+                            </p>
+                          )}
+                        </div>
+                        <RichText text={course.description} isDark={isDark} mode="block" className={`mt-2 ${detailTextClass}`} />
                         {course.links && course.links.length > 0 ? (
                           <div className="mt-3 flex flex-wrap gap-3 text-[18px]">
                             {course.links.map((link) => (
@@ -188,11 +182,58 @@ export default function MastersCoursesPage({ text, lang }: MastersCoursesPagePro
                             ))}
                           </div>
                         ) : null}
+                        {course.media && course.media.length > 0 ? (
+                          <CourseMediaGallery
+                            items={course.media}
+                            isDark={isDark}
+                            expanded={isExpanded}
+                            onExpand={() => {
+                              setExpandedCourseIds((prev) => (prev.includes(course.id) ? prev : [...prev, course.id]));
+                            }}
+                            practiceText={course.practice ?? null}
+                            showLabel={text.showMediaLabel}
+                            closeLabel={text.closeViewerLabel}
+                          />
+                        ) : null}
                       </article>
                     );
                   })}
                 </div>
               </section>
+
+              <aside className="self-start lg:sticky lg:top-24">
+                <h2 className="mt-2 text-xl text-[var(--primary-color)]" style={{ fontFamily: headingFontFamily, fontWeight: 400 }}>{text.tocTitle}</h2>
+                <div className="mt-3 space-y-4 text-[18px] lg:max-h-[calc(100vh-9.5rem)] lg:overflow-auto lg:pr-2">
+                  {text.years.map((year, yearIndex) => (
+                    <section key={year.title} className="space-y-2">
+                      <h3
+                        className={mutedTextClass}
+                        style={{ fontFamily: bodyFontFamily, fontWeight: 400 }}
+                      >
+                        {lang === 'zh' ? `第${yearIndex + 1}年` : `Year ${yearIndex + 1}`}
+                      </h3>
+                      <div className="ml-4 flex flex-col gap-1.5">
+                        {year.periods.flatMap((period) => period.courseIds).map((courseId) => {
+                          const course = coursesById.get(courseId);
+                          if (!course) return null;
+                          const selected = isDesktopToc && activeIds.includes(course.id);
+
+                          return (
+                            <button
+                              key={course.id}
+                              type="button"
+                              onClick={() => scrollToCourse(course.id)}
+                              className={`w-fit cursor-pointer px-0 py-0.5 text-left transition ${selected ? tocActiveClass : tocIdleClass}`}
+                            >
+                              {`${courseNumberById.get(course.id) ? `${courseNumberById.get(course.id)}. ` : ''}${getCourseDisplayTitle(course.title)}`}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </section>
+                  ))}
+                </div>
+              </aside>
             </div>
         </div>
       </main>

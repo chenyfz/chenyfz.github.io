@@ -19,7 +19,12 @@ export type GraduationThesisPageCopy = {
     description: string;
   };
   heading: string;
-  projectInfo: string;
+  projectInfo: string | {
+    type: string;
+    duration: string;
+    supervisor: string;
+    supervisorLabel?: string;
+  };
   abstractTitle: string;
   abstractParagraphs: string[];
   reflectionsTitle: string;

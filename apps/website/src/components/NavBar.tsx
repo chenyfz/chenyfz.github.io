@@ -12,23 +12,28 @@ const OVERLAY_DEBUG = false;
 const OVERLAY_DEBUG_SHOW_LAYOUT = OVERLAY_DEBUG;
 
 const OVERLAY_LAYOUT_CLASS =
-  'inline-grid grid-cols-2 items-start content-start gap-x-3 gap-y-3 md:grid-cols-3 xl:grid-cols-4';
+  'inline-grid grid-cols-2 items-start content-start gap-x-4 gap-y-6 md:grid-cols-5 md:gap-x-6 md:gap-y-8';
 const OVERLAY_SWITCH_FRAME_CLASS = 'h-16 w-32 select-none';
 const OVERLAY_LANGUAGE_NAV_DELAY_MS = 980;
 const OVERLAY_MENU_NAV_DELAY_MS = 980;
 const ROUND_GLASS_ITEM = { glassUi: { root: 'rounded-full', inner: 'rounded-full' } };
-type MenuCardKey = 'staticCv';
+type MenuCardKey = 'staticCv' | 'mastersCourses' | 'graduationThesis' | 'wechatExperience' | 'yichengIntelligence';
 
 const MENU_CARD_DEFS = [
-  { key: 'staticCv', href: (lang: Locale) => `/${lang}/static-cv` }
+  { key: 'staticCv', href: (lang: Locale) => `/${lang}/` },
+  { key: 'mastersCourses', href: (lang: Locale) => `/${lang}/masters-courses` },
+  { key: 'graduationThesis', href: (lang: Locale) => `/${lang}/graduation-thesis` },
+  { key: 'wechatExperience', href: (lang: Locale) => `/${lang}/wechat-experience` },
+  { key: 'yichengIntelligence', href: (lang: Locale) => `/${lang}/yicheng-intelligence` }
 ] as const satisfies ReadonlyArray<{ key: MenuCardKey; href: (lang: Locale) => string; external?: boolean }>;
 const SWITCH_COUNT = 2;
 const OVERLAY_ITEM_COUNT = SWITCH_COUNT + MENU_CARD_DEFS.length;
 
 const OVERLAY_ITEM_CLASS_NAMES = Array.from({ length: OVERLAY_ITEM_COUNT }, (_, index) => {
-  if (index < SWITCH_COUNT) return 'col-span-1 justify-self-start self-start';
-  if (index === SWITCH_COUNT) return 'col-start-1';
-  return '';
+  if (index === 0) return 'col-span-1 justify-self-start self-start md:order-2 md:col-start-4 md:justify-self-end';
+  if (index === 1) return 'col-span-1 justify-self-start self-start md:order-2 md:col-start-5 md:justify-self-end';
+  if (index === SWITCH_COUNT) return 'col-start-1 md:order-1';
+  return 'md:order-1';
 });
 
 const OVERLAY_ITEM_CONFIGS = Array.from({ length: OVERLAY_ITEM_COUNT }, (_, index) => {
@@ -47,21 +52,33 @@ type NavCardText = {
 type NavText = {
   openMenu: string;
   staticCv: NavCardText;
+  mastersCourses: NavCardText;
+  graduationThesis: NavCardText;
+  wechatExperience: NavCardText;
+  yichengIntelligence: NavCardText;
 };
 
 const NAV_TEXT: Record<Locale, NavText> = {
   en: {
     openMenu: 'Open menu',
-    staticCv: { title: 'Static CV', emoji: '📄', description: 'Resume / CV' }
+    staticCv: { title: 'Static CV', emoji: '📄', description: 'Resume / CV' },
+    mastersCourses: { title: 'Master\'s Courses', emoji: '📚', description: 'MSc Courses' },
+    graduationThesis: { title: 'Graduation Thesis', emoji: '🎓', description: 'MSc Thesis' },
+    wechatExperience: { title: 'WeChat Experience', emoji: '💬', description: 'WeChat Core Product' },
+    yichengIntelligence: { title: 'Yicheng AI', emoji: '🤖', description: 'AI for Tender Review' }
   },
   zh: {
     openMenu: '打开菜单',
-    staticCv: { title: '静态简历', emoji: '📄', description: '简历 / CV' }
+    staticCv: { title: '静态简历', emoji: '📄', description: '简历 / CV' },
+    mastersCourses: { title: '硕士课程', emoji: '📚', description: 'MSc 课程' },
+    graduationThesis: { title: '毕业设计', emoji: '🎓', description: '硕士论文' },
+    wechatExperience: { title: '微信经历', emoji: '💬', description: '微信基础产品' },
+    yichengIntelligence: { title: '一成智能', emoji: '🤖', description: '招投标 AI 工具' }
   }
 };
 
 const getOverlayCardClass = (isDark: boolean) =>
-  `group block h-[120px] w-[180px] select-none rounded-[4px] px-4 py-3 no-underline transition-all duration-200 ${
+  `group block h-[96px] w-[152px] select-none rounded-[4px] px-3 py-2 md:h-[120px] md:w-[180px] md:px-4 md:py-3 no-underline transition-all duration-200 ${
     isDark ? 'text-white hover:bg-white/8 active:bg-white/12' : 'text-neutral-900 hover:bg-black/6 active:bg-black/10'
   }`;
 
@@ -89,14 +106,14 @@ function OverlayMenuCard({ title, emoji, description, href, isDark, onNavigate, 
       target={external ? '_blank' : undefined}
       rel={external ? 'noreferrer' : undefined}
       onClick={(event) => onNavigate(event, href, external)}
-      className={`${getOverlayCardClass(isDark)} flex flex-col justify-center`}
+      className={`${getOverlayCardClass(isDark)} flex flex-col items-start justify-start`}
     >
       <div className="flex items-baseline gap-2">
-        <span className="text-[18px]" aria-hidden="true">{emoji}</span>
-        <span className="text-[18px] leading-tight tracking-wide">{title}</span>
+        <span className="text-[16px] leading-tight tracking-wide">{title}</span>
+        <span className="text-[16px]" aria-hidden="true">{emoji}</span>
       </div>
       {description && (
-        <p className={`mt-1 text-[14px] leading-relaxed ${descClass}`}>{description}</p>
+        <p className={`mt-1 text-[12px] leading-relaxed md:text-[14px] ${descClass}`}>{description}</p>
       )}
     </a>
   );

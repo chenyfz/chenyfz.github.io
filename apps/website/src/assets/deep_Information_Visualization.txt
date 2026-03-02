@@ -1,0 +1,4444 @@
+--- Information Visualization (Year 1 - Period 2) ---
+
+
+
+==================================
+FILE: 436V-22.pdf
+==================================
+
+--- Page 1 ---
+Visualization Analysis & Design 
+What's Vis, and Why Do It? (Ch 1)
+Tamara Munzner
+Department of Computer Science
+University of British Columbia
+@tamaramunzner
+
+--- Page 2 ---
+Deﬁning visualization (vis)
+2
+Computer-based visualization systems provide visual representations of datasets 
+designed to help people carry out tasks more effectively.
+
+--- Page 3 ---
+Deﬁning visualization (vis)
+3
+Computer-based visualization systems provide visual representations of datasets 
+designed to help people carry out tasks more effectively.
+Why?...
+
+--- Page 4 ---
+Why have a human in the loop?
+4
+Computer-based visualization systems provide visual representations of datasets 
+designed to help people carry out tasks more effectively.
+
+--- Page 5 ---
+Why have a human in the loop?
+5
+Computer-based visualization systems provide visual representations of datasets 
+designed to help people carry out tasks more effectively.
+Visualization is suitable when there is a need to augment human capabilities 
+rather than replace people with computational decision-making methods. 
+
+--- Page 6 ---
+Why have a human in the loop?
+• don’t need vis when fully automatic solution exists and is trusted 
+• many analysis problems ill-speciﬁed
+– don’t know exactly what questions to ask in advance
+• possibilities
+– long-term use for end users (ex: exploratory analysis of scientiﬁc data)
+– presentation of known results (ex: New York Times Upshot) 
+– stepping stone to assess requirements before developing models
+– help automatic solution developers reﬁne & determine parameters
+– help end users of automatic solutions verify, build trust
+6
+Computer-based visualization systems provide visual representations of datasets 
+designed to help people carry out tasks more effectively.
+Visualization is suitable when there is a need to augment human capabilities 
+rather than replace people with computational decision-making methods. 
+
+--- Page 7 ---
+Why use an external representation?
+• external representation: replace cognition with perception
+7
+Computer-based visualization systems provide visual representations of datasets 
+designed to help people carry out tasks more effectively.
+[Cerebral: Visualizing Multiple Experimental Conditions on a Graph 
+with Biological Context. Barsky, Munzner, Gardy, and Kincaid. IEEE 
+TVCG (Proc. InfoVis) 14(6):1253-1260, 2008.]
+
+--- Page 8 ---
+Why use an external representation?
+• external representation: replace cognition with perception
+8
+Computer-based visualization systems provide visual representations of datasets 
+designed to help people carry out tasks more effectively.
+[Cerebral: Visualizing Multiple Experimental Conditions on a Graph 
+with Biological Context. Barsky, Munzner, Gardy, and Kincaid. IEEE 
+TVCG (Proc. InfoVis) 14(6):1253-1260, 2008.]
+
+--- Page 9 ---
+Why depend on vision?
+• human visual system is high-bandwidth channel to brain
+– overview possible due to background processing
+• subjective experience of seeing everything simultaneously
+• signiﬁcant processing occurs in parallel and pre-attentively
+• sound: lower bandwidth and different semantics
+– overview not supported
+• subjective experience of sequential stream
+• touch/haptics: impoverished record/replay capacity
+– only very low-bandwidth communication thus far 
+• taste, smell: no viable record/replay devices
+9
+Computer-based visualization systems provide visual representations of datasets 
+designed to help people carry out tasks more effectively.
+
+--- Page 10 ---
+Why represent all the data?
+• summaries lose information, details matter 
+– conﬁrm expected and ﬁnd unexpected patterns
+– assess validity of statistical model
+10
+Identical statistics
+x mean
+9
+x variance
+10
+y mean
+7.5
+y variance
+3.75
+x/y correlation
+0.816
+ Anscombe’s Quartet
+Computer-based visualization systems provide visual representations of datasets 
+designed to help people carry out tasks more effectively.
+
+--- Page 11 ---
+Why represent all the data?
+• summaries lose information, details matter 
+– conﬁrm expected and ﬁnd unexpected patterns
+– assess validity of statistical model
+11
+Identical statistics
+x mean
+9
+x variance
+10
+y mean
+7.5
+y variance
+3.75
+x/y correlation
+0.816
+ Anscombe’s Quartet
+Computer-based visualization systems provide visual representations of datasets 
+designed to help people carry out tasks more effectively.
+
+--- Page 12 ---
+What resource limitations are we faced with?
+• computational limits
+– computation time, system memory
+• display limits
+– pixels are precious & most constrained resource
+– information density: ratio of space used to encode info vs unused whitespace
+• tradeoff between clutter and wasting space
+• ﬁnd sweet spot between dense and sparse
+• human limits
+– human time, human memory, human attention
+12
+Vis designers must take into account three very different kinds of resource limitations: 
+those of computers, of humans, and of displays. 
+
+--- Page 13 ---
+Why analyze?
+• imposes structure on  
+huge design space
+–scaffold to help you think 
+systematically about choices
+–analyzing existing as stepping stone 
+to designing new
+–most possibilities ineffective for 
+particular task/data combination
+13
+
+--- Page 14 ---
+Why analyze?
+• imposes structure on  
+huge design space
+–scaffold to help you think 
+systematically about choices
+–analyzing existing as stepping stone 
+to designing new
+–most possibilities ineffective for 
+particular task/data combination
+14
+[SpaceTree: Supporting Exploration in Large 
+Node Link Tree, Design Evolution and Empirical 
+Evaluation. Grosjean, Plaisant, and Bederson. 
+Proc. InfoVis 2002, p 57–64.]
+SpaceTree
+[TreeJuxtaposer: Scalable Tree Comparison Using 
+Focus+Context With Guaranteed Visibility. ACM Trans. on 
+Graphics (Proc. SIGGRAPH) 22:453– 462, 2003.]
+TreeJuxtaposer
+
+--- Page 15 ---
+Why analyze?
+• imposes structure on  
+huge design space
+–scaffold to help you think 
+systematically about choices
+–analyzing existing as stepping stone 
+to designing new
+–most possibilities ineffective for 
+particular task/data combination
+15
+[SpaceTree: Supporting Exploration in Large 
+Node Link Tree, Design Evolution and Empirical 
+Evaluation. Grosjean, Plaisant, and Bederson. 
+Proc. InfoVis 2002, p 57–64.]
+SpaceTree
+[TreeJuxtaposer: Scalable Tree Comparison Using 
+Focus+Context With Guaranteed Visibility. ACM Trans. on 
+Graphics (Proc. SIGGRAPH) 22:453– 462, 2003.]
+TreeJuxtaposer
+Present
+Locate
+Identify
+Path between two nodes
+Actions
+Targets
+SpaceTree
+TreeJuxtaposer
+Encode
+Navigate 
+Select
+Filter
+Aggregate
+Tree
+Arrange
+Why? 
+What? 
+How?
+Encode
+Navigate 
+Select
+
+--- Page 16 ---
+Visualization Analysis & Design 
+Analysis: Nested Model (Ch 4)
+Tamara Munzner
+Department of Computer Science
+University of British Columbia
+@tamaramunzner
+
+--- Page 17 ---
+Analysis framework: Four levels, three questions
+• domain situation
+– who are the target users?
+17
+domain
+[A Nested Model of Visualization Design and Validation. Munzner.  IEEE TVCG 15(6):921-928, 2009 (Proc. InfoVis 2009). ]
+
+--- Page 18 ---
+Analysis framework: Four levels, three questions
+• domain situation
+– who are the target users?
+• abstraction
+– translate from speciﬁcs of domain to vocabulary of vis
+• what is shown? data abstraction
+• why is the user looking at it? task abstraction
+18
+abstraction
+domain
+[A Multi-Level Typology of Abstract Visualization Tasks. Brehmer and Munzner.  IEEE TVCG 19(12):2376-2385, 2013 (Proc. InfoVis 2013). ]
+[A Nested Model of Visualization Design and Validation. Munzner.  IEEE TVCG 15(6):921-928, 2009 (Proc. InfoVis 2009). ]
+
+--- Page 19 ---
+Analysis framework: Four levels, three questions
+• domain situation
+– who are the target users?
+• abstraction
+– translate from speciﬁcs of domain to vocabulary of vis
+• what is shown? data abstraction
+• why is the user looking at it? task abstraction
+• idiom
+– how is it shown?
+• visual encoding idiom: how to draw
+• interaction idiom: how to manipulate
+19
+idiom
+abstraction
+domain
+[A Multi-Level Typology of Abstract Visualization Tasks. Brehmer and Munzner.  IEEE TVCG 19(12):2376-2385, 2013 (Proc. InfoVis 2013). ]
+[A Nested Model of Visualization Design and Validation. Munzner.  IEEE TVCG 15(6):921-928, 2009 (Proc. InfoVis 2009). ]
+
+--- Page 20 ---
+Analysis framework: Four levels, three questions
+• domain situation
+– who are the target users?
+• abstraction
+– translate from speciﬁcs of domain to vocabulary of vis
+• what is shown? data abstraction
+• why is the user looking at it? task abstraction
+• idiom
+– how is it shown?
+• visual encoding idiom: how to draw
+• interaction idiom: how to manipulate
+• algorithm
+– efﬁcient computation
+20
+algorithm
+idiom
+abstraction
+domain
+[A Multi-Level Typology of Abstract Visualization Tasks. Brehmer and Munzner.  IEEE TVCG 19(12):2376-2385, 2013 (Proc. InfoVis 2013). ]
+[A Nested Model of Visualization Design and Validation. Munzner.  IEEE TVCG 15(6):921-928, 2009 (Proc. InfoVis 2009). ]
+
+
+
+==================================
+FILE: Scott Murray - Interactive Data Visualization for the Web_ An Introduction to Designing with D3 (2017, O’Reilly Media).pdf
+==================================
+
+--- Page 1 ---
+Scott Murray
+ Interactive Data 
+Visualization 
+for the Web
+AN INTRODUCTION TO DESIGNING WITH D3
+2nd Edition
+
+--- Page 2 ---
+
+--- Page 3 ---
+Praise for Interactive Data Visualization for the Web
+There are few books that I’d call “game-changers.” Interactive Data Visualization for the
+Web is one of them. It takes a topic that is obscure and hard to grasp for noncoders, and it
+transforms it into a delightful experience—full of clarity, fun, and insight. It’s the book
+that I recommend to all of my students to get started with d3.js.
+—Alberto Cairo, Knight Chair in Visual Journalism,
+University of Miami
+Scott Murray is pioneering a new approach to design—combining deep knowledge of
+both code and visual principles to create work that is at once extraordinarily beautiful,
+highly interactive, and coherently integrated. What’s more, he’s a teacher who generously
+shares his knowledge. And now, he’s revised his wonderful book Interactive Data
+Visualization for the Web—a foundational text for designers and anyone else
+dealing with the coming onrush of data.
+—Hugh Dubberly, Principal, Dubberly Design Office
+We have been using Scott’s book in our CS171 Visualization course at Harvard for the
+past three years. It is, by far, the most comprehensive and best introduction to D3 out
+there. The tone of the book is conversational, and it is easily accessible by nonexperts and
+beginners. Our students like it, and I believe they benefit from having
+the materials presented in the order that Scott came up with.
+We are definitely looking forward to the next edition!
+—Hanspeter Pfister, An Wang Professor of Computer Science,
+Harvard University
+
+--- Page 4 ---
+The first edition has simply been the most complete, effective, single source for learning
+D3 and visualization on the web from scratch. I have recommended it countless times.
+—Erik Cunningham, Software Engineer, Twitter
+I can’t think of a better way to understand D3. It’s funny and engaging for a
+nonprogrammer, deep and detailed for an engineer, and filled with practical
+and visual bliss for the designer.
+—Xaquín G.V., Visual Storyteller, formerly the Guardian,
+The New York Times, and National Geographic
+Scott Murray is the master of making technical instruction entertaining and fun.
+I wish more books were written like this.
+—Riley Rustad, Demand Planning—Data and Analytics, Adidas
+Interactive Data Visualization for the Web, based on Scott’s outstanding online tutorials,
+remains the clearest and most accessible introduction to D3. It’s even moderately funny.
+—Kevin Quealy, Graphics Editor, The New York Times
+I recommended the first edition to countless people, technical and nontechnical alike.
+Scott’s ability to articulate key concepts concisely to a broad audience, without
+oversimplifying, is unparalleled and refreshingly jargon-free. The first go-to book in the
+canon of web-based data visualization? Definitely.
+—Tom Longmate, Freelance Design Technologist
+I have a bookshelf behind my desk full of reference books; but Scott Murray’s book is
+never on that shelf, because it’s constantly on my desk.
+—Gail Zuniga, Information Designer
+I. Love. This. Book. In classes, bootcamps, and tutorials, I’ve worked hard to learn
+JavaScript in many ways. Nothing has been clearer or easier to work with than this book.
+I understand D3 and JavaScript better than ever before.
+—Wesley Ratko, Geospatial Data Analyst
+The most accessible introduction to d3 so far—invaluable for teaching purposes.
+—Alan Smith, Data Visualization Editor, Financial Times
+
+--- Page 5 ---
+I learned the basics of D3 from Scott Murray’s book, which offers clear and fun guidance.
+I have since been recommending it to all my design students.
+Scott makes the process of learning D3 both pleasant and effective.
+—Isabel Meirelles, Professor, OCAD University
+This book is the definitive guide to D3. I use this book for every data visualization class
+that I teach at USF. Students love the comprehensive coverage of the material
+as well as the detailed examples.
+—Alark Joshi, Associate Professor of Computer Science,
+University of San Francisco
+D3 is only easy if you learn it in the right order. Scott is a talented teacher and knows how
+to progressively go from the very beginning to a deep understanding of the fundamental
+concepts. There are many excellent books around, but this one is the place to start.
+—Christophe Viau, Data Visualization Engineer
+Scott Murray’s book is probably the most iconic book out there. It was the perfect starting
+point on my journey up the steep learning curve. Scott doesn’t push or drag you up that
+curve, he walks alongside and explains each step in an intelligible and—most important
+for the big-eyed novice—friendly way.
+—Lars Verspohl, Data Visualization Designer and Developer,
+datamake
+D3 has a unique data model which makes it very expressive and powerful, but it can be
+difficult to learn if you’re coming to it from other JavaScript libraries or visualization
+tools. Scott Murray’s book patiently yet efficiently walks the reader through examples that
+establish a firm understanding of the fundamentals of D3. I continue to recommend
+Scott’s book to colleagues four years after its introduction.
+I know of no better way to learn D3.
+—Andrew Brown, Data Scientist, SiteZeus
+This book was the starting point for my career in data visualization. Based upon the
+foundations I got from working through all the examples I have gotten multiple jobs and
+had my work reach millions of people. Anytime someone asks
+for an introduction to D3, I point them here.
+—Nick Strayer, PhD Student, Data-Journalist, Vanderbilt
+University, formerly The New York Times
+
+--- Page 6 ---
+A clear, concise, and approachable book on how D3 syntax and structures work. Because
+it builds on a foundation of understanding the fundamentals, it has become an essential
+reference in my library that I continue to use.
+—Cindy Hoffman, Design Editor, Bloomberg Graphics
+This book is required reading for all my introductory data vis classes.
+The friendliest and most accessible introduction to D3 around!
+—Lynn Cherny, Associate Professor, Emlyon Business School
+This book explains D3 concepts better than any other resource out there. The examples
+are easy to follow and clearly written. I have recommended it to dozens of people who
+were looking to get started with D3 because it’s the best way I know of to learn the basics.
+—Joe Fox, Graphics and Data Journalist, Los Angeles Times
+In a world of truly terrible tech books, one man, equipped only with a strong verbal
+acumen and a charming sense of humor, stands apart. That man is Scott Murray,
+and his book is Interactive Data Visualization for the Web.
+—Wendy Dherin, Software Engineer, Credit Karma
+I came to D3 without a background in JavaScript, and this book was one of my guiding
+lights. It builds carefully and logically, giving a solid introduction to both D3 and
+interactive visualization as a field.
+—Daniel Walter, Data Scientist, Distil Networks
+When I was first learning D3, I turned to this amazing book and never needed to look
+anywhere else. It is comprehensive and approachable, making for a great resource for
+both beginners and experts needing a quick reference. It is always my first response when
+somebody asks for instructional material on learning D3. I can’t recommend it enough!
+—Peter Beshai, Data Visualization Engineer
+As a data scientist working in the social sector, I need tools I can put to use in the field
+quickly and meaningfully. I wanted to create interactive data visuals for use in my work,
+but I couldn’t figure out how to make them. Then I found Scott Murray and his amazing
+book on designing with D3. Within three days I had fully functional D3 pieces up online
+with no tears. After several months of working through his in-depth examples I could
+provide professional D3 products to my clients. His approach to teaching is intuitive,
+practical, and user-friendly. The examples are great, and he teaches you enough
+competencies that you can quickly broaden the standard recipes into custom designs.
+
+--- Page 7 ---
+—Heather Krause, Data Scientist, Datassist
+This is the first book on D3 that I tell my students to read when they ask me for an
+introductory guide to D3. I even recommend it more highly than the official D3
+documentation and tutorials. I especially like how Scott breaks down complex chains of
+D3 expressions into their constituent parts and explains each component in detail.
+—Philip Guo, Assistant Professor of Cognitive Science,
+UC San Diego
+I can still remember the first time I read Interactive Data Visualization for the Web. The
+next time I’ll read it will be on a remote island. The book’s wisdom will guide me through
+hardship, and Scott’s witty humor will help me crack that coconut—it’s that useful!
+—Maarten Vanhoof, Researcher, Open Lab,
+Newcastle University
+This book builds up the concepts in a brilliantly logical and simple way,
+but also engaged me with moments of comedic gold.
+—Rowan Cumming, Financial Services Senior Analyst
+If D3 were a rollercoaster, Scott Murray’s Interactive Data Visualization for the Web
+would be the chain lift—that slow and inevitable upward ratcheting that takes you to the
+first and most exciting precipice—before the inevitable drop into madness.
+—Jim Vallandingham, Data Visualization Engineer
+I don’t use D3, but if I did, this is where I would start.
+—Nicholas Felton, Information Designer, Feltron
+
+--- Page 8 ---
+
+--- Page 9 ---
+Scott Murray
+Interactive Data Visualization
+for the Web
+An Introduction to Designing with D3
+SECOND EDITION
+Boston
+Farnham
+Sebastopol
+Tokyo
+Beijing
+Boston
+Farnham
+Sebastopol
+Tokyo
+Beijing
+
+--- Page 10 ---
+978-1-491-92128-9
+[LSI]
+Interactive Data Visualization for the Web
+by Scott Murray
+Copyright © 2017 Scott Murray. All rights reserved.
+Printed in the United States of America.
+Published by O’Reilly Media, Inc., 1005 Gravenstein Highway North, Sebastopol, CA 95472.
+O’Reilly books may be purchased for educational, business, or sales promotional use. Online editions are
+also available for most titles (http://oreilly.com/safari). For more information, contact our corporate/insti‐
+tutional sales department: 800-998-9938 or corporate@oreilly.com.
+Editor: Meg Foley
+Production Editor: Melanie Yarbrough
+Copyeditor: James Fraleigh
+Proofreader: Rachel Monaghan
+Indexer: Judy McConville
+Interior Designer: David Futato
+Cover Designer: Karen Montgomery
+Illustrator: Rebecca Demarest
+August 2017:
+ Second Edition
+Revision History for the Second Edition
+2017-08-02: First Release
+The O’Reilly logo is a registered trademark of O’Reilly Media, Inc. Interactive Data Visualization for the
+Web, Second Edition, the cover image, and related trade dress are trademarks of O’Reilly Media, Inc.
+While the publisher and the author have used good faith efforts to ensure that the information and
+instructions contained in this work are accurate, the publisher and the author disclaim all responsibility
+for errors or omissions, including without limitation responsibility for damages resulting from the use of
+or reliance on this work. Use of the information and instructions contained in this work is at your own
+risk. If any code samples or other technology this work contains or describes is subject to open source
+licenses or the intellectual property rights of others, it is your responsibility to ensure that your use
+thereof complies with such licenses and/or rights.
+
+--- Page 11 ---
+Table of Contents
+Preface. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  xi
+1. Introduction. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  1
+Why Data Visualization?                                                                                                   1
+Why Write Code?                                                                                                               2
+Why Interactive?                                                                                                                2
+Why on the Web?                                                                                                               3
+What This Book Is                                                                                                             3
+Who You Are                                                                                                                      4
+What This Book Is Not                                                                                                      5
+Using Sample Code                                                                                                            5
+Thank You                                                                                                                           6
+2. Introducing D3. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  7
+What It Does                                                                                                                       7
+What It Doesn’t Do                                                                                                            8
+Origins and Context                                                                                                          9
+Alternatives                                                                                                                       10
+Easy Charts                                                                                                                    10
+Graph Visualizations                                                                                                    11
+Geomapping                                                                                                                  11
+Almost from Scratch                                                                                                    12
+Three-Dimensional                                                                                                      13
+Tools Built with D3                                                                                                      13
+3. Technology Fundamentals. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  17
+The Web                                                                                                                            17
+HTML                                                                                                                                19
+iii
+
+--- Page 12 ---
+Content Plus Structure                                                                                                20
+Adding Structure with Elements                                                                                21
+Common Elements                                                                                                      22
+Attributes                                                                                                                       24
+Classes and IDs                                                                                                             24
+Comments                                                                                                                     25
+DOM                                                                                                                                  26
+Developer Tools                                                                                                                26
+Rendering and the Box Model                                                                                       29
+CSS                                                                                                                                     30
+Selectors                                                                                                                         31
+Properties and Values                                                                                                  32
+Comments                                                                                                                     32
+Referencing Styles                                                                                                        33
+Inheritance, Cascading, and Specificity                                                                    34
+JavaScript                                                                                                                           36
+Hello, Console                                                                                                               36
+Variables                                                                                                                        37
+Other Variable Types                                                                                                   37
+Arrays                                                                                                                             37
+Objects                                                                                                                           39
+Objects and Arrays                                                                                                       39
+Mathematical Operators                                                                                              42
+Comparison Operators                                                                                                42
+Logical Operators                                                                                                         42
+Control Structures                                                                                                        43
+Functions                                                                                                                       46
+Comments                                                                                                                     46
+Referencing Scripts                                                                                                      47
+JavaScript Gotchas                                                                                                        47
+SVG                                                                                                                                    52
+The SVG Element                                                                                                         53
+Simple Shapes                                                                                                               54
+Styling SVG Elements                                                                                                  56
+Layering and Drawing Order                                                                                     58
+Transparency                                                                                                                 59
+A Note on Compatibility                                                                                                62
+4. Setup. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  63
+Downloading D3                                                                                                              63
+Referencing D3                                                                                                                 63
+Setting Up a Web Server                                                                                                 64
+iv 
+| 
+Table of Contents
+
+--- Page 13 ---
+Terminal with Python                                                                                                  65
+MAMP, WAMP, and LAMP                                                                                        66
+Diving In                                                                                                                        66
+5. Data. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  67
+Generating Page Elements                                                                                              67
+Chaining Methods                                                                                                        70
+One Link at a Time                                                                                                       71
+The Handoff                                                                                                                  72
+Going Chainless                                                                                                            72
+Binding Data                                                                                                                     72
+In a Bind                                                                                                                        73
+Data                                                                                                                                73
+Please Make Your Selection                                                                                        79
+Bound and Determined                                                                                               80
+Using Your Data                                                                                                            83
+High-Functioning                                                                                                        84
+Data Wants to Be Held                                                                                                85
+Beyond Text                                                                                                                   86
+6. Drawing with Data. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  89
+Drawing divs                                                                                                                     89
+Setting Attributes                                                                                                          90
+A Note on Classes                                                                                                         91
+Back to the Bars                                                                                                            91
+Setting Styles                                                                                                                 92
+The Power of data()                                                                                                         93
+Random Data                                                                                                                94
+Drawing SVGs                                                                                                                  97
+Create the SVG                                                                                                             97
+Data-Driven Shapes                                                                                                     98
+Pretty Colors, Oooh!                                                                                                  100
+Making a Bar Chart                                                                                                       101
+The Old Chart                                                                                                             101
+The New Chart                                                                                                           101
+Color                                                                                                                            107
+Labels                                                                                                                           108
+Making a Scatterplot                                                                                                      110
+The Data                                                                                                                      110
+The Scatterplot                                                                                                            111
+Size                                                                                                                                112
+Labels                                                                                                                           114
+Table of Contents 
+| 
+v
+
+--- Page 14 ---
+Next Steps                                                                                                                       115
+7. Scales. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  117
+Apples and Pixels                                                                                                           117
+Domains and Ranges                                                                                                     118
+Normalization                                                                                                                119
+Creating a Scale                                                                                                              119
+Scaling the Scatterplot                                                                                                   120
+d3.min() and d3.max()                                                                                              120
+Setting Up Dynamic Scales                                                                                       122
+Incorporating Scaled Values                                                                                     122
+Refining the Plot                                                                                                            123
+Other Methods                                                                                                               127
+Other Scales                                                                                                                    127
+Square Root Scales                                                                                                     128
+Time Scales                                                                                                                  129
+8. Axes. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  135
+Introducing Axes                                                                                                           135
+Setting Up an Axis                                                                                                         136
+Positioning Axes                                                                                                            138
+Check for Ticks                                                                                                              141
+Y Not?                                                                                                                              143
+Final Touches                                                                                                                  144
+Formatting Tick Labels                                                                                                 145
+Time-Based Axes                                                                                                           147
+9. Updates, Transitions, and Motion. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  149
+Modernizing the Bar Chart                                                                                          149
+Ordinal Scales, Explained                                                                                         150
+Starting Your Own Band                                                                                           152
+Referencing the Band Scale                                                                                       153
+Other Updates                                                                                                             153
+Updating Data                                                                                                                154
+Interaction via Event Listeners                                                                                 154
+Changing the Data                                                                                                     155
+Updating the Visuals                                                                                                  156
+Transitions                                                                                                                      158
+duration(), or How Long Is This Going to Take?                                                  159
+ease()-y Does It                                                                                                           161
+Please Do Not delay()                                                                                                162
+Randomizing the Data                                                                                               164
+vi 
+| 
+Table of Contents
+
+--- Page 15 ---
+Updating Scales                                                                                                          167
+Updating Axes                                                                                                            169
+on() Transition Starts and Ends                                                                               171
+Other Kinds of Data Updates                                                                                       178
+Adding Values (and Elements)                                                                                 178
+Removing Values (and Elements)                                                                            183
+Data Joins with Keys                                                                                                  186
+Add and Remove: Combo Platter                                                                            192
+Recap                                                                                                                            193
+10. Interactivity. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  195
+Binding Event Listeners                                                                                                195
+Introducing Behaviors                                                                                                  196
+Hover to Highlight                                                                                                     197
+Grouping SVG Elements                                                                                              202
+Click to Sort                                                                                                                203
+Tooltips                                                                                                                            207
+Default Browser Tooltips                                                                                           208
+SVG Element Tooltips                                                                                               209
+HTML div Tooltips                                                                                                    211
+Consideration for Touch Devices                                                                                214
+Moving Forward                                                                                                            214
+11. Using Paths. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  217
+Line Charts                                                                                                                      218
+Data Preparation                                                                                                        219
+Scale Setup                                                                                                                   221
+Line ’em Up                                                                                                                 222
+Dealing with Missing Data                                                                                       224
+Refining the Visuals                                                                                                   226
+Area Charts                                                                                                                     227
+12. Selections. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  231
+A Closer Look at Selections                                                                                          231
+Getting More Specific                                                                                                    235
+Storing Selections                                                                                                           238
+Enter, Merge, and Exit                                                                                                   239
+The Enter Selection                                                                                                    240
+Merging Selections                                                                                                     244
+The Exit Selection                                                                                                      248
+Filtering Selections Based on Data                                                                              249
+To each() Their Own                                                                                                 255
+Table of Contents 
+| 
+vii
+
+--- Page 16 ---
+13. Layouts. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  259
+Pie Layout                                                                                                                       260
+Stack Layout                                                                                                                    264
+A New Order                                                                                                               268
+Anchoring Those Bars                                                                                               269
+Stacked Areas                                                                                                              270
+Force Layout                                                                                                                   273
+Preparing the Network Data                                                                                     273
+Defining the Force Simulation                                                                                 274
+Creating the Visual Elements                                                                                   275
+Updating Visuals over Time                                                                                     276
+Draggable Nodes                                                                                                        278
+14. Geomapping. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  281
+JSON, Meet GeoJSON                                                                                                   281
+Paths                                                                                                                                 283
+Projections                                                                                                                      285
+Choropleth                                                                                                                      287
+Adding Points                                                                                                                 290
+Panning                                                                                                                           295
+Transitioning the Map                                                                                               299
+Dragging the Map                                                                                                      299
+Border Problems                                                                                                        302
+Zooming                                                                                                                          302
+Fixing the Pan Buttons                                                                                              307
+Zoom-y Buttons                                                                                                         307
+Constraining Panning and Zooming                                                                      308
+Preset Views                                                                                                                310
+Value Labels                                                                                                                    311
+Acquiring and Preparing Raw Geodata                                                                      313
+Find Shapefiles                                                                                                            314
+Choose a Resolution                                                                                                  315
+Simplify the Shapes                                                                                                    316
+Convert to GeoJSON                                                                                                 318
+Choose a Projection                                                                                                   320
+15. Exporting. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  323
+Bitmaps                                                                                                                            323
+PDF                                                                                                                                  324
+SVG                                                                                                                                  325
+viii 
+| 
+Table of Contents
+
+--- Page 17 ---
+16. Project Walk-Through. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  331
+Prepare the Data                                                                                                            331
+Load and Parse the Data                                                                                               334
+Render the Initial View                                                                                                 337
+Add Interactivity                                                                                                            341
+Refine Styling                                                                                                                  351
+Provide Context                                                                                                             352
+Dancing Versus Gardening                                                                                          356
+A. Case Studies. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  359
+B. What’s New in 4.0. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  405
+C. Further Study. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  411
+D. Sharing Your Code. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  417
+E. Quick Reference. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  429
+Index. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  439
+Table of Contents 
+| 
+ix
+
+--- Page 18 ---
+
+--- Page 19 ---
+Preface
+This is a book about programming data visualizations for nonprogrammers. If you’re
+an artist or graphic designer with visual skills but no prior experience working with
+data or code, this book is for you. If you’re a journalist or researcher with lots of data
+but no prior experience working with visuals or code, this book is for you, too.
+This book will introduce you to D3, a JavaScript-based tool for loading data into a
+web page and generating visuals from that data. I assume that you have little or no
+programming experience. Or, perhaps you have programmed before, but D3 and data
+visualization are bringing you to JavaScript for the first time, and you’ve heard bad
+things about it. Well, JavaScript is a little weird, but it’s not as bad as you’ve heard, and
+everything is going to be all right. Please sit down and make yourself comfortable.
+This book began as a series of tutorials posted on my website. At the time (January
+2012), there wasn’t much information on D3 available that was accessible to begin‐
+ners. Very quickly, I was getting hundreds, then thousands of page views a day—evi‐
+dence that interest in the field generally (and in D3 specifically) was growing like
+gangbusters. I expanded the tutorials into the first edition of this book, published in
+March 2013. Since then, the D3 community has been growing by leaps and bounds.
+Demand for D3 skills overwhelmed the D3 Google Group with so many job postings
+that early D3 aficionado Lynn Cherny spun off a new group dedicated to just that.
+Yes, D3 experience makes you imminently employable. (See “Where to Post and Find
+Data Visualization Jobs” for help, not that you’ll need it.)
+The first edition of this book addressed D3 versions 3.x. In June 2016, version 4.0 of
+D3 was released. A complete, from-the-ground up rewrite, 4.0 kept the core concepts
+that make D3 such a powerful and widely adopted tool, but introduced hundreds
+(thousands?) of other changes. While these changes are all for the better (yay, pro‐
+gress!), code written for 3.x will break when used with 4.x. Hence the need for a sec‐
+ond edition of this book, fully updated and newly expanded with more examples,
+warnings of things to avoid, and useful tips gleaned from years of using and teaching
+D3. (See “What’s New in the Second Edition” below.)
+xi
+
+--- Page 20 ---
+Despite these updates, it’s impossible to document the breadth of skills needed in a
+single book. Data visualization is inherently interdisciplinary and attracts the curious.
+Learning to write JavaScript is just one of many skills you’ll need. Fortunately, there
+are many other books to choose from, each of which complements this one. See
+Appendix C for recommendations.
+What’s New in the Second Edition
+Although D3 continues to evolve as a tool, all of its core functionality remains in
+place. Yet D3 continues to grow, primarily thanks to all the hard work contributed by
+Mike Bostock, as well as the ever-expanding community of D3 users. So there are lots
+of new functions to learn about, and every chapter has been refined and expanded to
+cover the most useful elements for beginners.
+Major updates for this second edition include:
+• In-depth coverage of nonlinear scales (such as square root and ordinal scales)
+and time-based scales
+• A new chapter on using SVG paths for drawing line and area charts
+• A new chapter on selections and using selections efficiently to filter elements by
+data value
+• A hugely expanded geomapping chapter addressing how to make interactive
+maps with panning, zooming, and tooltips, plus an introduction to the Topo‐
+JSON data format
+• A new project walk-through chapter, in which I create a visualization project
+with real-world data from scratch
+• A new appendix of inspiring case studies, in which nine accomplished designers
+talk about the processes behind their D3-based projects
+• A new appendix summarizing what’s new in version 4.0 of D3
+• An expanded appendix on “Further Study,” including helpful tips on how and
+where to get help when you get stuck
+• A new appendix on sharing your code with others
+• A new appendix with a quick reference of the most commonly used functions
+In addition, all of the code examples have been updated for D3 4.x, and more than 40
+new examples have been added, for a total of 143. Please note the instructions in
+Chapter 1 about downloading the right version of the examples to accompany this
+edition of the book.
+A major new feature in 4.x is the ability to render nearly everything to an HTML can‐
+vas element, just as easily as to SVG. This feature is explicitly not addressed in this
+xii 
+| 
+Preface
+
+
+
+==================================
+FILE: Slides\Lecture1_IntroductionToInformationVisualization_EDimara2023-24.pdf
+==================================
+
+--- Page 1 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Dr. Evanthia Dimara
+Lecture 1: Introduction
+Information        Visualization
+1
+Acknowledgments: These slides intergrate components of the fantastic teaching material of Enrico Bertini.
+
+--- Page 2 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 1: Introduction
+Who am I? 
+2
+more information in my website evanthiadimara.com
+Assist. Professor at Utrecht University
+Visualization researcher
+focus: decision making with data
+Some examples of my projects
+cognitive
+biases
+
+--- Page 3 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+Q&A
+Information Visualization (INFOMVIS) | Lecture 1: Introduction | Question Time
+Who are you?
+3
+https://app.wooclap.com/NXEDHD
+Use your mobile or laptop and visit :
+
+--- Page 4 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+Q&A
+Information Visualization (INFOMVIS) | Lecture 1: Introduction | Question Time
+Who are you?
+4
+https://app.wooclap.com/NXEDHD
+
+--- Page 5 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+Q&A
+Information Visualization (INFOMVIS) | Lecture 1: Introduction | Question Time
+Who are you?
+5
+https://app.wooclap.com/NXEDHD
+
+--- Page 6 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+Q&A
+Information Visualization (INFOMVIS) | Lecture 1: Introduction | Question Time
+Who are you?
+6
+https://app.wooclap.com/NXEDHD
+See other text visualization in this gallery  https://textvis.lnu.se/
+
+--- Page 7 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 1: Introduction
+Some logistics first: Grading, Schedule and Deadlines
+7
+40% of you grade 
+Theory lectures 
+every Wed 15:15 – 17:00pm 
+at room BBG-209 
+with written exams in remindo
+(will be discussed today)
+60% of you grade  
+Practicals 
+every Fri 11:00 – 12:45pm 
+at room  DDW 1st, BBG 214 rest
+with a group project
+(will be discussed this Friday 
+by Michael Behrisch) 
+HTML/CSS, 
+Javascript D3.js
+Theory of 
+Information 
+Visualization
+How to 
+Bring a 
+Dataset 
+to Life
+
+--- Page 8 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 1: Introduction
+Some logistics first: Grading, Schedule and Deadlines
+8
+40% of you grade 
+Theory lectures 
+every Wed 15:15 – 17:00pm 
+at room BBG-209 
+with written exams in remindo
+(will be discussed today)
+60% of you grade  
+Practicals 
+every Fri 11:00 – 12:45pm 
+at room  DDW 1st, BBG 214 rest
+with a group project
+(will be discussed this Friday 
+by Michael Behrisch) 
+HTML/CSS, 
+Javascript D3.js
+Theory of 
+Information 
+Visualization
+How to 
+Bring a 
+Dataset 
+to Life
+Bringing your  own laptop! 
+Install preferably *Webstorm* https://www.jetbrains.com/webstorm
+The free educational license can be obtained 
+https://www.jetbrains.com/community/education/#students
+(but also free to use your  own IDE)
+
+--- Page 9 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 1: Introduction
+Some logistics first: How we communicate?
+9
+1. Via Ms teams à channel 
+“02_StudentsToLecturers”
+send your question 
+to lecturers here
+or ask your question in class 
+(during or after)
+2. Reach your classmates à channel 01_StudentsToStudents  
+(casual chat for fun/to find your team/to share sth interesting - only for you)  
+3. For sensitive issues of “force majeure” (e.g., covid/sickness/a personal problem)
+à discuss with your study advisor and ask them to contact both Evanthia and Michael.
+
+--- Page 10 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 1: Introduction
+Some logistics first: Class & Exam Material
+10
+Find all material from the Theory Lecture in  Ms Teams.  
+Exam material à whatever we discuss in class which is summarized in your slides.
+But to be able to use and comprehend this material in sufficient depth, you are expected to do your 
+own research, e.g., when relevant to check the resources you have been directed to in the footnotes 
+of the slides/ refer to your  book / find  relevant articles in google scholar/ 
+ask questions to your lecturer if something is unclear. 
+The point is not plain memorization, though you need to be able to use the technical terminology 
+relevant to visualization correctly. 
+e.g., as in physics,  you cannot call “thermodynamics” as “energy-change-stuff”.
+
+--- Page 11 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+1. Introduction to Information Visualization
+2. Data Abstraction & Basic Visualizations
+3. Perception & Color
+6. Cognition
+Information Visualization (INFOMVIS) | Lecture 1: Introduction
+4. Tasks & Interaction
+5. Evaluation
+7. Advanced Visualizations 1
+8. Advanced Visualizations 2
+Lectures Overview
+11
+Christmas 
+break! 
+NO THEORY EXAM PREPARATION
+FRIDAY 31/01/2024 DIGITAL EXAM IN REMINDO
+**some 
+lectures 
+may extend 
+to follow-up 
+slots
+Friday 
+02/02/2024 
+Project deadline
+
+--- Page 12 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 1: Introduction
+12
+visualization examples taken  from https://textvis.lnu.se/ and  https://geonetworks.github.io/
+Information Visualization 
+(InfoVis)
+
+--- Page 13 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 1: Introduction
+Visualization Software & Libraries
+13
+Behrisch, M., Streeb, D., Stoffel, F., Seebacher, D., Matejek, B., Weber, S. H., ... & Keim, D. (2018). Commercial visual analytics systems–
+advances in the big data analytics field. IEEE transactions on visualization and computer graphics, 25(10), 3011-3031.
+Evanthia Dimara & John Stasko A Critical 
+Reflection on Visualization Research: Where Do 
+Decision Making Tasks Hide?
+
+--- Page 14 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 1: Introduction
+Visualization Software & Libraries
+14
+Behrisch, M., Streeb, D., Stoffel, F., Seebacher, D., Matejek, B., Weber, S. H., ... & Keim, D. (2018). Commercial visual analytics systems–
+advances in the big data analytics field. IEEE transactions on visualization and computer graphics, 25(10), 3011-3031.
+Evanthia Dimara & John Stasko A Critical 
+Reflection on Visualization Research: Where Do 
+Decision Making Tasks Hide?
+
+--- Page 15 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 1: Introduction
+Visualization Software & Libraries
+15
+Behrisch, M., Streeb, D., Stoffel, F., Seebacher, D., Matejek, B., Weber, S. H., ... & Keim, D. (2018). Commercial visual analytics systems–
+advances in the big data analytics field. IEEE transactions on visualization and computer graphics, 25(10), 3011-3031.
+Evanthia Dimara & John Stasko A Critical 
+Reflection on Visualization Research: Where Do 
+Decision Making Tasks Hide?
+
+--- Page 16 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 1: Introduction
+Visualization Software & Libraries
+16
+Behrisch, M., Streeb, D., Stoffel, F., Seebacher, D., Matejek, B., Weber, S. H., ... & Keim, D. (2018). Commercial visual analytics systems–
+advances in the big data analytics field. IEEE transactions on visualization and computer graphics, 25(10), 3011-3031.
+Evanthia Dimara & John Stasko A Critical 
+Reflection on Visualization Research: Where Do 
+Decision Making Tasks Hide?
+
+--- Page 17 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 1: Introduction
+Definitions: What is Visualization?
+17
+“The use of computer-supported, interactive, 
+visual representations of abstract data to amplify cognition.”
+“Computer-based visualization systems provide 
+visual representations of datasets designed to help people 
+carry out tasks more effectively.”
+Stuart K. Card,Jock D. Mackinlay,Ben Shneiderman, 1999
+Tamara Munzner, 2014
+
+--- Page 18 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 1: Introduction
+Definitions: What is Visualization?
+18
+“The use of computer-supported, interactive, 
+visual representations of abstract data to amplify cognition.”
+“Computer-based visualization systems provide 
+visual representations of datasets designed to help people 
+carry out tasks more effectively.”
+Lets untangle a few terms !
+
+--- Page 19 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 1: Introduction
+19
+E. Dimara and C. Perin, “What is Interaction for Data Visualization?,” 
+Transactions on Visualization and Computer Graphics , vol. 26, no. 1, pp. 119–129, Jan. 2020.
+The Field of Information Visualization
+Human-
+Computer 
+Interaction 
+(HCI)
+Information 
+Visualization
+(InfoVis)
++ data 
++ commitment to its “truth”
+Visualization is..
+a data-oriented
+interface!
+
+--- Page 20 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+1. Introduction to Information Visualization
+2. Data Abstraction & Basic Visualizations
+3. Perception & Color
+6. Cognition
+Information Visualization (INFOMVIS) | Lecture 1: Introduction
+4. Tasks & Interaction
+5. Evaluation
+7. Advanced Visualizations 1
+8. Advanced Visualizations 2
+Lectures Overview
+20
+
+
+
+==================================
+FILE: Slides\Lecture2_DataAndVisualizationTypes_EDimara2023-24.pdf
+==================================
+
+--- Page 1 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Dr. Evanthia Dimara
+Lecture 2: Data Abstraction & 
+Basic Visualizations
+Information        Visualization
+1
+Acknowledgments: These slides intergrate components of the fantastic teaching material of Tamara Munzner and Enrico Bertini.
+
+--- Page 2 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 2: Data Abstraction & Basic Visualizations
+Evaluation discussion points
+2
+Happy that  (despite the wooclap “logistics”       ) you enjoyed the intro lecture!  
+Discussion points:
+•
+slides during lecture
+•
+people seat in back can’t hear well
+•
+practical part/group project?
+•
+pizza website, 
+•
+what is non-abstract data? (e.g. case about MRI/Xray) tabular
+•
+are visualizations interactive?
+•
+effectiveness?
+•
+If data is transformed into a visual form, and the form helps users easily understand the problem, then 
+it is visualization. Is this definition correct?
+
+--- Page 3 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+1. Introduction to Information Visualization
+2. Data Abstraction & Basic Visualizations
+3. Perception & Color
+6. Cognition
+Information Visualization (INFOMVIS) | Lecture 2: Data Abstraction & Basic Visualizations
+4. Tasks & Interaction
+5. Evaluation
+7. Advanced Visualizations 1
+8. Advanced Visualizations 2
+Lectures Overview
+3
+
+--- Page 4 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 2: Data Abstraction & Basic Visualizations
+Worst question to ask a visualization expert
+4
+I have Dataset X. How should I visualize it?
+
+--- Page 5 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 2: Data Abstraction & Basic Visualizations
+Worst question to ask a visualization expert
+5
+I have Dataset X. How should I visualize it?
+Their favourite answer? 
+
+--- Page 6 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 2: Data Abstraction & Basic Visualizations
+Worst question to ask a visualization expert
+6
+I have Dataset X. How should I visualize it?
+Their favourite answer? 
+- It depends!
+
+--- Page 7 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 2: Data Abstraction & Basic Visualizations
+Worst question to ask a visualization expert
+7
+I have Dataset X. How should I visualize it?
+Their favourite answer? 
+- It depends!
+on ..data types, 
+user tasks and questions, 
+context of usage, 
+user profile, 
+environment, 
+semantics, …. and we still 
+have to test it!
+
+--- Page 8 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 2: Data Abstraction & Basic Visualizations
+Worst question to ask a visualization designer
+8
+photo taken by https://www.pacificcompanies.com/2019/06/10/what-do-physicians-think-about-dr-google/
+I have Dataset X. How should I visualize it?
+Their favourite answer? 
+- It depends!
+data type, user 
+tasks/questions, 
+context of use, 
+user profile, 
+environment, 
+semtatics, ….
+In the same way that if you type your symptoms, Dr. Google cannot make a diagnosis!
+
+--- Page 9 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 2: Data Abstraction & Basic Visualizations
+Not to give you an answer to this question but to give you the ‘tools’ you need to 
+be able to… investigate that question yourself.  For example**:
+-
+what types of data will I encounter in a visualization project?
+-
+what is the existing design space of visualizations that I can draw inpsiration?
+-
+what kinds of tasks people can do with visualizations?
+-
+how can I know if my visualization solution is good enough? 
+(spoiler alert: consider principles of perception and cognition, 
+read evaluation results of others, conduct your own evaluations)
+-
+[how can go beyond standard visualization and innovate?]
+Goal of your theory lectures
+9
+** a more formal description of the above can be found in the OSIRIS description of the course. 
+I have Dataset X. How should I visualize it?
+
+--- Page 10 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 2: Data Abstraction & Basic Visualizations
+Only 
+1.
+the  WHAT to visualize (i.e. use the right words to characterize your data) 
+2.
+and the HOW to visualize it (i.e. understand how some basic visualizations work 
+based on the type of data you have). 
+Note: to achieve this, it needs self-study 
+à during the lecture just make sure to understand the
+overview/logic of the design space
+Goal of today
+10
+Not the WHY!
+à understanding why to use certain visualization over others will be 
+discussed in all forthcomming lectures
+
+--- Page 11 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 2: Data Abstraction & Basic Visualizations
+semantics: its domain-dependence! 
+WHAT: What is the main difficulty with a dataset?
+11
+
+--- Page 12 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 2: Data Abstraction & Basic Visualizations
+Do you remember this about  field of Information Visualization?
+12
+Data 
+Science
+Human-
+Computer 
+Interaction 
+(HCI)
+Information 
+Visualization
+(InfoVis)
+Psychology  (Vision + Cognition)  Social Sciences
+AI  Stats  Communication Algorithms
+Domain-specific data problems: medicine, forecast, software, physics, finance,…
+
+--- Page 13 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 2: Data Abstraction & Basic Visualizations
+The field of Information Visualization
+13
+Visualization Researcher 
+other domains
+
+--- Page 14 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 2: Data Abstraction & Basic Visualizations
+Nested Model: Analysis framework with 4 levels
+14
+A Nested Model of Visualization Design and Validation. Munzner. IEEE TVCG 15(6):921-928, 2009 (Proc. InfoVis 2009). 
+Also  Munzner, Tamara. Visualization Analysis and Design. Available from: VitalSource Bookshelf, Taylor & Francis, 2014. (Chapter 4)
+1. DOMAIN SITUATION :who are the target users?
+2. ABSTRACTION
+translate from domain language to 
+visualization vocabulary
+•
+WHAT is shown? 
+data abstraction
+•
+WHY is the user looking at it?
+task abstraction
+3. VISUALIZATION
+•
+HOW is it shown? 
+visual encoding: how to draw
+interaction design: how to manipulate
+4. ALGORITHM: efficient computation
+DOMAIN
+ABSTRACTION
+VISUALIZATION
+ALGORITHM
+
+--- Page 15 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 2: Data Abstraction & Basic Visualizations
+Nested Model: Analysis framework with 4 levels
+15
+A Nested Model of VisualizationVisualization Design and Validation. Munzner. IEEE TVCG 15(6):921-928, 2009 (Proc. InfoVis 2009). 
+Also Munzner, Tamara. Analysis and Design. Available from: VitalSource Bookshelf, Taylor & Francis, 2014. (Chapter 4)
+downstream: cascading effects
+upstream: iterative refinement 
+
+--- Page 16 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 2: Data Abstraction & Basic Visualizations
+DOMAIN
+ABSTRACTION
+VISUALIZATION
+ALGORITHM
+Nested Model: WHAT is shown
+16
+A Nested Model of Visualization Design and Validation. Munzner. IEEE TVCG 15(6):921-928, 2009 (Proc. InfoVis 2009). 
+Also Munzner, Tamara. Visualization Analysis and Design. Available from: VitalSource Bookshelf, Taylor & Francis, 2014. (Chapter 4)
+STEP1: Identify dataset type(s), attribute types
+STEP2: Identify cardinality
+How many items in the dataset?
+Cardinality of each attribute?
+•
+number of levels (categorical data)
+•
+range (quantitative data)
+STEP 3: Consider whether to transform data  
+This is guided by understanding of task (not 
+discussed here) 
+Data Abstraction: 
+Translate from domain-specific language to generic visualization language: 
+data description to help you decide what operations and encoding methods 
+are available and appropriate.
+
+--- Page 17 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 2: Data Abstraction & Basic Visualizations
+What does data mean
+17
+Data
+Visualization
+Interaction
+Phenomenon
+Knowledge
+
+--- Page 18 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 2: Data Abstraction & Basic Visualizations
+What does data mean
+18
+Munzner, T. (2014). Visualization Analysis and Design. Taylor & Francis (Chapter 2)
+14, 2.6, 30, 30, 15, 100001
+What does this sequence of six numbers mean?
+•
+two points far from each other in 3D space?
+•
+two points close to each other in 2D space, with 15 links between 
+them, and a weight of 100001 for the link?
+•
+something else?
+Basil, 7, S, Pear
+What about this data?
+•
+food shipment of produce (basil & pear) arrived in satisfactory 
+condition on 7th day of month
+•
+Basil Point neighbourhood of city had 7 inches of snow cleared 
+by the Pear Creek Limited snow removal service
+•
+lab rat Basil made 7 attempts to find way through south section 
+of maze, these trials used pear as reward food
+
+--- Page 19 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 2: Data Abstraction & Basic Visualizations
+What does data mean
+19
+Munzner, T. (2014). Visualization Analysis and Design. Taylor & Francis (Chapter 2)
+semantics: real world meaning
+
+--- Page 20 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 2: Data Abstraction & Basic Visualizations
+What does data mean
+20
+Munzner, T. (2014). Visualization Analysis and Design. Taylor & Francis (Chapter 2)
+semantics: real world meaning
+Data Types: structural or 
+mathematical interpretation of data
+•
+item, link, attribute, position, grid
+•
+different from data types in 
+programming!
+
+
+
+==================================
+FILE: Slides\Lecture3_PerceptionAndColor_EDimara2023-24.pdf
+==================================
+
+--- Page 1 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Dr. Evanthia Dimara
+Lecture 3: 
+Perception & Color
+Information        Visualization
+1
+
+--- Page 2 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+1. Introduction to Information Visualization
+2. Data Abstraction & Basic Visualizations
+3. Perception & Color
+6. Cognition
+Information Visualization (INFOMVIS) | | Lecture 3: Perception & Color
+4. Tasks & Interaction
+5. Evaluation
+7. Advanced Visualizations 1
+8. Advanced Visualizations 2
+Lectures Overview
+2
+
+--- Page 3 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 3: Perception & Color
+Evaluation discussion points
+3
+Please consider filling the evaluation forms
+- Only 3  responses vs 25 in the previous lecture!
+Positive + info + interactivity
+No questions
+
+--- Page 4 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 3: Perception & Color
+Nested Model: Analysis framework with 4 levels
+4
+A Nested Model of Visualization Design and Validation. Munzner. IEEE TVCG 15(6):921-928, 2009 (Proc. InfoVis 2009). 
+Also Munzner, Tamara. Visualization Analysis and Design. Available from: VitalSource Bookshelf, Taylor & Francis, 2014. (Chapter 4)
+1. DOMAIN SITUATION :who are the target users?
+2. ABSTRACTION
+translate from domain language to 
+visualization vocabulary
+•
+WHAT is shown? 
+data abstraction
+•
+WHY is the user looking at it?
+task abstraction
+3. VISUALIZATION
+•
+HOW is it shown? 
+visual encoding: how to draw
+interaction design: how to manipulate
+4. ALGORITHM: efficient computation
+DOMAIN
+ABSTRACTION
+VISUALIZATION
+ALGORITHM
+
+--- Page 5 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+DATA
+(VISUAL) 
+ENCODING
+VISUALIZATION
+PERCEPTION
+INTERACTION
+PHENOMENA
+DATA 
+COLLECTION
+EXISTING KNOWLEDGE &
+MENTAL MODEL OF THE 
+PHENOMENON
+
+--- Page 6 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 3: Perception & Color
+Many visualizations out there: simple, static, interactive,  sophisticated... 
+6
+
+--- Page 7 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 3: Perception & Color
+Many visualizations out there: simple, static, interactive,  sophisticated... 
+7
+All visualizations are 
+practically a visual language,  
+a communication means that  
+that is composed by little 
+„pieces“… 
+
+--- Page 8 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 3: Perception & Color
+Our usual way of communicating is with words 
+8
+Written words consist of single symbols (letters), and when we 
+arrange our letters in certain combinations,  our text gains meaning. 
+
+--- Page 9 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 3: Perception & Color
+Visualization vocabulary? 
+9
+?
+Is there a visual vocabulary that if we arrange it in a certain way,  we 
+can convey information like text?
+
+--- Page 10 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 3: Perception & Color
+Cartographers were the first to investigate this!
+10
+The concept of information visualization began in the 1930's, but after the 1950's became more developed by cartographers.  
+If you are curious to see more, see gallery here https://www.aviz.fr/slowdata
+
+--- Page 11 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 3: Perception & Color
+Jacques Bertin (1967) Semiology of Graphics: 
+11
+Images perceived as a set of signs. 
+Sender encodes information in signs. 
+Receiver decodes information from signs.
+strict separation of
+- content (i.e. the information to encode) and 
+- container (i.e. the properties of the graphical system)
+graphic is a combination of
+- plane properties (i.e. position of marks) and
+- retinal variables (i.e. visual variables above the plane)
+Marks
+Points, lines, and areas
+Positional
+Two planar dimensions
+Retinal
+Size, Value (Brightness), Texture, Color, Orientation, and Shape
+Bertin’s graphical vocabulary.
+
+--- Page 12 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 3: Perception & Color
+Jacques Bertin (1967) Semiology of Graphics: 
+12
+Images perceived as a set of signs. 
+Sender encodes information in signs. 
+Receiver decodes information from signs.
+strict separation of
+- content (i.e. the information to encode) and 
+- container (i.e. the properties of the graphical system)
+graphic is a combination of
+- plane properties (i.e. position of marks) and
+- retinal variables (i.e. visual variables above the plane)
+Marks
+Points, lines, and areas
+Positional
+Two planar dimensions
+Retinal
+Size, Value (Brightness), Texture, Color, Orientation, and Shape
+Bertin’s graphical vocabulary.
+
+--- Page 13 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 3: Perception & Color
+Jacques Bertin (1967) Semiology of Graphics: 
+13
+Images perceived as a set of signs. 
+Sender encodes information in signs. 
+Receiver decodes information from signs.
+strict separation of
+- content (i.e. the information to encode) and 
+- container (i.e. the properties of the graphical system)
+graphic is a combination of
+- plane properties (i.e. position of marks) and
+- retinal variables (i.e. visual variables above the plane)
+Marks
+Points, lines, and areas
+Positional
+Two planar dimensions
+Retinal
+Size, Value (Brightness), Texture, Color, Orientation, and Shape
+Bertin’s graphical vocabulary.
+
+--- Page 14 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 3: Perception & Color
+Jacques Bertin (1967) Semiology of Graphics: 
+14
+Images perceived as a set of signs. 
+Sender encodes information in signs. 
+Receiver decodes information from signs.
+strict separation of
+- content (i.e. the information to encode) and 
+- container (i.e. the properties of the graphical system)
+graphic is a combination of
+- plane properties (i.e. position of marks) and
+- retinal variables (i.e. visual variables above the plane)
+Marks
+Points, lines, and areas
+Positional
+Two planar dimensions
+Retinal
+Size, Value (Brightness), Texture, Color, Orientation, and Shape
+Bertin’s graphical vocabulary.
+
+--- Page 15 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 3: Perception & Color
+Visual Encoding
+15
+Read Munzner, Tamara. Visualization Analysis and Design. Available from: VitalSource Bookshelf, Taylor & Francis, 2014. (Chapter 5)
+how to systematically analyze visualization structure?
+marks & channels
+- marks: represent items or links
+- channels: change appearance of marks based on attributes
+1: vertical position
+mark: line
+2: vertical position
+horizontal position
+mark: point
+3: vertical position
+horizontal position
+color hue
+mark: point
+4: vertical position
+horizontal position
+color hue
+size(area)
+mark: point
+- How did we decide to use those particular visual channels? 
+- How many more visual channels are there? 
+- What kinds of information and how much information can each channel encode? 
+- Are some channels better than others?
+Can all of the channels be used independently or do they interfere with each other?
+
+--- Page 16 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 3: Perception & Color
+Visual Encoding
+16
+Read Munzner, Tamara. Visualization Analysis and Design. Available from: VitalSource Bookshelf, Taylor & Francis, 2014. (Chapter 5)
+how to systematically analyze visualization structure?
+1: vertical position
+mark: line
+2: vertical position
+horizontal position
+mark: point
+3: vertical position
+horizontal position
+color hue
+mark: point
+4: vertical position
+horizontal position
+color hue
+size(area)
+mark: point
+marks & channels
+- marks: represent items or links
+- channels: change appearance of marks based on attributes
+
+--- Page 17 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 3: Perception & Color
+Marks
+17
+Read Munzner, Tamara. Visualization Analysis and Design. Available from: VitalSource Bookshelf, Taylor & Francis, 2014. (Chapter 5)
+Marks : basic geometric elements/primitives à building blocks of the visualization (idiom)
+Points
+Lines
+Areas
+0D
+1D
+2D
+3D mark: volume, rarely used
+
+--- Page 18 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 3: Perception & Color
+Marks
+18
+Read Munzner, Tamara. Visualization Analysis and Design. Available from: VitalSource Bookshelf, Taylor & Francis, 2014. (Chapter 5)
+Marks : basic geometric elements/primitives
+Points
+Lines
+Areas
+0D
+1D
+2D
+3D mark: volume, rarely used
+A point represents a location on the plane that has no theoretical length or area. 
+This signification is independent of the size and character of the mark
+
+--- Page 19 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 3: Perception & Color
+Marks
+19
+Read Munzner, Tamara. Visualization Analysis and Design. Available from: VitalSource Bookshelf, Taylor & Francis, 2014. (Chapter 5)
+Marks : basic geometric elements/primitives
+Points
+Lines
+Areas
+0D
+1D
+2D
+3D mark: volume, rarely used
+A line represents  a phenomenon on the plane which has measurable length,  but no area. 
+This signification is independent of the width and characteristics of the mark.
+For example, line can represent a boundary, a route, or  a connection
+
+--- Page 20 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 3: Perception & Color
+Marks
+20
+Read Munzner, Tamara. Visualization Analysis and Design. Available from: VitalSource Bookshelf, Taylor & Francis, 2014. (Chapter 5)
+Marks : basic geometric elements/primitives
+Points
+Lines
+Areas
+0D
+1D
+2D
+3D mark: volume, rarely used
+The  area represents something on the plane that has measurable size.
+This signification applies to the entire area covered by the visible mark.
+an area can change in position,  but  if we do changes  in size, shape or orientation of an 
+areas this will make that area itself have a different meaning
+
+
+
+==================================
+FILE: Slides\Lecture4_TasksAndInteraction_EDimara2023-24.pdf
+==================================
+
+--- Page 1 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Dr. Evanthia Dimara
+Lecture 4: 
+Tasks & Interaction
+Information        Visualization
+1
+
+--- Page 2 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+Q&A
+Information Visualization (INFOMVIS) | Lecture 4: Tasks & Interaction
+Evaluation discussion points
+2
+Two responses only!
+- break
++ interactive tests
+? length or position in bar charts: 
+à both the position on a common scale (the baseline from which all bars are 
+measured) and length (the size of each bar from the baseline to its end) contribute 
+to the effectiveness of bar charts. 
+position is emphasized as the more critical factor
+
+--- Page 3 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+1. Introduction to Information Visualization
+2. Data Abstraction & Basic Visualizations
+3. Perception & Color
+6. Cognition
+Information Visualization (INFOMVIS) | Lecture 4: Tasks & Interaction
+4. Tasks & Interaction
+5. Evaluation
+7. Advanced Visualizations 1
+8. Advanced Visualizations 2
+Lectures Overview
+3
+
+--- Page 4 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+Q&A
+Information Visualization (INFOMVIS) | Lecture 4: Tasks & Interaction
+Questions to discuss in the next lecture
+4
+Based on everything you know from your perception lecture:
+Which of the two visualization seems more effective?
+• a pie chart or a  barchart?
+• a barchart or a stacked barchart?
+• a heatmap or a scatterplot matrix?
+(of course, it is implied that you already know 
+how those visualizations work from the previous lecture) 
+
+--- Page 5 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 3: Perception & Color
+Channels: Rankings
+5
+pie chart or a  barchart?
+
+--- Page 6 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 3: Perception & Color
+Channels: Rankings
+6
+grouped barchart or a  stacked barchart?
+
+--- Page 7 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 3: Perception & Color
+Channels: Rankings
+7
+heatmap or scatterplot matrix
+
+--- Page 8 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 4: Tasks & Interaction
+Visualization Task & Interaction Taxonomies
+8
+Thinking tools 
+Help to design systems 
+Help understanding 
+Reveal gaps 
+
+--- Page 9 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 4: Tasks & Interaction
+Visualization Task & Interaction Taxonomies
+9
+Thinking tools 
+Help to design systems 
+Help understanding 
+Reveal gaps 
+Taxonomies for data, tasks, visualization and interaction techniques.
+v
+Shneiderman Taxonomy 
+v
+Heer and Shneiderman Taxonomy 
+v
+Brehmer & Munzner Taxonomy
+
+--- Page 10 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 4: Tasks & Interaction
+Shneiderman’s Taxonomy (1996): Task by Data Type
+10
+B. Shneiderman, “The eyes have it: a task by data type taxonomy for information visualizations,” in Proceedings 1996 IEEE Symposium on Visual 
+Languages, 1996, pp. 336–343.
+Visual Information Seeking Mantra:
+“Overview first, Zoom and Filter, then Details-on-demand”
+DATA TYPES
+1-D (linear)
+TEMPORAL
+2D (maps)
+3D
+ND (relational)
+TREES (hierarchies)
+NETWORKS (graphs)
+TASKS
+OVERVIEW : Gain an overview of the entire collection. 
+ZOOM : Zoom in on items of interest 
+FILTER: Filter out uninteresting items. 
+DETAILS-ON-DEMAND: Select an item or group and get details when needed. 
+RELATE: View relationships among items.
+HISTORY: Keep a history of actions to support undo, replay, and progressive refinement. 
+EXTRACT: Allow extraction of sub-collections and of the query parameters.
+
+--- Page 11 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 4: Tasks & Interaction
+Heer and Shneiderman Taxonomy (2012)
+11
+J. Heer and B. Shneiderman, “Interactive Dynamics for Visual Analysis,” Queue, vol. 10, no. 2, p. 30, Feb. 2012.
+DATA & VIEW 
+SPECIFICATION
+Visualize data by choosing visual encodings.
+Filter out data to focus on relevant items.
+Sort items to expose patterns.
+Derive values or models from source data.
+VIEW MANIPULATION
+Select items to highlight, filter, or manipulate them.
+Navigate to examine high-level patterns and low-level detail.
+Coordinate views for linked, multi-dimensional exploration.
+Organize multiple windows and workspaces.
+PROCESS & PROVENANCE Record analysis histories for revisitation, review, and sharing.
+Annotate patterns to document findings.
+Share views and annotations to enable collaboration.
+Guide users through analysis tasks or stories
+
+--- Page 12 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 4: Tasks & Interaction
+Heer and Shneiderman Taxonomy (2012)
+12
+J. Heer and B. Shneiderman, “Interactive Dynamics for Visual Analysis,” Queue, vol. 10, no. 2, p. 30, Feb. 2012.
+DATA & VIEW 
+SPECIFICATION
+Visualize data by choosing visual encodings.
+Filter out data to focus on relevant items.
+Sort items to expose patterns.
+Derive values or models from source data.
+VIEW MANIPULATION
+Select items to highlight, filter, or manipulate them.
+Navigate to examine high-level patterns and low-level detail.
+Coordinate views for linked, multi-dimensional exploration.
+Organize multiple windows and workspaces.
+PROCESS & PROVENANCE Record analysis histories for revisitation, review, and sharing.
+Annotate patterns to document findings.
+Share views and annotations to enable collaboration.
+Guide users through analysis tasks or stories
+“flexible visual analysis tools must provide appropriate controls for specifying the data and views of interest. 
+These controls enable analysts to selectively visualize the data, to filter out unrelated information to focus on 
+relevant items, and to sort information to expose patterns. Analysts also need to derive new data from the input 
+data, such as normalized values, statistical summaries, and aggregates.”
+
+--- Page 13 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 4: Tasks & Interaction
+Heer and Shneiderman Taxonomy (2012)
+13
+J. Heer and B. Shneiderman, “Interactive Dynamics for Visual Analysis,” Queue, vol. 10, no. 2, p. 30, Feb. 2012.
+DATA & VIEW 
+SPECIFICATION
+Visualize data by choosing visual encodings.
+Filter out data to focus on relevant items.
+Sort items to expose patterns.
+Derive values or models from source data.
+VIEW MANIPULATION
+Select items to highlight, filter, or manipulate them.
+Navigate to examine high-level patterns and low-level detail.
+Coordinate views for linked, multi-dimensional exploration.
+Organize multiple windows and workspaces.
+PROCESS & PROVENANCE Record analysis histories for revisitation, review, and sharing.
+Annotate patterns to document findings.
+Share views and annotations to enable collaboration.
+Guide users through analysis tasks or stories
+“Once analysts have created a visualization through data and view specification actions, they should be able to 
+manipulate the view to highlight patterns, investigate hypotheses, and drill down for more details. Analysts 
+must be able to select items or data regions to highlight, filter, or operate on them. Large information spaces 
+may require analysts to scroll, pan, zoom, and otherwise navigate the view to examine both high-level patterns 
+and fine-grained details. Multiple, linked visualizations often provide clearer insights into multidimensional data 
+than do isolated views. Analysis tools must be able to coordinate multiple views so that selection and filtering 
+operations apply to all displays at once and organize the resulting dashboards and work spaces.
+
+--- Page 14 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 4: Tasks & Interaction
+Heer and Shneiderman Taxonomy (2012)
+14
+J. Heer and B. Shneiderman, “Interactive Dynamics for Visual Analysis,” Queue, vol. 10, no. 2, p. 30, Feb. 2012.
+DATA & VIEW 
+SPECIFICATION
+Visualize data by choosing visual encodings.
+Filter out data to focus on relevant items.
+Sort items to expose patterns.
+Derive values or models from source data.
+VIEW MANIPULATION
+Select items to highlight, filter, or manipulate them.
+Navigate to examine high-level patterns and low-level detail.
+Coordinate views for linked, multi-dimensional exploration.
+Organize multiple windows and workspaces.
+PROCESS & PROVENANCE Record analysis histories for revisitation, review, and sharing.
+Annotate patterns to document findings.
+Share views and annotations to enable collaboration.
+Guide users through analysis tasks or stories
+
+--- Page 15 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 4: Tasks & Interaction
+Heer and Shneiderman Taxonomy (2012)
+15
+J. Heer and B. Shneiderman, “Interactive Dynamics for Visual Analysis,” Queue, vol. 10, no. 2, p. 30, Feb. 2012.
+DATA & VIEW 
+SPECIFICATION
+Visualize data by choosing visual encodings.
+Filter out data to focus on relevant items.
+Sort items to expose patterns.
+Derive values or models from source data.
+VIEW MANIPULATION
+Select items to highlight, filter, or manipulate them.
+Navigate to examine high-level patterns and low-level detail.
+Coordinate views for linked, multi-dimensional exploration.
+Organize multiple windows and workspaces.
+PROCESS & PROVENANCE Record analysis histories for revisitation, review, and sharing.
+Annotate patterns to document findings.
+Share views and annotations to enable collaboration.
+Guide users through analysis tasks or stories
+
+--- Page 16 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 4: Tasks & Interaction
+Heer and Shneiderman Taxonomy (2012)
+16
+J. Heer and B. Shneiderman, “Interactive Dynamics for Visual Analysis,” Queue, vol. 10, no. 2, p. 30, Feb. 2012.
+DATA & VIEW 
+SPECIFICATION
+Visualize data by choosing visual encodings.
+Filter out data to focus on relevant items.
+Sort items to expose patterns.
+Derive values or models from source data.
+VIEW MANIPULATION
+Select items to highlight, filter, or manipulate them.
+Navigate to examine high-level patterns and low-level detail.
+Coordinate views for linked, multi-dimensional exploration.
+Organize multiple windows and workspaces.
+PROCESS & PROVENANCE Record analysis histories for revisitation, review, and sharing.
+Annotate patterns to document findings.
+Share views and annotations to enable collaboration.
+Guide users through analysis tasks or stories
+
+--- Page 17 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 4: Tasks & Interaction
+Heer and Shneiderman Taxonomy (2012)
+17
+J. Heer and B. Shneiderman, “Interactive Dynamics for Visual Analysis,” Queue, vol. 10, no. 2, p. 30, Feb. 2012.
+DATA & VIEW 
+SPECIFICATION
+Visualize data by choosing visual encodings.
+Filter out data to focus on relevant items.
+Sort items to expose patterns.
+Derive values or models from source data.
+VIEW MANIPULATION
+Select items to highlight, filter, or manipulate them.
+Navigate to examine high-level patterns and low-level detail.
+Coordinate views for linked, multi-dimensional exploration.
+Organize multiple windows and workspaces.
+PROCESS & 
+PROVENANCE
+Record analysis histories for revisitation, review, and sharing.
+Annotate patterns to document findings.
+Share views and annotations to enable collaboration.
+Guide users through analysis tasks or stories
+“Visual analytics is not limited to the generation and manipulation of visualizations—it involves a process of 
+iterative data exploration and interpretation. As a result, visual analytics tools that provide facilities for 
+scaffolding the analysis process will be more widely adopted. Tools should preserve analytic provenance by 
+keeping a record of analyst actions and insights so that the history of work can be reviewed and refined. Textual 
+logs of activity have benefits, but visual overviews of activity can be more compact and comprehensible. If 
+analysts can annotate patterns, outliers, and views of interest, they can document their observations, questions, 
+and hypotheses. In a networked environment, analysts should be empowered to share results and discuss with 
+colleagues, coordinate the work of multiple groups, or support processes that may take weeks and months. 
+Moreover, analysis tools can explicitly guide novices through common analysis tasks, provide progress indicators 
+for experts, or lead viewers through an analysis story.
+s.
+
+--- Page 18 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 4: Tasks & Interaction
+Heer and Shneiderman Taxonomy (2012)
+18
+J. Heer and B. Shneiderman, “Interactive Dynamics for Visual Analysis,” Queue, vol. 10, no. 2, p. 30, Feb. 2012.
+DATA & VIEW 
+SPECIFICATION
+Visualize data by choosing visual encodings.
+Filter out data to focus on relevant items.
+Sort items to expose patterns.
+Derive values or models from source data.
+VIEW MANIPULATION
+Select items to highlight, filter, or manipulate them.
+Navigate to examine high-level patterns and low-level detail.
+Coordinate views for linked, multi-dimensional exploration.
+Organize multiple windows and workspaces.
+PROCESS & 
+PROVENANCE
+Record analysis histories for revisitation, review, and sharing.
+Annotate patterns to document findings.
+Share views and annotations to enable collaboration.
+Guide users through analysis tasks or stories
+
+--- Page 19 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 4: Tasks & Interaction
+Brehmer & Munzner (2013)
+19
+M. Brehmer and T. Munzner, “A Multi-Level Typology of Abstract Visualization Tasks,” IEEE Trans. Vis. Comput. Graph., vol. 19, no. 12, pp. 2376–
+2385, Dec. 2013.
+why?
+present
+discover
+enjoy
+lookup
+locate
+browse
+explore
+produce
+identify
+compare
+summarize
+target known
+target unknown
+location unknown
+location known
+query
+consume
+search
+how?
+annotate
+import
+derive
+record
+select
+navigate
+arrange
+change
+ﬁlter
+aggregate
+encode
+manipulate
+introduce
+what?
+[ input ]
+[ output ]
+
+--- Page 20 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 4: Tasks & Interaction
+Brehmer & Munzner (2013)
+20
+M. Brehmer and T. Munzner, “A Multi-Level Typology of Abstract Visualization Tasks,” IEEE Trans. Vis. Comput. Graph., vol. 19, no. 12, pp. 2376–
+2385, Dec. 2013.
+why?
+present
+discover
+enjoy
+lookup
+locate
+browse
+explore
+produce
+identify
+compare
+summarize
+target known
+target unknown
+location unknown
+location known
+query
+consume
+search
+how?
+annotate
+import
+derive
+record
+select
+navigate
+arrange
+change
+ﬁlter
+aggregate
+encode
+manipulate
+introduce
+what?
+[ input ]
+[ output ]
+1. Why is a task undertaken?
+2. What are the task’s
+inputs and outputs?
+3. How is the task supported in terms of methods
+(visualIization + interaction techniques) ?
+This taxonomy is organized around these 3 questions: 
+
+
+
+==================================
+FILE: Slides\Lecture5_Evaluation_EDimara2023-24.pdf
+==================================
+
+--- Page 1 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Dr. Evanthia Dimara
+Lecture 5: 
+Evaluation
+Information        Visualization
+1
+Acknowledgments: These slides  borrow from the fantastic teaching material of Fanny Chevalie and Tamara Munzner
+
+--- Page 2 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 5: Evaluation
+Evaluation Discussion Points
+2
+Only 1 response
+ü
+“I still don't 100% understand where the limits of interaction lie. The edge 
+cases raised more questions than answers, but it seems quite debateable 
+overall so maybe that was the point.”
+Interaction lecture videos uploaded in your class materials!
+Other Questions? 
+
+--- Page 3 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+1. Introduction to Information Visualization
+2. Data Abstraction & Basic Visualizations
+3. Perception & Color
+6. Cognition
+Information Visualization (INFOMVIS) | Lecture 5: Evaluation
+4. Tasks & Interaction
+5. Evaluation
+7. Advanced Visualizations 1
+8. Advanced Visualizations 2
+Lectures Overview
+3
+
+--- Page 4 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 5: Evaluation
+Evaluation lecture
+4
+ü
+You already know about how to improve your visualization design considering
+ü
+data and visualization types
+ü
+perceptual rules
+ü
+interaction tasks and techniques
+Now you will learn how to improve your visualization design by
+…. testing it!
+
+--- Page 5 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 5: Evaluation
+WHY evaluate visualizations?
+5
+Creation of new techniques is very important but.. 
+it is also important to know: 
+•
+which  aspects of your visualization “work"
+•
+that methods are improving
+•
+if your technique actually helps people and isn’t just “cool"
+
+--- Page 6 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 5: Evaluation
+WHY evaluate visualizations?
+6
+•
+find out if visualizations are effective
+•
+find out if visualizations are efficient
+•
+find out if visualizations are useful
+•
+find out if interactive tools are usable
+•
+motivate the creation of new visualizations
+•
+learn about tasks to support
+•
+learn about existing visualizations to improve or replace
+•
+learn how people reason with visualization
+•
+learn how people communicate/collaborate with visualizations
+
+--- Page 7 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 5: Evaluation
+WHEN to evaluate a visualization?
+7
+ü when the visualization is completed/done…
+ü throughout the development…
+ü before even starting…
+
+--- Page 8 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 5: Evaluation
+WHAT to evaluate in visualizations?
+8
+•
+does my visualization show what I want it to show?
+•
+can people draw the right conclusions from it?
+•
+can my visualization be used by the target audience?
+•
+does my visualization support realistic tasks?
+•
+does my visualization scale with (realistic) data sizes?
+•
+what do people want/need to see in their data?
+•
+how does my visualization compare to another?
+•
+is my visualization precise enough for a given task?
+•
+…
+
+--- Page 9 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 5: Evaluation
+HOW to evaluate a visualization: So many methods, how to pick?
+9
+Computational benchmarks?
+• quant: system performance, memory
+User study in lab setting?
+• quant: (human) time and error rates, preferences
+• qual: behavior/strategy observations
+Field study of deployed system?
+• quant: usage logs
+• qual: interviews with users, case studies, observations
+Analysis of results?
+• quant: metrics computed on result images
+• qual: consider what structure is visible in result images
+Justification of choices?
+• qual: perceptual principles, best practices
+
+--- Page 10 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 5: Evaluation
+HOW to evaluate visualizations?
+10
+•
+commonalities to HCI work
+•
+methodologies borrowed from social sciences
+Evaluating Information Visualizations
+
+--- Page 11 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 5: Evaluation
+HOW to evaluate visualizations?
+11
+Evaluating Information Visualizations
+Generalizability: a result is generalizable to the extent to which it can apply to other people 
+(than those directly in the study) and perhaps even extend to other situations.
+
+--- Page 12 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 5: Evaluation
+HOW to evaluate visualizations?
+12
+Evaluating Information Visualizations
+Precision: a result is precise to the degree to which one can be definite about the measurements that 
+were taken and about the control of the factors that were not intended to be studied. 
+
+--- Page 13 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 5: Evaluation
+HOW to evaluate visualizations?
+13
+Evaluating Information Visualizations
+Realism: a result is considered realistic to the extent to which the context in which it was studied is 
+like the context in which it will be used.
+
+--- Page 14 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 5: Evaluation
+HOW to evaluate visualizations?
+14
+•
+commonalities to HCI work
+•
+methodologies borrowed from social sciences
+A field study is typically conducted in the actual situation, and the observer tries as much as possible 
+to be unobtrusive. Ideally the presence of the observer does not affect what is being observed. This 
+is not always possible. 
+Examples: include ethnographic work in cultural anthropology, field studies in sociology, and case 
+studies in industry.  In this type of study, the realism is high but the results are not particularly 
+precise and  likely not particularly generalizable. These studies typically generate a focused but rich 
+description of the situation being studied.
+
+--- Page 15 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 5: Evaluation
+HOW to evaluate visualizations?
+15
+•
+commonalities to HCI work
+•
+methodologies borrowed from social sciences
+A field experiment is usually also conducted in a realistic setting;  however, an experimenter trades 
+some degree of unobtrusiveness in order to obtain  more precision in observations. For instance, 
+the experimenter may ask the participants to perform a specific task while the experimenter is 
+present. While realism is still high, it has been reduced slightly by experimental manipulation. 
+However, the necessity of long observations may be shortened and results may be more readily 
+interpretable and specific questions are more likely to be answered.
+
+--- Page 16 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 5: Evaluation
+HOW to evaluate visualizations?
+16
+In a laboratory experiment the experimenters fully design  
+the study: settings, how the study will be conducted,  what 
+tasks the participants will do, the whole study procedure. 
+Participants follow the rules of the  procedure within the 
+set situation. Carefully done, this can provide for 
+considerable  precision. In addition, non-realistic behaviour 
+that provides the experimenter more  information can be 
+requested such as a ‘think aloud’ protocol. Behaviour can 
+be  measured, partly because it is reasonably well known 
+when and where the behaviour  of interest may happen. 
+However, realism is largely lost and the degree to which 
+the  experimenter introduces aspects of realism will likely 
+reduce the possible precision. 
+
+--- Page 17 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 5: Evaluation
+HOW to evaluate visualizations?
+17
+With an experimental simulation the experimenter tries to keep as much of the precision as 
+possible while introducing some realism via simulation. Use of simulation can avoid risky or un-
+ethical situations e.g. driving while using a cell phone or under some substance’s influence by 
+using a driving simulator. Similarly although less dramatically, non-existent computer programs 
+can be studied using the ‘Wizard of Oz’ approach in which a hidden experimenter simulates a 
+computer program. This type of study can provide us with considerable information while 
+reducing the dan-gers and costs of a more realistic experiment. 
+
+--- Page 18 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 5: Evaluation
+HOW to evaluate visualizations?
+18
+In a judgment study the purpose is to gather a person’s response 
+to a set of stimuli in a situation where the setting is made 
+irrelevant (creates ‘neutral conditions’, not affected by the 
+environment). Perceptual studies often use this approach. e.g. 
+what types of surface textures best support the perception of 3D 
+shape. However, in assessing information visualizations this idea 
+of setting a study in neutral conditions must be considered 
+carefully: e.g. Reilly and Inkpen’s  study which showed that the 
+necessity for an interactive technique developed to support a 
+person’s mental model during transition from viewing one map to 
+another (subway map to surface map) was dependent on the 
+distractions in the setting. 
+
+--- Page 19 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 5: Evaluation
+HOW to evaluate visualizations?
+19
+•
+commonalities to HCI work
+•
+methodologies borrowed from social sciences
+In a sample survey the experimenter is interested in discovering relationships between a set of 
+variables in a given population.  e.g.: 
+(1) people who discover web information visualization tools how many return frequently and are their 
+activities social or work related?  
+(2) how often people use information visualization software available at work what is the frequency of 
+use? 
+(3) considering the increased examples of information software on the web, is the general population’s 
+awareness of and/or use of information visualization increasing? 
+In these types of studies proper sampling  of the population can lead to considerable generalizability. 
+However, while choosing the population carefully is extremely important, often it is difficult to control. 
+e.g., web-based survey, all returned answers are from those types of people who are willing to take the 
+time, fill out the questionnaire, etc. This is a type of bias and thus reduces generalizability. Also, 
+responses are hard to calibrate. 
+
+--- Page 20 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 5: Evaluation
+HOW to evaluate visualizations?
+20
+Formal theory is not a separate experimental methodology but an important aspect of all empirical 
+research that can easily be overlooked. As such, it does not involve the gathering of new empirical 
+evidence and as a result is low in both precision and realism. Here, existing empirical evidence is 
+examined to consider the theoretical implications.  e.g. the results of several studies can be 
+considered as a whole to provide a higher-level or meta-understanding or the results can be 
+considered in light of existing theories to extend, adjust or refute them. 
+
+
+
+==================================
+FILE: Slides\Lecture6_Cognition_EDimara2023-24.pdf
+==================================
+
+--- Page 1 ---
+E.DIMARA
+© 2022-23
+E.DIMARA
+© 2022-23
+å
+L
+Dr. Evanthia Dimara
+Lecture 6: 
+Cognition
+Information        Visualization
+1
+
+--- Page 2 ---
+E.DIMARA
+© 2022-23
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 6: Cognition
+Evaluation Discussion Points
+2
+Only 1 response
+ü
+more examples for the methodologies would help/ Not sure if it will be too time 
+consuming
+Other Questions? 
+
+--- Page 3 ---
+E.DIMARA
+© 2022-23
+E.DIMARA
+© 2022-23
+L
+1. Introduction to Information Visualization
+2. Data Abstraction & Basic Visualizations
+3. Perception & Color
+6. Cognition
+Information Visualization (INFOMVIS) | Lecture 6: Cognition
+4. Tasks & Interaction
+5. Evaluation
+7. Advanced Visualizations 1
+8. Advanced Visualizations 2
+Lectures Overview
+3
+
+--- Page 4 ---
+E.DIMARA
+© 2022-23
+E.DIMARA
+© 2022-23
+L
+Utrecht University | Responsible Data Science | Lecture 6: The Human Dimension
+Cognition is an inherently complex topic (even for concrete tasks like visual search)
+4
+Wolfe, Jeremy M. "Guided Search 6.0: An updated model of visual search." Psychonomic Bulletin & Review 28.4 (2021): 1060-1092.
+
+--- Page 5 ---
+E.DIMARA
+© 2022-23
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 6: Cognition
+What do you think of these data?
+5
+https://public.tableau.com/app/profile/alice.mcknight/viz/AMatterofPerspective/AMatterofPerspective?publish=yes
+by Alice McKnight
+
+--- Page 6 ---
+E.DIMARA
+© 2022-23
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 6: Cognition
+What do you think of these data?
+6
+https://public.tableau.com/app/profile/alice.mcknight/viz/AMatterofPerspective/AMatterofPerspective?publish=yes
+by Alice McKnight
+
+--- Page 7 ---
+E.DIMARA
+© 2022-23
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 6: Cognition
+What do you think of these data?
+7
+https://public.tableau.com/app/profile/alice.mcknight/viz/AMatterofPerspective/AMatterofPerspective?publish=yes
+by Alice McKnight
+
+--- Page 8 ---
+E.DIMARA
+© 2022-23
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 6: Cognition
+8
+https://public.tableau.com/app/profile/alice.mcknight/viz/AMatterofPerspective/AMatterofPerspective?publish=yes
+by Alice McKnight
+beyond vision and 
+“grammatically correct”
+ visualizations t (i.e., no 
+visual distortions on scales
+, marks, or channels).
+
+--- Page 9 ---
+E.DIMARA
+© 2022-23
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 6: Cognition
+9
+https://medium.com/multiple-views-visualization-research-explained/visualization-research-in-cognitive-biases-a-survival-guide-for-engineers-
+32ccd74ad961
+cognitive biases
+HUMAN COGNITION
+
+--- Page 10 ---
+E.DIMARA
+© 2022-23
+E.DIMARA
+© 2022-23
+L
+Utrecht University | Responsible Data Science | Lecture 6: The Human Dimension
+What is a cognitive bias?
+10
+Pohl, R. (2016). Cognitive Illusions: Intriguing phenomena in thinking, judgment and memory (2nd Edition). Psychology Press. 
+https://doi.org/10.4324/9781315696935
+•
+reliably deviates from reality,
+•
+occurs systematically,
+•
+occurs involuntarily,
+•
+is difficult or impossible to avoid, and
+•
+appears rather distinct from the normal course of information processing.
+
+--- Page 11 ---
+E.DIMARA
+© 2022-23
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 6: Cognition
+Example: Which president would you vote for?
+11
+Eve
+Bob
+Alice
+Education
+Crime Control
+dominated alternative
+trade-off 
+decision
+Eve
+Bob
+Alice
+votes
+J. Huber, J. W. Payne, and C. Puto. Adding asymmetrically dominated alternatives: Violations of regularity and the similarity hypothesis. 
+Journal of Consumer Research, 9(1):90–98, 1982.
+
+--- Page 12 ---
+E.DIMARA
+© 2022-23
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 6: Cognition
+Example: Which president would you vote for?
+12
+Bob
+Alice
+Education
+Crime Control
+trade-off 
+decision
+Bob
+Alice
+votes
+J. Huber, J. W. Payne, and C. Puto. Adding asymmetrically dominated alternatives: Violations of regularity and the similarity hypothesis. 
+Journal of Consumer Research, 9(1):90–98, 1982.
+
+--- Page 13 ---
+E.DIMARA
+© 2022-23
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 6: Cognition
+Example: Which president would you vote for?
+13
+Eve
+Bob
+Alice
+Education
+Crime Control
+dominated alternative
+trade-off 
+decision
+Eve
+Bob
+Alice
+votes
+J. Huber, J. W. Payne, and C. Puto. Adding asymmetrically dominated alternatives: Violations of regularity and the similarity hypothesis. 
+Journal of Consumer Research, 9(1):90–98, 1982.
+
+--- Page 14 ---
+E.DIMARA
+© 2022-23
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 6: Cognition
+Eve
+Bob
+Alice
+Education
+Crime Control
+Example of a cognitive bias: Attraction Effect (or Decoy effect)
+14
+J. Huber, J. W. Payne, and C. Puto. Adding asymmetrically dominated alternatives: Violations of regularity and the similarity hypothesis. Journal 
+of Consumer Research, 9(1):90–98, 1982.
+dominated alternative
+trade-off 
+decision
+regularity
+
+--- Page 15 ---
+E.DIMARA
+© 2022-23
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 6: Cognition
+15
+E. Dimara, S. Franconeri, C. Plaisant, A. Bezerianos, and P. Dragicevic, “A Task-Based Taxonomy of Cognitive Biases for Information Visualization,” 
+Transactions on Visualization and Computer Graphics , vol. 26, no. 2, pp. 1413–1432, Feb. 2020.
+Alice
+Eve
+Bob
+Crime Control
+Education
+Probability
+Prize
+high-probability 
+ticket
+high-prize 
+ticket
+Example of a cognitive bias: Attraction Effect in Scatterplots
+
+--- Page 16 ---
+E.DIMARA
+© 2022-23
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 6: Cognition
+16
+E. Dimara, S. Franconeri, C. Plaisant, A. Bezerianos, and P. Dragicevic, “A Task-Based Taxonomy of Cognitive Biases for Information Visualization,” 
+Transactions on Visualization and Computer Graphics , vol. 26, no. 2, pp. 1413–1432, Feb. 2020.
+Probability
+Prize
+Pareto Front
+same 
+expected 
+value
+Example of a cognitive bias: Attraction Effect in Scatterplots
+
+--- Page 17 ---
+E.DIMARA
+© 2022-23
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 6: Cognition
+Cognitive biases: deviation from a norm
+17
+regularity
+dominance
+invariance
+regularity: that  the addition 
+of a new alternative cannot 
+increase the probability the 
+others to be chosen.  
+Dominance decision 
+makers  should always 
+select  superior 
+alternatives which  no 
+other dominates them.  
+ 
+ 
+invariance: decision makers 
+should not be affected  by 
+the way alternatives are 
+presented.
+
+--- Page 18 ---
+E.DIMARA
+© 2022-23
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 6: Cognition
+Categories of Cognitive Biases
+ESTIMATION
+DECISION
+HYPOTHESIS ASSESSMENT
+CAUSAL ATTRIBUTION
+RECALL
+OPINION
+OTHER
+Dimara, E., Franconeri, S., Plaisant, C., Bezerianos, A., & Dragicevic, P. (2020). A Task-Based Taxonomy of Cognitive Biases for Information 
+Visualization. IEEE Transactions on Visualization and Computer Graphics, 26(2), 1413–1432. https://doi.org/10.1109/TVCG.2018.2872577
+
+--- Page 19 ---
+E.DIMARA
+© 2022-23
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 6: Cognition
+Cognitive biases in decisions
+Cognitive biases in decisions
+select one over several alternative options
+Dimara, E., Franconeri, S., Plaisant, C., Bezerianos, A., & Dragicevic, P. (2020). A Task-Based Taxonomy of Cognitive Biases for Information Visualization. IEEE 
+Transactions on Visualization and Computer Graphics, 26(2), 1413–1432. https://doi.org/10.1109/TVCG.2018.2872577
+à revelant for decision support 
+
+--- Page 20 ---
+E.DIMARA
+© 2022-23
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 6: Cognition
+uncertainty
+framing
+inertia
+Cognitive biases in decisions
+Dimara, E., Franconeri, S., Plaisant, C., Bezerianos, A., & Dragicevic, P. (2020). A Task-Based Taxonomy of Cognitive Biases for Information 
+Visualization. IEEE Transactions on Visualization and Computer Graphics, 26(2), 1413–1432. https://doi.org/10.1109/TVCG.2018.2872577
+
+
+
+==================================
+FILE: Slides\Lecture7_AdvancedVisualization1_EDimara2023-24.pdf
+==================================
+
+--- Page 1 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Dr. Evanthia Dimara
+Lecture 7: 
+Advanced Visualizations 1
+Information        Visualization
+1
+Acknowledgments: These slides  borrow from the conference presentation material of Paola Valdivia and the fantastic teaching material of Benjamin Bach.
+
+--- Page 2 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+1. Introduction to Information Visualization
+2. Data Abstraction & Basic Visualizations
+3. Perception & Color
+6. Cognition
+Information Visualization (INFOMVIS) | Lecture 7: Advanced Visualizations 1
+4. Tasks & Interaction
+5. Evaluation
+7. Advanced Visualizations 1
+8. Advanced Visualizations 2
+Lectures Overview
+2
+
+--- Page 3 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 7: Advanced Visualizations 1
+Data Types
+3
+Munzner, T. (2014). Visualization Analysis and Design. Taylor & Francis (Chapter 2)
+ITEM
+individual entity, discrete
+ATTRIBUTE
+property that is measured, 
+observed, logged
+LINK
+express relationship 
+between 2 items
+POSITION
+spatia data: location 2D or 3D
+synonyms: 
+dependent variables 
+(in stats), columns, 
+variables, dimensions, 
+properties, features
+GRID
+sampling strategy for continious data 
+(geometric & topological relation) 
+synonyms
+edge
+synonyms: 
+independent variables 
+(in stats), rows, records, 
+observations, objects, 
+entities
+Friendship in Facebook
+Interactions between proteins
+Connection between criminals
+
+--- Page 4 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+cell containing the value
+Dataset Types
+Information Visualization (INFOMVIS) | Lecture 2: Data Abstraction & Basic Visualizations
+TABLES
+NETWORKS
+synonym: graphs
+FIELDS
+(continuous)
+GEOMETRY
+(spatial)
+Trees
+special 
+case
+Link
+N
+ITEMS 
+(node, 
+vertex)
+LINKS 
+(edges
+)
+ATTRIBUTES 
+(columns)
+ITEMS 
+(rows)
+cell containing 
+the value
+GRID (of POSITIONS)
+ATTRIBUTES (columns)
+POSITIONS
+special 
+case
+Multidimensional 
+Table
+Value in cell
++ATTRIBUTES
++ ITEMS
+e.g., a medical scan
+groups of 
+ITEMS
+SETS
+(unordered) 
+interesting to VIS only 
+if design choices are 
+important,
+othewise -> graphics
+(ordered) 
+LISTS
+(based on ATTRIBUTE 
+similarity)
+CLUSTERS 
+4
+
+--- Page 5 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+cell containing the value
+Dataset Types
+Information Visualization (INFOMVIS) | Lecture 2: Data Abstraction & Basic Visualizations
+TABLES
+NETWORKS
+synonym: graphs
+FIELDS
+(continuous)
+GEOMETRY
+(spatial)
+Trees
+special 
+case
+Link
+N
+ITEMS 
+(node, 
+vertex)
+LINKS 
+(edges
+)
+ATTRIBUTES 
+(columns)
+ITEMS 
+(rows)
+cell containing 
+the value
+GRID (of POSITIONS)
+ATTRIBUTES (columns)
+POSITIONS
+special 
+case
+Multidimensional 
+Table
+Value in cell
++ATTRIBUTES
++ ITEMS
+e.g., a medical scan
+groups of 
+ITEMS
+SETS
+(unordered) 
+interesting to VIS only 
+if design choices are 
+important,
+othewise -> graphics
+(ordered) 
+LISTS
+(based on ATTRIBUTE 
+similarity)
+CLUSTERS 
+5
+`````````
+```
+Dataset Type: Networks | Types of Network visualizations
+node-link diagram
+force-directed 
+layout
+fixed
+ layout
+https://blog.revolutionanalytics.com/2012/01/visualize-your-facebook-friends-network-with-r.htm l
+https://truth-and-beauty.net/projects/muesli-ingredient-network
+adjacency matrix
++ node variation with shape, size, color
++ edge variations with thickness, dashing
+standard graph drawing 
+
+--- Page 6 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) Lecture 7: Advanced Visualizations 1
+How to visualize relational data, i.e. graphs and networks?
+Basic concepts
+Density
+Multivariate networks
+Geographic networks
+
+--- Page 7 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 7: Advanced Visualizations 1
+Nodes
+Vertex
+Actor
+Point
+Link
+Arc
+Relation(ship)
+Connection
+Graph G = (N, V)
+Networks: Basic Concepts
+
+--- Page 8 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 7: Advanced Visualizations 1
+Node-link Diagram
+
+--- Page 9 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 7: Advanced Visualizations 1
+Node-link Diagram
+Directed 
+Link
+Multiple 
+Links
+Link 
+Types
+Node 
+type
+Weighted 
+link
+
+--- Page 10 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 7: Advanced Visualizations 1
+Visualizing Networks
+Sociograms: 
+Iacob Levy Moreno 
+(1889 – 1974) 
+-Finding an embedding
+-Finding optimal layout
+-Visualize attributes
+-Support network tasks
+
+--- Page 11 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 7: Advanced Visualizations 1
+More layouts with web-cola: 
+https://ialab.it.monash.edu/webcola/
+
+--- Page 12 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) Lecture 7: Advanced Visualizations 1
+Lombardi Diagrams
+-
+Lee, Bongshin, et al. "Task taxonomy for graph visualization." Proceedings of the 2006 AVI workshop on BEyond time and errors: novel 
+evaluation methods for information visualization. 2006.
+-
+Topology
+-
+Find nodes
+-
+Find neighbors
+-
+Find shortest path
+-
+Find clusters
+-
+Find bridge nodes
+-
+Attributes
+-
+Node attributes
+-
+Link attributes
+-
+Browse
+-
+Follow links
+-
+Discover
+-
+Overview
+Why do we visualize networks?
+High-level
+-
+Graph comparison
+-
+Temporal networks
+-
+Geographic networks
+-
+...
+
+--- Page 13 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) Lecture 7: Advanced Visualizations 1
+How to visualize relational data, i.e. graphs and networks?
+Basic concepts
+Density
+Multivariate networks
+Geographic networks
+
+--- Page 14 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) Lecture 7: Advanced Visualizations 1
+Graph density = |N| x |N| - |N| / |E|
+
+--- Page 15 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 7: Advanced Visualizations 1
+Motif Simplification
+Dunne, Cody, and Ben Shneiderman. "Motif simplification: improving network visualization readability with fan, connector, and clique 
+glyphs." Proceedings of the SIGCHI Conference on Human Factors in Computing Systems. 2013.
+
+--- Page 16 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 7: Advanced Visualizations 1
+Motif Simplification
+Dunne, Cody, and Ben Shneiderman. "Motif simplification: improving network visualization readability with fan, connector, and clique 
+glyphs." Proceedings of the SIGCHI Conference on Human Factors in Computing Systems. 2013.
+
+--- Page 17 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) Lecture 7: Advanced Visualizations 1
+Arc Diagram
+Wattenberg, Martin. "Arc diagrams: Visualizing structure in strings." Information Visualization, 2002. INFOVIS 2002. IEEE Symposium on. IEEE, 
+2002.
++
+Node ordering
++
+Node groups
+-
+Requires meaningful ordering
+-
+Does not scale with density
+
+--- Page 18 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) Lecture 7: Advanced Visualizations 1
+Adjacency Matrix
+
+--- Page 19 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) Lecture 7: Advanced Visualizations 1
+Ordering
+
+--- Page 20 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) Lecture 7: Advanced Visualizations 1
+Node Link
+Matrices
+
+
+
+==================================
+FILE: Slides\Lecture8_AdvancedVisualization2_EDimara2023-24.pdf
+==================================
+
+--- Page 1 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Dr. Evanthia Dimara
+Lecture 8: 
+Advanced Visualizations 2
+Information        Visualization
+1
+Acknowledgments: These slides  borrow from the fantastic teaching material of Benjamin Bach.
+
+--- Page 2 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+1. Introduction to Information Visualization
+2. Data Abstraction & Basic Visualizations
+3. Perception & Color
+6. Cognition
+Information Visualization (INFOMVIS) | Lecture 8: Advanced Visualizations 2
+4. Tasks & Interaction
+5. Evaluation
+7. Advanced Visualizations 1
+8. Advanced Visualizations 2
+Lectures Overview
+2
+
+--- Page 3 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) Lecture 8: Advanced Visualizations 2
+Data-Driven Storytelling
+Exploration vs. Explanation
+-Storytelling
+-Storytelling structures
+-Storytelling patterns
+-Storytelling genres 
+-Style and design
+s with data?
+
+--- Page 4 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 8: Advanced Visualizations 2
+Narrative Structures
+Author driven
+Heavy messaging
+No interactivity
+Linear
+Reader driven
+No messaging
+Free interactivity
+Interactive
+
+--- Page 5 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 8: Advanced Visualizations 2
+Narrative Structures
+Martini-glass Structure
+Guidance first, then exploration
+Interactive slideshow
+Overall structure 
++ local exploration
+Drill-down story
+Largely reader driven
+Segel E, Heer J. Narrative visualization: Telling stories with data. IEEE transactions on visualization 
+and computer graphics. 2010 Oct 28;16(6):1139-48.
+
+--- Page 6 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 8: Advanced Visualizations 2
+Narrative Structures
+Martini-glass Structure
+Guidance first, then exploration
+Interactive slideshow
+Overall structure 
++ local exploration
+Drill-down story
+Largely reader driven
+Segel E, Heer J. Narrative visualization: Telling stories with data. IEEE transactions on visualization 
+and computer graphics. 2010 Oct 28;16(6):1139-48.
+following a tight narrative path early on (the stem 
+of the glass) and then opening up later for free 
+exploration (the body of the glass). 
+
+--- Page 7 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 8: Advanced Visualizations 2
+Narrative structures: Martini-glass Structure
+https://ig.ft.com/sites/climate-change-calculator/
+Now it’s your turn. Resize the bars below to set countries’ 
+ambitions for emissions cuts, starting with 2020-2030. Then 
+proceed to the next step...
+
+--- Page 8 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 8: Advanced Visualizations 2
+Narrative Structures
+Martini-glass Structure
+Guidance first, then exploration
+Interactive slideshow
+Overall structure 
++ local exploration
+Drill-down story
+Largely reader driven
+Segel E, Heer J. Narrative visualization: Telling stories with data. IEEE transactions on visualization 
+and computer graphics. 2010 Oct 28;16(6):1139-48.
+slide-show presentation (single frame interactivity) 
+augmented by:
+- allow user determine pace (progress bar)
+- allow interaction with mouse-over areas of interest
+Narrative can communicate key data 
+observations as well as provide 
+interaction tutorial. 
+
+--- Page 9 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 8: Advanced Visualizations 2
+Narrative structures: Interactive Slideshow
+https://ig.ft.com/sites/climate-change-calculator/
+Since February, countries have been publishing their plans for cutting greenhouse gas (GHG) emissions, 
+ahead of a December UN meeting in Paris that aims to deliver a new accord on climate change...
+Climate Change 
+Calculator: 
+
+--- Page 10 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 8: Advanced Visualizations 2
+Narrative structures: Interactive Slideshow
+https://ig.ft.com/sites/climate-change-calculator/
+If every country keeps pumping GHGs into the environment at its current rate until 2100, the planet’s 
+surface will warm by an average of up to 6°C, bringing about a dramatically different climate...
+Climate Change 
+Calculator: 
+
+--- Page 11 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 8: Advanced Visualizations 2
+Narrative structures: Interactive Slideshow
+https://ig.ft.com/sites/climate-change-calculator/
+Countries’ pledges for emissions cuts mostly cover the period between 2020 and 2030. Let's see what would 
+happen if all these commitments are met......
+Climate Change 
+Calculator: 
+
+--- Page 12 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 8: Advanced Visualizations 2
+Narrative structures: Interactive Slideshow
+https://ig.ft.com/sites/climate-change-calculator/
+Most countries have now announced plans, but some of the biggest emitters are proposing to do the least, 
+and globally, current pledges won’t be enough to limit the temperature increase to the agreed limit of 2°C by 
+2100. What about after 2030?
+Climate Change 
+Calculator: 
+
+--- Page 13 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 8: Advanced Visualizations 2
+Narrative structures: Interactive Slideshow
+https://ig.ft.com/sites/climate-change-calculator/
+The Paris accord due to be struck in December is supposed to ensure countries ratchet up their pledges. 
+Some have already set targets for 2030-2050, and we can make estimates for the others...
+Climate Change 
+Calculator: 
+
+--- Page 14 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 8: Advanced Visualizations 2
+Narrative structures: Interactive Slideshow
+https://ig.ft.com/sites/climate-change-calculator/
+The Paris accord due to be struck in December is supposed to ensure countries ratchet up their pledges. 
+Some have already set targets for 2030-2050, and we can make estimates for the others...
+Climate Change 
+Calculator: 
+continue the 
+story here..
+
+--- Page 15 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) Lecture 8: Advanced Visualizations 2
+Narrative Structures
+Martini-glass Structure
+Guidance first, then exploration
+Interactive slideshow
+Overall structure 
++ local exploration
+Drill-down story
+Largely reader driven
+Segel E, Heer J. Narrative visualization: Telling stories with data. IEEE transactions on visualization 
+and computer graphics. 2010 Oct 28;16(6):1139-48.
+visualization structure presents a general theme and 
+then allows the user to choose among particular 
+instances of that theme to reveal additional details and 
+backstories.
+
+--- Page 16 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 8: Advanced Visualizations 2
+Narrative structures: 
+Drill-down story
+Irrational social costs of imprisonment alongside 
+the divestment of public goods like education. 
+Using Philadelphia as an example, this graphic 
+compares the cost, both financial and societal, 
+of education and incarceration. 
+Designed by Jason Killinger for Maskar Design
+
+--- Page 17 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) Lecture 8: Advanced Visualizations 2
+Data-Driven Storytelling
+Bach, Benjamin, et al. "Narrative Design Patterns for Data-Driven Storytelling.
+" Data-Driven Storytelling. AK Peters/CRC Press, 2018. 125-152.
+Exploration vs. Explanation
+-Storytelling
+-Storytelling structures
+-Storytelling patterns
+-Storytelling genres 
+-Style and design
+s with data?
+-->  a low-level narrative device that 
+serves a specific intent. A pattern can be 
+used individually or in combination with 
+others to give form to a story
+
+--- Page 18 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 8: Advanced Visualizations 2
+Data-Driven Storytelling Patterns
+How to tell stories with data?
+Bach, Benjamin, et al. "Narrative Design Patterns for Data-Driven Storytelling.
+" Data-Driven Storytelling. AK Peters/CRC Press, 2018. 125-152.
+the action or process of reasoning systematically in support 
+of an idea, action, or theory
+
+--- Page 19 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+L
+Information Visualization (INFOMVIS) | Lecture 8: Advanced Visualizations 2
+Narrative Patterns: Compare
+Bach, Benjamin, et al. "Narrative Design Patterns for Data-Driven Storytelling." 
+Data-Driven Storytelling. AK Peters/CRC Press, 2018. 125-152.
+“The narrator presents two or more data sets, and draws 
+respective conclusions from them. Data sets can refer to 
+categories (e.g., healthy, unhealthy), elements in the data 
+(e.g., food types), or temporal evolution. Visually, the 
+comparison can be made through the juxtaposition of 
+graphics (through side by side presentation), or through 
+changes of a single graphic over time (e.g., animation). 
+Comparison allows the narrator to make the point about 
+equality of both data sets, to explicitly highlight differences 
+and similarities, or to give reasons for their difference. If the 
+graphic is rich enough, the audience can also be given the 
+opportunity to explore differences and similarities for 
+themselves”
+
+--- Page 20 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2023-24
+Data-Driven Storytelling Patterns
+How to tell stories with data?
+Bach, Benjamin, et al. "Narrative Design Patterns for Data-Driven Storytelling.
+" Data-Driven Storytelling. AK Peters/CRC Press, 2018. 125-152.
+“The narrator help build an argument by illustrating abstract concepts with concrete objects. Concretization 
+usually implies that each data point is represented by an individual visual object (e.g., a point or shape), 
+making them less abstract than aggregated statistics. 
+
+
+
+==================================
+FILE: Slides\Lecture9_AdvancedVisualization3_OPTIONAL_NOT_FOR_EXAMS_EDimara2023-24.pdf
+==================================
+
+--- Page 1 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Dr. Evanthia Dimara
+Lecture 9: 
+Advanced Visualizations 3
+Information        Visualization
+1
+Acknowledgments: These slides are based on the fantastic teaching material of Benjamin Bach.
+
+--- Page 2 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 9: Advanced Visualizations 3
+Visualization tools landscape
+2
+
+--- Page 3 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 9: Advanced Visualizations 3
+Criteria for choosing a visualization tool
+How to navigate the jungle of visualization tools?
+-Visualizations
+-Accessibility 
+-Learnability
+-Data format(s)
+-Aesthetics
+-Interaction, publication, recycling,...
+-Performance
+-Programming skills
+
+--- Page 4 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 9: Advanced Visualizations 3
+Some visualization tools
+Ridley, A., Schöttler, S., Dadzie, A.S. and Bach, B., 2020, October. The vistools marketplace: An activity to understand the landscape of visualisation tools. In IEEE VIS 
+Workshop on Data Vis Activities to Facilitate Learning, Reflecting, Discussing, and Designing. Institute of Electrical and Electronics Engineers (IEEE).
+
+--- Page 5 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 8: Advanced Visualizations 2
+Choosing a visualization tool
+Q1
+Q2
+Q3
+Q4
+Q5
+Q6
+What can the tool do?
+What data and visualizations?
+What do I have to learn? 
+How much do I have to do?
+Is the tool available? 
+What's the platform?
+5
+
+--- Page 6 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 9: Advanced Visualizations 3
+Visbrowser: www.vistools.net
+Ridley, A., Schöttler, S., Dadzie, A.S. and Bach, B., 2020, October. The vistools marketplace: An activity to understand the landscape of visualisation tools. In IEEE VIS 
+Workshop on Data Vis Activities to Facilitate Learning, Reflecting, Discussing, and Designing. Institute of Electrical and Electronics Engineers (IEEE).
+
+--- Page 7 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 9: Advanced Visualizations 3
+Coding
+Using
+Designing
+Visualization tools landscape
+Ridley, A., Schöttler, S., Dadzie, A.S. and Bach, B., 2020, October. The vistools marketplace: An activity to understand the landscape of visualisation tools. In IEEE VIS 
+Workshop on Data Vis Activities to Facilitate Learning, Reflecting, Discussing, and Designing. Institute of Electrical and Electronics Engineers (IEEE).
+
+--- Page 8 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 9: Advanced Visualizations 3
+Coding
+Using
+Designing
+Visualization tools landscape
+Ridley, A., Schöttler, S., Dadzie, A.S. and Bach, B., 2020, October. The vistools marketplace: An activity to understand the landscape of visualisation tools. In IEEE VIS 
+Workshop on Data Vis Activities to Facilitate Learning, Reflecting, Discussing, and Designing. Institute of Electrical and Electronics Engineers (IEEE).
+
+--- Page 9 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 9: Advanced Visualizations 3
+Coding
+Using
+Designing
+Visualization tools landscape
+Ridley, A., Schöttler, S., Dadzie, A.S. and Bach, B., 2020, October. The vistools marketplace: An activity to understand the landscape of visualisation tools. In IEEE VIS 
+Workshop on Data Vis Activities to Facilitate Learning, Reflecting, Discussing, and Designing. Institute of Electrical and Electronics Engineers (IEEE).
+
+--- Page 10 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 9: Advanced Visualizations 3
+Generic
+Specific
+Coding
+Using
+Designing
+Visualization tools landscape
+Ridley, A., Schöttler, S., Dadzie, A.S. and Bach, B., 2020, October. The vistools marketplace: An activity to understand the landscape of visualisation tools. In IEEE VIS 
+Workshop on Data Vis Activities to Facilitate Learning, Reflecting, Discussing, and Designing. Institute of Electrical and Electronics Engineers (IEEE).
+
+--- Page 11 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 9: Advanced Visualizations 3
+Generic
+Specific
+Coding
+Using
+Designing
+Visualization tools landscape
+Ridley, A., Schöttler, S., Dadzie, A.S. and Bach, B., 2020, October. The vistools marketplace: An activity to understand the landscape of visualisation tools. In IEEE VIS 
+Workshop on Data Vis Activities to Facilitate Learning, Reflecting, Discussing, and Designing. Institute of Electrical and Electronics Engineers (IEEE).
+
+--- Page 12 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 9: Advanced Visualizations 3
+Generic
+Specific
+Coding
+Using
+Designing
+Visualization tools landscape
+Ridley, A., Schöttler, S., Dadzie, A.S. and Bach, B., 2020, October. The vistools marketplace: An activity to understand the landscape of visualisation tools. In IEEE VIS 
+Workshop on Data Vis Activities to Facilitate Learning, Reflecting, Discussing, and Designing. Institute of Electrical and Electronics Engineers (IEEE).
+
+--- Page 13 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 9: Advanced Visualizations 3
+Generic
+Specific
+Coding
+Using
+Designing
+Visualization tools landscape
+Ridley, A., Schöttler, S., Dadzie, A.S. and Bach, B., 2020, October. The vistools marketplace: An activity to understand the landscape of visualisation tools. In IEEE VIS 
+Workshop on Data Vis Activities to Facilitate Learning, Reflecting, Discussing, and Designing. Institute of Electrical and Electronics Engineers (IEEE).
+
+--- Page 14 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 9: Advanced Visualizations 3
+Generic
+Specific
+Coding
+Using
+Designing
+Visualization tools landscape
+Ridley, A., Schöttler, S., Dadzie, A.S. and Bach, B., 2020, October. The vistools marketplace: An activity to understand the landscape of visualisation tools. In IEEE VIS 
+Workshop on Data Vis Activities to Facilitate Learning, Reflecting, Discussing, and Designing. Institute of Electrical and Electronics Engineers (IEEE).
+
+--- Page 15 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 9: Advanced Visualizations 3
+Visualization tools
+GENERIC + USAGE
+15
+
+--- Page 16 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 9: Advanced Visualizations 3
+https://www.datawrapper.de/
+DataWrapper
+
+--- Page 17 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 9: Advanced Visualizations 3
+DataWrapper
+
+--- Page 18 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 9: Advanced Visualizations 3
+https://www.datawrapper.de/
+DataWrapper
+
+--- Page 19 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 9: Advanced Visualizations 3
+DataWrapper
+Good choice of standard graphics
+Maps
+Simple styling and coloring options
+Easily embed graphic
+But: only trial version!
+
+--- Page 20 ---
+E.DIMARA
+© 2023-24
+E.DIMARA
+© 2022-23
+L
+Information Visualization (INFOMVIS) | Lecture 9: Advanced Visualizations 3
+https://vega.github.io/polestar
+Polestar
+
+
+
+==================================
+FILE: Slides\QuestionsforTheoryExams_EDimara2023-24.docx
+==================================
+
+--- Document Content ---
+
+Questions for your theory exams
+
+
+Purpose of the document
+Disclaimer: The following open-ended questions have been discussed in class before and serve only as a checklist for not missing out important elements of your exam material.  They are neither your precise “exam questions” nor replace the previous material.
+   
+Format: The format of your exam is discussed in Lecture 8 (i.e. remember that being able to use technical terminology correctly is important). 
+
+Lecture 1: Introduction
+What are the 2 main definitions of visualization? 
+
+What do each word in those definitions mean?
+
+What is a dashboard?
+
+What is the relation between visualization and automation? 
+
+Why we use visualizations? 
+
+Lecture 2: Data Abstraction & Basic Visualizations
+2.1 Can you describe the Nested Model proposed by Munzner? What do each term/component mean? (e.g., domain situation, data abstraction etc).
+
+2.2 (a) What are the main (i) data, (ii) attribute and (iii) dataset types? (b). If you are given a standard dataset, can you describe it based on (i), (ii), and (iii)? 
+
+2.3 For the basic visualization discussed in lecture 2 {i.e. bar chart, scatterplot, matrix, line chart, symbol map, radial bar chart, pie chart, stacked bar chart, dot plot, streamgraph, slope graph, superimposed line charts, stacked line charts, parallel coordinates, heatmaps, scatterplot matrix, adjacency matrix, node-link diagram (force-directed and fixed layout), treemap, choropleth map, dot map } 
+(a) Can you describe them briefly (e.g.,  if I want to draw a scatterplot what do I need to do?)
+(b) Can you identify them when you see them?
+(c) Can you read them? 
+(d) What are the basic data/attribute/dataset types they can or cannot support? (the (d) is not expected for all visualizations but only for those whose types have been explicitly mentioned in class)
+
+2.4. What are some basic tasks that we use the scatterplots, line charts for? 
+
+2.5. What are the main trade-offs between an adjacency matrix and a node-link diagram? When should we prefer the one over the other? (some for pie chart vs barchart / group barchart vs stacked barchart /heatmap vs scatterplot matrix in Lecture 4)
+
+
+
+Lecture 3: Perception & Color
+
+3.1 Who is Jacques Bertin and what is his main contribution to visualization? (historical perspective)
+
+3.2. What are the “marks” and “visual channels” in visualization? (definition and possible types) Likewise, can you identify the marks and channels in a given visualization? 
+
+3.3 Who is John Mackinlay and what is his main contribution to visualization? (historical perspective)
+
+3.4 What do “expressiveness” and “effectiveness” mean in the context of visualization theory?  And how Mackinlay defined them specifically?
+
+3.5 Can you order the visual channels based on their effectiveness and type of attribute?  Likewise, can you argue for the effectiveness of one visualization over another based on the effectiveness of their visual channels? 
+
+3.6 What are the main perceptual rules / guidelines on how we should choose a visual channel? Likewise, what is the principle of consistency, importance of ordering, effectiveness, accuracy,  discriminability, separability, popout). Likewise, can you criticize a visualization design technically based on whether it follows (or not) those perceptual rules? 
+
+
+3.7 What the two main ways of processing information based on the model of Nelson Cowan 1988? (attentive, pre-attentive) and explain each one shortly. Likewise, what is pre-attentive perception? 
+
+3.8. What are the main 15 pre-attentive features? What is specifically the relation of color hue, shape and their conjunction? What are the main guidelines on how to use the pre-attentive features in a visualization design? 
+
+3.9. What are the 7 main gestalt laws? (and describe each shortly)   Likewise, can you identify and/or criticize a visualization design technically based its use of Gestalt laws? 
+
+3.10 What is change blindness? 
+
+3.11 What are the 3 color channels (and short description of each) ? 
+
+3.12 What is the rainbow color map and what are its main disadvantages? 
+
+3.13 Can you provide color guidelines for visualization design (e.g. data type, association/distinction capacity, color deficiencies, foreground-background luminance contrast , color communication, semantics, cultural differences). Likewise, can you critic a visualization design based on its use of color channels? 
+
+ 
+Lecture 4: Tasks & Interaction
+
+4.1 Why we need visualization task and interaction taxonomies?
+
+4.2 What are the three main task taxonomies discussed in class? (also describe each component/task category briefly). Likewise, can you critic a visualization design based on its (potential) support of one of the aforementioned visualization tasks?  
+
+4.3. Can you provide the definition of “interaction” for visualization and explain what each word/component mean?  
+
+4.4. Can you explain the terms  “interactivity” , “science of interaction”, “interaction technique” and “flexibility”? 
+
+4.5 What are the 3 main reasons we need interaction for (and explain them briefly) ?
+
+4.6 What are the main 7 classes of interaction techniques, identify them/explain shortly/ bring an example of each  (a known system and/or your own description).
+
+4.7. What are the main types of selection and what are their challenges?  
+
+4.8. What is the main difference between zooming and semantic zooming? 
+
+4.9 What is Homefinder? (historical perspective) Explain what is  “direct manipulation”. 
+
+4.10 What is the “focus & context” technique? 
+
+4.11 What are the main ways to facet data across multiple views and their main trade-offs? Provide the design space of view coordination (e.g., based on data, encoding)
+
+4.12 What is the “brushing & linking” technique?
+
+4.13 If we want to increase the flexibility of a visualization system what are the main classes of interactions that we can allow? And explain briefly each of them. Likewise, can you criticize a visualization based on its degree of flexibility (i.e. if an certain interaction class is allowed or not). 
+
+Lecture 5: Evaluation
+Clarification: Obviously, especially for this lecture, for questions which can have numerous possible answers,  there is no expectation answering in an exhaustive manner but only to be able to come up/identify/propose a handful or options (e.g. 2-3) based on given context. 
+
+5.1 What are the main reasons we evaluate visualizations?
+
+5.2 When can we evaluate visualizations? 
+
+5.3. What can we evaluate in a visualization ?
+
+5.4. How can we evaluate a visualization (explain  Carpendale 2008 figure and its components) ? 
+
+5.5. What are the 8 visualization scenarios and their 2 main groups? Explain shortly each one?
+
+5.6. What types of evaluation are recommended in each stage of the Nested Model? Can you suggest and briefly  describe up-stream and down-stream techniques for each stage?
+
+5.7. What is the difference between a technique-driven and a problem-driven research goal? 
+
+5.8. Likewise, what is observational study, participatory design, insight-based evaluation, adoption/deployment study, field study, case study, lab study,  heuristic evaluation? 
+
+5.9. What is the main difference between qualitative and quantitative research? 

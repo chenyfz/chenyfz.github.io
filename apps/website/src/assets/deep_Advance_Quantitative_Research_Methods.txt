@@ -1,0 +1,3643 @@
+--- Advance Quantitative Research Methods (Year 1 - Period 4) ---
+
+
+
+==================================
+FILE: QNM_formula_sheet_2024-6-12.pdf
+==================================
+
+Error extracting: Failed to open file 'c:\\Users\\xchen\\OneDrive\\UU HCI Master\\Year 1 - Period 4\\Advance Quantitative Research Methods\\QNM_formula_sheet_2024-6-12.pdf'.
+
+
+==================================
+FILE: QNM_notes_2024-6-4_V2.pdf
+==================================
+
+--- Page 1 ---
+QNM Lecture Notes
+ANOVA, Regression, Introduction to MANOVA and GLM
+Course on Advanced Quantitative Methods for Human-Computer Interaction
+Utrecht University
+Bj¨orn van Zwol
+June 4, 2024
+
+--- Page 2 ---
+Preface
+If you find errors or typos, I greatly appreciate it if you let me know. I also welcome comments, ideas
+and other feedback :) You can e-mail me at b.e.vanzwol [at] uu.nl.
+Recommended Resources
+• Learning statistics with R [1]. Lecture Notes by Danielle Navarro, available for free online at
+https://learningstatisticswithr.com/
+A set of lecture notes full of approachable explanations. They are aimed at (psychology) undergrad-
+uates, but are a useful reference for brushing up on basic statistics/additional background reading.
+They do not cover some of the slightly more advanced topics that our course does discuss, such as
+RBDs, repeated measures, ANCOVA and multivariate statistics.
+• Using Multivariate Statistics [2]. Book by Barbara G. Tabachnick and Linda S. Fidell.
+A more advanced textbook aimed at advanced undergraduates/graduate students. Very comprehensive
+and a great general reference.
+• NIST/SEMATECH e-Handbook of Statistical Methods [3], available for free online at http:
+//www.itl.nist.gov/div898/handbook/.
+An engineering perspective.
+It provides nice and succinct explanations for technical concepts, in
+particular for ANOVA.
+• Statistical Inference [4]. Book by George Casella and Roger L. Berger.
+The most formal and rigorous in this list: a well-structured mathematics book of the more approachable
+sort, with many nice explanations.
+• Doing Better Statistics in Human-Computer Interaction [5]. Book by Paul Cairns.
+• Statistics for HCI [6]. Book by Alan Dix.
+Two nice books that cover statistics from an explicit HCI perspective.
+The Cook and the Chef
+As suggested by the list above, we could place statistics books and courses on a spectrum based on how
+‘math-y’ or ‘word-y’ they are1. The most mathy books are those intended for mathematics students,
+and start with concepts like set theory and probability theory. The most wordy include e.g. the SPSS
+Survival Manual [7], which includes lists of steps to follow in SPSS for a given test. Our notes occupy
+a somewhat unusual spot on the spectrum: they include more math than typical HCI books, but of
+course far less than books for mathematicians. Depending on your background, you might find this
+either very helpful or less so.
+The reason for including math is the following. The topics you might work on as a researcher in
+HCI have a huge variety, and simple questions often require quite complex statistical designs. This
+1From mathy to wordy: [4, 3, 2, 1, 6, 5, 7].
+1
+
+--- Page 3 ---
+means that (compared to some other fields) you need to be familiar with a relatively large number of
+tests. Making informed choices between these requires a deep understanding, which we believe is best
+achieved by discussing some of the underlying (mathematical) concepts. It is very useful to know how
+to follow SPSS-recipes: we could call such a person a cook, invaluable in any research kitchen. With
+deeper understanding however, you could develop into a chef : someone who can quickly design their
+own experiments based on an understanding of how different ingredients (the research question, the
+statistical tests, statistical power...) go together. If you find the mathematics hard: don’t worry. We
+are here to help :) We also recommend the more word-y books mentioned above, which complement
+these notes nicely.
+Acknowledgements
+These lecture notes are far from original. Paraphrasing David Tong who said it best2: my primary
+contribution has been to combine the best discussions and explanations I could find from the vast
+literature on the subject. I have relied especially on [2] and [1] as main sources.
+I am also extremely thankful to my advisor Egon van den Broek for his general support and faith in
+my ability to teach statistics. I’m also hugely thankful to Julie Pivin-Bachler and Lukas Arts for their
+support and feedback. Finally, of course, a big thanks to all students for providing invaluable feedback!
+Errata
+• 2024-5-7. The equation for η2 was incorrect:
+η2 = SSb
+SSw
+→SSb
+SStot
+• 2024-5-15. The F-test subscript for the interaction:
+FB = MSAB
+MSres
+→FAB = MSAB
+MSres
+.
+• 2024-5-15. The equation for Pearson’s correlation:
+r =
+cov(x, y)
+p
+var(x)
+p
+var(x)
+= cov(x, y)
+s(x)s(x) →
+cov(x, y)
+p
+var(x)
+p
+var(y)
+= cov(x, y)
+s(x)s(y)
+• 2024-5-15. Fig. 2.9 was inconsistent with decimals, had a mistake (0.6 →1.6) and did not
+include the means to calculate SStot.
+• 2024-5-20. Section 2.4.2 was revised and improved.
+2http://www.damtp.cam.ac.uk/user/tong/teaching.html
+2
+
+--- Page 4 ---
+Contents
+1
+Preliminaries
+4
+2
+ANOVA
+13
+2.1
+One-way ANOVA . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+15
+2.2
+Factorial ANOVA . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+20
+2.3
+RBDs and repeated measures . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+26
+2.4
+More complex designs
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+31
+3
+Regression
+37
+3.1
+Linear regression . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+38
+3.2
+Logistic regression
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+47
+3.3
+ANCOVA . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+49
+4
+Multivariate statistics & the GLM
+52
+4.1
+MANOVA . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+54
+4.2
+The General Linear Model (GLM)
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+58
+3
+
+--- Page 5 ---
+Chapter 1
+Preliminaries
+A key aspect of quantitative methods is knowing how to choose an appropriate statistical analysis for
+your situation. In this chapter we describe some important aspects to consider in making this choice.
+Further Reading for This Chapter
+[2]: Ch. 1 (esp. 1.1.1, 1.2.4), 2, 3.1.
+[1]: Ch. 1 and 2 (useful background reading).
+Types of Questions
+Quantitative methods help answer specific research questions. For example:
+• Do groups of X have a significant difference in means on the measure Y ?
+• Can we predict Y from X?
+• Are X and Y independent?
+• How strongly are X and Y related?
+If this seems a bit abstract, we shall come with many examples later in these notes when we discuss
+specific techniques.
+Key aspects for choosing an appropriate statistical analysis: (1) the type of research question.
+Dependent and Independent Variables
+In the questions above, X and Y are the variables. In statistics, one talks about three basic types of
+variables: independent variables (IVs), dependent variables (DVs), and covariates (CVs). We discuss
+the first two and leave the third for later when it will be easier to understand.
+Say we are measuring the IQ of Ravenclaw students and Gryffindor students, and want to know whether
+there is a significant difference. If true, the IQ depends on the house of the student. Hence, it’s called
+the dependent variable of our experiment. This implies there is an independent variable (which does
+not depend on other variables): the house of the student.
+Thus, the dependent variable is what you are interested in measuring. Hence, it is also called measure
+or output. The independent variable (IV) defines the groups that you study (in ANOVA-type), or
+predictors of the thing you want to predict (in regression-type). In this sense, they are a type of input.
+Hence, using typical math-notation, we use X for IVs and Y for DVs.
+4
+
+--- Page 6 ---
+In our example, the IV (house of student) had two levels: Ravenclaw and Gryffindor. If we included
+Hufflepuff and Slytherin we would have 4 levels. Hence, the variable is categorical or discrete: they
+can only take certain specified values. In contrast, the DV was continuous variable: IQ can take any
+value. When a variable is continuous, one does not speak of levels.
+This is important, because:
+Key aspects for choosing an appropriate statistical analysis: (2) the variables.
+Specifically:
+• the role of variables (DV, IV, CV or equal footing)
+• the type of variables (discrete or continuous),
+• the number of variables,
+• the number of levels for the variables (when discrete variables are involved)
+To illustrate, we list some examples which will become clear later. If you have 1 DV, you have univariate
+statistics. For univariate statistics, if you have 1 IV, you do a t-test (if the IV has 2 levels) or ANOVA
+(if it has > 2 levels). If you have several IVs, you get factorial ANOVA. If you have more than one
+DV, you are doing multivariate statistics. And so on.
+Does one always have to have dependent or independent variables?
+No.
+Sometimes you want to
+treat variables on an equal footing: e.g. when you want to know if two variables are independent (χ2
+independence test) or to what extent they are related (correlation). For these cases, there is no ‘input’
+and ‘output’.
+Variance
+The concept of variance is key to understanding ANOVA (analysis of variance) and more advanced
+methods, like ANCOVA (analys of covariance) and MANOVA (multivariate analysis of variance).
+Variance, also called spread, of a variable, simply means “how much it varies”. Given a N measurements
+of a variable x giving values xi, where i = 1, 2, ..., N and a mean ¯x, the sample variance is1:
+var(x) = s2(x) =
+1
+N −1
+N
+X
+i=1
+(xi −¯x)2
+(1.1)
+Here, s is the sample standard deviation (sometimes also denoted SD), which thus simply is the square
+root of the sample variance:
+s(x) =
+v
+u
+u
+t
+1
+N −1
+N
+X
+i=1
+(xi −¯x)2.
+(1.2)
+Finally, the standard deviation of the mean, also called the standard error (sometimes denoted as SE
+or SEM), is:
+SE =
+s
+√
+N
+You might be wondering where this square root of N comes from. There is a lot to say about this2, but
+we shall need to keep it brief. Roughly speaking, we can understand it by the observation that a mean
+becomes more accurate if you take more measurements (larger sample sizes). Thus, the distribution of
+means will become more narrow. This is in contrast with the distribution of true values, for which the
+variance should be independent of sample size.
+NOTE: you will also see another formula for variance and standard deviation: var(x) = s2(x) =
+1
+N
+PN
+i=1(xi −¯x) with 1/N instead of 1/(N −1). This is the formula that is used when you are
+1Note that the notation used here is different from [1].
+2See e.g. Ch. 10, esp. 10.3 in [1].
+5
+
+--- Page 7 ---
+certain that you have the entire population, and you are not considering a sample.
+Figure 1.1: Illustration of variance. Large variance (left) vs. small variance (right). The top row shows a
+theoretical normal distribution, and the bottom illustrates some collected data displayed as a histrogram.
+Covariance
+Covariance generalizes variance to two variables, and says how much two variable “covary”. It is most
+easily understood using math. Given two samples xi and yi and means ¯x and ¯y, the covariance is:
+cov(x, y) =
+1
+N −1
+N
+X
+i=1
+(xi −¯x) (yi −¯y)
+Note again that we use the formula for a sample.
+How can we understand this?
+Consider some
+numbers:
+• cov > 0 means that if x goes up, so does y on average, and vice versa.
+• cov < 0 means that if x goes up, y goes down on average, and vice versa.
+• cov = 0 means that if x goes up, y can do anything on average.
+Also note that cov(x, x) = var(x), i.e. the covariance of a variable with itself is just its variance.
+Correlation
+If two variables are strongly correlated, that is a statistical way of saying that they ‘seem related’. Of
+course, correlation does necessarily imply an actual or meaningful relation!3 It only means there is a
+statistical relationship.
+Correlation is very close to covariance, but slightly different. There are also different types of corre-
+lation, but the one used overwhelmingly is Pearson’s correlation, usually simply called correlation. In
+math:
+r = rxy =
+cov(x, y)
+p
+var(x)
+p
+var(y)
+= cov(x, y)
+s(x)s(y)
+I.e. a correlation is just a normalized (scale-independent) covariance. Thus, correlations take values
+between -1 and 1 instead of −∞and +∞like covariance. Note that for correlations, X and Y are not
+IVs and DVs, but treated on an equal footing.
+Recall from Lecture 1 that t-tests had a measure of effect size. For the one-sample t-test one had
+Cohen’s d measure, which tells us how meaningful a difference between groups is. Similarly, correlations
+have a measure of effect size: r2 is the effect size of a correlation. We discuss effect size and shared
+variance in more detail below.
+3See https://www.tylervigen.com/spurious-correlations.
+6
+
+--- Page 8 ---
+Effect size
+As an example, imagine we study the relation between people’s income I and the number of years
+in education E they have experienced. We can draw the variance in these variables as circles, where
+the areas represent the amount of variance in these variables. Note that these areas are not meant to
+be interpreted quantitatively. Now, if the E and I are correlated, they have shared variance. This is
+illustrated below.
+Figure 1.2: Illustration of shared variance/effect size.
+Now if we would consider instead of correlation e.g. a t-test or regression, we can view I as the DV and
+E as the IV. In this view, we can say that the variance in income can be explained by the variance in
+education. Statements like this are often found when statistics is used, and thus has a precise meaning:
+how much variance is explained is quantified by the effect size.
+Now imagine we include a second IV, job prestige P. This variable can be added to the previous figure,
+such that we might get something like Fig. 1.3. However, this figure is unrealistic, since job prestige
+and number of years of education are likely to be correlated as well. This leads us to covariates.
+Figure 1.3: Illustration of shared variance with 2 IVs and 1 DV. Unrealistic, since job prestige and number of
+years of education are likely to be correlated.
+Covariates
+An updated illustration is given in Fig. 1.4. This is more realistic, but also makes the analysis more
+complicated.
+It requires a decision on how to deal with the variance between IVs.
+For instance,
+one might want to study the effect of E on I while controlling/adjusting for P. This means we look
+exclusively at the effect of one IV, and consider P as a covariate (CV) instead. How to do this correctly,
+depends on the research question:
+Key aspects for choosing an appropriate statistical analysis: (3) presence of covariates and choices
+on how to deal with them.
+Options include randomized block designs, ANCOVA and sequential regression. These will be discussed
+in later lectures.
+NHST revisited4
+Null hypothesis significance testing (NHST) can seem a strange or abstract when doing it for the first
+time. What are we actually doing? One way of looking at it is that we are effectively comparing two
+4This section and the next are an extended version of sections 3.1.1 and 3.1.2 in [2].
+7
+
+--- Page 9 ---
+Figure 1.4: More realistic illustration of shared variance. Shared variance between IVs requires deciding on
+how to deal with this variance.
+‘alternate realities’. The null hypothesis H0, represents the reality we assume we live in. Ha is an
+‘alternate reality’. The p-value that we get from NHST is the probability that we live in H0. If this
+probability is very small, we are more likely to live in the Ha reality instead.
+The distribution under the null hypothesis shown in the top row in Fig. 1.5. It represents the probability
+of some mean IQ being found under the null hypothesis.5 E.g., if we find a mean IQ of 120, the p-value
+would be the area of the curve to the right of 120.
+Figure 1.5: Alternate realities in NHST.
+Now, with this p-value, we need to decide whether it is ‘small enough’ to reject H0. For this we use the
+significance level α. (Recall that is simply a threshold which we define to be what we mean by ‘small
+enough’. Typically, for historical reasons, we use a 1/20 probability, i.e. 0.05) Thus, if the p-value
+(the probability of finding our calculated mean assuming a normal distribution) is smaller than 0.05,
+we reject H0 and say we have a significant result.
+Now, you might think: we never calculated areas under a curve in previous lectures, did we? That’s
+true. Since calculating these probabilities by hand is a lot of work, critical value tables provide a
+shortcut6. Instead of calculating a p-value for your calculated mean each time, we reverse the process:
+for several probabilities α, these tables show how large your mean at least needs to be, in order to
+be smaller than that probability. Well... almost: since it is not convenient to have a different table
+for each different mean, we first subtract the expected mean from our calculated mean, such that our
+5An important distinction here is between the sampling distribution and the sampling distribution of means. Hy-
+potheses are always tested about means, not about individual scores, which is why we are always using the latter.
+Sampling distributions of means have smaller standard deviations, since one divides by
+√
+N to obtain the standard
+deviation of the mean. See section 3.1.1 in [2] and Chapter 10 in [1].
+6At least for calculations using pen and paper – if a computer is used, you will be given a p-value automatically.
+8
+
+--- Page 10 ---
+distribution is centered around zero. We also adjust for the standard deviation. This gives the test
+statistic, and critical value tables show how large your test statistic should at least be (i.e. critical
+values) for a given significance level.
+Error types and statistical power
+Look again at Fig. 1.5. The top represents the ‘H0 reality’, with mean 100. The bottom row is the ‘Ha
+reality’, with a distribution of IQs, shifted 8 IQ points to the right, centered instead around µ = 108.
+We can see how the critical value, which was determined by α, acts as a type of decision axis. If we
+calculate our test statistic to be larger than the critical value, we are on the right side of the axis, and
+we reject H0. And if smaller, we are on the left, and we retain H0.
+We have continued the decision axis vertically downwards to the distribution in the Ha reality. We
+can see how this axis splits up this distribution in two. We call the area on the left of this axis β.
+The probability on the right, then, is 1 −β. We see that we have obtained 4 ‘quadrants’. These are
+shown again in the table in Fig. 1.6: they represent the four different things can happen with NHST,
+with corresponding probabilities. In the top left, H0 is true and we retain it: this is a correct decision.
+In the bottom right, we reject H0 when it is false: again a correct decision. In the other quadrants,
+we have made an error! A type I error means we reject H0 even though it is actually true, which
+happens with probability α. A type II error means we retain H0 although it is false; this happens with
+probability β. These two error types are foundational to statistical practice.
+Figure 1.6: Four possible outcomes of NHST.
+Clearly, we prefer not making errors. Hence, we would like to maximize the probabilities of the top
+left and bottom right quadrants, i.e. 1 −α and 1 −β. The former is mostly out of our control, since it
+is determined by convention and journal requirements. In contrast, 1 −β we have some control over.
+It is called the statistical power, which we would like to be large.
+How could we increase this statistical power? Looking at Fig. 1.5 we see that 1 −β would increase if
+we made the distribution more narrow. This can be done in general by increasing one’s test statistic.
+For our simple examples, one could try to decrease the variance of the sample somehow (which might
+be hard to do however without changing the research question), or by increasing the sample size. We
+close by quoting an important note from [2] (emphasis ours):
+There is occasionally the danger of too much power.
+The null hypothesis is probably
+never exactly true and any sample is likely to be slightly different from the population
+value. With a large enough sample, rejection of H0 is virtually certain. Hence, a “minimal
+meaningful difference” and acceptable effect size should guide the selection of sample size
+(Kirk, 1995). The sample size should be large enough to be likely to reveal a minimal
+meaningful difference.
+Assumptions
+As a final preliminary note we emphasize again that statistical analyses rely on assumptions, which
+should be checked using appropriate tests.
+9
+
+--- Page 11 ---
+Figure 1.7: Start of path towards the one-sample t-test (left to right).
+Figure 1.8: Continued path towards one-sample t-test (left to right).
+Key aspects for choosing an appropriate statistical analysis: (5) assumptions.
+E.g. if normality does not hold, one could consider a non-parametric test over a standard parametric
+technique.
+Test overview
+The next page shows an overview of most of the techniques (and some additional ones) covered in the
+course, structured as a tree. Techniques in the tree that we have already are the blue ellipses: the t-
+tests, their non-parametric alternatives (Mann-Whitney U test and Wilcoxon signed rank test) and the
+Chi-Squared tests. This Chapter, 2.1, 2.2 discuss the yellow ellipses: correlation, one-way ANOVA and
+factorial ANOVA. Section 2.3 and Section 2.4.1 discuss randomized blocks designs (RBDs), repeated
+measures/within-subjects ANOVA, and combiantionsl: the green ellipses. Chapter ?? then discusses
+regression, including ANCOVA. Finally, purple ellipses discuss MANOVA, covered in Chapter 4.
+As an example, Figs. 1.7 and 1.8 show the path in the tree to reach the one-sample t-test. It can be
+seen that the aspects for determining the appropriate statistical analysis are what define the path in
+the tree.
+10
+
+--- Page 12 ---
+11
+
+--- Page 13 ---
+12
+
+--- Page 14 ---
+Chapter 2
+ANOVA
+Further reading for this chapter
+[1]: Ch. 14 (one-way ANOVA), Ch. 16 (factorial ANOVA).
+[2]: 3.2 (up to and including 3.2.5).
+[3]: 3.2.3, 7.4.3 (one-way, two-way ANOVA), 7.4.4 (fixed/random effects)
+What is ANOVA?
+ANOVA stands for analysis of variance. If you understand t-tests, we can give an important intuition
+for ANOVA as follows:
+ANOVA generalizes the t-test to any number of groups/levels.
+To understand this, consider Fig. 2.1.
+Figure 2.1: Illustrated summary of the one-sample (top) and two-sample (bottom) t-tests. The t-test statistics
+are shown, along with an illustration of what the tests ‘implicitly’ compare: differences in means (i.e. variation
+between groups) and standard deviations of samples (i.e. variation within groups).
+For the one-sample t-test, one computes the difference between calculated mean and expected mean.
+This is compared to the standard error of the sample, i.e. the variation within the group. For the
+two-sample t-test one has the difference in the two calculated means (variation between groups), which
+is compared to the combined standard error of the two samples (variation within groups). Then, Fig.
+2.2 shows how when t is large, the two groups means should be ‘far apart’ compared to the width of the
+distribution, i.e. the variation within the group. This is when we expect the difference in means to be
+13
+
+--- Page 15 ---
+significant. In contrast, when t is small the difference between means is smaller than (or approximately
+of the same size) as the variation within the groups.
+Figure 2.2: A large t-test statistic means variation between groups is larger than variation within groups, and
+vice versa.
+In other words, we have made clear that:
+T-tests calculate
+variation between groups
+variation within groups
+(2.1)
+This is also the essence of ANOVA!
+Fig. 2.3 illustrates the main idea. Three groups are drawn, but any number is allowed.
+Figure 2.3: Illustration capturing an important intuition behind ANOVA.
+14
+
+--- Page 16 ---
+2.1
+One-way ANOVA
+The simplest ANOVA is called one-way ANOVA. One-way here means we have one IV. If we have two
+IVs we get two-way ANOVA, which is a form of the general factorial ANOVA, which deals with any
+number of IVs. That is also called N-way ANOVA. These are discussed later.
+2.1.1
+Basics
+The easiest way to understand ANOVA is using a concrete example. We borrow from [1]. Consider
+a medical trial where we compare the medications Joyzepam (J) vs. Anxifree (A) vs. a placebo (P).
+These are the groups/levels in our IV, medication. The variable we are interested in, the DV, is the
+‘mood gain’, which we are presuming we have found using some appropriate measure. This gives a
+table of results, of which a couple rows are shown in Fig. 2.4.
+Figure 2.4: First rows of a data table for the medical trial example.
+Our first research question might be: is there a significant difference in group means between J, A and
+P? Our hypotheses we can write as:
+H0 :
+µA = µJ = µP
+H1 :
+not(µA = µJ = µP )
+(2.2)
+(note that we will mix our notation for the alternative hypothesis, Ha and H1). Now, given a concrete
+example, we can proceed with the general theory for one-way ANOVA. To do so, we need some notation.
+• number of groups NG (3 in our example)
+• number of subjects per group Nk (assume 6 for our example)
+• number of subjects N (3*6=18 in our example)
+Then, for the DV we use Y in general, and Yik is the value for subject i in group k. We then get two
+types of means:
+• ¯Yk is the mean in group k
+• ¯Y is the mean of all subjects, i.e. the grand mean
+To understand ANOVA we will look at so-called sums of squares. To understand this, consider first
+the formula for total variance:
+var(y) =
+1
+N −1
+NG
+X
+k=1
+Nk
+X
+i=1
+ Yik −¯Y
+2
+Notice that this is simply Eq. 1.2 written differently: since we have assigned our variable Y to groups
+k, we obtain an additional index and sum compared to Eq. 1.2. Now, the total sum of squares is the
+same, but without the factor 1/(N −1):
+SStot =
+X
+k
+X
+i
+ Yik −¯Y
+2
+15
+
+--- Page 17 ---
+where we simplify the summation notation for convenience. We now define the within-group sum of
+squares as
+SSw =
+X
+k
+X
+i
+ Yik −¯Yk
+2 .
+Notice in this equation that we subtract values for individual subjects from the group means: i.e. we
+look within the group. Then, the between-group sum of squares is:
+SSb =
+X
+k
+X
+i
+  ¯Yk −¯Y
+2
+=
+X
+k
+Nk
+  ¯Yk −¯Y
+2 .
+Here, observe that we subtract the group means from the grand mean: we look at differences between
+groups. The second equality in the equation holds because the sum over i simply gives the number of
+subject in that cell. Notice how these quantify the sizes of the arrows in Fig. 2.3, i.e. the variation in
+mood gain. One can show that1:
+SSw + SSb = SStot
+which is sensible: the total variation in mood gain is a sum of the variation between groups and the
+variation within all the individual groups. Now, as mentioned, we would like to compare these using
+something like 2.1. Can we just divide SSb by SSw, similar to the t-test? No. We need to take into
+account the degrees of freedom (DoF).
+2.1.2
+The F-test
+We can understand the F-test statistic as follows:
+ANOVA generalizes the t-test (name of the technique).
+In the same way, the F-test statistic generalizes the t-test statistic (name of the test statistic).
+Recall that for the two-sample t-test, the DoF were:
+df = (n1 −1) + (n2 −1),
+where n1, n2 are the two sample sizes. For the F-test, one has three types of DoF:
+dftot = N −1
+dfb = NG −1
+dfw = N −NG.
+Notice that dftot = dfb + dfw. From these and the sums of squares, one defines mean squares:
+MSb = SSb
+dfb
+MSw = SSw
+dfw
+Finally, the F-test statistic is calculated as:
+F = MSb
+MSw
+I.e. we see that the F-test statistic indeed has the form of Eq. 2.1 but with DoF included. Using the
+F-test works the same way as with the t-test: one calculates it using equations above, and compares
+the result to the F-distribution. Values of the F-distribution can be found in critical value tables online,
+1Try this!
+16
+
+--- Page 18 ---
+which provide values of the F-distribution for different significance levels and DoF’s. Note that an
+F-test table will look slightly different to t-test tables, since one has two DoF’s instead of one DoF to
+keep track of. Sometimes one finds tables with df1 and df2 instead of dfb and dfw. Usually, 1 refers to
+the numerator (i.e. dfb) and 2 to the denominator (dfw), but make sure to read the instructions of the
+table in order to use it in the right way. These tables are not symmetric across the diagonal!
+The F-distribution is illustrated in Fig. 2.5. It is worth mentioning that in contrast to the t-distribution
+and the z-distribution (the normal distribution), one has that F ≥0 (i.e. the distribution is only
+defined for positive values). This means that one is always doing a one-tailed test when using the
+F-distribution.
+Figure 2.5: Sketch of the F-distribution.
+Of course, for larger experiments one uses a computer to perform the test, which gives you a corre-
+sponding p-value directly. However, for pedagogical purposes it is useful to it by hand. Consider the
+continuation of the example of a medical trial, Fig. 2.6 shows an outline of the calculations necessary.
+Figure 2.6: Calculations for the medical trial example.
+From a table of results, one calculates different means, sums of squares and DoF’s. Then, one calculates
+17
+
+--- Page 19 ---
+mean squares and the F-statistic. Finally, one uses an F-table to find a critical value. From the last
+line, one has that F is larger than the critical value, so we reject H0. The results can be reported as
+follows:
+One-way ANOVA showed a significant effect of drug on mood gain (F(2, 15) = 18.6, p <
+.001).
+Great! We know that drug has an effect. The logical next question is: is Joyzepam, Anxifree, or the
+placebo better? Note that the result to this question is not given by ANOVA! It only tells us there
+is a significant difference over all means. To find out which drug is better, we need to do a post hoc
+analysis/multiple comparisons. We discuss this after some important remarks on the F-test.
+2.1.3
+Miscellaneous important things
+Effect size
+Like with all other significant tests, F-tests have a corresponding effect size: eta squared (η2). This is
+defined as:
+η2 = SSb
+SStot
+For our example, we have 3.45/4.84 = 0.71. This means that medication explains 71% of the variance
+in mood gain!
+‘The model’
+One sometimes finds the following description/definition of ANOVA:
+H0 :
+Yik = µ + ϵik
+H1 :
+Yik = µk + ϵik
+These equations say the following. The null hypothesis states that the values of the DV, Yik, are a
+single mean µ plus a random error, or residual, ϵik – which does not depend on group. In contrast,
+H1 is saying that the DV values depend on a group-dependent mean µk, plus a random error. If true,
+this is equivalent to saying there is a (significant) difference in means. As such, it is a general way
+of writing down the one-way ANOVA hypotheses. Alternatively, one can say it defines the one-way
+ANOVA ‘model’.2 This can also be written as:
+Yik = µ + αk + ϵik
+(2.3)
+where αk is the effect of group k (the difference between the mean of group k and the grand mean).
+This way of writing things becomes useful when we start considering more other more advanced models.
+The word model should remind you that our analysis relies on assumptions which justify the use of
+the particular statistical test. These are discussed in detail later, but a first one to mention here is
+that the errors ϵik should be normally distributed.
+2.1.4
+Post hoc analysis/multiple comparisons
+Say we now want to know which medication actually works best. For this, we can just use pairwise
+t-tests between all the different groups: A vs. J, A vs. P, and P vs. J. HOWEVER: there is a
+problem here! If we do many of tests, a number of these tests will give significant results by chance
+only! In other words, we get wat is known as an inflated type I error rate. For instance, say we have
+10 groups, and do all 45 possible tests, we would get 2-3 that are significant by chance only. As such,
+one cannot simply do all pairwise t-tests, but one needs to correct for multiple comparisons.
+The simplest way of doing this is called Bonferroni corrections. Say we do m tests, and obtain a result
+pi for test i = 1, 2, ..., m. We define a total type I error as α. Then, the corrected/adjusted/honest
+p-value is
+p′
+i = mpi
+2Here, the word model should remind you that the statistical analysis relies on assumptions, to be discussed in a bit.
+18
+
+--- Page 20 ---
+and we reject H0 if p′
+i < α. Another method is Holm’s method, which is overall better but more
+complex. See [1] for more.
+2.1.5
+Assumptions
+ANOVA has three key assumptions: normality, homogeneity of variance, and independence. These are
+summarized in Table 2.1. It is worth studying these in detail. In particular, it is valuable to try the
+Shapiro-Wilk, Kruskal-Wallis, Levene, and Brown-Forsythe test in SPSS/R/Python.
+Table 2.1: ANOVA assumptions. An example for A2 is e.g. σA = σJ = σP .
+Assumption
+Description
+Checking
+Removing
+A1
+Normality
+ϵik normal
+QQ plot/
+Shapiro-Wilk test
+Non-parametric test:
+2 groups: Wilcoxon;
+> 2 groups: Kruskal-Wallis test
+A2
+Homogeneity of variance
+σ1 = σ2 = ... = σ
+Levene/
+Brown-Forsythe test
+Welch one-way test
+A3
+Independence
+Observations unrelated
+Tricky...
+Probably: Repeated measures
+2.1.6
+ANOVA table
+Table 2.2 summarizes equations for one-way ANOVA. Also, Fig. 2.7 shows the sum decomposition of
+sums of squares and degrees of freedom, which we will extend in later sections.
+Table 2.2: ANOVA table for one-way design. Calculation of the mean squares is not included since this is
+always the SS divided by the corresponding df.
+Source
+Sum of Squares
+DoF
+F
+Between-group (effect)
+SSb = P
+k Nk
+  ¯Yk −¯Y
+2
+NG −1
+MSb/MSw
+Within-group (residual)
+SSw = P
+k
+P
+i
+ Yik −¯Yk
+2
+N −NG
+Total
+SStot = P
+k
+P
+i
+ Yik −¯Y
+2
+N −1
+Figure 2.7: Sum decompositions for one-way ANOVA. Sums of squares and degrees of freedom are shown.
+19
+
+
+
+==================================
+FILE: QNM_practice_exam_2024.pdf
+==================================
+
+--- Page 1 ---
+INFOMQNM - Practice Exam - 2024
+duration: 3 hours
+Julie R. Pivin-Bachler, Bj¨orn E. van Zwol, and Lukas P.A. Arts
+June 11, 2024
+
+--- Page 2 ---
+Name:
+Student number:
+1
+Short Questions (10 points)
+1. (1 pt) Which type of plot would you use to show outliers?
+(a) bar chart
+(b) histogram
+(c) box plot
+(d) QQ plot
+(e) heat map
+(f) all of the above
+2. (1 pt) When should we keep an outlier?
+(a) if the participant was treated differently
+(b) if there was an external influence
+(c) if the sensor was faulty but the questionnaires were filled entirely
+(d) if it is a rare variation
+(e) if the sensor was working perfectly but the questionnaires were not filled
+(f) if it is a mischievious participant
+(g) if it is a common variation
+3. (1 pt) You obtain a confidence interval of I = [1.12, 2.34] with α = 0.01 for a two-sample t-test.
+How can this be interpreted? TIP: 2 answers are expected.
+(a) we are 95% sure that the true mean value of group 1 lies in I
+(b) we are 95% sure that the true mean value of group 2 lies in I
+(c) we are 95% sure that the true mean difference between both groups lies in I
+(d) we are 99% sure that the true mean value of group 1 lies in I
+(e) we are 99% sure that the true mean value of group 2 lies in I
+(f) we are 99% sure that the true mean difference between both groups lies in I
+(g) if we run the test a 2nd time, we are 95% sure that the difference between samples will fall in I
+(h) if we run the test a 2nd time, we are 99% sure that the difference between samples will fall in I
+(i) the null hypothesis cannot be rejected
+(j) the null hypothesis can be rejected
+(k) we cannot conclude anything concerning the null hypothesis
+Page 1 of 10
+
+--- Page 3 ---
+Name:
+Student number:
+4. (1 pt) What are the requirements regarding the data to be able to run a χ2 test (both for the
+goodness of fit test and the test of independence)? TIP: 2 answers are expected.
+(a) the data needs to be categorical
+(b) the data needs to be continuous
+(c) the data can be continuous or categorical, but needs to be normally distributed
+(d) there needs to be at least 5 categories
+(e) there needs to be at least an observed frequency of 5 for each cell of the contingency table
+(f) there needs to be at least an expected frequency of 5 for each cell of the contingency table
+(g) there needs to be at least an observed and an expected frequency of 5 for each cell of the
+contingency table
+5. (1 pt) What is a fundamental difference between experimental research and non-experimental re-
+search?
+(a) Only controlled experiments allow for investigation of correlations.
+(b) Only controlled experiments allow for complicated multivariate analyses.
+(c) There is a much larger probability of type I error in experiments.
+(d) None of the above.
+6. (1 pt) What is the relation between significance level and p-value?
+(a) the significance level is the maximal value we are willing to accept for the p-value
+(b) the significance level is the minimal value we are willing to accept for the p-value
+(c) the significance level is the exact value we are expecting for the p-value
+(d) the significance level is not related to the p-value at all
+7. (1 pt) To which other t-test is the paired t-test equivalent to?
+(a) the one-sample t-test applied to the data of the ’after’ group
+(b) the one-sample t-test applied to the data of the difference between the paired groups
+(c) the two-sample t-test applied to the data of the groups ’before’ and ’after’
+(d) the two-sample t-test applied to the data of the difference between the paired groups
+8. (1 pt) Which of the following statements is true concerning the general linear model (GLM)?
+(a) A regression model can be written as an ANOVA model by discretizing the DV using binary
+contrasts.
+(b) Doing F-tests for slope coefficients in regression with binary contrasts is equivalent to t-tests
+for main effects in a crossed ANOVA.
+(c) The intercept in a regression model with binary contrasts corresponds to a baseline condition
+(e.g. the grand mean) in a crossed ANOVA.
+(d) The GLM encompasses a broad class of statistical models including ANOVA and regression,
+but not multivariate techniques.
+Page 2 of 10
+
+--- Page 4 ---
+Name:
+Student number:
+9. (1 pt) You run a one-sample t-test on the average time (in minutes) it takes students to complete
+an IQ questionnaire. You obtain a confidence interval I [63,102], with α = 0.05. How can this be
+interpreted? NOTE: 2 answers are expected.
+(a) we are 95% sure that the true mean value of the students’ sample lies in I
+(b) we are 95% sure that the true mean value of the students’ population lies in I
+(c) we are 95% sure that the true mean difference between the students’ population and the
+expected value lies in I
+(d) if we run the test a 2nd time, we are 95% sure that the mean of our sample will fall in I
+(e) the null hypothesis can be rejected
+(f) we cannot conclude anything concerning the null hypothesis
+10. (1 pt) What are possible disadvantages/risks of using MANOVA, as compared to using several
+separate univariate tests? TIP: several answers expected.
+(a) Inflated type I error
+(b) The decreased complexity increases the probability of making mistakes
+(c) The increased complexity increases the probability of making mistakes
+(d) The fact that computer programs make garbage look like roses
+(e) The interpretation is unambiguous
+(f) Univariate tests are often more powerful
+Page 3 of 10
+
+--- Page 5 ---
+Name:
+Student number:
+2
+A Fitness Tracking Application (10 points)
+Note: we do not ask you to calculate the effect size in this problem.
+You worked on the user interface of a fitness tracking application that got launched last month but you
+want to improve it by redesigning the application. You keep all elements from the initial design except
+for the coach avatar that you modify.
+You run a two-weeks study to evaluate the impact of the redesigned user interface on user engagement.
+During the first week, the participants have the old application design, and during the second week, they
+have the redesigned version. The number of times the users opened the application and performed a
+fitness task are recorded during the two weeks for each design. You end up with the following results:
+Participant’s ID
+1
+2
+3
+4
+5
+6
+7
+Old design
+2
+3
+5
+2
+6
+2
+5
+New design
+5
+5
+4
+3
+6
+6
+3
+1. (1 pt) Suppose that you decided to put the collected data into the following categories: less than
+3 times, between 3 and 5 times, and more than 5 times. Theoretically, which test could you run to
+see if your redesign is effective with the data grouped in categories? Would you actually be able to
+run it? Note: it is not asked to perform this test.
+2. (1 pt) Which parametric test can you run to know if your redesign is effective?
+Under which
+assumption(s)?
+3. (2.5 pts) Assume all assumptions are met. Perform the test (include RQ and hypotheses).
+What can you conclude?
+4. (1 pt) Assume now that the data is not normally distributed. Which test should you run?
+Under which assumption(s)?
+5. (2.5 pts) Perform the test (include RQ and hypotheses). What can you conclude?
+6. (1 pt) What would you have answered to questions 2 and 4 if the participants were split in two
+mutually exclusive groups: one group using the old design, and the other group using the new
+design?
+7. (1 pt) Focus only the Old design row. Are there any outliers? (Justify the choice of method
+you use). If so, what should you do with it/them?
+Page 4 of 10
+
+--- Page 6 ---
+Name:
+Student number:
+3
+Art Museum Website Aesthetics (10 points)
+You have been asked to design a website for a famous art museum in New York, which needs to be highly
+aesthetically pleasing. Given your newfound scientific expertise, you decide to do a controlled experiment.
+You let subjects interact with three versions of the site, and after each you ask them to give the site an
+aesthetics rating on a Likert scale from 1 to 5. The scores for your two subjects are given in the table
+below.
+Alice
+Bob
+Version 1
+4
+5
+Version 2
+4
+3
+Version 3
+3
+1
+1. (2.5 pts) Perform repeated measures ANOVA. Does the website version have a significant effect
+on the aesthetics rating (at α = 0.05)? You can use that SSwithin = 3. (Calculate the appropriate
+sums of squares, degrees of freedom and statistical tests. Include critical value(s), and justify your
+conclusion.)
+2. (1 pt) Comparing the current setup to ANOVA without repeated measures, which assumption
+changes? What would we have to calculate to test the assumption in the repeated measures case?
+(No calculations needed.)
+We decide to do a more advanced follow-up experiment. We change ‘website version’ to two variables:
+‘color scheme’ (light, dark, pastel), and ‘font style’ (serif and sans-serif). The rest of the design remains
+unchanged, and we find two new participants.
+3. (2 pts) For the follow-up experiment, identify IV(s) with their levels, and whether they are within-
+subject or between-subject. Draw the design table with two subjects per cell (number them using
+s1, s2, etc.). How many cells do we have? Is this a mixed design, or factorial within-subject design?
+4. (2 pts) After this experiment, as a post hoc analysis we decide to do pairwise t-tests using Bon-
+ferroni corrections. How many t-tests are we doing if we make all possible comparisons (we are
+not interested in between-subject effects)? Using this, how do we calculate corrected p-values? (No
+t-test calculations needed.)
+After this experiment, you realize that since the sites are similar in functionality, subjects might
+unconsciously rate the last website higher because they have become practiced in using the site. At the
+same time, you imagine they might become fatigued or bored by testing many sites, which could also
+affect the results.
+5. (1 pt) Which technique can you use to alleviate these effects somewhat? Explain it briefly.
+Consider a scenario where the art museum website experiment is conducted not only with different versions
+of the website but also in different regions of the world (e.g., North America, Europe, Asia).
+6. (1.5 pts) Given the information specified, treating region as a fixed effect or random effect is both
+possible. For both of these, explain why they could be appropriate here depending on the details of
+the study. Discuss for both how results should be interpreted.
+Page 5 of 10
+
+--- Page 7 ---
+Name:
+Student number:
+4
+Model Complexity and Accuracy (10 points)
+There is a widespread belief that more complex machine learning models are necessarily more accurate.1
+To test this hypothesis more rigorously, you have collected data on prediction accuracy of models with
+different levels of complexity (quantified on a scale from 1 to 5). You also collected the the number of
+training examples Ntrain in the table. You obtain the following data:
+Table 1: Model accuracy dataset.
+Complexity
+Ntrain
+Accuracy
+Data points
+2
+3000
+0.7
+3
+8000
+0.9
+4
+6000
+0.8
+Sample mean
+3
+5666.67
+0.8
+Sample st. dev. (s)
+1
+2516.61
+0.1
+1. (2 pts) Perform simple linear regression using complexity as the IV and accuracy as the DV. What
+is the equation for the best linear fit?
+2. (2 pts) Does this regression model perform significantly better than the model ˆY = b0 (at α = 0.05)?
+What can you conclude from this in terms of the hypothesis? You can use that the residuals are
+-0.05, 0.1, -0.05. (Calculate the appropriate sums of squares, degrees of freedom, and statistical test.
+Justify your conclusion.)
+3. (1.5 pt) What percentage of variance in model accuracy is explained by model complexity?
+You now decide to do multiple regression, with complexity as X1 and adding Ntrain as X2. You obtain
+the following coefficients: b0 = 0.6, b1 = −0.01429, and b2 = 0.00004. You also obtain the following table
+of Pearson correlations:
+X1
+X2
+Y
+X1
+1.000
+0.596
+0.500
+X2
+0.596
+1.000
+0.993
+Y
+0.500
+0.993
+1.000
+4.
+(2 pts) Based on this model, which of the variables (complexity/Ntrain) contributes most to pre-
+dicting accuracy? Provide a calculation.
+5. (1.5 pt) Based on the provided information and the heuristic given in the lecture, do we seem to
+have collinearity? Explain. (No calculations needed.)
+We realize that accuracy is not the only relevant metric for model performance, and hence additionally
+collect data on precision and recall, for each model (i.e. we add two columns in the table). We want to
+use MANOVA with these three DVs.
+6. (1 pt) What should we do with our data before we can use MANOVA?
+1This is often not true when the data contains naturally meaningful features. See the Nature article ”Stop explaining
+black box machine learning models for high stakes decisions and use interpretable models instead”.
+Page 6 of 10
+
+--- Page 8 ---
+Name:
+Student number:
+Appendix A - QNM formula sheet
+Comparing two groups
+SEM =
+s
+√n
+SED =
+s
+s12
+n1
++ s22
+n2
+Uk = Nk ∗Nother + Nk (Nk + 1)
+2
+−Tk
+Comparing two categorical
+variables
+Erow,col = rowtotal · coltotal
+Nparticipants
+χ2 =
+Nrow
+X
+i
+Ncol
+X
+j
+(Oi,j −Ei,j)2
+Ei,j
+df = (Nrow −1)(Ncol −1)
+Linear interpolation
+y = y1 + (x −x1)(y2 −y1)
+x2 −x1
+One-way ANOVA
+SSb =
+G
+X
+k=1
+Nk
+  ¯Yk −¯Y
+2
+SSw =
+G
+X
+k=1
+Nk
+X
+i=1
+ Yik −¯Yk
+2
+SStot =
+G
+X
+k=1
+Nk
+X
+i=1
+ Yik −¯Y
+2
+dftot = N −1
+dfw = N −G
+dfb = G −1
+Two-way ANOVA
+SSa = NkB
+X
+a
+( ¯Y −¯Ya)2
+SSb = NkA
+X
+b
+( ¯Y −¯Yb)2
+SSab = Nk
+X
+a
+X
+b
+( ¯Y + ¯Yab −¯Ya −¯Yb)2
+SStot =
+X
+a
+X
+b
+X
+i
+( ¯Y −Yabi)2
+SSres = SStot −SSa −SSb −SSab
+dfa = A −1
+dfb = B −1
+dfab = (A −1)(B −1)
+dftot = N −1
+dfres = N −AB
+RM/RBD ANOVA
+SSgroup = S
+X
+g
+  ¯Yg −¯Y
+2
+SSsubj. = G
+X
+s
+  ¯Ys −¯Y
+2
+SSwithin =
+X
+g
+X
+s
+ Ygs −¯Yg
+2
+SSerr = SSwithin −SSsubj.
+SStot =
+X
+g
+X
+s
+ Ygs −¯Y
+2
+dfgroup = G −1
+dfsubj. = S −1
+dfwithin = N −SG
+dftot = N −1
+dferr = (G −1)(S −1)
+Regression
+SSres =
+N
+X
+i
+(Yi −ˆYi)2
+SSmodel =
+N
+X
+i
+( ˆYi −¯Y )2
+SStot =
+N
+X
+i
+(Yi −¯Y )2
+dfres = N −K −1
+dfmodel = K
+dftot = N −1
+βi = bi
+sXi
+sY
+b0 =
+P
+i x2
+i
+P
+i yi −P
+i xi
+P
+i xiyi
+N P
+i x2
+i −
+ P
+i xi
+2
+b1 = N P
+i xiyi −P
+i xi
+P
+i yi
+N P
+i x2
+i −
+ P
+i xi
+2
+Logistic regression
+σ(z) =
+1
+1 + e−z
+MANOVA
+η2 = 1 −Λ
+Page 7 of 10
+
+--- Page 9 ---
+Name:
+Student number:
+Appendix B - Critical value tables
+Figure 1: t-table
+Figure 2: Chi-square (χ2) table
+Page 8 of 10
+
+--- Page 10 ---
+Name:
+Student number:
+Figure 3: Mann-Whitney U test table
+Figure 4: Wilcoxon signed-rank test table
+Page 9 of 10
+
+--- Page 11 ---
+Name:
+Student number:
+Figure 5: F-table for α = 0.05.
+Page 10 of 10
+
+
+
+==================================
+FILE: ResearchQuestion.pdf
+==================================
+
+--- Page 1 ---
+Forming a Research Question
+Lukas P.A. Arts
+
+--- Page 2 ---
+https://www.scribbr.com/
+
+--- Page 3 ---
+A good research question is
+1. feasible,
+2. original,
+3. relevant,
+4. complex,
+5. researchable,
+6. focused, and
+7. specific.
+
+--- Page 4 ---
+Feasible
+• Will it be managable to do in ~4 weeks with 2/3 people?
+• Do you have enough resources/skills?
+
+--- Page 5 ---
+Original
+• Different from the original paper’s research question
+• Different from another group’s research question
+
+--- Page 6 ---
+Relevance
+• Does your RQ makes sense?
+• Can you sell your research in your proposal?
+• Makes your life easier! -> writing your research proposal
+
+--- Page 7 ---
+Complexity
+• Handled by guideline:
+• Research question should include:
+• more than 1 independent variable and
+• either >1 dependent variable or a within subject factor design (i.e., repeated
+measures) (both is also fine)
+??
+
+--- Page 8 ---
+Box about experimental design
+Between-subject:
+Comparing two groups of different people under varying conditions.
+Within-subject:
+Comparing two measurements of the same person under varying
+conditions. 
+Key points:
+• Sometimes hard to extract from research question. 
+• If not obvious, clarify!
+
+--- Page 9 ---
+Researchable
+• Can you answer your research question using your dataset?
+• Is it obvious or clear how you extract your features/variables?
+• Otherwise, please explain
+
+--- Page 10 ---
+Focused
+• Target one problem or topic
+• Different IV’s and DV’s should relate to each other
+
+--- Page 11 ---
+Specific
+• IV’s and DV’s should be clear and identifiable
+• Direction of causality that is researched should be clear
+• Use clear variables/features instead of constructs and/or data 
+streams
+
+--- Page 12 ---
+What is the relationship between a patient’s health and wellbeing and
+the fact they are diagnosed with dementia?
+
+--- Page 13 ---
+What is the relationship between a patient’s health and wellbeing and
+the fact they are diagnosed with dementia?
+
+--- Page 14 ---
+What is the relationship between a patient’s health and wellbeing and
+the fact they are diagnosed with dementia?
+Independent/dependent variables
+
+--- Page 15 ---
+What is the relationship between a patient’s health and wellbeing and
+the fact they are diagnosed with dementia?
+Independent/dependent variables
+Dependent variable
+
+--- Page 16 ---
+What is the relationship between a patient’s health and wellbeing and
+the fact they are diagnosed with dementia?
+Independent/dependent variables
+Dependent variable
+1.
+feasible, -> yes, but unclear
+2.
+original, -> somewhat
+3.
+relevant, -> yes! 
+4.
+complex, -> no, only 1 DV
+5.
+researchable, -> unclear
+6.
+focused, and -> yes
+7.
+specific. -> no, variables and causality unclear
+
+--- Page 17 ---
+(How) Do time of first sunlight and the intensity of outdoor
+activity affect smartphone usage and mood?
+
+--- Page 18 ---
+How do time of first sunlight and the intensity of outdoor
+activity affect smartphone usage and mood?
+Direction of causality!
+
+--- Page 19 ---
+How do time of first sunlight and the intensity of outdoor
+activity affect smartphone usage and mood?
+Independent variable
+Independent variable
+Direction of causality!
+
+--- Page 20 ---
+How do time of first sunlight and the intensity of outdoor
+activity affect smartphone usage and mood?
+Independent variable
+Independent variable
+Direction of causality!
+Dependent variable
+Dependent variable
+
+
+
+==================================
+FILE: [N] Danielle Navarro lecture notes.pdf
+==================================
+
+--- Page 1 ---
+Learning statistics with R:
+A tutorial for psychology students and other beginners
+(Version 0.6)
+Danielle Navarro
+University of New South Wales
+d.navarro@unsw.edu.au
+http://compcogscisydney.org/learning-statistics-with-r
+
+--- Page 2 ---
+Overview.
+Learning Statistics with R covers the contents of an introductory statistics class, as typically taught to
+undergraduate psychology students, focusing on the use of the R statistical software. The book discusses
+how to get started in R as well as giving an introduction to data manipulation and writing scripts. From
+a statistical perspective, the book discusses descriptive statistics and graphing ﬁrst, followed by chapters
+on probability theory, sampling and estimation, and null hypothesis testing. After introducing the theory,
+the book covers the analysis of contingency tables, t-tests, ANOVAs and regression. Bayesian statistics
+are covered at the end of the book.
+ii
+
+--- Page 3 ---
+This book is published under a Creative Commons BY-SA license (CC BY-SA) version 4.0. This means
+that this book can be reused, remixed, retained, revised and redistributed (including commercially) as
+long as appropriate credit is given to the authors. If you remix, or modify the original version of this
+open textbook, you must redistribute all versions of this open textbook under the same license - CC
+BY-SA.
+https://creativecommons.org/licenses/by-sa/4.0/
+iii
+
+--- Page 4 ---
+This book was brought to you today by the letter ‘R’.
+iv
+
+--- Page 5 ---
+Table of Contents
+Preface
+ix
+I
+Background
+1
+1
+Why do we learn statistics?
+3
+1.1
+On the psychology of statistics
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+1.2
+The cautionary tale of Simpson’s paradox
+. . . . . . . . . . . . . . . . . . . . . . . . . .
+6
+1.3
+Statistics in psychology . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+8
+1.4
+Statistics in everyday life . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+10
+1.5
+There’s more to research methods than statistics
+. . . . . . . . . . . . . . . . . . . . . .
+10
+2
+A brief introduction to research design
+11
+2.1
+Introduction to psychological measurement
+. . . . . . . . . . . . . . . . . . . . . . . . .
+11
+2.2
+Scales of measurement
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+14
+2.3
+Assessing the reliability of a measurement
+. . . . . . . . . . . . . . . . . . . . . . . . . .
+19
+2.4
+The “role” of variables: predictors and outcomes
+. . . . . . . . . . . . . . . . . . . . . .
+20
+2.5
+Experimental and non-experimental research
+. . . . . . . . . . . . . . . . . . . . . . . .
+20
+2.6
+Assessing the validity of a study
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+22
+2.7
+Confounds, artifacts and other threats to validity . . . . . . . . . . . . . . . . . . . . . .
+25
+2.8
+Summary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+33
+II
+An introduction to R
+35
+3
+Getting started with R
+37
+3.1
+Installing R
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+38
+3.2
+Typing commands at the R console . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+42
+3.3
+Doing simple calculations with R
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+46
+3.4
+Storing a number as a variable
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+48
+3.5
+Using functions to do calculations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+51
+3.6
+Letting Rstudio help you with your commands . . . . . . . . . . . . . . . . . . . . . . . .
+54
+3.7
+Storing many numbers as a vector
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+57
+3.8
+Storing text data
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+60
+3.9
+Storing “true or false” data
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+61
+3.10
+Indexing vectors
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+66
+3.11
+Quitting R . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+69
+3.12
+Summary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+70
+4
+Additional R concepts
+73
+4.1
+Using comments
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+73
+4.2
+Installing and loading packages
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+74
+4.3
+Managing the workspace . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+80
+4.4
+Navigating the ﬁle system
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+83
+4.5
+Loading and saving data . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+87
+4.6
+Useful things to know about variables
+. . . . . . . . . . . . . . . . . . . . . . . . . . . .
+93
+4.7
+Factors . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+97
+4.8
+Data frames . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 100
+v
+
+--- Page 6 ---
+4.9
+Lists
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 102
+4.10
+Formulas . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 103
+4.11
+Generic functions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 104
+4.12
+Getting help
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 105
+4.13
+Summary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 109
+III
+Working with data
+111
+5
+Descriptive statistics
+113
+5.1
+Measures of central tendency
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 114
+5.2
+Measures of variability . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 123
+5.3
+Skew and kurtosis
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 131
+5.4
+Getting an overall summary of a variable
+. . . . . . . . . . . . . . . . . . . . . . . . . . 133
+5.5
+Descriptive statistics separately for each group
+. . . . . . . . . . . . . . . . . . . . . . . 136
+5.6
+Standard scores . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 138
+5.7
+Correlations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 139
+5.8
+Handling missing values
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 151
+5.9
+Summary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 154
+6
+Drawing graphs
+157
+6.1
+An overview of R graphics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 158
+6.2
+An introduction to plotting
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 160
+6.3
+Histograms . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 170
+6.4
+Stem and leaf plots . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 173
+6.5
+Boxplots . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 175
+6.6
+Scatterplots
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 183
+6.7
+Bar graphs . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 187
+6.8
+Saving image ﬁles using R and Rstudio . . . . . . . . . . . . . . . . . . . . . . . . . . . . 191
+6.9
+Summary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 193
+7
+Pragmatic matters
+195
+7.1
+Tabulating and cross-tabulating data . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 196
+7.2
+Transforming and recoding a variable
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . 199
+7.3
+A few more mathematical functions and operations . . . . . . . . . . . . . . . . . . . . . 203
+7.4
+Extracting a subset of a vector
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 207
+7.5
+Extracting a subset of a data frame
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . 210
+7.6
+Sorting, ﬂipping and merging data
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 218
+7.7
+Reshaping a data frame . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 224
+7.8
+Working with text
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 229
+7.9
+Reading unusual data ﬁles . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 237
+7.10
+Coercing data from one class to another
+. . . . . . . . . . . . . . . . . . . . . . . . . . . 241
+7.11
+Other useful data structures . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 242
+7.12
+Miscellaneous topics
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 247
+7.13
+Summary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 252
+8
+Basic programming
+253
+8.1
+Scripts . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 253
+8.2
+Loops . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 259
+8.3
+Conditional statements . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 263
+8.4
+Writing functions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 264
+8.5
+Implicit loops
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 267
+vi
+
+--- Page 7 ---
+8.6
+Summary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 268
+IV
+Statistical theory
+269
+9
+Introduction to probability
+275
+9.1
+How are probability and statistics diﬀerent? . . . . . . . . . . . . . . . . . . . . . . . . . 276
+9.2
+What does probability mean?
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 277
+9.3
+Basic probability theory
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 281
+9.4
+The binomial distribution
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 283
+9.5
+The normal distribution
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 289
+9.6
+Other useful distributions
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 294
+9.7
+Summary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 298
+10 Estimating unknown quantities from a sample
+301
+10.1
+Samples, populations and sampling . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 301
+10.2
+The law of large numbers
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 308
+10.3
+Sampling distributions and the central limit theorem . . . . . . . . . . . . . . . . . . . . 309
+10.4
+Estimating population parameters
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 315
+10.5
+Estimating a conﬁdence interval . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 320
+10.6
+Summary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 326
+11 Hypothesis testing
+327
+11.1
+A menagerie of hypotheses
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 327
+11.2
+Two types of errors . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 330
+11.3
+Test statistics and sampling distributions
+. . . . . . . . . . . . . . . . . . . . . . . . . . 332
+11.4
+Making decisions
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 333
+11.5
+The p value of a test
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 336
+11.6
+Reporting the results of a hypothesis test
+. . . . . . . . . . . . . . . . . . . . . . . . . . 338
+11.7
+Running the hypothesis test in practice . . . . . . . . . . . . . . . . . . . . . . . . . . . . 340
+11.8
+Eﬀect size, sample size and power
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 341
+11.9
+Some issues to consider
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 346
+11.10 Summary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 348
+V
+Statistical tools
+349
+12 Categorical data analysis
+351
+12.1
+The χ2 goodness-of-ﬁt test
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 351
+12.2
+The χ2 test of independence (or association) . . . . . . . . . . . . . . . . . . . . . . . . . 363
+12.3
+The continuity correction
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 369
+12.4
+Eﬀect size
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 370
+12.5
+Assumptions of the test(s) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 371
+12.6
+The most typical way to do chi-square tests in R . . . . . . . . . . . . . . . . . . . . . . . 371
+12.7
+The Fisher exact test . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 373
+12.8
+The McNemar test
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 375
+12.9
+What’s the diﬀerence between McNemar and independence? . . . . . . . . . . . . . . . . 377
+12.10 Summary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 378
+vii
+
+--- Page 8 ---
+13 Comparing two means
+379
+13.1
+The one-sample z-test . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 379
+13.2
+The one-sample t-test
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 385
+13.3
+The independent samples t-test (Student test) . . . . . . . . . . . . . . . . . . . . . . . . 389
+13.4
+The independent samples t-test (Welch test) . . . . . . . . . . . . . . . . . . . . . . . . . 398
+13.5
+The paired-samples t-test
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 400
+13.6
+One sided tests
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 408
+13.7
+Using the t.test() function . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 410
+13.8
+Eﬀect size
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 412
+13.9
+Checking the normality of a sample . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 416
+13.10 Testing non-normal data with Wilcoxon tests
+. . . . . . . . . . . . . . . . . . . . . . . . 420
+13.11 Summary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 422
+14 Comparing several means (one-way ANOVA)
+425
+14.1
+An illustrative data set
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 425
+14.2
+How ANOVA works
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 427
+14.3
+Running an ANOVA in R . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 437
+14.4
+Eﬀect size
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 440
+14.5
+Multiple comparisons and post hoc tests . . . . . . . . . . . . . . . . . . . . . . . . . . . 441
+14.6
+Assumptions of one-way ANOVA
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 446
+14.7
+Checking the homogeneity of variance assumption
+. . . . . . . . . . . . . . . . . . . . . 447
+14.8
+Removing the homogeneity of variance assumption
+. . . . . . . . . . . . . . . . . . . . . 449
+14.9
+Checking the normality assumption . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 450
+14.10 Removing the normality assumption
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . 450
+14.11 On the relationship between ANOVA and the Student t test . . . . . . . . . . . . . . . . 453
+14.12 Summary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 454
+15 Linear regression
+457
+15.1
+What is a linear regression model?
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 457
+15.2
+Estimating a linear regression model
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . 459
+15.3
+Multiple linear regression
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 461
+15.4
+Quantifying the ﬁt of the regression model . . . . . . . . . . . . . . . . . . . . . . . . . . 464
+15.5
+Hypothesis tests for regression models
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . 466
+15.6
+Testing the signiﬁcance of a correlation
+. . . . . . . . . . . . . . . . . . . . . . . . . . . 470
+15.7
+Regarding regression coeﬃcients
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 472
+15.8
+Assumptions of regression
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 474
+15.9
+Model checking
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 475
+15.10 Model selection
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 490
+15.11 Summary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 495
+16 Factorial ANOVA
+497
+16.1
+Factorial ANOVA 1: balanced designs, no interactions
+. . . . . . . . . . . . . . . . . . . 497
+16.2
+Factorial ANOVA 2: balanced designs, interactions allowed . . . . . . . . . . . . . . . . . 506
+16.3
+Eﬀect size, estimated means, and conﬁdence intervals . . . . . . . . . . . . . . . . . . . . 513
+16.4
+Assumption checking . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 517
+16.5
+The F test as a model comparison . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 518
+16.6
+ANOVA as a linear model
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 521
+16.7
+Diﬀerent ways to specify contrasts . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 532
+16.8
+Post hoc tests . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 537
+16.9
+The method of planned comparisons
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . 539
+16.10 Factorial ANOVA 3: unbalanced designs . . . . . . . . . . . . . . . . . . . . . . . . . . . 539
+16.11 Summary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 551
+viii
+
+--- Page 9 ---
+VI
+Endings, alternatives and prospects
+553
+17 Bayesian statistics
+555
+17.1
+Probabilistic reasoning by rational agents . . . . . . . . . . . . . . . . . . . . . . . . . . . 555
+17.2
+Bayesian hypothesis tests
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 560
+17.3
+Why be a Bayesian?
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 562
+17.4
+Bayesian analysis of contingency tables
+. . . . . . . . . . . . . . . . . . . . . . . . . . . 568
+17.5
+Bayesian t-tests . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 574
+17.6
+Bayesian regression . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 577
+17.7
+Bayesian ANOVA
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 581
+17.8
+Summary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 584
+18 Epilogue
+587
+18.1
+The undiscovered statistics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 587
+18.2
+Learning the basics, and learning them in R
+. . . . . . . . . . . . . . . . . . . . . . . . . 595
+References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 597
+ix
+
+--- Page 10 ---
+Preface to Version 0.6
+The book hasn’t changed much since 2015 when I released Version 0.5 – it’s probably fair to say that I’ve
+changed more than it has. I moved from Adelaide to Sydney in 2016 and my teaching proﬁle at UNSW is
+diﬀerent to what it was at Adelaide, and I haven’t really had a chance to work on it since arriving here!
+It’s a little strange looking back at this actually. A few quick comments...
+• Weirdly, the book consistently misgenders me, but I suppose I have only myself to blame for that
+one :-) There’s now a brief footnote on page 12 that mentions this issue; in real life I’ve been working
+through a gender aﬃrmation process for the last two years and mostly go by she/her pronouns. I
+am, however, just as lazy as I ever was so I haven’t bothered updating the text in the book.
+• For Version 0.6 I haven’t changed much I’ve made a few minor changes when people have pointed
+out typos or other errors. In particular it’s worth noting the issue associated with the etaSquared
+function in the lsr package (which isn’t really being maintained any more) in Section 14.4. The
+function works ﬁne for the simple examples in the book, but there are deﬁnitely bugs in there that
+I haven’t found time to check! So please take care with that one.
+• The biggest change really is the licensing! I’ve released it under a Creative Commons licence (CC
+BY-SA 4.0, speciﬁcally), and placed all the source ﬁles to the associated GitHub repository, if
+anyone wants to adapt it.
+Maybe someone would like to write a version that makes use of the tidyverse... I hear that’s become
+rather important to R these days :-)
+Best,
+Danielle Navarro
+Preface to Version 0.5
+Another year, another update. This time around, the update has focused almost entirely on the theory
+sections of the book. Chapters 9, 10 and 11 have been rewritten, hopefully for the better. Along the same
+lines, Chapter 17 is entirely new, and focuses on Bayesian statistics. I think the changes have improved
+the book a great deal. I’ve always felt uncomfortable about the fact that all the inferential statistics in
+the book are presented from an orthodox perspective, even though I almost always present Bayesian data
+analyses in my own work. Now that I’ve managed to squeeze Bayesian methods into the book somewhere,
+I’m starting to feel better about the book as a whole. I wanted to get a few other things done in this
+update, but as usual I’m running into teaching deadlines, so the update has to go out the way it is!
+Dan Navarro
+ix
+
+--- Page 11 ---
+February 16, 2015
+Preface to Version 0.4
+A year has gone by since I wrote the last preface. The book has changed in a few important ways:
+Chapters 3 and 4 do a better job of documenting some of the time saving features of Rstudio, Chapters
+12 and 13 now make use of new functions in the lsr package for running chi-square tests and t tests, and
+the discussion of correlations has been adapted to refer to the new functions in the lsr package. The soft
+copy of 0.4 now has better internal referencing (i.e., actual hyperlinks between sections), though that
+was introduced in 0.3.1. There’s a few tweaks here and there, and many typo corrections (thank you to
+everyone who pointed out typos!), but overall 0.4 isn’t massively diﬀerent from 0.3.
+I wish I’d had more time over the last 12 months to add more content. The absence of any discussion
+of repeated measures ANOVA and mixed models more generally really does annoy me. My excuse for
+this lack of progress is that my second child was born at the start of 2013, and so I spent most of last
+year just trying to keep my head above water. As a consequence, unpaid side projects like this book got
+sidelined in favour of things that actually pay my salary! Things are a little calmer now, so with any luck
+version 0.5 will be a bigger step forward.
+One thing that has surprised me is the number of downloads the book gets. I ﬁnally got some basic
+tracking information from the website a couple of months ago, and (after excluding obvious robots) the
+book has been averaging about 90 downloads per day. That’s encouraging: there’s at least a few people
+who ﬁnd the book useful!
+Dan Navarro
+February 4, 2014
+x
+
+--- Page 12 ---
+Preface to Version 0.3
+There’s a part of me that really doesn’t want to publish this book. It’s not ﬁnished.
+And when I say that, I mean it. The referencing is spotty at best, the chapter summaries are just lists
+of section titles, there’s no index, there are no exercises for the reader, the organisation is suboptimal,
+and the coverage of topics is just not comprehensive enough for my liking. Additionally, there are sections
+with content that I’m not happy with, ﬁgures that really need to be redrawn, and I’ve had almost no time
+to hunt down inconsistencies, typos, or errors. In other words, this book is not ﬁnished. If I didn’t have
+a looming teaching deadline and a baby due in a few weeks, I really wouldn’t be making this available at
+all.
+What this means is that if you are an academic looking for teaching materials, a Ph.D. student looking
+to learn R, or just a member of the general public interested in statistics, I would advise you to be cautious.
+What you’re looking at is a ﬁrst draft, and it may not serve your purposes. If we were living in the days
+when publishing was expensive and the internet wasn’t around, I would never consider releasing a book
+in this form. The thought of someong shelling out $80 for this (which is what a commercial publisher told
+me it would retail for when they oﬀered to distribute it) makes me feel more than a little uncomfortable.
+However, it’s the 21st century, so I can post the pdf on my website for free, and I can distribute hard
+copies via a print-on-demand service for less than half what a textbook publisher would charge. And so
+my guilt is assuaged, and I’m willing to share! With that in mind, you can obtain free soft copies and
+cheap hard copies online, from the following webpages:
+Soft copy:
+http://www.compcogscisydney.com/learning-statistics-with-r.html
+Hard copy:
+www.lulu.com/content/13570633
+Even so, the warning still stands: what you are looking at is Version 0.3 of a work in progress. If and
+when it hits Version 1.0, I would be willing to stand behind the work and say, yes, this is a textbook that
+I would encourage other people to use. At that point, I’ll probably start shamelessly ﬂogging the thing
+on the internet and generally acting like a tool. But until that day comes, I’d like it to be made clear
+that I’m really ambivalent about the work as it stands.
+All of the above being said, there is one group of people that I can enthusiastically endorse this book
+to: the psychology students taking our undergraduate research methods classes (DRIP and DRIP:A) in
+2013. For you, this book is ideal, because it was written to accompany your stats lectures. If a problem
+arises due to a shortcoming of these notes, I can and will adapt content on the ﬂy to ﬁx that problem.
+Eﬀectively, you’ve got a textbook written speciﬁcally for your classes, distributed for free (electronic
+copy) or at near-cost prices (hard copy). Better yet, the notes have been tested: Version 0.1 of these
+notes was used in the 2011 class, Version 0.2 was used in the 2012 class, and now you’re looking at the
+new and improved Version 0.3. I’m not saying these notes are titanium plated awesomeness on a stick –
+though if you wanted to say so on the student evaluation forms, then you’re totally welcome to – because
+they’re not. But I am saying that they’ve been tried out in previous years and they seem to work okay.
+Besides, there’s a group of us around to troubleshoot if any problems come up, and you can guarantee
+that at least one of your lecturers has read the whole thing cover to cover!
+Okay, with all that out of the way, I should say something about what the book aims to be. At its
+core, it is an introductory statistics textbook pitched primarily at psychology students. As such, it covers
+the standard topics that you’d expect of such a book: study design, descriptive statistics, the theory of
+hypothesis testing, t-tests, χ2 tests, ANOVA and regression. However, there are also several chapters
+devoted to the R statistical package, including a chapter on data manipulation and another one on scripts
+and programming. Moreover, when you look at the content presented in the book, you’ll notice a lot of
+topics that are traditionally swept under the carpet when teaching statistics to psychology students. The
+Bayesian/frequentist divide is openly disussed in the probability chapter, and the disagreement between
+Neyman and Fisher about hypothesis testing makes an appearance. The diﬀerence between probability
+xi
+
+--- Page 13 ---
+and density is discussed. A detailed treatment of Type I, II and III sums of squares for unbalanced
+factorial ANOVA is provided.
+And if you have a look in the Epilogue, it should be clear that my
+intention is to add a lot more advanced content.
+My reasons for pursuing this approach are pretty simple: the students can handle it, and they even
+seem to enjoy it. Over the last few years I’ve been pleasantly surprised at just how little diﬃculty I’ve had
+in getting undergraduate psych students to learn R. It’s certainly not easy for them, and I’ve found I need
+to be a little charitable in setting marking standards, but they do eventually get there. Similarly, they
+don’t seem to have a lot of problems tolerating ambiguity and complexity in presentation of statistical
+ideas, as long as they are assured that the assessment standards will be set in a fashion that is appropriate
+for them. So if the students can handle it, why not teach it? The potential gains are pretty enticing.
+If they learn R, the students get access to CRAN, which is perhaps the largest and most comprehensive
+library of statistical tools in existence. And if they learn about probability theory in detail, it’s easier for
+them to switch from orthodox null hypothesis testing to Bayesian methods if they want to. Better yet,
+they learn data analysis skills that they can take to an employer without being dependent on expensive
+and proprietary software.
+Sadly, this book isn’t the silver bullet that makes all this possible. It’s a work in progress, and maybe
+when it is ﬁnished it will be a useful tool. One among many, I would think. There are a number of
+other books that try to provide a basic introduction to statistics using R, and I’m not arrogant enough
+to believe that mine is better. Still, I rather like the book, and maybe other people will ﬁnd it useful,
+incomplete though it is.
+Dan Navarro
+January 13, 2013
+xii
+
+--- Page 14 ---
+Part I.
+Background
+- 1 -
+
+--- Page 15 ---
+
+--- Page 16 ---
+1. Why do we learn statistics?
+“Thou shalt not answer questionnaires
+Or quizzes upon World Aﬀairs,
+Nor with compliance
+Take any test. Thou shalt not sit
+With statisticians nor commit
+A social science”
+– W.H. Auden1
+1.1
+On the psychology of statistics
+To the surprise of many students, statistics is a fairly signiﬁcant part of a psychological education. To
+the surprise of no-one, statistics is very rarely the favourite part of one’s psychological education. After
+all, if you really loved the idea of doing statistics, you’d probably be enrolled in a statistics class right
+now, not a psychology class. So, not surprisingly, there’s a pretty large proportion of the student base
+that isn’t happy about the fact that psychology has so much statistics in it. In view of this, I thought
+that the right place to start might be to answer some of the more common questions that people have
+about stats. . .
+A big part of this issue at hand relates to the very idea of statistics. What is it? What’s it there
+for? And why are scientists so bloody obsessed with it? These are all good questions, when you think
+about it. So let’s start with the last one. As a group, scientists seem to be bizarrely ﬁxated on running
+statistical tests on everything. In fact, we use statistics so often that we sometimes forget to explain to
+people why we do. It’s a kind of article of faith among scientists – and especially social scientists – that
+your ﬁndings can’t be trusted until you’ve done some stats. Undergraduate students might be forgiven
+for thinking that we’re all completely mad, because no-one takes the time to answer one very simple
+question:
+Why do you do statistics? Why don’t scientists just use common sense?
+It’s a naive question in some ways, but most good questions are. There’s a lot of good answers to it,2
+1The quote comes from Auden’s 1946 poem Under Which Lyre: A Reactionary Tract for the Times, delivered as part of
+a commencement address at Harvard University. The history of the poem is kind of interesting: http://harvardmagazine
+.com/2007/11/a-poets-warning.html
+2Including the suggestion that common sense is in short supply among scientists.
+- 3 -
+
+--- Page 17 ---
+but for my money, the best answer is a really simple one: we don’t trust ourselves enough. We worry
+that we’re human, and susceptible to all of the biases, temptations and frailties that humans suﬀer from.
+Much of statistics is basically a safeguard. Using “common sense” to evaluate evidence means trusting
+gut instincts, relying on verbal arguments and on using the raw power of human reason to come up with
+the right answer. Most scientists don’t think this approach is likely to work.
+In fact, come to think of it, this sounds a lot like a psychological question to me, and since I do work
+in a psychology department, it seems like a good idea to dig a little deeper here. Is it really plausible to
+think that this “common sense” approach is very trustworthy? Verbal arguments have to be constructed
+in language, and all languages have biases – some things are harder to say than others, and not necessarily
+because they’re false (e.g., quantum electrodynamics is a good theory, but hard to explain in words).
+The instincts of our “gut” aren’t designed to solve scientiﬁc problems, they’re designed to handle day to
+day inferences – and given that biological evolution is slower than cultural change, we should say that
+they’re designed to solve the day to day problems for a diﬀerent world than the one we live in. Most
+fundamentally, reasoning sensibly requires people to engage in “induction”, making wise guesses and
+going beyond the immediate evidence of the senses to make generalisations about the world. If you think
+that you can do that without being inﬂuenced by various distractors, well, I have a bridge in Brooklyn I’d
+like to sell you. Heck, as the next section shows, we can’t even solve “deductive” problems (ones where
+no guessing is required) without being inﬂuenced by our pre-existing biases.
+1.1.1
+The curse of belief bias
+People are mostly pretty smart. We’re certainly smarter than the other species that we share the
+planet with (though many people might disagree). Our minds are quite amazing things, and we seem
+to be capable of the most incredible feats of thought and reason. That doesn’t make us perfect though.
+And among the many things that psychologists have shown over the years is that we really do ﬁnd it
+hard to be neutral, to evaluate evidence impartially and without being swayed by pre-existing biases. A
+good example of this is the belief bias eﬀect in logical reasoning: if you ask people to decide whether a
+particular argument is logically valid (i.e., conclusion would be true if the premises were true), we tend
+to be inﬂuenced by the believability of the conclusion, even when we shouldn’t. For instance, here’s a
+valid argument where the conclusion is believable:
+No cigarettes are inexpensive (Premise 1)
+Some addictive things are inexpensive (Premise 2)
+Therefore, some addictive things are not cigarettes (Conclusion)
+And here’s a valid argument where the conclusion is not believable:
+No addictive things are inexpensive (Premise 1)
+Some cigarettes are inexpensive (Premise 2)
+Therefore, some cigarettes are not addictive (Conclusion)
+The logical structure of argument #2 is identical to the structure of argument #1, and they’re both valid.
+However, in the second argument, there are good reasons to think that premise 1 is incorrect, and as a
+result it’s probably the case that the conclusion is also incorrect. But that’s entirely irrelevant to the
+topic at hand: an argument is deductively valid if the conclusion is a logical consequence of the premises.
+That is, a valid argument doesn’t have to involve true statements.
+On the other hand, here’s an invalid argument that has a believable conclusion:
+No addictive things are inexpensive (Premise 1)
+Some cigarettes are inexpensive (Premise 2)
+Therefore, some addictive things are not cigarettes (Conclusion)
+- 4 -
+
+--- Page 18 ---
+And ﬁnally, an invalid argument with an unbelievable conclusion:
+No cigarettes are inexpensive (Premise 1)
+Some addictive things are inexpensive (Premise 2)
+Therefore, some cigarettes are not addictive (Conclusion)
+Now, suppose that people really are perfectly able to set aside their pre-existing biases about what is
+true and what isn’t, and purely evaluate an argument on its logical merits. We’d expect 100% of people
+to say that the valid arguments are valid, and 0% of people to say that the invalid arguments are valid.
+So if you ran an experiment looking at this, you’d expect to see data like this:
+conclusion feels true
+conclusion feels false
+argument is valid
+100% say “valid”
+100% say “valid”
+argument is invalid
+0% say “valid”
+0% say “valid”
+If the psychological data looked like this (or even a good approximation to this), we might feel safe in
+just trusting our gut instincts. That is, it’d be perfectly okay just to let scientists evaluate data based on
+their common sense, and not bother with all this murky statistics stuﬀ. However, you guys have taken
+psych classes, and by now you probably know where this is going . . .
+In a classic study, J. S. B. T. Evans, Barston, and Pollard (1983) ran an experiment looking at exactly
+this. What they found is that when pre-existing biases (i.e., beliefs) were in agreement with the structure
+of the data, everything went the way you’d hope:
+conclusion feels true
+conclusion feels false
+argument is valid
+92% say “valid”
+argument is invalid
+8% say “valid”
+Not perfect, but that’s pretty good. But look what happens when our intuitive feelings about the truth
+of the conclusion run against the logical structure of the argument:
+conclusion feels true
+conclusion feels false
+argument is valid
+92% say “valid”
+46% say “valid”
+argument is invalid
+92% say “valid”
+8% say “valid”
+Oh dear, that’s not as good.
+Apparently, when people are presented with a strong argument that
+contradicts our pre-existing beliefs, we ﬁnd it pretty hard to even perceive it to be a strong argument
+(people only did so 46% of the time). Even worse, when people are presented with a weak argument that
+agrees with our pre-existing biases, almost no-one can see that the argument is weak (people got that
+one wrong 92% of the time!)3
+If you think about it, it’s not as if these data are horribly damning. Overall, people did do better
+than chance at compensating for their prior biases, since about 60% of people’s judgements were correct
+(you’d expect 50% by chance). Even so, if you were a professional “evaluator of evidence”, and someone
+came along and oﬀered you a magic tool that improves your chances of making the right decision from
+60% to (say) 95%, you’d probably jump at it, right? Of course you would. Thankfully, we actually do
+have a tool that can do this. But it’s not magic, it’s statistics. So that’s reason #1 why scientists love
+3In my more cynical moments I feel like this fact alone explains 95% of what I read on the internet.
+- 5 -
+
+--- Page 19 ---
+statistics. It’s just too easy for us to “believe what we want to believe”; so if we want to “believe in the
+data” instead, we’re going to need a bit of help to keep our personal biases under control. That’s what
+statistics does: it helps keep us honest.
+1.2
+The cautionary tale of Simpson’s paradox
+The following is a true story (I think...). In 1973, the University of California, Berkeley had some worries
+about the admissions of students into their postgraduate courses. Speciﬁcally, the thing that caused the
+problem was that the gender breakdown of their admissions, which looked like this. . .
+Number of applicants
+Percent admitted
+Males
+8442
+44%
+Females
+4321
+35%
+. . . and the were worried about being sued.4 Given that there were nearly 13,000 applicants, a diﬀerence
+of 9% in admission rates between males and females is just way too big to be a coincidence. Pretty
+compelling data, right? And if I were to say to you that these data actually reﬂect a weak bias in favour
+of women (sort of!), you’d probably think that I was either crazy or sexist.
+Oddly, it’s actually sort of true . . . when people started looking more carefully at the admissions data
+(Bickel, Hammel, & O’Connell, 1975) they told a rather diﬀerent story. Speciﬁcally, when they looked
+at it on a department by department basis, it turned out that most of the departments actually had a
+slightly higher success rate for female applicants than for male applicants. The table below shows the
+admission ﬁgures for the six largest departments (with the names of the departments removed for privacy
+reasons):
+Males
+Females
+Department
+Applicants
+Percent admitted
+Applicants
+Percent admitted
+A
+825
+62%
+108
+82%
+B
+560
+63%
+25
+68%
+C
+325
+37%
+593
+34%
+D
+417
+33%
+375
+35%
+E
+191
+28%
+393
+24%
+F
+272
+6%
+341
+7%
+Remarkably, most departments had a higher rate of admissions for females than for males! Yet the overall
+rate of admission across the university for females was lower than for males. How can this be? How can
+both of these statements be true at the same time?
+Here’s what’s going on. Firstly, notice that the departments are not equal to one another in terms of
+their admission percentages: some departments (e.g., engineering, chemistry) tended to admit a high per-
+centage of the qualiﬁed applicants, whereas others (e.g., English) tended to reject most of the candidates,
+even if they were high quality. So, among the six departments shown above, notice that department A
+is the most generous, followed by B, C, D, E and F in that order. Next, notice that males and females
+tended to apply to diﬀerent departments. If we rank the departments in terms of the total number of
+male applicants, we get AąBąDąCąFąE (the “easy” departments are in bold). On the whole, males
+4Earlier versions of these notes incorrectly suggested that they actually were sued – apparently that’s not true. There’s a
+nice commentary on this here: https://www.refsmmat.com/posts/2016-05-08-simpsons-paradox-berkeley.html. A big thank
+you to Wilfried Van Hirtum for pointing this out to me!
+- 6 -
+
+--- Page 20 ---
+0
+20
+40
+60
+80
+100
+0
+20
+40
+60
+80
+100
+Percentage of female applicants
+Admission rate (both genders)
+Figure 1.1: The Berkeley 1973 college admissions data. This ﬁgure plots the admission rate for the 85
+departments that had at least one female applicant, as a function of the percentage of applicants that
+were female. The plot is a redrawing of Figure 1 from Bickel et al. (1975). Circles plot departments with
+more than 40 applicants; the area of the circle is proportional to the total number of applicants. The
+crosses plot department with fewer than 40 applicants.
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+tended to apply to the departments that had high admission rates. Now compare this to how the female
+applicants distributed themselves. Ranking the departments in terms of the total number of female ap-
+plicants produces a quite diﬀerent ordering CąEąDąFąAąB. In other words, what these data seem
+to be suggesting is that the female applicants tended to apply to “harder” departments. And in fact, if
+we look at all Figure 1.1 we see that this trend is systematic, and quite striking. This eﬀect is known
+as Simpson’s paradox. It’s not common, but it does happen in real life, and most people are very
+surprised by it when they ﬁrst encounter it, and many people refuse to even believe that it’s real. It is
+very real. And while there are lots of very subtle statistical lessons buried in there, I want to use it to
+make a much more important point . . . doing research is hard, and there are lots of subtle, counterintuitive
+traps lying in wait for the unwary. That’s reason #2 why scientists love statistics, and why we teach
+research methods. Because science is hard, and the truth is sometimes cunningly hidden in the nooks
+and crannies of complicated data.
+Before leaving this topic entirely, I want to point out something else really critical that is often over-
+looked in a research methods class. Statistics only solves part of the problem. Remember that we started
+- 7 -
+
+
+
+==================================
+FILE: Assignments\A2 - ANOVA 1, 2 (Lectures 5, 6) (1).pdf
+==================================
+
+--- Page 1 ---
+Assignment 2 - ANOVA 1, 2 (Lectures 5, 6)
+To be handed in before the lecture on May 21.
+Important notes:
+2.1 One-way ANOVA (by hand, 15p)
+NOTE: This exercise should be done by hand, but it is recommended to check your answers using SPSS/R/Python.
+We let three groups of user test our website, and ask participants about their satisfaction on a scale from 0-100. We would like to
+know whether website color affects user satisfaction.
+Group
+Website color
+User satisfaction
+A
+Yellow
+50
+A
+Yellow
+60
+A
+Yellow
+45
+B
+Green
+25
+B
+Green
+30
+B
+Green
+25
+C
+Blue
+80
+C
+Blue
+95
+C
+Blue
+90
+We take α = 0.05 as the significance level for all statistical tests in this sheet.
+Exercise 2.1 and 2.2 should be done by hand (succinctly justify your answers), exercise 2.3 should be done using
+SPSS/R/Python (the answer is sufficient).
+1. What are the types and roles of the variables in this study? (2p)
+2. Why is ANOVA appropriate here, as opposed to t-tests, chi-squared tests or correlation? (1p)
+3. Perform an F-test by hand for the effect of website color on user satisfaction. Is there a significant effect? (6p)
+4. What percentage of variance in user satisfaction is explained by background color? (2p)
+5. We are doing all possible pairwise t-tests for group means using multiple comparisons corrections. The p-values without
+corrections are shown below. Using Bonferroni corrections, what are the corresponding honest p-values? What can you
+conclude from this? (2p)
+6. We check our assumptions and obtain the results below. How do you interpret these results? (2p)
+
+--- Page 2 ---
+2.2 Two-way ANOVA (by hand, 15p)
+NOTE: This exercise should be done by hand, but it is recommended to check your answers using SPSS/R/Python.
+A researcher is interested in the effects of neuroticism (divided into low, medium, high) and type of feedback (positive, negative,
+or mixed) on task performance in a simulated job interview task. The researcher measures N = 18 participants' levels of
+neuroticism using standardized personality questionnaires and randomly assigns them to receive a type of feedback during the
+interview. The researcher finds the following table of means(!), also plotted below.
+Neuroticism
+Feedback
+Mean Performance
+Low
+Mixed
+55
+Medium
+Mixed
+45
+High
+Mixed
+50
+Low
+Negative
+80
+Medium
+Negative
+50
+High
+Negative
+20
+Low
+Positive
+30
+Medium
+Positive
+55
+High
+Positive
+70
+1. What are the types and roles of the variables in this study? (1p)
+2. Using the notation (levelsIV1) × (levelsIV2)×. . . ×(levelsIVM), what type of design do we have? (1p)
+3. Draw the design table with an appropriate number of cells, with subjects evenly divided among cells. (2p)
+4. Consider the graph. What is suggested about the expected results of doing F-tests, based on (i) the lines and (ii) the error
+bars? (1p)
+5. Using the table of means and that SStot = 7152, perform F-tests for two-way ANOVA by hand (interaction & main effects).
+Discuss whether there are significant effects. (6p)
+6. Calculate eta squared and partial eta squared for the interaction effect only (1p).
+7. As post hoc analysis the researcher performs Tukey's HSD with the result given below. What conclusions can we draw from
+this? (1p)
+
+--- Page 3 ---
+In a second study the researcher decides to also measure openness next to neuroticism. The same scale (low, medium, high) is
+used.
+2.3 Three-way ANOVA (using SPSS/R/Python, 12p)
+NOTE: This exercise should be done using SPSS/R/Python.
+We want to study the effect of robot design (humanoid, animal-like and machine-like) as well as interaction modality (voice,
+touch) and age group ('young' and 'old') on user trust (measured using a post-interaction questionnaire). You are given the
+(unrealistic) data in the robot2.csv file on Blackboard.
+8. Using the notation (levelsIV1) × (levelsIV2)×. . . ×(levelsIVM), what type of design do we have? With two subjects in each cell of
+our design, how many subjects do we now need? (2p)
+1. What are the types and roles of the variables in this study? (1p)
+2. Disregarding age for the moment, draw a graph with Trust Score on the y-axis, Robot Design on the x-axis, with both
+modalities in one graph (e.g. using lineplot.CI in R, see Navarro).
+1. Make a simple sketch on paper. (1p)
+2. Describe what effects you expect, if any. If you expect an interaction effect, describe what type. (1p)
+3. From now on we include age again. Calculate residuals and make a QQ-plot. Briefly describe the plot and your conclusion.
+(1p) (Hint: you need to perform ANOVA to obtain residuals.)
+4. Do a Shapiro-Wilk test for non-normality. Report the result and your interpretation. Can we proceed with ANOVA? (1p)
+5. Do a Levene/Brown-Forsythe test for violation of homogeneity of variance. Report the result and your interpretation. Can we
+proceed with ANOVA? (2p)
+6. Even if the answer to one of the above was no, perform three-way ANOVA including two-way and three-way interactions.
+Write down significant effects you find, with corresponding F-statistics and p-values. (3p)
+7. What is partial η2 for the different effects? (1p)
+8. Perform Tukey's HSD. List the significant pairwise differences that you find (there should be three with and three without
+interaction). (1p)
+
+
+
+==================================
+FILE: Assignments\A3_ANOVA_3_(L7)_Data_processing_(L8) (1).pdf
+==================================
+
+--- Page 1 ---
+Assignment 3 Part I - ANOVA 3 (12 pt)
+To be handed in before the lecture on May 28.
+Important notes:
+3.1 Repeated measures ANOVA (by hand)
+Since the "Joyzepam" medication from Lecture 5 failed to cure the Hobbits' depression after contact with the One Ring, we are
+now turning to alternatives, and attempt instead a 3-month program of mindfulness-based stress reduction (MBSR). We measure
+the Hobbits' stress levels using a standardised questionnaire before the program (t1), after the program (t2), and three months
+after the end of the program (t3).
+t1
+t2
+t3
+Frodo
+4
+2
+2
+Sam
+5
+3
+2
+We are realising that we are lacking a control group. We do a second experiment, with two other Hobbits, which we give the
+same questionnaires, but do not follow the MBSR program. To simplify our experiment, we decide to remove the third
+measurement (t3).
+We again realize our experiment is flawed. The control and treatment groups come from the same village, and the mindful
+hobbits seem to be calming everyone down! Apparently, stress levels of hobbits influence each other.
+Hence, we decide to do a third and final (very large) experiment. We look at samples of hobbits from 10 randomly chosen
+villages in the region, where hobbits from 5 villages are given MBSR, and hobbits from the remaining villages are not given
+treatment. We again use t1, t2 and t3. We are interested in the effect of geography but not in differences between villages.
+We take α = 0.05 as the significance level for all statistical tests in this sheet.
+Justify your answers.
+1. Why is one-way ANOVA not appropriate here? (1p)
+2. Perform repeated measures ANOVA. Can we reject H0? (4p)
+3. What test could you do if you had only measurements for t1 and t2? (1p)
+4. We know that repeated measures 'does the same thing' (uses the same SS, DoF) as RBDs. What, can be seen as the
+'nuisance variable' in this repeated measures design? What are its levels? (1p)
+5. Draw the design table (2 subjects per cell). (1p)
+6. Do we have a mixed design, or a factorial within-subject design? (1p)
+7. List main effects that can be studied, their levels, and whether the effect should be considered fixed or random. (2p)
+8. Is this a nested design or a crossed design? (1p)
+
+--- Page 2 ---
+Assignment 3 Part II: Data Processing (12 pt) 
+To hand in on Tuesday 28th of May 
+ 
+You performed a user-study on a new interface you designed for an online bookshop. Each participant had the 
+same task to perform which was “find the book ‘Pride and Prejudice’ and add it to your cart”. You 
+collected the age of participants, the average time spent on their phone (in hours/day), the time spent to 
+complete this task (in seconds), the difficulty ratings on this task as well as user satisfaction ratings (both on a 
+scale from 1 to 10). 
+You have the following dataset: 
+User ID 
+Age 
+Use of phone 
+(in hours/day) 
+Task time 
+(in seconds) 
+Task Difficulty 
+(out of 10) 
+User Satisfaction 
+(out of 10) 
+1 
+35 
+0.5 
+111 
+3 
+8 
+2 
+30 
+1.5 
+123 
+4 
+5 
+3 
+20 
+5 
+136 
+5 
+7 
+4 
+26 
+4 
+108 
+3 
+9 
+5 
+28 
+3.5 
+122 
+4 
+? 
+6 
+22 
+4 
+191 
+10 
+1 
+7 
+40 
+1.5 
+97 
+2 
+7 
+8 
+27 
+5.5 
+104 
+? 
+9 
+9 
+29 
+3 
+125 
+4 
+6 
+10 
+33 
+2 
+101 
+2 
+10 
+ 
+➢ Q.1 – Consider all the dataset. It contains two missing values. (4pts) 
+• 
+Q.1.1 – What are the methods that can help with these missing values? (0.5pt) 
+• 
+Q.1.2 – Apply each of them by hand for both missing values. Justify your choices where needed, 
+make plots if necessary. (2pts) 
+• 
+Q.1.3 – Which method is more/least relevant, why? (1.5pts) 
+ 
+➢ Q.2 –  Keep the values you obtained with mean imputation (round it to the closest integer) for the two 
+missing values. (4pts) 
+• 
+Q.2.1 –  Consider the columns of task time, task difficulty rating, and user satisfaction. Are there 
+an outliers (use two different methods)? (2pts) 
+• 
+Q.2.2 - If  an outlier(s) was (were) found, do you think it (they) should be kept or removed? Justify. 
+(2pts) 
+ 
+➢ Q.3 – Consider now that you have a larger number of participants and an additional measure in your 
+dataset. Indeed, you collected the eye movements of users who interacted with the interface, which 
+means you know where the user was looking at on the interface. (4pts) 
+For this question be as precise as you can. 
+• 
+Q.3.1 – What method would you choose to visualize task difficulty and user satisfaction rating 
+separately? (1pt) 
+• 
+Q.3.2 – What method would you choose to visualize the relation between task difficulty and user 
+satisfaction? (1pt) 
+• 
+Q.3.3 – What method would you choose to visualize the eye tracking data? (1pt) 
+• 
+Q.3.4 – What method would you choose to visualize outliers? (1pt) 
+ 
+
+
+
+==================================
+FILE: Assignments\Assignment 4 - Regression, Multivariate statistics (Lectures 9, 10) (1).pdf
+==================================
+
+--- Page 1 ---
+Assignment 4 - Regression, Multivariate statistics (Lectures 9, 10)
+To be handed in before the lecture on June 6.
+Important notes:
+Question 4.1
+An HR researcher is working on a model of suggested salaries for future job applicants. The employee has collected the
+following data from past employees in the company.
+Employee index
+1
+2
+3
+4
+Experience (years)
+2
+3
+4
+7
+Salary (€, x1000)
+3
+3
+5
+10
+Question 4.2
+We now add a second predictor, employees' numerical satisfaction rating. We get 7, 8, 6, 2, for employees 1, 2, 3, 4,
+respectively. The results are shown below.
+We take α = 0.05 as the significance level for all statistical tests in this sheet.
+All exercises should be done by hand, but it is recommended to check your answers using SPSS/R/Python.
+Justify your answers.
+1. Find the equation for the best linear fit of salary as a function of experience. (2p)
+2. Calculate (unstandardized) residuals and consider the plot below. What point has/what points have high leverage, and what
+point has/what points have high influence? (3p)
+3. Perform an F-test and show that the model as a whole is significant (and thus also coefficient b1). (2p)
+4. Calculate adjusted R squared. (1p)
+1. Explain how it's possible that the the coefficient for experience changed compared to Q4.1. (1p)
+2. Calculate standardized coefficients for experience and rating. According to our model, which feature is more important for
+predicting salary? (2p)
+3. Using this, explain why the coefficient for experience is no longer significant compared to Q4.1. (1p)
+
+--- Page 2 ---
+Question 4.3
+Our HR researcher decides to also make a logistic regression model, predicting whether an employee is likely to quit (Y=0) or
+not (Y=1) in the coming year, based on the same two predictors as above (experience X1 and rating X2). The result is
+b0 = −51.2, b1 = −16.2, b2 = 15.5.
+Question 4.4
+The researcher now looks at salaries in three different departments. They want to know whether the departments have different
+salaries on average, adjusting for experience of employees.
+Question 4.5
+Consider an experiment where three teaching methods were being trialled in schools. The three teaching methods were called
+"Regular", "Rote" and "Reasoning". The researchers wanted to know whether the effects of the three teaching methods on
+students' overall grades (we look at "Humanities" and "Science") were different based on students' gender ("male"/"female" [1]).
+The primary aim is to determine whether there is a statistically significant interaction effect.
+Finding that all the required assumptions for MANOVA hold, they obtain the data below.
+4. We calculate the correlation matrix below. Why does this suggest a problem in our methodology? (1p)
+1. According to this model, what is the probability of quitting this year, if one has 3 years of experience and a satisfaction
+rating 6.5? (2p)
+2. Does the model predict that more experience decreases or increases the probability of quitting? Does your answer depend
+on the rating? (2p)
+1. Which statistical technique is appropriate for this research question? Why does RBD not work here? (2p)
+2. Explain using a Venn diagram with variances why controlling for experience increases power compared to not controlling for
+experience. (1p)
+3. Using your knowledge from Q4.2, is it a good idea to additionally control for the employee satisfaction rating? (1p)
+1. Why is MANOVA appropriate here? (1p)
+
+--- Page 3 ---
+"There __________  (was/was no) statistically significant interaction effect between gender and type of intervention on the
+combined dependent variables,
+ 
+F( ____,____ ) = __________  ;
+p = __________ ;
+____________________  (Pillai's Trace/Wilks' Lambda) = __________  "
+[1] apologies to students who do not identify as either for this dated example.
+2. Based on this data, the researchers write down their conclusion in the sentence below. Choose the right options between
+boldfaced items, and fill in the blanks. (2p)
+3. What is η2 for the effect of the intervention variable? (1p)
+
+
+
+==================================
+FILE: Assignments\Assignment1_ParamNonParam (1).pdf
+==================================
+
+--- Page 1 ---
+Name:
+                                                                                     Student number:
+Assignment 1: Parametric vs Non-Parametric tests 
+To hand in on Tuesday 7th of May
+Part I – A new streaming platform
+You have to design the interface for a new movie streaming service that will become a rival to industry
+giants like Netflix, Prime Video, HBO, and Disney+. This platform aims to revolutionize the streaming
+experience by offering more efficient and personalized film recommendations based on individual user
+preferences. To get inspiration on how to create an appropriate design, you take interest in two different
+platforms and collect the data of participants on the time it took them to perform the defined task “locating
+and adding the movie ‘Dune’ to their watchlist” with each interface.
+You have the following dataset which corresponds to the time (in seconds) taken to complete the specified
+task with two distinct interface designs:
+Participant 1 Participant 2 Participant 3 Participant 4 Participant 5 Participant 6
+Interface1
+41
+39
+47
+50
+49
+43
+Interface2
+49
+52
+48
+58
+55
+54
+Important  note: All  questions  are  independent,  you  cannot  use  any  information  from  a
+previous/following question to answer the one you are currently doing, except for Q.4.
+T  IP:
+   Verify your results by doing the statistical tests with R, Python, or SPSS.
+➢
+Q.1 – You know that the average time for people to do a task such as the defined one is equal to 50
+seconds. Consider only Interface2.
+•
+Q.1.1 – Which of the three t-tests should you perform with that information? Under which
+assumption(s) can you perform this test?
+For the rest of Q.1, we assume that these requirements are met.
+•
+Q.1.2 – What research question and hypotheses can you formulate? 
+•
+Q.1.3 – Perform the test by hand (write down your calculations).
+
+--- Page 2 ---
+Name:
+                                                                                     Student number:
+•
+Q.1.4 – What conclusions can you draw (include confidence intervals)?
+➢Q.2 – For this question, consider Interface1 and Interface2 knowing that Interface1 was a first design
+of your platform, and that for Interface2, you modified the design slightly (you changed the adding
+to watchlist icon position). The 6 participants are the same for both interfaces, they tried Interface1
+first, then after your modification, they tried Interface2.
+•
+Q.2.1 – Which of the three t-tests should you perform with that information? Under which
+assumption(s) can you perform this test?
+For the rest of Q.2, we assume that these requirements are met.
+
+--- Page 3 ---
+Name:
+                                                                                     Student number:
+•
+Q.2.2 – What research question and hypotheses can you formulate? 
+•
+Q.2.3 – Perform the test by hand (write down your calculations).
+•
+Q.2.4 – What conclusions can you draw (include confidence intervals)?
+
+--- Page 4 ---
+Name:
+                                                                                     Student number:
+•
+Q.2.5 – What other measure should you report to conclude on the test? Why?
+➢Q.3 – For this question, consider that Interface1 and Interface2 are two distinct interfaces from two
+different streaming platforms, and that the results for each interface come from two different groups
+of six participants (e.g. Participant 1 for Interface1 is not the same person as Participant 1 for
+Interface2).
+•
+Q.3.1 – Which of the three t-tests should you perform with that information? Under which
+assumption(s) can you perform this test?
+For the rest of Q.3, we assume that these requirements are met.
+•
+Q.3.2 – What research question and hypotheses can you formulate?
+•
+Q.3.3 – Perform the test by hand (write down your calculations).
+
+--- Page 5 ---
+Name:
+                                                                                     Student number:
+•
+Q.3.4 – What conclusions can you draw (include confidence intervals)?
+➢
+Q.4 – Considering the answers of all three previous questions, what conclusions can you draw for
+the design you have to make? Justify.
+Part II – A board game for the whole family
+You are interested in designing a new interactive family board game that combines strategy and storytelling
+elements, appealing to players of all ages. You are aware that your targeted clients can differ in age quite a
+lot.  Preferences  and  cognitive  abilities  between  children  (under  15  y.o.)  and  teenagers  or  adults  is
+substantially different, you understand the importance of tailoring the game's interface to suit both groups. To
+be sure that you choose the right design for all users of all ages, you perform a user-study to collect the
+preferred mode of interaction for people under and over 15 years old. 
+You have the following data:
+Interaction method
+Physical buttons
+Voice
+Touchscreen
+Total
+15- years old
+39
+15
+24
+78
+15+ years old
+25
+19
+38
+82
+Total
+64
+34
+62
+160
+TIP:  Verify your results by doing the statistical tests with R, Python, or SPSS.
+➢
+Q.1 –  For this question, only consider the first line of the table (15- years old). Assume that your
+data is not normally distributed. 
+•
+Q.1.1 – Which test should you perform with the information you have? 
+
+--- Page 6 ---
+Name:
+                                                                                     Student number:
+•
+Q.1.2 – What research question and hypotheses can you formulate?
+•
+Q.1.3 – Perform the test by hand (write down your calculations).
+
+--- Page 7 ---
+Name:
+                                                                                     Student number:
+•
+Q.1.4 – What conclusions can you draw?
+➢
+Q.2 –  For this question, consider the entire table. Assume that your data is not normally distributed. 
+•
+Q.2.1 – Which test should you perform with the information you have? 
+•
+Q.2.2 – What research question and hypotheses can you formulate? 
+•
+Q.2.3 – Perform the test by hand (write down your calculations detail).
+
+--- Page 8 ---
+Name:
+                                                                                     Student number:
+•
+Q.2.4 – What conclusions can you draw? What design should you choose to suit all clients?
+You decide to run an additional study to see if there is a significant
+difference in the number of errors (missclicks, wrong choice of
+button to make a decision in the game, … ) users make in average
+when using a touchscreen or physical buttons to play your new
+board game. Your study counts 8 participants, 4 of them used the
+touchscreen,  and 4  used  the  physical  buttons.  You  collect the
+number of errors each participant made with the interface. The
+results are presented in the table on the right.
+➢
+Q.3 –  Consider the table with the number of errors.
+•
+Q.3.1 – Which tests – parametric or non-parametric – could you perform with such a dataset, and
+with which assumptions? 
+•
+Q.3.2 – Assume that the data is normally distributed for the Physical buttons group, but not for
+the Touchscreen group, which test do you choose?
+•
+Q.3.3 – What research question and hypotheses can you formulate? 
+Interface Type
+Number of errors
+Touchscreen
+9
+Touchscreen
+11
+Touchscreen
+5
+Touchscreen
+8
+Physical buttons
+3
+Physical buttons
+5
+Physical buttons
+4
+Physical buttons
+6
+
+--- Page 9 ---
+Name:
+                                                                                     Student number:
+•
+Q.3.4 – Perform the test by hand (write down your calculations detail).
+•
+Q.3.5– What conclusions can you draw?
+
+--- Page 10 ---
+Name:
+                                                                                     Student number:
+You are alarmed by the number of errors users made
+with the touchscreen. You decide that maybe it is worth
+redesigning  the  touchscreen  interface  linked  to  the
+board game. You conduct a study with 8 participants to
+check  if  your  new  design  significantly  changes  the
+number of errors made by users. The 8 participants first
+use the first interface (before the redesign) and their
+number of errors is reported. Then, they play the game
+again with the new interface (after the redesign), and
+their number of errors is once again reported. All the
+collected data is presented in the table on the right.
+➢
+Q.4 –  Consider the table with the number of
+errors before and after redesign.
+•
+Q.4.1 – Which tests – parametric or non-parametric – could you perform with such a dataset, and
+with which assumptions? 
+•
+Q.4.2 – Assume that the data of the difference is not normally distributed, which test do you
+choose?
+•
+Q.4.3 – What research question and hypotheses can you formulate? 
+•
+Q.4.4 – Perform the test by hand (write down your calculations).
+Participant
+Before Redesign
+After Redesign
+1
+9
+3
+2
+8
+8
+3
+11
+5
+4
+7
+6
+5
+9
+2
+6
+12
+4
+7
+9
+5
+8
+6
+0
+
+--- Page 11 ---
+Name:
+                                                                                     Student number:
+•
+Q.4.5 – What conclusions can you draw?
+
+
+
+==================================
+FILE: Assignments\Practical_2__One_way_ANOVA__Factorial_ANOVA(1).pdf
+==================================
+
+--- Page 1 ---
+Practical 2: One-way ANOVA, Factorial ANOVA
+1
+One-way ANOVA: Factual Correctness of ChatGPT
+Researchers are studying the application of ChatGPT for the purpose of generating clinical letters to
+patients about cancer, using limited clinical input.1 They generate letters using prompts with three
+levels of complexity (simple, intermediate, and advanced), and let clinicians rate the factual correctness
+of each letter on a Likert scale ranging from 0 to 10. They obtain the following data. (Note: we use a
+single output per complexity level, i.e. we ignore the fact that large language models produce different
+outputs each time. Each entry is the rating of a different clinician.)
+Simple
+Intermediate
+Advanced
+3
+6
+8
+4
+7
+6
+(a) Assuming that assumptions hold, perform one-way ANOVA (you can use that SSw = 3). Does
+input prompt complexity have a significant effect on factual correctness of the output? Justify
+your conclusion.
+The researchers decide to do a second experiment in which they include different cancer types (BCC
+and SCC). They find the line graph provided in Figure 1.
+Figure 1: Line graph for addition of cancer type.
+(b) Explain whether the graph suggests the presence of any interaction effects. If so, what type?
+(c) The researchers obtain sums of squares given in Table 1. Calculate partial η2 for both the main
+effects and the interaction effect. Name an advantage and a disadvantage of reporting these
+values as opposed to the standard η2.
+The researchers realize that they need a lot of experts for the current study design. They decide to
+design a third experiment, in which they let two experts rate all of the outputs. They add a third
+cancer type, MM. (They still have one prompt for each combination of complexity and cancer type.)
+(d) Identify IV(s) with their levels, and whether they are within-subject or between-subject. Draw
+the design table with two subjects per cell. How many cells do we have? Is this a mixed design,
+or factorial within-subject design?
+1Inspired by a real study published in The Lancet, from April 2023. The data in this exercise is not real.
+1
+
+--- Page 2 ---
+Table 1: Sums of Squares.
+term
+SS
+Prompt complexity
+4.08
+Cancer type
+57.2
+Interaction
+11.2
+Error
+0.42
+After this third experiment, the researchers perform a post-hoc analysis, doing pairwise t-tests using
+Bonferroni corrections.
+(e) Explain how Bonferroni corrections protect against inflated type I error. Include an equation.
+(No calculations needed.)
+(f) What is the number of pairwise tests m for the researchers, if they do all possible pairwise
+comparisons (both with and without interactions)?
+2
+Factorial ANOVA: User-friendliness Study
+In order to study the user-friendliness of iOS compared Android, we designed an experiment where
+users do certain basic tasks (such as creating a meeting in the calendar or change a certain setting).
+During these we track how many errors they make (according to some well-defined metric). To take
+into account the effect of previous experience, we let each individual only test one system: we test iOS
+only on subjects who normally use Android on a daily basis, and vice versa. Furthermore, since we
+believe age plays a major role in the number of errors made, and we happen to have ready access to a
+population of students and a population of elderly, we include age as a second independent variable.
+The table below shows the number of errors made for 2 different subjects in each cell (note: a real
+study would require larger sample sizes: small tables are given for simplicity).
+Young
+Elderly
+iOS
+2
+4
+3
+5
+Android
+1
+7
+4
+8
+(a) Calculate means of the cells. Using these, draw a line graph of group means on the vertical axis,
+the operating system on the horizontal axis, and different colors/line styles for the different age
+groups. Based on this plot, does there seem to be an interaction effect? If so, what type?
+(b) Perform factorial ANOVA. Do we have any significant effect of operating system, age, or their
+interaction?
+Does this align with your answer to the previous question?
+You can use that
+SSb = 24.5 and SStot = 39.5. Justify your conclusion.
+(c) As a post hoc analysis we decide to do pairwise t-tests using Bonferroni corrections. How many
+t-tests are we doing if we make all possible comparisons, both with and without interactions?
+Using this, how do we calculate corrected p-values? (No t-test calculations needed.)
+We decide to do a more advanced follow-up experiment (with other users).
+We note that user-
+friendliness also relates to how quickly users learn to use the system (not just how many errors they
+make the first time). Hence, we decide to do the experiment three times: once before they have started
+using the OS, after one week, and after three weeks. We decide to get rid of the age variable, and
+simply add all ages to one group. The rest of the design remains unchanged.
+(d) For the follow-up experiment, identify IV(s) with their levels, and whether they are within-
+subject or between-subject. Draw the design table with two subjects per cell. How many cells
+do we have? Is this a mixed design, or factorial within-subject design?
+2
+
+
+
+==================================
+FILE: Assignments\Practical_3__RBD_RM_ANOVA.pdf
+==================================
+
+--- Page 1 ---
+Practical 3: RBD, RM ANOVA
+1
+RM ANOVA: Art Museum Website Aesthetics
+You have been asked to design a website for a famous art museum, which needs to be highly aesthetically
+pleasing. Given your newfound scientific expertise, you decide to do a controlled experiment. You let
+subjects interact with three versions of the site, and after each you ask them to give the site an
+aesthetics rating on a Likert scale from 1 to 5. The scores for your two subjects are given in the table
+below.
+Alice
+Bob
+Version 1
+4
+5
+Version 2
+4
+3
+Version 3
+3
+1
+(a) Perform repeated measures ANOVA. Does the website version have a significant effect on the
+aesthetics rating? You can use that SSwithin = 3. (Calculate the appropriate sums of squares,
+degrees of freedom and statistical tests. Include critical value(s), and justify your conclusion.)
+(b) Comparing the current setup to ANOVA without repeated measures, which assumption changes?
+What would we have to calculate to test this assumption? (No calculations needed.)
+We decide to do a more advanced follow-up experiment (with other users). We change ‘website version’
+to two variables: ‘color scheme’ (light, dark, pastel), and ‘font style’ (serif and sans-serif). The rest of
+the design remains unchanged, and we still have two users.
+(c) For the follow-up experiment, identify IV(s) with their levels, and whether they are within-
+subject or between-subject. Draw the design table with two subjects per cell. How many cells
+do we have? Is this a mixed design, or factorial within-subject design?
+(d) After this last experiment, as a post hoc analysis we decide to do pairwise t-tests using Bonferroni
+corrections. How many t-tests are we doing if we make all possible comparisons (we are not
+interested in between-subject effects)? Using this, how do we calculate corrected p-values? (No
+t-test calculations needed.)
+After this experiment, you realize that since the sites are similar in functionality, subjects might
+unconsciously rate the last website higher because they have become practiced in using the site. At
+the same time, you imagine they might become fatigued or bored by testing many sites, which could
+also affect the results.
+(e) Which technique can you use to alleviate these effects somewhat? Explain.
+1
+
+
+
+==================================
+FILE: Assignments\Practical_4__Regression__ANCOVA.pdf
+==================================
+
+--- Page 1 ---
+Practical 4: Regression, ANCOVA
+1
+Regression, ANCOVA: Statistics Teaching
+We are studying the effectiveness of different statistics courses on students’ learning. We do so by giving
+students grades on a standardized statistics test, both before (Pre) and after (Post) the courses. We
+compare INFOMQNM to an online Coursera course and a course at UvA. We want to adjust for
+students’ pre score when comparing groups, and decide to use ANCOVA for this. In the table, three
+students’ scores from each group are shown.
+Pre
+Post
+INFOMQNM
+1
+6
+3
+6
+8
+10
+Coursera
+2
+7
+4
+8
+7
+10
+UvA
+2
+6
+5
+6
+6
+7
+(a) For the INFOMQNM group only, perform simple linear regression using the pre-score on the
+post-score, only. What is the equation for the best linear fit?
+(b) For the INFOMQNM group only, what percentage of variance in post score can be explained
+by the pre-score?
+(c) For the Coursera group, you find that b0 = 5.7 and b1 = 0.6, and for the UvA group, b0 = 5.5
+and b1 = 0.2. Sketch all three lines in one graph. How can the intercepts b0 be interpreted in
+this context? (No calculations needed.)
+(d) For the Coursera group, does the given regression model perform significantly better than the
+model ˆY = b0?
+You can use that for this group, the residuals are 0.513, −0.718, 0.205, and
+SStot = 10 2
+3.
+(e) Explain whether homogeneity of regression seems to hold.
+(f) Explain what additional steps are needed to perform ANCOVA.
+(g) Explain why ANCOVA (when assumptions hold) has increased statistical power, compared to if
+we had ignored the Pre scores and simply done ANOVA using only the Post scores. Illustrate
+using a Venn diagram. (No calculations needed.)
+1
+
+
+
+==================================
+FILE: Assignments\Practical_DataProcessing.pdf
+==================================
+
+--- Page 1 ---
+Practical – Data Processing
+1) Missing data
+You want to analyze a dataset that collected age, gender and the reaction 
+time of participants to a pop-up window you have designed in an interface. 
+You look at the data collected during your user-study and realize that you 
+have a missing value for participant 4.
+1 – Which different methods can you apply to deal with this missing 
+value?
+2 – Apply each method, what value do you obtain for the missing 
+value? Which method seems best suited to you?
+Participant ID
+Age
+Gender
+Reaction time (ms)
+1
+25
+Male
+450
+2
+30
+Female
+500
+3
+20
+Male
+600
+4
+28
+Male
+?
+5
+35
+Female
+550
+
+--- Page 2 ---
+Practical – Data Processing
+1) Missing data
+You want to analyze a dataset that collected age, gender and the reaction 
+time of participants to a pop-up window you have designed in an interface. 
+You decide to add technology affinity (TA) and emoji use frequency 
+(EUF), both on a scale from 0 to 100%.
+You look at the data collected during your user-study and realize that you 
+have a missing value for participant 4.
+3 – What does this new added variables change to the previous 
+question?
+4 – Apply these changes.
+Participant ID
+Age
+Gender
+TA
+EUF
+Reaction time (ms)
+1
+25
+Male
+90
+35
+450
+2
+30
+Female
+78
+56
+500
+3
+20
+Male
+70
+72
+600
+4
+28
+Male
+64
+77
+?
+5
+35
+Female
+61
+18
+550
+
+--- Page 3 ---
+Practical – Data Processing
+2) Detecting outliers
+You conducted a user-study to 
+investigate the relation between age 
+(under or over 65 years old) and the 
+time needed for users to perform 
+two different tasks on an online 
+bookshop interface. You have the 
+following dataset.
+1 – Use two methods (z-score and 
+IQR) to detect outliers. Do you 
+have the same conclusions with 
+both methods?
+2 – What could have caused this 
+(these) outlier(s)? How to decide if 
+you should keep this data point or 
+remove it entirely?
+User 
+ID
+Age 
+category
+Task1 
+time (s)
+Task2 
+time (s)
+1
+-65yo
+55
+136
+2
+-65yo
+60
+142
+3
++65yo
+69
+154
+4
+-65yo
+61
+139
+5
++65yo
+70
+155
+6
++65yo
+65
+150
+7
++65yo
+316
+472
+8
+-65yo
+63
+141
+9
++65yo
+68
+153
+10
+-65yo
+28
+35
+11
+-65yo
+52
+128
+12
++65yo
+63
+137
+13
+-65yo
+133
+129
+
+
+
+==================================
+FILE: Assignments\Practical_ParametricVSNonparametric.pdf
+==================================
+
+--- Page 1 ---
+Practical – 1) Parametric tests
+You are working with KLM on an interface to book flights.
+They want to know what users would prefer between what KLM already has: a traditional 
+Graphical User Interface (GUI), or a Voice-Activated Interface (VAI).
+You perform a user-study on 5 users where they use the GUI and/or the VAI to perform the 
+same task: “booking a flight for a round-trip journey from Amsterdam to Paris with a departure 
+on the 26th of June and a return on the 30th of June”. The users rate their satisfaction on a 7-
+point Likert scale.
+User 1
+User 2
+User 3
+User 4
+User 5
+GUI
+5
+4
+3
+4
+5
+VAI
+6
+7
+5
+5
+5
+1 – What information is missing to be able to run a one-sample t-test?
+2 – Under which assumptions can we run a two-sample t-test?
+3 – Formulate the research question, H0, and H1.
+4 – Perform the two-sample t-test.
+5 – What conclusions can you draw? (include CI)
+
+--- Page 2 ---
+Practical – 1) Parametric tests
+User 1
+User 2
+User 3
+User 4
+User 5
+GUI
+5
+4
+3
+4
+5
+VAI
+6
+7
+5
+5
+5
+6 – Under which assumptions can we run a paired t-test?
+7 – Formulate the research question, H0, and H1.
+8 – Perform the paired t-test.
+9 – What conclusions can you draw? (include CI)
+10 – With which degree of confidence could you reject H0?
+You are working with KLM on an interface to book flights.
+They want to know what users would prefer between what KLM already has: a traditional 
+Graphical User Interface (GUI), or a Voice-Activated Interface (VAI).
+You perform a user-study on 5 users where they use the GUI and/or the VAI to perform the 
+same task: “booking a flight for a round-trip journey from Amsterdam to Paris with a departure 
+on the 26th of June and a return on the 30th of June”. The users rate their satisfaction on a 7-
+point Likert scale.
+
+--- Page 3 ---
+Practical – 2) Non-parametric tests
+You conducted a research study to investigate the color preferences of users for the 
+main color of a software interface for online games. A sample of 100 participants was 
+asked to choose their favorite color for the interface from a list of 5 options: red, blue, 
+green, yellow, and purple.
+Assume that the data is not normally distributed.
+1 – What do you need to be able to run a chi-square goodness of fit test?
+2 – Formulate a research question, H0, and H1.
+3 – Perform the Chi-square goodness of fit test.
+4 – What conclusions can you draw?
+Color
+Red
+Blue
+Green
+Yellow
+Purple
+Total
+Frequency
+15
+25
+20
+10
+30
+100
+
+--- Page 4 ---
+Practical – 2) Non-parametric tests
+You conducted a research study to compare the number 
+of mouse clicks required to complete an online shopping 
+task (the same list of groceries is given to each participant) 
+using two different software interfaces: Interface A and 
+Interface B.
+A sample of 10 participants was randomly assigned to use 
+one of the two interfaces. The number of mouse clicks 
+required to complete the task was recorded for each 
+participant.
+5 – Under which assumptions can you run 
+a Mann-Whitney U test?
+6 – Formulate the research question, H0, and H1.
+7 – Perform the Mann-Whitney U test.
+8 – What conclusions can you draw?
+9 – What if we had the same U values but 
+with N>20?
+Interface
+Nb of clicks
+A
+45
+A
+60
+A
+70
+A
+50
+A
+75
+B
+20
+B
+35
+B
+40
+B
+30
+B
+25
+
+--- Page 5 ---
+Practical – 3) Parametric or not?
+You are a data analyst at "FitZone," a popular fitness app. FitZone has recently launched a 
+new high-intensity interval training (HIIT) workout program called "PowerBurn." Your task is 
+to determine whether this new program leads to a significant improvement in users' cardio 
+fitness levels compared to their baseline measurements.
+You collected the cardio fitness level data from a sample of 10 users before and after 
+completing the "PowerBurn" workout program (cf table).
+User
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+Baseline
+28
+27
+26
+30
+30
+31
+29
+27
+30
+28
+After HIIT
+30
+30
+27
+29
+29
+33
+27
+31
+32
+32
+1 – Formulate the research question, H0, and H1.
+2 – What data should be normally distributed to run a parametric test?
+3 – Assume this data is not normally distributed. Run the appropriate test, 
+mention the other assumptions that should be considered.
+4 – Interpret the results and conclude on the research question.
+5 – Do questions 3 & 4 again, this time assuming that the data (from 
+question 2) is normally distributed.
+
+--- Page 6 ---
+Practical – 3) Parametric or not?
+You are part of a research team at a leading VR gaming company, tasked with evaluating 
+two navigation methods, "Teleportation" and "Joystick Control," within a new adventure 
+game called "Galactic Explorer." Your goal is to determine which method allows players to 
+complete the game's main quest faster.
+Two separate groups of 10 users each play the game with either the "Teleportation" or the 
+"Joystick Control" method. The time to  complete the game in minutes is reported in the 
+table below.
+User
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+Teleportation
+12
+15
+11
+14
+13
+12
+14
+13
+14
+16
+Joystick
+14
+16
+17
+15
+18
+15
+16
+17
+15
+16
+6– Formulate the research question, H0, and H1.
+7– What data should be normally distributed to run a parametric test?
+8 – Assume this data is normally distributed. Run the appropriate test, 
+mention the other assumptions that should be considered.
+9 – Interpret the results, give CI, and conclude on the research question.
+10 – What would be the non-parametric equivalent?
+
+
+
+==================================
+FILE: Assignments\Short_answers_Practical3_RM_RBD.pdf
+==================================
+
+--- Page 1 ---
+Short_answers_Practical3_RM_RBD
+NB: only short answers are given, no full solutions. full credit on examination requires more explanation/justification than given
+here.
+1a
+1b
+Homogeneity of variance becomes sphericity, which says that you should have equal variance in differences between all groups.
+1c
+Color scheme C; levels: light, dark, pastel; within-subject
+Font style F: levels: serif, sans-serif; within-subject
+Design table:
+c1
+c2
+c3
+f1
+s1, s2
+s1, s2
+s1, s2
+f2
+s1, s2
+s1, s2
+s1, s2
+Factorial within-subject design, b.c. we only have within-subject variables.
+We have 2x3=6 cells.
+1d
+Without interactions; 2x3=6 comparisons.
+With interactions: for 6 cells, (6
+2) =
+6!
+2!4! = 30
+2 = 15 additional comparisons.
+So 6+15 = 21 in total.
+We do m = 21 tests. Given unadjusted p-values pi, corrected p-values are p′
+i = mpi, reject H0 if p′
+i < α.
+1d
+Latin-square design, which randomizes the order of levels assigned to participants.
+
+
+
+==================================
+FILE: Quizzes\Final_quiz.pdf
+==================================
+
+--- Page 1 ---
+violated
+
+--- Page 2 ---
+
+--- Page 3 ---
+1 IV (discrete), 1 DV (continuous)
+(continuous)
+
+
+
+==================================
+FILE: Quizzes\Lecture5_quiz 1.pdf
+==================================
+
+Error extracting: Failed to open file 'c:\\Users\\xchen\\OneDrive\\UU HCI Master\\Year 1 - Period 4\\Advance Quantitative Research Methods\\Quizzes\\Lecture5_quiz 1.pdf'.
+
+
+==================================
+FILE: Quizzes\Lecture5_quiz.pdf
+==================================
+
+--- Page 1 ---
+
+--- Page 2 ---
+
+--- Page 3 ---
+
+--- Page 4 ---
+
+--- Page 5 ---
+

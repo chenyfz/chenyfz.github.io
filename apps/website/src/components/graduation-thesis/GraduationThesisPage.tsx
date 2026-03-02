@@ -29,7 +29,9 @@ export default function GraduationThesisPage({ text, lang }: GraduationThesisPag
         <div className="mx-auto w-full max-w-5xl space-y-11">
           <header>
             <h1 className="text-3xl leading-tight text-amber-700" style={{ fontFamily: headingFontFamily, fontWeight: 400 }}>{text.heading}</h1>
-            <p className={`mt-3 text-[18px] ${mutedTextClass}`}>{text.projectInfo}</p>
+            <p className={`mt-3 text-[18px] ${mutedTextClass}`}>
+              {typeof text.projectInfo === 'string' ? text.projectInfo : `${text.projectInfo.type} | ${text.projectInfo.duration} | ${text.projectInfo.supervisorLabel || 'Supervisor: '}${text.projectInfo.supervisor}`}
+            </p>
           </header>
 
           <section className="space-y-3">

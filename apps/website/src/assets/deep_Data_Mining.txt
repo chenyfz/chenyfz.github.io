@@ -1,0 +1,7189 @@
+--- Data Mining (Year 2 - Period 1) ---
+
+
+
+==================================
+FILE: 0-dm-intro2024.pdf
+==================================
+
+--- Page 1 ---
+Data Mining 2024
+Introduction
+Ad Feelders
+Universiteit Utrecht
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+1 / 54
+
+--- Page 2 ---
+The Course
+Literature: Lecture Notes, Book Chapters, Articles, Slides
+(the slides appear in the schedule on the course web site).
+Course Form:
+Lectures (Tuesday, Thursday)
+Lab session (Thursday after the lecture).
+Grading: two practical assignments (50%), a digital exam in Remindo
+(50%), and 4 homework exercise sets (5% bonus).
+Web Site: https://ics-websites.science.uu.nl/docs/vakken/mdm/
+MS Teams: mainly for ﬁnding team mates, and questions about
+practical assignments. Videos of lectures from previous years will be
+uploaded.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+2 / 54
+
+--- Page 3 ---
+Personnel
+Lecturer: Ad Feelders
+Teaching Assistants:
+Panagiotis Andrikopoulos
+Ziv Hochman
+Stylianos Psara
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+3 / 54
+
+--- Page 4 ---
+Practical Assignments
+Two practical assignments: one assignment with emphasis on
+programming and one with emphasis on data analysis.
+1 Write your own classiﬁcation tree and random forest algorithm in
+Python or R, and apply the algorithm to a bug prediction problem
+(30%).
+2 Text Mining: predict whether hotel reviews are genuine or fake (20%).
+Assignments should be completed by teams of 3 students.
+We will not teach you how to program in Python or R. If you don’t know
+either of these languages yet, you will have to invest some time.
+Of course we will try to help you if you have questions about them.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+4 / 54
+
+--- Page 5 ---
+Homework exercise sets
+There are four homework exercise sets:
+1 Classiﬁcation trees, bagging and random forests.
+2 Undirected graphical models (Markov random ﬁelds).
+3 Frequent pattern mining.
+4 Directed graphical models (Bayesian networks).
+We will use Remindo for handing in the exercise sets.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+5 / 54
+
+--- Page 6 ---
+What is Data Mining?
+Selected deﬁnitions:
+(Knowledge discovery in databases) is the non-trivial process of
+identifying valid, novel, potentially useful, and ultimately
+understandable patterns in data (Fayyad et al.)
+Analysis of secondary data (Hand)
+The induction of understandable models and patterns from databases
+(Siebes)
+The data-dependent process of selecting a statistical model
+(Leamer, 1978 (!))
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+6 / 54
+
+--- Page 7 ---
+What is Data Mining?
+Data Mining as a subdiscipline of computer science:
+is concerned with the development and analysis of algorithms for the
+(eﬃcient) extraction of patterns and models from
+(large, heterogeneous, ...) data bases.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+7 / 54
+
+--- Page 8 ---
+Models
+A model is an abstraction of a part of reality (the application domain).
+In our case, models describe relationships among:
+attributes (variables, features),
+tuples (records, cases),
+or both.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+8 / 54
+
+--- Page 9 ---
+Example Model: Classiﬁcation Tree
+income
+marital
+status
+age
+good risk
+good risk
+bad risk
+bad risk
+> 36,000
+£ 36,000
+> 37
+£ 37
+married
+not married
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+9 / 54
+
+--- Page 10 ---
+Patterns
+Patterns are local models, that is, models that describe only part of the
+database.
+For example, association rules:
+Diapers →Beer, support = 20%, conﬁdence = 85%
+Although patterns are clearly diﬀerent from models, we will use model as
+the generic term.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+10 / 54
+
+--- Page 11 ---
+Diapers →Beer
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+11 / 54
+
+--- Page 12 ---
+Reasons to Model
+A model
+can help to gain insight into the application domain
+can be used to make predictions
+can be used for manipulating/controlling a system (causality!)
+A model that predicts well does not always provide understanding.
+Correlation ̸= Causation
+Can causal relations be found from data alone?
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+12 / 54
+
+--- Page 13 ---
+Causality and Correlation
+Heavy Smoking
+Yellow Fingers
+Lung Cancer
+Washing your hands doesn’t help to prevent lung cancer.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+13 / 54
+
+--- Page 14 ---
+Induction vs Deduction
+Deductive reasoning is truth-preserving:
+1 All horses are mammals
+2 All mammals have lungs
+3 Therefore, all horses have lungs
+Inductive reasoning adds information:
+1 All horses observed so far have lungs
+2 Therefore, all horses have lungs
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+14 / 54
+
+--- Page 15 ---
+Induction (Statistical)
+1 4% of the products we tested are defective
+2 Therefore, 4% of all products (tested or otherwise)
+are defective
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+15 / 54
+
+--- Page 16 ---
+Inductive vs Deductive: Acceptance Testing Example
+100,000 products; d is proportion of defective products
+sample 1000; ˆd is proportion of defective products in the sample
+Suppose 10 of the sampled products turn out to be defective
+(1% of the sample; ˆd = 0.01)
+Deductive: d ∈[0.0001, 0.9901]
+Inductive: d ∈[0.004, 0.016] with 95% conﬁdence.
+95% conﬁdence interval:
+ˆd ± se( ˆd) × z0.975 = 0.01 ±
+r
+0.01 × 0.99
+1000
+× 1.96
+|
+{z
+}
+≈0.006
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+16 / 54
+
+--- Page 17 ---
+Experimental data
+The experimental method:
+Formulate a hypothesis of interest.
+For example: “This fertilizer increases crop yield”
+Design an experiment that will yield data to test this hypothesis.
+For example: apply diﬀerent levels of fertilizer to diﬀerent plots of
+land and compare crop yield of the diﬀerent plots.
+Accept or reject hypothesis depending on the outcome.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+17 / 54
+
+--- Page 18 ---
+Experimental vs Observational Data
+Experimental Scientist:
+Assign level of fertilizer randomly to plot of land.
+Control for other factors that might inﬂuence yield: quality of soil,
+amount of sunlight,...
+Compare mean yield of fertilized and unfertilized plots.
+Data Miner:
+Notices that yield is somewhat higher under trees where birds roost.
+Conclusion: bird droppings increase yield;
+... or do moderate amounts of shade increase yield?
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+18 / 54
+
+--- Page 19 ---
+Observational Data
+In observational data, many variables may move together in
+systematic ways.
+In this case, there is no guarantee that the data will be “rich in
+information”, nor that it will be possible to isolate the relationship or
+parameter of interest.
+Prediction quality may still be good!
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+19 / 54
+
+--- Page 20 ---
+Example: linear regression
+d
+mpg = a + b × cyl + c × eng + d × hp + e × wgt
+Estimate a, b, c, d, e from data. Choose values so that sum of squared
+errors
+n
+X
+i=1
+(mpgi −d
+mpgi)2
+is minimized.
+∂d
+mpg
+∂eng = c
+Expected change in mpg when (all else equal) engine displacement
+increases by one unit.
+Engine displacement is deﬁned as the total volume of air/fuel mixture an
+engine can draw in during one complete engine cycle.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+20 / 54
+
+
+
+==================================
+FILE: 1-dm-classtrees-1-2024.pdf
+==================================
+
+--- Page 1 ---
+Data Mining 2024
+Classiﬁcation Trees (1)
+Ad Feelders
+Universiteit Utrecht
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+1 / 40
+
+--- Page 2 ---
+Classiﬁcation
+Predict the class of an object on the basis of some of its attributes.
+For example, predict:
+Good/bad credit for loan applicants, using
+income
+age
+...
+Spam/no spam for e-mail messages, using
+% of words matching a given word (e.g. “free”)
+use of CAPITAL LETTERS
+...
+Music Genre (Rock, Techno, Death Metal, ...) based on audio
+features and lyrics.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+2 / 40
+
+--- Page 3 ---
+Building a classiﬁcation model
+The basic idea is to build a classiﬁcation model using a set of training
+examples. Each training example contains attribute values and the
+corresponding class label.
+There are many techniques to do that:
+Statistical Techniques
+Discriminant Analysis
+Logistic Regression
+Data Mining/Machine Learning
+Classiﬁcation Trees
+Bayesian Network Classiﬁers
+Neural Networks
+Support Vector Machines
+...
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+3 / 40
+
+--- Page 4 ---
+Strong and Weak Points of Classiﬁcation Trees
+Strong points:
+Are easy to interpret (if not too large).
+Select relevant attributes automatically.
+Can handle both numeric and categorical attributes.
+Weak point:
+Single trees are usually not among the top performers.
+However:
+Averaging multiple trees (bagging, boosting, random forests) can
+bring them back to the top!
+But ease of interpretation suﬀers as a consequence.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+4 / 40
+
+--- Page 5 ---
+Example: Loan Data
+Record
+age
+married?
+own house
+income
+gender
+class
+1
+22
+no
+no
+28,000
+male
+bad
+2
+46
+no
+yes
+32,000
+female
+bad
+3
+24
+yes
+yes
+24,000
+male
+bad
+4
+25
+no
+no
+27,000
+male
+bad
+5
+29
+yes
+yes
+32,000
+female
+bad
+6
+45
+yes
+yes
+30,000
+female
+good
+7
+63
+yes
+yes
+58,000
+male
+good
+8
+36
+yes
+no
+52,000
+male
+good
+9
+23
+no
+yes
+40,000
+female
+good
+10
+50
+yes
+yes
+28,000
+female
+good
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+5 / 40
+
+--- Page 6 ---
+Credit Scoring Tree
+5
+5
+bad
+good
+rec#
+1…10
+0
+3
+7,8,9
+5
+2
+1…6,10
+1
+2
+2,6,10
+4
+0
+1,3,4,5
+0
+2
+6,10
+1
+0
+2
+income > 36,000
+income £ 36,000
+age > 37
+age £ 37
+married
+not married
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+6 / 40
+
+--- Page 7 ---
+Cases with income > 36, 000
+Record
+age
+married?
+own house
+income
+gender
+class
+1
+22
+no
+no
+28,000
+male
+bad
+2
+46
+no
+yes
+32,000
+female
+bad
+3
+24
+yes
+yes
+24,000
+male
+bad
+4
+25
+no
+no
+27,000
+male
+bad
+5
+29
+yes
+yes
+32,000
+female
+bad
+6
+45
+yes
+yes
+30,000
+female
+good
+7
+63
+yes
+yes
+58,000
+male
+good
+8
+36
+yes
+no
+52,000
+male
+good
+9
+23
+no
+yes
+40,000
+female
+good
+10
+50
+yes
+yes
+28,000
+female
+good
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+7 / 40
+
+--- Page 8 ---
+Partitioning the attribute space
+30
+40
+50
+60
+30
+40
+50
+bad
+bad
+bad
+bad
+bad
+good
+good
+good
+good
+good
+age
+income
+36
+37
+Good
+Bad
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+8 / 40
+
+--- Page 9 ---
+Why not split on gender in the root node?
+5
+5
+bad
+good
+rec#
+1…10
+2
+3
+2,5,6,9,10
+gender = male
+gender = female
+3
+2
+1,3,4,7,8
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+9 / 40
+
+--- Page 10 ---
+Why not split on gender in the root node?
+5
+5
+bad
+good
+rec#
+1…10
+2
+3
+2,5,6,9,10
+gender = male
+gender = female
+3
+2
+1,3,4,7,8
+Intuitively: learning the value of gender doesn’t provide much information
+about the class label.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+9 / 40
+
+--- Page 11 ---
+Impurity of a node
+We strive towards nodes that are pure in the sense that they only
+contain observations of a single class.
+We need a measure that indicates “how far” a node is removed from
+this ideal.
+We call such a measure an impurity measure.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+10 / 40
+
+--- Page 12 ---
+Impurity function
+The impurity i(t) of a node t is a function of the relative frequencies of
+the classes in that node:
+i(t) = φ(p1, p2, . . . , pJ)
+where the pj(j = 1, . . . , J) are the relative frequencies of the J diﬀerent
+classes in node t.
+Sensible requirements of any quantiﬁcation of impurity:
+1 Should be at a maximum when the observations are distributed evenly
+over all classes.
+2 Should be at a minimum when all observations belong to a single
+class.
+3 Should be a symmetric function of p1, . . . , pJ.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+11 / 40
+
+--- Page 13 ---
+Quality of a split (test)
+We deﬁne the quality of binary split s in node t as the reduction of
+impurity that it achieves
+∆i(s, t) = i(t) −{π(ℓ)i(ℓ) + π(r)i(r)}
+where ℓis the left child of t, r is the right child of t, π(ℓ) is the proportion
+of cases sent to the left, and π(r) the proportion of cases sent to the right.
+t
+ℓ
+r
+π(ℓ)
+π(r)
+i(t)
+i(ℓ)
+i(r)
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+12 / 40
+
+--- Page 14 ---
+Well known impurity functions
+Impurity functions we consider:
+Resubstitution error
+Gini-index
+Entropy
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+13 / 40
+
+--- Page 15 ---
+Resubstitution error
+Measures the fraction of cases that is classiﬁed incorrectly if we assign
+every case in node t to the majority class in that node. That is
+i(t) = 1 −max
+j
+p(j|t)
+where p(j|t) is the relative frequency of class j in node t.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+14 / 40
+
+--- Page 16 ---
+Resubstitution error: credit scoring tree
+5
+5
+0
+3
+i = 0
+5
+2
+1
+2
+i = 1/3
+4
+0
+i = 0
+0
+2
+i = 0
+1
+0
+i = 0
+i = 1/2
+i = 2/7
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+15 / 40
+
+--- Page 17 ---
+Graph of resubstitution error for two-class case
+p(0)
+1-max(p(0),1-p(0))
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1.0
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+16 / 40
+
+--- Page 18 ---
+Resubstitution error
+Questions:
+Does resubstitution error meet the sensible requirements?
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+17 / 40
+
+--- Page 19 ---
+Resubstitution error
+Questions:
+Does resubstitution error meet the sensible requirements?
+What is the impurity reduction of the second split in the credit
+scoring tree if we use resubstitution error as impurity measure?
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+17 / 40
+
+--- Page 20 ---
+Impurity Reduction
+5
+5
+0
+3
+i = 0
+5
+2
+1
+2
+i = 1/3
+4
+0
+i = 0
+0
+2
+i = 0
+1
+0
+i = 0
+i = 1/2
+i = 2/7
+Impurity reduction of second split (using resubstitution error):
+∆i(s, t) = i(t) −{π(ℓ)i(ℓ) + π(r)i(r)}
+= 2
+7 −
+3
+7 × 1
+3 + 4
+7 × 0
+
+= 2
+7 −1
+7 = 1
+7
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+18 / 40
+
+
+
+==================================
+FILE: 10-dm-bnslides2022-1.pdf
+==================================
+
+--- Page 1 ---
+Data Mining
+Bayesian Networks (1)
+Ad Feelders
+Universiteit Utrecht
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+1 / 49
+
+--- Page 2 ---
+Do you like noodles?
+Do you like
+noodles?
+Race
+Gender
+Yes
+No
+Black
+Male
+10
+40
+Female
+30
+20
+White
+Male
+100
+100
+Female
+120
+80
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+2 / 49
+
+--- Page 3 ---
+Do you like noodles? Undirected
+G
+R
+A
+G ⊥⊥R | A
+Strange: Gender and Race are prior to Answer, but this model says they
+are independent given Answer!
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+3 / 49
+
+--- Page 4 ---
+Do you like noodles?
+Marginal table for Gender and Race:
+Race
+Gender
+Black
+White
+Male
+50
+200
+Female
+50
+200
+From this table we conclude that Race and Gender are independent in the
+data.
+cpr(G,R)= 1
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+4 / 49
+
+--- Page 5 ---
+Do you like noodles?
+Table for Gender and Race given Answer=yes:
+Race
+Gender
+Black
+White
+Male
+10
+100
+Female
+30
+120
+cpr(G,R) = 0.4
+Table for Gender and Race given Answer=no:
+Race
+Gender
+Black
+White
+Male
+40
+100
+Female
+20
+80
+cpr(G,R)=1.6
+From these tables we conclude that Race and Gender are dependent given Answer.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+5 / 49
+
+--- Page 6 ---
+Do you like noodles? Directed
+G
+R
+A
+G ⊥⊥R,
+G ̸⊥⊥R |A
+Gender and Race are marginally independent
+(but dependent given Answer).
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+6 / 49
+
+--- Page 7 ---
+Explaining away
+S
+A
+L
+Smoking (S) and asbestos exposure (A) are independent, but become
+dependent if we observe that someone has lung cancer (L).
+If we observe L, this raises the probability of both S and A.
+If we subsequently observe S, then the probability of A drops
+(explaining away eﬀect).
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+7 / 49
+
+--- Page 8 ---
+Directed Independence Graphs
+G = (K, E), K is a set of vertices and E is a set of edges with ordered
+pairs of vertices.
+No directed cycles (DAG)
+parent/child
+ancestor/descendant
+ancestral set
+Because G is a DAG, there exists a complete ordering of the vertices that
+is respected in the graph (edges point from lower ordered to higher
+ordered nodes).
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+8 / 49
+
+--- Page 9 ---
+Parents Of Node i: pa(i)
+i
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+9 / 49
+
+--- Page 10 ---
+Ancestors Of Node i: an(i)
+i
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+10 / 49
+
+--- Page 11 ---
+Ancestral Set Of Node i: an+(i)
+i
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+11 / 49
+
+--- Page 12 ---
+Children Of Node i: ch(i)
+i
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+12 / 49
+
+--- Page 13 ---
+Descendants Of Node i: de(i)
+i
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+13 / 49
+
+--- Page 14 ---
+Construction of DAG
+Suppose that prior knowledge tells us the variables can be labeled
+X1, X2, . . . , Xk such that Xi is prior to Xi+1.
+(for example: causal or temporal ordering)
+Corresponding to this ordering we can use the product rule to factorize the
+joint distribution of X1, X2, . . . , Xk as
+P(X) = P(X1)P(X2 | X1) · · · P(Xk | Xk−1, Xk−2, . . . , X1)
+Note that:
+1 This is an identity of probability theory, no independence assumptions
+have been made yet!
+2 The joint probability of any initial segment X1, X2, . . . , Xj (1 ≤j ≤k)
+is given by the corresponding initial segment of the factorization.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+14 / 49
+
+--- Page 15 ---
+Constructing a DAG from pairwise independencies
+Starting from the complete graph (containing arrows i →j for all i < j)
+an arrow from i to j is removed if P(Xj | Xj−1, . . . , X1) does not depend
+on Xi, in other words, if
+j ⊥⊥i | {1, . . . , j} \ {i, j}
+More loosely
+j ⊥⊥i | prior variables
+Compare this to pairwise independence
+j ⊥⊥i | rest
+in undirected independence graphs.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+15 / 49
+
+--- Page 16 ---
+Construction Of DAG
+1
+2
+3
+4
+P(X) = P(X1)P(X2|X1)P(X3|X1, X2)P(X4|X1, X2, X3)
+Suppose the following independencies are given:
+1 X1 ⊥⊥X2
+2 X4 ⊥⊥X3|(X1, X2)
+3 X1 ⊥⊥X3|X2
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+16 / 49
+
+--- Page 17 ---
+Construction Of DAG
+1
+2
+3
+4
+P(X) = P(X1) P(X2|X1)
+|
+{z
+}
+P(X2)
+P(X3|X1, X2)P(X4|X1, X2, X3)
+1 If X1 ⊥⊥X2, then P(X2|X1) = P(X2).
+The edge 1 →2 is removed.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+17 / 49
+
+--- Page 18 ---
+Construction Of DAG
+1
+2
+3
+4
+P(X) = P(X1)P(X2)P(X3|X1, X2)P(X4|X1, X2, X3)
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+18 / 49
+
+--- Page 19 ---
+Construction Of DAG
+1
+2
+3
+4
+P(X) = P(X1)P(X2)P(X3|X1, X2) P(X4|X1, X2, X3)
+|
+{z
+}
+P(X4|X1,X2)
+2 If X4 ⊥⊥X3|(X1, X2), then P(X4|X1, X2, X3) = P(X4|X1, X2).
+The edge 3 →4 is removed.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+19 / 49
+
+--- Page 20 ---
+Construction Of DAG
+1
+2
+3
+4
+P(X) = P(X1)P(X2)P(X3|X1, X2)P(X4|X1, X2)
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+20 / 49
+
+
+
+==================================
+FILE: 11-dm-bnslides2022-2.pdf
+==================================
+
+--- Page 1 ---
+Data Mining
+Bayesian Networks (2)
+Ad Feelders
+Universiteit Utrecht
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+1 / 72
+
+--- Page 2 ---
+Learning Bayesian Networks
+1 Parameter learning: structure known/given; estimate the conditional
+probabilities from the data.
+2 Structure learning: structure unknown; learn the networks structure
+and the conditional probabilities from the data.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+2 / 72
+
+--- Page 3 ---
+Bayesian Network Factorisation
+For a directed independence graph, the joint distribution factorises
+according to
+P(X) =
+kY
+i=1
+p(Xi | Xpa(i))
+So to specify the distribution we have to estimate the probabilities
+p(Xi | Xpa(i))
+i = 1, 2, . . . , k
+of the conditional distribution of each variable given its parents.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+3 / 72
+
+--- Page 4 ---
+ML Estimation of BN
+The joint probability for n independent observations is
+P(X (1), . . . , X (n)) =
+n
+Y
+j=1
+P(X (j)) =
+n
+Y
+j=1
+kY
+i=1
+p(X (j)
+i
+| X (j)
+pa(i)),
+where X (j) denotes the j-th row in the data table.
+The likelihood function is given by
+L =
+kY
+i=1
+Y
+xi,xpa(i)
+p(xi | xpa(i))n(xi,xpa(i))
+where n(xi, xpa(i)) is a count of the number of rows with Xi = xi, and
+Xpa(i) = xpa(i).
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+4 / 72
+
+--- Page 5 ---
+Directed Independence Graph
+1
+2
+3
+4
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+5 / 72
+
+--- Page 6 ---
+Data Set and Likelihood
+P(X1, X2, X3, X4) = p1(X1)p2(X2)p3|12(X3|X1, X2)p4|3(X4|X3)
+obs
+X1
+X2
+X3
+X4
+1
+1
+1
+1
+1
+p1(1)p2(1)p3|12(1|1, 1)p4|3(1|1)
+2
+1
+1
+1
+1
+3
+1
+1
+2
+1
+4
+1
+2
+2
+1
+5
+1
+2
+2
+2
+6
+2
+1
+1
+2
+7
+2
+1
+2
+3
+8
+2
+1
+2
+3
+9
+2
+2
+2
+3
+10
+2
+2
+1
+3
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+6 / 72
+
+--- Page 7 ---
+Data Set and Likelihood
+P(X1, X2, X3, X4) = p1(X1)p2(X2)p3|12(X3|X1, X2)p4|3(X4|X3)
+obs
+X1
+X2
+X3
+X4
+1
+1
+1
+1
+1
+p1(1)p2(1)p3|12(1|1, 1)p4|3(1|1)
+2
+1
+1
+1
+1
+p1(1)p2(1)p3|12(1|1, 1)p4|3(1|1)
+3
+1
+1
+2
+1
+4
+1
+2
+2
+1
+5
+1
+2
+2
+2
+6
+2
+1
+1
+2
+7
+2
+1
+2
+3
+8
+2
+1
+2
+3
+9
+2
+2
+2
+3
+10
+2
+2
+1
+3
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+7 / 72
+
+--- Page 8 ---
+Data Set and Likelihood
+P(X1, X2, X3, X4) = p1(X1)p2(X2)p3|12(X3|X1, X2)p4|3(X4|X3)
+obs
+X1
+X2
+X3
+X4
+1
+1
+1
+1
+1
+p1(1)p2(1)p3|12(1|1, 1)p4|3(1|1)
+2
+1
+1
+1
+1
+p1(1)p2(1)p3|12(1|1, 1)p4|3(1|1)
+3
+1
+1
+2
+1
+p1(1)p2(1)p3|12(2|1, 1)p4|3(1|2)
+4
+1
+2
+2
+1
+5
+1
+2
+2
+2
+6
+2
+1
+1
+2
+7
+2
+1
+2
+3
+8
+2
+1
+2
+3
+9
+2
+2
+2
+3
+10
+2
+2
+1
+3
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+8 / 72
+
+--- Page 9 ---
+Data Set and Likelihood
+P(X1, X2, X3, X4) = p1(X1)p2(X2)p3|12(X3|X1, X2)p4|3(X4|X3)
+obs
+X1
+X2
+X3
+X4
+1
+1
+1
+1
+1
+p1(1)p2(1)p3|12(1|1, 1)p4|3(1|1)
+2
+1
+1
+1
+1
+p1(1)p2(1)p3|12(1|1, 1)p4|3(1|1)
+3
+1
+1
+2
+1
+p1(1)p2(1)p3|12(2|1, 1)p4|3(1|2)
+4
+1
+2
+2
+1
+p1(1)p2(2)p3|12(2|1, 2)p4|3(1|2)
+5
+1
+2
+2
+2
+6
+2
+1
+1
+2
+7
+2
+1
+2
+3
+8
+2
+1
+2
+3
+9
+2
+2
+2
+3
+10
+2
+2
+1
+3
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+9 / 72
+
+--- Page 10 ---
+Data Set and Likelihood
+P(X1, X2, X3, X4) = p1(X1)p2(X2)p3|12(X3|X1, X2)p4|3(X4|X3)
+obs
+X1
+X2
+X3
+X4
+1
+1
+1
+1
+1
+p1(1)p2(1)p3|12(1|1, 1)p4|3(1|1)
+2
+1
+1
+1
+1
+p1(1)p2(1)p3|12(1|1, 1)p4|3(1|1)
+3
+1
+1
+2
+1
+p1(1)p2(1)p3|12(2|1, 1)p4|3(1|2)
+4
+1
+2
+2
+1
+p1(1)p2(2)p3|12(2|1, 2)p4|3(1|2)
+5
+1
+2
+2
+2
+p1(1)p2(2)p3|12(2|1, 2)p4|3(2|2)
+6
+2
+1
+1
+2
+7
+2
+1
+2
+3
+8
+2
+1
+2
+3
+9
+2
+2
+2
+3
+10
+2
+2
+1
+3
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+10 / 72
+
+--- Page 11 ---
+Data Set and Likelihood
+P(X1, X2, X3, X4) = p1(X1)p2(X2)p3|12(X3|X1, X2)p4|3(X4|X3)
+obs
+X1
+X2
+X3
+X4
+1
+1
+1
+1
+1
+p1(1)p2(1)p3|12(1|1, 1)p4|3(1|1)
+2
+1
+1
+1
+1
+p1(1)p2(1)p3|12(1|1, 1)p4|3(1|1)
+3
+1
+1
+2
+1
+p1(1)p2(1)p3|12(2|1, 1)p4|3(1|2)
+4
+1
+2
+2
+1
+p1(1)p2(2)p3|12(2|1, 2)p4|3(1|2)
+5
+1
+2
+2
+2
+p1(1)p2(2)p3|12(2|1, 2)p4|3(2|2)
+6
+2
+1
+1
+2
+p1(2)p2(1)p3|12(1|2, 1)p4|3(2|1)
+7
+2
+1
+2
+3
+p1(2)p2(1)p3|12(2|2, 1)p4|3(3|2)
+8
+2
+1
+2
+3
+p1(2)p2(1)p3|12(2|2, 1)p4|3(3|2)
+9
+2
+2
+2
+3
+p1(2)p2(2)p3|12(2|2, 2)p4|3(3|2)
+10
+2
+2
+1
+3
+p1(2)p2(2)p3|12(1|2, 2)p4|3(3|1)
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+11 / 72
+
+--- Page 12 ---
+For all observations
+Likelihood function for all observations together:
+L
+=
+p1(1)5(1 −p1(1))5p2(1)6(1 −p2(1))4p3|1,2(1|1, 1)2(1 −p3|1,2(1|1, 1))
+(1 −p3|1,2(1|1, 2))2p3|1,2(1|2, 1)(1 −p3|1,2(1|2, 1))2p3|1,2(1|2, 2)
+(1 −p3|1,2(1|2, 2))p4|3(1|1)2p4|3(2|1)(1 −p4|3(1|1) −p4|3(2|1))
+p4|3(1|2)2p4|3(2|2)(1 −p4|3(1|2) −p4|3(2|2))3
+Or in log form
+L
+=
+5 log p1(1) + 5 log(1 −p1(1)) + 6 log p2(1) + 4 log(1 −p2(1))
++2 log p3|1,2(1|1, 1) + log(1 −p3|1,2(1|1, 1))
++2 log(1 −p3|1,2(1|1, 2)) + log p3|1,2(1|2, 1) + 2 log(1 −p3|1,2(1|2, 1))
++ log p3|1,2(1|2, 2) + log(1 −p3|1,2(1|2, 2))
++2 log p4|3(1|1) + log p4|3(2|1) + log(1 −p4|3(1|1) −p4|3(2|1))
++2 log p4|3(1|2) + log p4|3(2|2) + 3 log(1 −p4|3(1|2) −p4|3(2|2))
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+12 / 72
+
+--- Page 13 ---
+ML Estimation of BN
+Taking the log of the likelihood function, we get
+L =
+k
+X
+i=1
+X
+xi,xpa(i)
+n(xi, xpa(i)) log p(xi | xpa(i))
+Maximize the log-likelihood function with respect to the
+unknown parameters p(xi | xpa(i)).
+This decomposes into a collection of independent multinomial
+estimation problems.
+Separate estimation problem for each Xi and conﬁguration of Xpa(i).
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+13 / 72
+
+--- Page 14 ---
+ML Estimation of BN
+The maximum likelihood estimate of p(xi | xpa(i)) is given by:
+ˆp(xi | xpa(i)) = n(xi, xpa(i))
+n(xpa(i)) ,
+where
+n(xi, xpa(i)) is the number of records in the data with
+Xi = xi and Xpa(i) = xpa(i), and
+n(xpa(i)) is the number of records in the data with Xpa(i) = xpa(i).
+In case Xi has no parents, this simpliﬁes to
+ˆp(xi) = n(xi)
+n
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+14 / 72
+
+--- Page 15 ---
+The Log-Likelihood Score
+Fill in the maximum likelihood estimates in the log-likelihood function to
+obtain the log-likelihood score:
+L =
+k
+X
+i=1
+X
+xi,xpa(i)
+n(xi, xpa(i)) log n(xi, xpa(i))
+n(xpa(i))
+The higher its value, the better the model ﬁts the data.
+The saturated model (complete graph) always has the highest
+log-likelihood score.
+To avoid overﬁtting, we must penalize model complexity.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+15 / 72
+
+--- Page 16 ---
+Scoring Functions for Structure Learning
+Scoring functions:
+AIC(M) = LM −dim(M)
+BIC(M) = LM −log n
+2
+dim(M)
+where LM is the log-likelihood score of model M and dim(M) is the
+number of parameters of M.
+BIC gives a higher penalty for model complexity (n > 7), so tends to lead
+to less complex models than AIC.
+Note: earlier we deﬁned AIC(M) = 2(Lsat −LM) + 2dim(M). Dividing by
+−2 and ignoring the constant Lsat gives the current deﬁnition.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+16 / 72
+
+--- Page 17 ---
+Structure Learning as an Optimization Problem
+Given
+Training data.
+Scoring function (BIC or AIC).
+Space of possible models (all DAGs).
+ﬁnd the model that maximizes the score.
+The number of labeled acyclic directed graphs on k nodes is given by the
+recurrence
+ak =
+k
+X
+j=1
+(−1)j−1
+k
+j
+
+2j(k−j)ak−j
+For example, a6 = 3, 781, 503.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+17 / 72
+
+--- Page 18 ---
+Heuristic Search
+Exhaustive search is not feasible.
+Local search: deﬁne which models are neighbors of a given model
+(typically: addition, removal, or reversal of an arc).
+Traverse search space looking for high-scoring models,
+e.g. by greedy hill-climbing.
+Most search algorithms do not require an a priori ordering of the
+variables!
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+18 / 72
+
+--- Page 19 ---
+Score Decomposes
+The loglikelihood score
+L =
+k
+X
+i=1
+X
+xi,xpa(i)
+n(xi, xpa(i)) log n(xi, xpa(i))
+n(xpa(i))
+must be computed many times for diﬀerent models in structure learning.
+Luckily, it is a sum of terms, where each term contains the variables
+{i} ∪pa(i).
+Hence, when making a change to the model, we only have to recompute
+the score for those variables whose parent set has changed!
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+19 / 72
+
+--- Page 20 ---
+Example Data Set
+obs
+X1
+X2
+X3
+X4
+1
+1
+1
+1
+1
+2
+1
+1
+1
+1
+3
+1
+1
+2
+1
+4
+1
+2
+2
+1
+5
+1
+2
+2
+2
+6
+2
+1
+1
+2
+7
+2
+1
+2
+3
+8
+2
+1
+2
+3
+9
+2
+2
+2
+3
+10
+2
+2
+1
+3
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+20 / 72
+
+
+
+==================================
+FILE: 12-dm-social-networks2021.pdf
+==================================
+
+--- Page 1 ---
+Data Mining 2021
+Mining Social Network Data: Node Classiﬁcation
+Ad Feelders
+Universiteit Utrecht
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+1 / 40
+
+--- Page 2 ---
+Example: Predicting Romantic Relationships
+The latest oﬀering from Facebooks data-science team teases out
+who is romantically involved with whom by examining link struc-
+tures. It turns out that if one of your Facebook friends - lets call
+him Joe - has mutual friends that touch disparate areas of your
+life, and those mutual friends are themselves not extensively con-
+nected, its a strong clue that Joe is either your romantic partner
+or one of your closest personal friends.
+http://www.technologyreview.com/view/520771/now-facebook-can-see-inside-your-heart-too/
+Lars Backstrom and Jon Kleinberg: Romantic Partnerships and the
+Dispersion of Social Ties: A Network Analysis of Relationship Status on
+Facebook, Proc. 17th ACM Conference on Computer Supported
+Cooperative Work and Social Computing (CSCW), 2014
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+2 / 40
+
+--- Page 3 ---
+Example: Mining facebook likes
+User – Like Matrix
+(10M User-Like pairs)
+Users’ Facebook Likes
+55,814 Likes
+58,466 Users
+1
+User – Components Matrix
+Singular Value
+100 Components 
+58,466 Users
+2
+(with 10-
+3
+e.g.  age=α+β1 C1 +…+ βnC100
+Predicted variables
+Facebook proﬁle:
+social network size and density
+Proﬁle picture: ethnicity
+Survey / test results: BIG5 Personali-
+substance use, parents together?
+M. Kosinski, D. Stillwell, T. Graepel: Private traits and attributes are
+predictable from digital records of human behavior, PNAS, March 11,
+2013.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+3 / 40
+
+--- Page 4 ---
+Example: Mining facebook likes
+Fig. 2.
+Prediction accuracy of classiﬁcation for dichotomous/dichotomized
+attributes expressed by the AUC.
+AUC: probability of correctly classifying two randomly selected users, one
+from each class (e.g. male and female). Random guessing: AUC=0.5.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+4 / 40
+
+--- Page 5 ---
+Example: Mining facebook likes
+Fig. 2.
+Prediction accuracy of classiﬁcation for dichotomous/dichotomized
+attributes expressed by the AUC.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+5 / 40
+
+--- Page 6 ---
+Example: Mining facebook likes
+Fig. 3.
+Prediction accuracy of regression for numeric attributes and traits
+expressed by the Pearson correlation coefﬁcient between predicted and ac-
+tual attribute values; all correlations are signiﬁcant at the P < 0.001 level. The
+transparent bars indicate the questionnaire’s baseline accuracy, expressed in
+terms of test–retest reliability.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+6 / 40
+
+--- Page 7 ---
+Example: Mining facebook likes
+Fig. 4.
+Accuracy of selected predictions as a function of the number of
+available Likes. Accuracy is expressed as AUC (gender) and Pearson’s corre-
+lation coefﬁcient (age and Openness). About 50% of users in this sample had
+at least 100 Likes and about 20% had at least 250 Likes. Note, that for
+gender (dichotomous variable) the random guessing baseline corresponds to
+an AUC = 0.50.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+7 / 40
+
+--- Page 8 ---
+Example: Mining facebook likes
+Best predictors of high intelligence include:
+“Thunderstorms”
+“Science”
+“Curly Fries”
+Best predictors of low intelligence include:
+“I love being a mom”
+“Harley Davidson”
+“Lady Antebellum”
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+8 / 40
+
+--- Page 9 ---
+Example: predicting personality from Twitter
+J. Golbeck, C. Robles, M. Edmondson, K. Turner: Predicting Personality
+from Twitter, IEEE International Conference on Social Computing, 2011.
+Fig. 1: A person has scores for each of the ﬁve personality
+factors. Together, the ﬁve factors represent an individual’s
+personality.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+9 / 40
+
+--- Page 10 ---
+Example: predicting personality from Twitter
+Fig. 2: Average scores on each personality trait shown with
+standard deviation bars.
+TABLE I: Average scores on each personality factor on a
+normalized 0-1 scale
+Agree.
+Consc.
+Extra.
+Neuro.
+Open.
+Average
+0.697
+0.617
+0.586
+0.428
+0.755
+Stdev
+0.162
+0.176
+0.190
+0.224
+0.147
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+10 / 40
+
+--- Page 11 ---
+Example: predicting personality from Twitter
+Fig. 4: Features used for predicting personality.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+11 / 40
+
+--- Page 12 ---
+Example: predicting personality from Twitter
+TABLE II: Pearson correlation values between feature scores and personality scores. Signiﬁcant correlations are shown in bold
+for p < 0.05. Only features that correlate signiﬁcantly with at least one personality trait are shown.
+Language Feature
+Examples
+Extro.
+Agree.
+Consc.
+Neuro.
+Open.
+“You”
+(you, your, thou)
+0.068
+0.364
+0.252
+-0.212
+-0.020
+Articles
+(a, an, the)
+-0.039
+-0.139
+-0.071
+-0.154
+0.396
+Auxiliary Verbs
+(am, will, have)
+0.033
+0.042
+-0.284
+0.017
+0.045
+Future Tense
+(will, gonna)
+0.227
+-0.100
+-0.286
+0.118
+0.142
+Negations
+(no, not, never)
+-0.020
+0.048
+-0.374
+0.081
+0.040
+Quantiﬁers
+(few, many, much)
+-0.002
+-0.057
+-0.089
+-0.051
+0.238
+Social Processes
+(mate, talk, they, child)
+0.262
+0.156
+0.168
+-0.141
+0.084
+Family
+(daughter, husband, aunt)
+0.338
+0.020
+-0.126
+0.096
+0.215
+Humans
+(adult, baby, boy)
+0.204
+-0.011
+0.055
+-0.113
+0.251
+Negative Emotions
+(hurt, ugly, nasty)
+0.054
+-0.111
+-0.268
+0.120
+0.010
+Sadness
+(crying, grief, sad)
+0.154
+-0.203
+-0.253
+0.230
+-0.111
+Cognitive Mechanisms
+(cause, know, ought)
+-0.008
+-0.089
+-0.244
+0.025
+0.140
+Causation
+(because, effect, hence)
+0.224
+-0.258
+-0.155
+-0.004
+0.264
+Discrepancy
+(should, would, could)
+0.227
+-0.055
+-0.292
+0.187
+0.103
+Certainty
+(always, never)
+0.112
+-0.117
+-0.069
+-0.074
+0.347
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+12 / 40
+
+--- Page 13 ---
+Example: predicting personality from Twitter
+Perceptual Processes
+Hearing
+(listen, hearing)
+0.042
+-0.041
+0.014
+0.335
+-0.084
+Feeling
+(feels, touch)
+0.097
+-0.127
+-0.236
+0.244
+0.005
+Biological Processes
+(eat, blood, pain)
+-0.066
+0.206
+0.005
+0.057
+-0.239
+Body
+(cheek, hands, spit)
+0.031
+0.083
+-0.079
+0.122
+-0.299
+Health
+(clinic, ﬂu, pill)
+-0.277
+0.164
+0.059
+-0.012
+-0.004
+Ingestion
+(dish, eat, pizza)
+-0.105
+0.247
+0.013
+-0.058
+-0.202
+Work
+(job, majors, xerox)
+0.231
+-0.096
+0.330
+-0.125
+0.426
+Achievement
+(earn, hero, win)
+-0.005
+-0.240
+-0.198
+-0.070
+0.008
+Money
+(audit, cash, owe)
+-0.063
+-0.259
+0.099
+-0.074
+0.222
+Religion
+(altar, church, mosque)
+-0.152
+-0.151
+-0.025
+0.383
+-0.073
+Death
+(bury, cofﬁn, kill)
+-0.001
+0.064
+-0.332
+-0.054
+0.120
+Fillers
+(blah, imean, youknow)
+0.099
+-0.186
+-0.272
+0.080
+0.120
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+13 / 40
+
+--- Page 14 ---
+Example: predicting personality from Twitter
+y
+Punctuation
+Commas
+0.148
+0.080
+-0.24
+0.155
+0.170
+Colons
+-0.216
+-0.153
+0.322
+-0.015
+-0.142
+Question Marks
+0.263
+-0.050
+0.024
+0.153
+-0.114
+Exclamation Marks
+-0.021
+-0.025
+0.260
+0.317
+-0.295
+Parentheses
+-0.254
+-0.048
+-0.084
+0.133
+-0.302
+Non-LIWC Features
+GI Sentiment
+0.177
+-0.130
+-0.084
+-0.197
+0.268
+Number of Hashtags
+0.066
+-0.044
+-0.030
+-0.217
+-0.268
+Words per tweet
+0.285
+-0.065
+-0.144
+0.031
+0.200
+Links per tweet
+-0.061
+-0.081
+0.256
+-0.054
+0.064
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+14 / 40
+
+--- Page 15 ---
+Example: predicting personality from Twitter
+TABLE III: Mean Absolute Error on a normalized scale for each algorithm and personality trait.
+Agree.
+Consc.
+Extra.
+Neuro.
+Open.
+ZeroR
+0.129980265
+0.146204953
+0.160241663
+0.182122225
+0.11923333
+GaussianProcess
+0.130675423
+0.14599073
+0.160315335
+0.18205923
+0.11922558
+Note: ZeroR simply predicts the mean.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+15 / 40
+
+--- Page 16 ---
+The Node Classiﬁcation Problem
+Given a (social) network with linked nodes and labels for some nodes, how
+can we provide a high quality labeling for every node?
+A
+A
+B
+?
+?
+The existence of an explicit link structure makes the node classiﬁcation
+problem diﬀerent from traditional data mining classiﬁcation tasks, where
+objects being classiﬁed are typically considered to be independent.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+16 / 40
+
+--- Page 17 ---
+The Node Classiﬁcation Problem
+Two important phenomena:
+Homophily (“Birds of a feather”): a link between individuals (such as
+friendship) is correlated with those individuals being similar in nature.
+For example, friends often tend to be similar in characteristics like
+age, social background and education level.
+Co-citation regularity: similar individuals tend to refer or connect to
+the same things. For example, when two individuals have the same
+tastes in music, literature or fashion, co-citation regularity suggests
+that they may be similar in other ways or have other common
+interests.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+17 / 40
+
+--- Page 18 ---
+Example: Facebook
+G = (V , E, W )
+The set of nodes V represents users of Facebook.
+An edge (i, j) ∈E could represent:
+A relationship (friendship, sibling, partner)
+An interaction (wall post, private message, group message)
+An activity (tagging a photo, playing games)
+Node attributes: demographics (age, location, gender, occupation),
+interests (hobbies, movies, books, music), etc.
+Edge weights W : strength of connection, e.g. number of messages
+exchanged.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+18 / 40
+
+--- Page 19 ---
+Example: Papers and Citations
+G = (V , E, W )
+The set of nodes V represents papers.
+An edge (i, j) ∈E could represent that paper vi cites paper vj.
+Node attributes: authors, title, word frequencies, topic of the paper.
+Edge weights W : Number of times vi cites vj.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+19 / 40
+
+--- Page 20 ---
+Literature
+The remainder of the slides is primarily based on:
+Qing Lu and Lise Getoor, Link-based Classiﬁcation, Proceedings of the
+Twentieth International Conference on Machine Learning (ICML-2003),
+Washington DC, 2003.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+20 / 40
+
+
+
+==================================
+FILE: 13-dm-social-linkpred.pdf
+==================================
+
+--- Page 1 ---
+Data Mining
+Mining Social Network Data: Link Prediction
+Ad Feelders
+Universiteit Utrecht
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+1 / 31
+
+--- Page 2 ---
+The Link Prediction Problem
+?
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+2 / 31
+
+--- Page 3 ---
+Applications
+Biology: protein-protein interaction prediction.
+Recommendation systems, e.g. link recommendation in social
+networks like Facebook.
+Analysis of criminal/terrorist networks.
+Automatic web hyper-link creation (e.g. discovering missing links in
+WikiPedia).
+Record linkage/deduplication.
+...
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+3 / 31
+
+--- Page 4 ---
+Example: Predicting Romantic Relationships
+The latest oﬀering from Facebooks data-science team teases out
+who is romantically involved with whom by examining link struc-
+tures. It turns out that if one of your Facebook friends - lets call
+him Joe - has mutual friends that touch disparate areas of your
+life, and those mutual friends are themselves not extensively con-
+nected, its a strong clue that Joe is either your romantic partner
+or one of your closest personal friends.
+http://www.technologyreview.com/view/520771/now-facebook-can-see-inside-your-heart-too/
+Lars Backstrom and Jon Kleinberg: Romantic Partnerships and the
+Dispersion of Social Ties: A Network Analysis of Relationship Status on
+Facebook, Proc. 17th ACM Conference on Computer Supported
+Cooperative Work and Social Computing (CSCW), 2014
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+4 / 31
+
+--- Page 5 ---
+The Link Prediction Problem
+Given a (social) network G = (V , E) in which an edge e = (u, v) ∈E
+represents some form of interaction between its endpoints at a particular
+time t(e).
+Multiple interactions between the same pair of nodes can be recorded by
+parallel edges or using multiple time-stamps for an edge.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+5 / 31
+
+--- Page 6 ---
+The Link Prediction Problem
+For time t ≤t′, let G[t, t′] denote the subgraph of G restricted to the
+edges with time-stamps between t and t′.
+Supervised learning problem: choose a training interval [t0, t′
+0] and a test
+interval [t1, t′
+1] where t′
+0 < t1.
+The link prediction problem is to output a list of edges not present in
+G[t0, t′
+0], but are predicted to appear in the network G[t1, t′
+1].
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+6 / 31
+
+--- Page 7 ---
+Approaches to link prediction
+1 Construct (similarity-) based features for pairs of nodes, and use
+binary classiﬁcation algorithms to predict the existence/emergence of
+links.
+2 Use node embeddings. Similar nodes should get similar embedding
+vectors.
+3 Probabilistic models. Fit a statistical model based on the structure of
+the network.
+4 ...
+We will focus on the ﬁrst approach.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+7 / 31
+
+--- Page 8 ---
+Node Neighborhood Based Features
+Let Γ(x) denote the neighborhood of node x, that is, the set of nodes
+directly connected to x.
+For two nodes x and y, we deﬁne:
+1 Number of shared neighbors:
+Common-Neighbors (x, y) = |Γ(x) ∩Γ(y)|
+2
+Jaccard-Coeﬃcient (x, y) = |Γ(x) ∩Γ(y)|
+|Γ(x) ∪Γ(y)|
+3 A shared neighbor that is itself not heavily connected gets higher
+weight:
+Adamic-Adar (x, y) =
+X
+z∈Γ(x)∩Γ(y)
+1
+log |Γ(z)|
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+8 / 31
+
+--- Page 9 ---
+Examples
+a
+c
+b
+d
+e
+g
+f
+Γ(c) = {b, d}
+Γ(e) = {b, d, f , g}
+Common-Neighbors (c, e) = |Γ(c) ∩Γ(e)| = |{b, d}| = 2
+Jaccard-Coeﬃcient (c, e) = |Γ(c)∩Γ(e)|
+|Γ(c)∪Γ(e)| =
+|{b,d}|
+|{b,d,f ,g}| = 2
+4
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+9 / 31
+
+--- Page 10 ---
+Intermezzo: Markov Chain
+Let P be a k × k matrix with elements Pij.
+A stochastic process (X0, X1, . . .) with state space S = {s1, . . . , sk} is said
+to be a Markov chain with transition matrix P if for all i, j ∈{1, . . . , k} we
+have
+P(Xn+1 = sj | Xn = si, Xn−1, . . . , X0) = P(Xn+1 = sj | Xn = si)
+= Pij
+Slogan: the future is independent of the past given the present.
+X0
+Xn−1
+Xn
+Xn+1
+. . .
+. . .
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+10 / 31
+
+--- Page 11 ---
+Random Walk on Graph
+A random walk on a graph G = (V , E) is a Markov chain with state space
+V = {v1, v2, . . . , vk}.
+If the random walker stands at vertex vi at time n, then it moves at time
+n + 1 to one of the neighbors of vi chosen at random, with equal
+probability for each of the neighbors. More formally:
+Pij =
+
+1
+|Γ(vi)|
+if vj ∈Γ(vi)
+0
+otherwise
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+11 / 31
+
+--- Page 12 ---
+Example Graph and Transition Matrix
+v1
+v2
+v3
+v4
+v5
+P =
+
+
+
+
+
+
+0
+1
+2
+1
+2
+0
+0
+1
+4
+0
+1
+4
+1
+4
+1
+4
+1
+3
+1
+3
+0
+0
+1
+3
+0
+1
+2
+0
+0
+1
+2
+0
+1
+3
+1
+3
+1
+3
+0
+
+
+
+
+
+
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+12 / 31
+
+--- Page 13 ---
+Transition Diagram
+0.5
+0.5
+0.25
+0.25
+0.25
+0.25
+0.33
+0.33
+0.33
+0.5
+0.5
+0.33
+0.33
+0.33
+v1
+v2
+v3
+v4
+v5
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+13 / 31
+
+--- Page 14 ---
+Stationary Distribution
+Let (X0, X1, . . .) be a Markov chain with state space S = {s1, . . . , sk} and
+transition matrix P. A row vector π = (π1, . . . , πk) is said to be a
+stationary distribution for the Markov chain, if it satisﬁes:
+1 πi ≥0 for i = 1, . . . , k and Pk
+i=1 πi = 1, and
+2 πP = π, meaning that
+k
+X
+i=1
+πiPij = πj, for j = 1, . . . , k
+The second property implies that if the initial distribution µ(0) ≡P(X0)
+equals π, then the distribution µ(1) of the chain at time 1 satisﬁes:
+µ(1) = µ(0)P = πP = π,
+and by iterating we see that µ(n) = π for every n.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+14 / 31
+
+--- Page 15 ---
+Stationary Distribution for Random Walk on Graph
+The stationary distribution is:
+π =
+ 2
+14, 4
+14, 3
+14, 2
+14, 3
+14
+
+Check
+ 2
+14, 4
+14, 3
+14, 2
+14, 3
+14
+
+
+
+
+
+
+
+0
+1
+2
+1
+2
+0
+0
+1
+4
+0
+1
+4
+1
+4
+1
+4
+1
+3
+1
+3
+0
+0
+1
+3
+0
+1
+2
+0
+0
+1
+2
+0
+1
+3
+1
+3
+1
+3
+0
+
+
+
+
+
+
+=
+ 2
+14, 4
+14, 3
+14, 2
+14, 3
+14
+
+For example: in the long run, the random walker will ﬁnd itself in node v2
+for
+4
+14 ≈29% of the time.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+15 / 31
+
+--- Page 16 ---
+Existence and Convergence
+1 Existence: every irreducible and aperiodic Markov chain has a unique
+stationary distribution.
+2 Convergence: If we run the Markov chain for a suﬃciently long time
+n, then regardless of what the initial distribution µ(0) was, the
+distribution µ(n) at time n will be close to the stationary distribution
+π. This is often referred to as the Markov chain approaching
+equilibrium as n →∞.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+16 / 31
+
+--- Page 17 ---
+Irreducible and Aperiodic
+A Markov chain is irreducible if every state is reachable from every other
+state.
+The period d(si) of a state si ∈S is deﬁned as
+d(si) = gcd{n ≥1 : (Pn)i,i > 0}
+The period of si is the greatest common divisor of the set of times for
+which the chain can return (i.e. has positive probability of returning) to si,
+given that we start with X0 = si.
+If d(si) = 1, then we say that the state si is aperiodic.
+A Markov chain is said to be aperiodic if all its states are aperiodic.
+Otherwise, the chain is said to be periodic.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+17 / 31
+
+--- Page 18 ---
+Path Based Features
+For two nodes x and y:
+Shortest path distance between x and y.
+Katz:
+Katz (x, y) =
+∞
+X
+ℓ=1
+βℓ|paths⟨ℓ⟩
+x,y|
+where |paths⟨ℓ⟩
+x,y| is the number of length-ℓpaths from x to y. A very
+small β yields predictions much like common neighbors, since paths of
+length three or more contribute very little to the summation.
+Hitting time H(x, y) between nodes x and node y is the expected
+number of steps before node y is visited for the ﬁrst time, in a
+random walk starting from node x .
+Commute time: C(x, y) = H(x, y) + H(y, x).
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+18 / 31
+
+--- Page 19 ---
+Path Based Features
+Rooted Pagerank(x, y): stationary probability of y in a random walk
+starting at x that returns to x with probability α at each step, and
+moves to a random neighbor with probability 1 −α.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+19 / 31
+
+--- Page 20 ---
+Vertex Feature Aggregation
+1 Preferential Attachment Score between x and y: |Γ(x)| · |Γ(y)|.
+2 Sum of Neighbors of x and y: |Γ(x)| + |Γ(y)|.
+3 Clustering coeﬃcient:
+clustering-coeﬃcient (u) = 2 |{(v, w) ∈E : v, w ∈Γ(u)}|
+|Γ(u)|(|Γ(u)| −1)
+This is the number of neighbor pairs of u that are neighbors of each
+other, divided by the total number of neighbor pairs of u. For
+example, if edges represent collaborations between people (nodes),
+it’s the fraction of pairs of a persons collaborators who have also
+collaborated with one another.
+For a pair of nodes, we can use the sum or product of their clustering
+coeﬃcients as a feature.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+20 / 31
+
+
+
+==================================
+FILE: 2-dm-classtrees-2-2024.pdf
+==================================
+
+--- Page 1 ---
+Data Mining
+Classiﬁcation Trees (2)
+Ad Feelders
+Universiteit Utrecht
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+1 / 58
+
+--- Page 2 ---
+Basic Tree Construction Algorithm (control ﬂow)
+Construct tree
+nodelist ←{{training data}}
+Repeat
+current node ←select node from nodelist
+nodelist ←nodelist −current node
+if impurity(current node) > 0
+then
+S ←set of candidate splits in current node
+s* ←arg maxs∈S impurity reduction(s,current node)
+child nodes ←apply(s*,current node)
+nodelist ←nodelist ∪child nodes
+ﬁ
+Until nodelist = ∅
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+2 / 58
+
+--- Page 3 ---
+Overﬁtting and Pruning
+The tree growing algorithm continues splitting until all leaf nodes
+contain examples of a single class.
+This results in a tree with zero resubstitution error.
+Is this a good tree for predicting the class of new examples?
+Not unless the problem is truly “deterministic”!
+Problem of overﬁtting.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+3 / 58
+
+--- Page 4 ---
+An Overﬁtted Tree on Bug Prediction Data
+numberOfVersionsUntil. < 54
+codeChurnUntil. >= −45
+codeChurnUntil. < 25
+ageWithRespectTo. >= 12
+weightedAgeWithRespectTo. >= 47
+numberOfFixesUntil. < 6
+linesRemovedUntil. >= 9
+numberOfVersionsUntil. < 6
+linesAddedUntil. < 215
+numberOfVersionsUntil. >= 40
+maxCodeChurnUntil. >= 14
+avgCodeChurnUntil. >= 0.61
+avgCodeChurnUntil. < 0.13
+weightedAgeWithRespectTo. < 47
+numberOfFixesUntil. >= 2
+ageWithRespectTo. < 28
+numberOfAuthorsUntil. >= 3
+avgLinesAddedUntil. < 2.3
+ageWithRespectTo. >= 148
+ageWithRespectTo. < 97
+ageWithRespectTo. >= 61
+numberOfFixesUntil. < 3
+numberOfVersionsUntil. >= 5
+ageWithRespectTo. < 8.7
+ageWithRespectTo. >= 327
+numberOfVersionsUntil. < 49
+weightedAgeWithRespectTo. < 121
+avgLinesRemovedUntil. < 12
+numberOfVersionsUntil. >= 31
+numberOfFixesUntil. < 4
+numberOfAuthorsUntil. < 8
+maxLinesRemovedUntil. < 166
+maxLinesRemovedUntil. < 44
+weightedAgeWithRespectTo. < 57
+avgCodeChurnUntil. >= 14
+avgLinesAddedUntil. < 14
+numberOfVersionsUntil. < 20
+numberOfVersionsUntil. >= 5
+codeChurnUntil. >= 38
+numberOfVersionsUntil. >= 10
+linesRemovedUntil. >= 103
+maxLinesRemovedUntil. >= 31
+weightedAgeWithRespectTo. >= 92
+numberOfVersionsUntil. < 27
+avgLinesRemovedUntil. >= 4.4
+maxLinesAddedUntil. >= 307
+avgLinesRemovedUntil. >= 20
+numberOfFixesUntil. < 15
+maxCodeChurnUntil. < 50
+avgLinesRemovedUntil. < 16
+weightedAgeWithRespectTo. >= 64
+numberOfVersionsUntil. >= 63
+maxCodeChurnUntil. >= 41
+numberOfAuthorsUntil. < 7
+numberOfVersionsUntil. < 119
+maxLinesAddedUntil. >= 407
+linesRemovedUntil. < 2108
+weightedAgeWithRespectTo. >= 117
+avgLinesAddedUntil. < 14
+avgLinesAddedUntil. >= 13
+weightedAgeWithRespectTo. >= 140
+numberOfFixesUntil. < 7
+linesRemovedUntil. < 804
+numberOfFixesUntil. >= 15
+weightedAgeWithRespectTo. >= 148
+maxLinesAddedUntil. < 492
+0
+0.50
+100%
+0
+0.31
+62%
+0
+0.28
+58%
+0
+0.17
+29%
+0
+0.15
+28%
+0
+0.07
+14%
+0
+0.02
+11%
+0
+0.00
+10%
+0
+0.50
+0%
+0
+0.00
+0%
+1
+1.00
+0%
+0
+0.21
+3%
+0
+0.00
+2%
+0
+0.50
+1%
+0
+0.25
+1%
+0
+0.00
+1%
+1
+1.00
+0%
+1
+1.00
+0%
+0
+0.22
+14%
+0
+0.00
+3%
+0
+0.30
+11%
+0
+0.17
+8%
+0
+0.15
+8%
+0
+0.00
+4%
+0
+0.28
+4%
+0
+0.00
+1%
+0
+0.42
+3%
+0
+0.00
+0%
+0
+0.50
+2%
+0
+0.38
+2%
+0
+0.00
+1%
+1
+0.60
+1%
+0
+0.33
+1%
+0
+0.00
+0%
+1
+1.00
+0%
+1
+1.00
+0%
+1
+1.00
+0%
+1
+1.00
+0%
+1
+0.78
+2%
+0
+0.33
+1%
+0
+0.00
+0%
+1
+1.00
+0%
+1
+1.00
+1%
+1
+0.75
+1%
+0
+0.00
+0%
+1
+1.00
+1%
+0
+0.40
+29%
+0
+0.20
+11%
+0
+0.13
+9%
+0
+0.06
+8%
+0
+0.00
+7%
+0
+0.40
+1%
+0
+0.00
+1%
+1
+1.00
+0%
+1
+0.75
+1%
+0
+0.00
+0%
+1
+1.00
+1%
+1
+0.57
+2%
+0
+0.25
+1%
+0
+0.00
+1%
+1
+1.00
+0%
+1
+1.00
+1%
+1
+0.52
+18%
+0
+0.38
+14%
+0
+0.25
+9%
+0
+0.00
+3%
+0
+0.39
+6%
+0
+0.30
+5%
+0
+0.14
+3%
+0
+0.08
+3%
+0
+0.00
+2%
+0
+0.33
+1%
+0
+0.00
+0%
+1
+1.00
+0%
+1
+1.00
+0%
+1
+0.67
+1%
+0
+0.00
+0%
+1
+1.00
+1%
+1
+1.00
+1%
+1
+0.60
+5%
+0
+0.00
+1%
+1
+0.71
+4%
+0
+0.20
+1%
+0
+0.00
+1%
+1
+1.00
+0%
+1
+0.92
+3%
+0
+0.00
+0%
+1
+1.00
+3%
+1
+0.95
+5%
+0
+0.00
+0%
+1
+1.00
+4%
+1
+0.71
+3%
+0
+0.20
+1%
+0
+0.00
+1%
+1
+1.00
+0%
+1
+1.00
+2%
+1
+0.82
+38%
+1
+0.57
+8%
+0
+0.39
+6%
+0
+0.26
+5%
+0
+0.00
+3%
+1
+0.62
+2%
+0
+0.00
+1%
+1
+1.00
+1%
+1
+1.00
+1%
+1
+0.92
+3%
+0
+0.00
+0%
+1
+1.00
+3%
+1
+0.89
+30%
+1
+0.79
+15%
+1
+0.53
+5%
+0
+0.00
+1%
+1
+0.77
+3%
+0
+0.00
+1%
+1
+1.00
+2%
+1
+0.91
+11%
+1
+0.71
+2%
+0
+0.00
+0%
+1
+1.00
+1%
+1
+0.95
+9%
+0
+0.50
+0%
+0
+0.00
+0%
+1
+1.00
+0%
+1
+0.97
+8%
+1
+0.75
+1%
+0
+0.00
+0%
+1
+1.00
+1%
+1
+1.00
+8%
+1
+0.98
+14%
+1
+0.86
+2%
+0
+0.00
+0%
+1
+1.00
+1%
+1
+1.00
+13%
+yes
+no
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+4 / 58
+
+--- Page 5 ---
+Proposed Solutions
+How can we prevent overﬁtting?
+Stopping rules, e.g. don’t expand a node if:
+the impurity reduction of the best split is below some threshold, or
+the number of training examples falling into that node is too small.
+Pruning: grow a very large tree Tmax and merge back nodes.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+5 / 58
+
+--- Page 6 ---
+Stopping Rules
+Disadvantage: sometimes you ﬁrst have to make a weak split to be able to
+follow up with a good split.
+Since we only look one step ahead we may miss the good follow-up split.
+x1
+x2
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+6 / 58
+
+--- Page 7 ---
+Pruning
+To avoid the problem of stopping rules, we ﬁrst grow a very large
+tree Tmax on the training sample, and then prune this large tree.
+Objective: select the pruned subtree that has lowest true error rate.
+Problem: how to ﬁnd this pruned subtree?
+Cost-complexity pruning (Breiman et al.; CART),
+also called weakest link pruning.
+Note: in the practical assignment we don’t use pruning, but we use a
+stopping rule based on the nmin and minleaf parameters.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+7 / 58
+
+--- Page 8 ---
+Terminology: Tree T
+t1
+t2
+t3
+t4
+t5
+t6
+t7
+t8
+t9
+˜T denotes the collection of leaf nodes of tree T.
+˜T = {t5, t6, t7, t8, t9}, | ˜T| = 5
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+8 / 58
+
+--- Page 9 ---
+Terminology: Pruning T in node t2
+t1
+t2
+t3
+t4
+t5
+t6
+t7
+t8
+t9
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+9 / 58
+
+--- Page 10 ---
+Terminology: T after pruning in t2: T −Tt2
+t1
+t2
+t3
+t6
+t7
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+10 / 58
+
+--- Page 11 ---
+Terminology: Branch Tt2
+t2
+t4
+t5
+t8
+t9
+˜Tt2 = {t5, t8, t9}, | ˜Tt2| = 3
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+11 / 58
+
+--- Page 12 ---
+Cost-complexity pruning
+A pruned subtree of T is a tree obtained by pruning T in 0 or more
+nodes.
+The total number of pruned subtrees of a balanced binary tree with ℓ
+leaf nodes is
+⌊1.5028369ℓ⌋
+With just 40 leaf nodes we have approximately 12 million
+pruned subtrees.
+Exhaustive search not recommended.
+Basic idea of cost-complexity pruning: reduce the number of pruned
+subtrees we have to consider by selecting the ones that are the “best
+of their kind” (in a sense to be deﬁned shortly...)
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+12 / 58
+
+--- Page 13 ---
+Total cost of a tree
+Strike a balance between ﬁt and complexity. Total cost Cα(T) of tree T
+Cα(T) = R(T) + α| ˜T|
+Total cost consists of two components:
+resubstitution error R(T), and
+a penalty for the complexity of the tree α| ˜T|, (α ≥0).
+Note: R(T) = number of wrong classiﬁcations made by T
+number of examples in the training sample
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+13 / 58
+
+--- Page 14 ---
+Tree with lowest total cost
+Depending on the value of α, diﬀerent pruned subtrees will have
+the lowest total cost.
+For α = 0 (no complexity penalty) the tree with smallest
+resubstitution error wins.
+For higher values of α, a less complex tree that makes a few more
+errors might win.
+As it turns out, we can ﬁnd a nested sequence of pruned subtrees of Tmax,
+such that the trees in the sequence minimize total cost for consecutive
+intervals of α values.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+14 / 58
+
+--- Page 15 ---
+Smallest minimizing subtree
+Theorem:
+For any value of α, there exists a smallest minimizing subtree T(α) of
+Tmax that satisﬁes the following conditions:
+1 T(α) minimizes total cost for that value of α:
+Cα(T(α)) = minT≤Tmax Cα(T)
+2 T(α) is a pruned subtree of all trees that minimize total cost:
+if Cα(T) = Cα(T(α)) then T(α) ≤T.
+Note: T ′ ≤T means T ′ is a pruned subtree of T.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+15 / 58
+
+--- Page 16 ---
+Sequence of subtrees
+Construct a decreasing sequence of pruned subtrees of Tmax
+Tmax > T1 > T2 > T3 > . . . > {t1}
+(where t1 is the root node of the tree) such that Tk is the smallest
+minimizing subtree for α ∈[αk, αk+1).
+Note: From a computational viewpoint, the important property is that
+Tk+1 is guaranteed to be a pruned subtree of Tk. No backtracking is
+required.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+16 / 58
+
+--- Page 17 ---
+Decomposition of total cost
+The total cost of a tree is the sum of the contributions of its leaf nodes:
+Cα(T) = R(T) + α| ˜T| =
+X
+t∈˜T
+(R(t) + α)
+R(t) is the number of errors we make in node t if we predict the majority
+class, divided by the total number of observations in the training sample.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+17 / 58
+
+--- Page 18 ---
+Eﬀect of pruning in node t on cost
+Before pruning in t
+After pruning in t
+t
+Tt
+t
+Cα({t}) = R(t) + α
+Cα(Tt) =
+P
+t′∈˜Tt(R(t′) + α)
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+18 / 58
+
+--- Page 19 ---
+Finding the Tk and corresponding αk
+Tt: branch of T with root node t.
+After pruning in t, its contribution to total cost is:
+Cα({t}) = R(t) + α,
+The contribution of Tt to the total cost is:
+Cα(Tt) =
+X
+t′∈˜Tt
+(R(t′) + α) = R(Tt) + α| ˜Tt|
+The tree obtained by pruning in t becomes better than T when
+Cα({t}) = Cα(Tt)
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+19 / 58
+
+--- Page 20 ---
+Computing contributions to total cost of T
+100 100
+90
+60
+10
+40
+80
+0
+10
+60
+0
+60
+10
+0
+10
+0
+0
+40
+t1
+t2
+t3
+t4
+t5
+t6
+t7
+t8
+t9
+Cα({t2}) = R(t2) + α = 3
+10 + α
+Cα(Tt2) = R(Tt2) + α| ˜Tt2| = α| ˜Tt2| + P
+t′∈˜Tt2 R(t′) = 3α + 0
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+20 / 58
+
+
+
+==================================
+FILE: 3-dm-bias-variance-2024.pdf
+==================================
+
+--- Page 1 ---
+Data Mining
+Bagging and Random Forests
+Ad Feelders
+Universiteit Utrecht
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+1 / 25
+
+--- Page 2 ---
+Introduction
+Bad news: single trees are usually not among the top predictors.
+Good news: ensembles or committees of trees typically perform
+much better.
+Why does averaging the predictions of multiple trees help
+to reduce error?
+To answer this question we ﬁrst study the bias-variance
+decomposition of prediction error.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+2 / 25
+
+--- Page 3 ---
+Sample 1 and the True Regression Function
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+−2
+−1
+0
+1
+2
+x
+y
+f (x) = sin(2πx)
+yi = f (xi) + εi with εi ∼N(0, σ = 0.3)
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+3 / 25
+
+--- Page 4 ---
+Sample 2 and the True Regression Function
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+−2
+−1
+0
+1
+2
+x
+y
+f (x) = sin(2πx)
+yi = f (xi) + εi with εi ∼N(0, σ = 0.3)
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+4 / 25
+
+--- Page 5 ---
+Linear Fit on Sample 1
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+−2
+−1
+0
+1
+2
+x
+y
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+5 / 25
+
+--- Page 6 ---
+Linear Fit on Sample 2
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+−2
+−1
+0
+1
+2
+x
+y
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+6 / 25
+
+--- Page 7 ---
+Polynomial of Degree 5 on Sample 1
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+−2
+−1
+0
+1
+2
+x
+y
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+7 / 25
+
+--- Page 8 ---
+Polynomial of Degree 5 on Sample 2
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+−2
+−1
+0
+1
+2
+x
+y
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+8 / 25
+
+--- Page 9 ---
+All Together Now
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+−2
+−1
+0
+1
+2
+x
+y
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+9 / 25
+
+--- Page 10 ---
+Average of degree 5 polynomials
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+−2
+−1
+0
+1
+2
+x
+y
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+−2
+−1
+0
+1
+2
+x
+y
+Average predictions of degree 5 polynomials estimated on 10,000 samples
+of size 10 (on the left), and sin(2πx) (on the right).
+Can you see the diﬀerence?
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+10 / 25
+
+--- Page 11 ---
+Polynomial of Degree 9 on Sample 1
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+−2
+−1
+0
+1
+2
+x
+y
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+11 / 25
+
+--- Page 12 ---
+Polynomial of Degree 9 on Sample 2
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+−2
+−1
+0
+1
+2
+x
+y
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+12 / 25
+
+--- Page 13 ---
+A High Variance Predictor!
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+−2
+−1
+0
+1
+2
+x
+y
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+13 / 25
+
+--- Page 14 ---
+Reducible and Irreducible Error
+Consider a model created by an algorithm on a single data set, sampled from some
+population. What is the mean squared prediction error of this model on the
+population? For simplicity, we restrict our analysis to some ﬁxed point x.
+EP(Y | x)
+h
+(Y −ˆf (x))2i
+= (f (x) −ˆf (x))2
+(Reducible Error)
++ EP(Y | x)
+
+(Y −f (x))2
+,
+(Irreducible Error)
+where f (x) ≡E[Y | x] is the true (population) regression function, and the
+expectation is taken with respect to P(Y | x). ˆf (x) is the model prediction at x.
+The irreducible error is the error of the best possible prediction (which is
+f (x) ≡E[Y | x]), and is equal to the variance of Y around the regression line at
+the point x.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+14 / 25
+
+--- Page 15 ---
+Reducible and Irreducible Error
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+15 / 25
+
+--- Page 16 ---
+Bias-Variance Decomposition of Estimation Error
+Now let’s focus on reducible error.
+Consider the collection of models created by an algorithm on diﬀerent data
+sets, sampled from the same population. We use each sample to estimate
+f (x). What is the mean squared estimation error of these models?
+ED
+h
+(f (x) −ˆf (x))2i
+= (f (x) −ED[ˆf (x)])2
+(Squared Bias)
++ ED
+h
+(ˆf (x) −ED[ˆf (x)])2i
+(Variance)
+where expectation is taken with respect to repeated sampling from the
+same population.
+Mean Squared Error = Squared Bias + Variance
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+16 / 25
+
+--- Page 17 ---
+Bias and Variance of ˆf as estimator of f
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+17 / 25
+
+--- Page 18 ---
+Bias-Variance Decomposition
+Some observations:
+Simple (inﬂexible) models tend to have high bias and low variance.
+Complex (ﬂexible) models tend to have low bias and high variance.
+As sample size increases, variance goes down, but bias doesn’t.
+Hence, we can aﬀord to ﬁt more complex models
+if the data set is large.
+In practice, we have to ﬁnd the right trade-oﬀbetween bias and
+variance in order to get small prediction error.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+18 / 25
+
+--- Page 19 ---
+Reducing Variance by Bagging
+Classiﬁcation trees are high variance classiﬁers.
+Variance can be reduced by averaging.
+Average how?
+Bootstrapping!
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+19 / 25
+
+--- Page 20 ---
+Reducing Variance by Bagging
+Bagging is short for Bootstrap Aggregating.
+Training:
+1 Draw a sample with replacement from the training set.
+The sample should be of the same size as the training set.
+2 Grow a tree on this bootstrap sample (pruning not necessary).
+3 Repeat these steps M times to create M diﬀerent trees.
+Prediction:
+1 Predict on a test sample using each of the M trees in turn.
+2 Take the majority vote of the M predictions as the ﬁnal prediction.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+20 / 25
+
+
+
+==================================
+FILE: 4-dm-graphmod-1-2024.pdf
+==================================
+
+--- Page 1 ---
+Data Mining
+Graphical Models for Discrete Data
+Undirected Graphs (Markov Random Fields)
+Ad Feelders
+Universiteit Utrecht
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+1 / 38
+
+--- Page 2 ---
+Overview of Coming Lectures
+Introduction
+Independence and Conditional Independence
+Graphical Representation of Conditional Independence
+Log-linear Models
+Hierarchical
+Graphical
+Decomposable
+Maximum Likelihood Estimation
+Model Testing
+Model Selection
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+2 / 38
+
+--- Page 3 ---
+Graphical Models for Discrete Data
+Task: model the associations (dependencies) between
+a collection of discrete variables.
+There is no designated target variable to be predicted:
+all variables are treated equal.
+This doesn’t mean these models can’t be used for prediction.
+Actually, they can, and in a more ﬂexible way than specialized
+prediction models.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+3 / 38
+
+--- Page 4 ---
+Graphical Model for Right Heart Catheterization Data
+age
+ninsclas
+income
+race
+death
+cat1
+meanbp1
+swang1
+ca
+gender
+swang1 is independent of
+death given cat1
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+4 / 38
+
+--- Page 5 ---
+Example: Gender and Eye Color
+Consider the following table of counts on Gender (G) and Eye Color (E)
+for a random sample of n = 100 CS students:
+n(G, E)
+Eye Color
+Gender
+green
+hazel
+blue
+brown
+n(G)
+male
+7
+15
+20
+38
+80
+female
+3
+5
+5
+7
+20
+n(E)
+10
+20
+25
+45
+100
+Suppose we want to estimate the joint probability distribution of Gender
+and Eye Color.
+How would you do this?
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+5 / 38
+
+--- Page 6 ---
+The Saturated Model
+Saturated (unconstrained) model
+ˆP(G, E) = n(G, E)
+n
+requires the estimation of 7 probabilities.
+ˆP(G, E)
+Eye Color
+Gender
+green
+hazel
+blue
+brown
+ˆP(G)
+male
+0.07
+0.15
+0.20
+0.38
+0.8
+female
+0.03
+0.05
+0.05
+0.07
+0.2
+ˆP(E)
+0.1
+0.2
+0.25
+0.45
+1
+For example
+ˆP(male, blue) = n(male, blue)
+n
+= 20
+100 = 0.20.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+6 / 38
+
+--- Page 7 ---
+The Saturated Model
+For the saturated model, the ﬁtted counts
+ˆn(G, E) = n ˆP(G, E) = n
+n(G, E)
+n
+
+= n(G, E)
+are the same as the observed counts.
+ˆn(G, E)
+Eye Color
+Gender
+green
+hazel
+blue
+brown
+ˆn(G)
+male
+7
+15
+20
+38
+80
+female
+3
+5
+5
+7
+20
+ˆn(E)
+10
+20
+25
+45
+100
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+7 / 38
+
+--- Page 8 ---
+The Saturated Model and the Curse of Dimensionality
+The saturated model estimates cell probabilities by dividing the cell count
+by the total number of observations. It makes no simplifying assumptions.
+This approach doesn’t scale very well!
+Suppose we have k categorical variables with m possible values each.
+To estimate the probability of each possible combination of values would
+require the estimation of mk probabilities. For k = 10 and m = 5, this is
+510 ≈10 million probabilities
+This is a manifestation of the curse of dimensionality: we have fewer data
+points than probabilities to estimate. Estimates will become unreliable.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+8 / 38
+
+--- Page 9 ---
+How to avoid this curse
+Make independence assumptions to obtain a simpler model that still gives
+a good ﬁt.
+Independence Model
+ˆP(G, E) = ˆP(G) ˆP(E) =
+n(G)
+n
+ n(E)
+n
+
+= n(G)n(E)
+n2
+requires the estimation of just 4 probabilities instead of 7.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+9 / 38
+
+--- Page 10 ---
+Fit of independence model
+The ﬁtted counts of the independence model are given by
+ˆn(G, E) = n ˆP(G, E) = n
+n(G)n(E)
+n2
+
+= n(G)n(E)
+n
+For example
+ˆn(female, brown) = n(female)n(brown)
+n
+= 20 × 45
+100
+= 9
+Table of ﬁtted counts of the independence model:
+ˆn(G, E)
+Eye Color
+Gender
+green
+hazel
+blue
+brown
+ˆn(G)
+male
+8
+16
+20
+36
+80
+female
+2
+4
+5
+9
+20
+ˆn(E)
+10
+20
+25
+45
+100
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+10 / 38
+
+--- Page 11 ---
+Fit of independence model
+Compare the ﬁtted counts of the independence model (top) with the observed
+counts (bottom):
+ˆn(G, E)
+Eye Color
+Gender
+green
+hazel
+blue
+brown
+ˆn(G)
+male
+8
+16
+20
+36
+80
+female
+2
+4
+5
+9
+20
+ˆn(E)
+10
+20
+25
+45
+100
+n(G, E)
+Eye Color
+Gender
+green
+hazel
+blue
+brown
+n(G)
+male
+7
+15
+20
+38
+80
+female
+3
+5
+5
+7
+20
+n(E)
+10
+20
+25
+45
+100
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+11 / 38
+
+--- Page 12 ---
+Fit of independence model
+1 The ﬁtted counts of the independence model are quite close to the
+observed counts.
+2 We could conclude that the independence model gives a satisfactory
+ﬁt of the data.
+3 Use a statistical test to make this more precise (discussed later).
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+12 / 38
+
+--- Page 13 ---
+Independence Model
+Suppose we have k variables with m possible values each.
+The saturated model requires the estimation of mk −1 probabilities.
+The mutual independence model requires just k(m −1) probability
+estimates.
+Mutual independence model is usually not appropriate (all variables
+are independent of one another).
+Interesting models are somewhere in between saturated and mutual
+independence: this requires the notion of conditional independence.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+13 / 38
+
+--- Page 14 ---
+Rules of Probability
+1 Sum Rule:
+P(X) =
+X
+Y
+P(X, Y )
+2 Product Rule:
+P(X, Y ) = P(X)P(Y |X)
+3 If X and Y are independent, then
+P(X, Y ) = P(X)P(Y )
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+14 / 38
+
+--- Page 15 ---
+Independence of (sets of) random variables
+Let X and Y be (sets of) random variables.
+X and Y are independent if and only if:
+P(x, y) = P(x)P(y) for all values (x, y).
+Equivalently:
+P(x | y) = P(x), and P(y | x) = P(y)
+Y doesn’t provide any information about X (and vice versa)
+We also write X ⊥⊥Y .
+For example: gender is independent of eye color.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+15 / 38
+
+--- Page 16 ---
+Factorisation criterion for independence
+We can relax our burden of proof a little bit:
+X and Y are independent iﬀthere are functions g(x) and h(y)
+(not necessarily the marginal distributions of X and Y ) such that
+P(x, y) = g(x)h(y)
+In logarithmic form this becomes (since log(a × b) = log a + log b):
+log P(x, y) = g∗(x) + h∗(y),
+where g∗(x) = log g(x).
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+16 / 38
+
+--- Page 17 ---
+Factorisation criterion for independence: proof
+Suppose that for all x and y:
+P(x, y) = g(x)h(y)
+Then
+P(x) =
+X
+y
+P(x, y) =
+X
+y
+g(x)h(y) = g(x)
+X
+y
+h(y) = c1 g(x)
+So g(x) is proportional to P(x). Likewise, h(y) is proportional to P(y).
+Therefore
+P(x, y) = g(x)h(y) = 1
+c1
+P(x) 1
+c2
+P(y) = c3P(x)P(y)
+Summing over both x and y establishes that c3 = 1, so X and Y are
+independent.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+17 / 38
+
+--- Page 18 ---
+Conditional Independence
+X and Y are conditionally independent given Z iﬀ
+P(x, y | z) = P(x | z)P(y | z)
+(1)
+for all values (x, y) and for all values z for which P(z) > 0.
+Equivalently:
+P(x | y, z) = P(x | z)
+and
+P(y | x, z) = P(y | z)
+If I already know the value of Z, then Y doesn’t provide any additional
+information about X (and vice versa).
+We also write X ⊥⊥Y | Z.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+18 / 38
+
+--- Page 19 ---
+Conditional Independence: Example
+Ice cream sales is independent of violent crime given the temperature.
+Causal picture:
+Temp.
+Sales
+Crime
++
++
++
+P(Crime = hi | Sales = hi) ̸= P(Crime = hi)
+P(Crime = hi | Temp. = hi, Sales = hi) = P(Crime = hi | Temp. = hi)
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+19 / 38
+
+--- Page 20 ---
+Factorisation Criterion for Conditional Independence
+An equivalent formulation is (multiply equation (1) by P(z)):
+P(x, y, z) = P(x, z)
+| {z }
+g(x,z)
+P(y, z)
+P(z)
+| {z }
+h(y,z)
+Factorisation criterion: X ⊥⊥Y | Z iﬀthere exist functions g and h such
+that
+P(x, y, z) = g(x, z)h(y, z)
+or alternatively
+log P(x, y, z) = g∗(x, z) + h∗(y, z)
+for all (x, y) and for all z for which P(z) > 0.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+20 / 38
+
+
+
+==================================
+FILE: 5-dm-graphmod-2-2024.pdf
+==================================
+
+--- Page 1 ---
+Data Mining
+Graphical Models for Discrete Data
+Undirected Graphs (2)
+Ad Feelders
+Universiteit Utrecht
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+1 / 79
+
+--- Page 2 ---
+Overview of Coming Lectures
+Introduction
+Independence and Conditional Independence
+Graphical Representation of Conditional Independence
+ Log-linear Models
+Hierarchical
+Graphical
+Decomposable
+Maximum Likelihood Estimation
+Model Testing
+Model Selection
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+2 / 79
+
+--- Page 3 ---
+2 × 2 Table
+The probability function P12 of bivariate Bernoulli random vector (X1, X2)
+is determined by
+P(x1, x2) = p(x1, x2)
+where p(x1, x2) is the table of probabilities:
+p(x1, x2)
+x2 = 0
+x2 = 1
+Total
+x1 = 0
+p(0, 0)
+p(0, 1)
+p1(0)
+x1 = 1
+p(1, 0)
+p(1, 1)
+p1(1)
+Total
+p2(0)
+p2(1)
+1
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+3 / 79
+
+--- Page 4 ---
+Probability function for 2 × 2 Table
+Again we can write this as a single formula:
+P(x1, x2) = p(0, 0)(1−x1)(1−x2)p(0, 1)(1−x1)x2p(1, 0)x1(1−x2)p(1, 1)x1x2
+Taking logarithms and collecting terms in x1, x2, and x1x2 gives:
+log P(x1, x2)
+=
+log p(0, 0) + log p(1, 0)
+p(0, 0) x1 +
+log p(0, 1)
+p(0, 0) x2 + log p(1, 1)p(0, 0)
+p(0, 1)p(1, 0) x1x2
+Verify this using elementary properties of logarithms:
+1 log ab = b log a,
+2 log a
+b = log a −log b, and
+3 log ab = log a + log b.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+4 / 79
+
+--- Page 5 ---
+Log-linear expansion
+Reparameterizing the right hand side leads to the so-called log-linear
+expansion
+log P(x1, x2) = u∅+ u1x1 + u2x2 + u12x1x2
+The coeﬃcients, u∅, u1, u2, u12 are known as the u-terms.
+For example, the coeﬃcient of the product x1x2,
+u12 = log p(1, 1)p(0, 0)
+p(0, 1)p(1, 0) = log cpr(X1, X2)
+is the logarithm of the cross product ratio of X1 and X2.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+5 / 79
+
+--- Page 6 ---
+Independence and u-terms
+Claim:
+X1 ⊥⊥X2 ⇔u12 = 0
+Proof: the factorisation criterion states that X1 ⊥⊥X2 iﬀthere exist two
+functions g and h such that
+log P(x1, x2) = g(x1) + h(x2) for all (x1, x2)
+If u12 = 0, we get
+log P(x1, x2) = u∅+ u1x1 + u2x2,
+so
+g(x1) = u∅+ u1x1
+h(x2) = u2x2
+suﬃces. If u12 ̸= 0, no such decomposition is possible.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+6 / 79
+
+--- Page 7 ---
+Three Dimensional Bernoulli
+The joint distribution of three binary variables can be written:
+P(x1, x2, x3) = p(0, 0, 0)(1−x1)(1−x2)(1−x3) · · · p(1, 1, 1)x1x2x3
+Log-linear expansion
+log P(x1, x2, x3)
+=
+u∅+ u1x1 + u2x2 + u3x3 + u12x1x2 +
+u13x1x3 + u23x2x3 + u123x1x2x3,
+with
+u123 = log cpr(X2, X3|X1 = 1)
+cpr(X2, X3|X1 = 0)
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+7 / 79
+
+--- Page 8 ---
+Independence and the u-terms
+Observation:
+X2 ⊥⊥X3|X1 ⇔u23 = 0 and u123 = 0
+Proof: use factorisation criterion.
+X2 ⊥⊥X3|X1 ⇔there are functions g(x1, x2) and h(x1, x3) such that
+log P(x1, x2, x3) = g(x1, x2) + h(x1, x3)
+This is only possible when u23 = 0 (so the term x2x3 drops out), and
+u123 = 0 (so the term x1x2x3 drops out).
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+8 / 79
+
+--- Page 9 ---
+Log-linear expansion: non-binary variables
+For a 2 × 2 table the log-linear expansion is given by:
+log P(x1, x2) = u∅+ u1x1 + u2x2 + u12x1x2
+for x ∈{0, 1}2, where u∅, u1, u2 and u12 are constants.
+What if the xi have more than two levels? In that case the u terms
+become functions of x rather than constants:
+log P(x1, x2) = u∅+ u1(x1) + u2(x2) + u12(x1, x2)
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+9 / 79
+
+--- Page 10 ---
+Log-linear expansion: non-binary variables
+Suppose x ∈{0, 1, 2}. We can write
+P(x) = p(1)δx=1p(2)δx=2p(0)(1−δx=1−δx=2),
+where δA is the indicator function, that is,
+δA =
+ 1
+if A is true
+0
+otherwise
+Taking logarithms left and right, we get
+log P(x) = δx=1 log p(1) + δx=2 log p(2) + (1 −δx=1 −δx=2) log p(0)
+= δx=1 log p(1) + δx=2 log p(2) + log p(0) −δx=1 log p(0) −δx=2 log p(0)
+= log p(0) + log p(1)
+p(0)δx=1 + log p(2)
+p(0)δx=2
+= u∅+ u(x)
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+10 / 79
+
+--- Page 11 ---
+Log-linear expansion: non-binary variables
+Where u∅= log p(0) and
+u(x) =
+
+
+
+
+
+log p(1)
+p(0)
+if x = 1
+log p(2)
+p(0)
+if x = 2
+0
+if x = 0
+Similar rules apply to the case of multiple non-binary variables.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+11 / 79
+
+--- Page 12 ---
+Why the log-linear representation?
+Why do we use the log-linear representation of the probability table?
+1 We are interested in expressing conditional independence constraints.
+2 There is a straightforward correspondence between such constraints
+being satisﬁed, and the elimination of certain collections of u-terms
+from the log-linear expansion.
+3 This correspondence is established by applying the factorisation
+criterion: X ⊥⊥Y | Z if and only if there exist functions g and h
+such that
+log P(x, y, z) = g(x, z) + h(y, z)
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+12 / 79
+
+--- Page 13 ---
+Log-linear expansion: general
+Let X = (X1, X2, . . . , Xk) be a vector of discrete random variables, and let
+K = {1, 2, . . . , k} denote the set of indices (coordinates) of X.
+The log-linear expansion of the probability distribution PK(X) is
+log PK(x) =
+X
+a⊆K
+ua(xa)
+where the sum is taken over all possible subsets a of K = {1, 2, . . . , k}.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+13 / 79
+
+--- Page 14 ---
+Log-linear expansion: general
+The log-linear expansion of the probability distribution PK(X) is
+log PK(x) =
+X
+a⊆K
+ua(xa)
+We get a (set of) u-term(s) for each subset of the variables.
+We code the values of Xi as {0, 1, . . . , di −1}, where di is size of the
+domain of Xi.
+Set ua(xa) = 0 whenever xi = 0 for any Xi with i ∈a to eliminate
+redundant parameters.
+This is analogous to the case where X is binary.
+There are as many u-terms in the full log-linear expansion as there are
+cells in the contingency table.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+14 / 79
+
+--- Page 15 ---
+Log-linear expansion: example
+Suppose we have 3 variables, X1, X2, and X3 with 3 possible values each.
+Then the contingency table contains 33 = 27 cells, one for each possible
+combination of values. The are also 27 u-terms in the full log-linear
+expansion:
+subset
+# u-terms
+calculation
+u∅
+1
+u1(x1)
+2
+(3 −1)
+u2(x2)
+2
+(3 −1)
+u3(x3)
+2
+(3 −1)
+u12(x1, x2)
+4
+(3 −1)(3 −1)
+u13(x1, x3)
+4
+(3 −1)(3 −1)
+u23(x2, x3)
+4
+(3 −1)(3 −1)
+u123(x1, x2, x3)
+8
+(3 −1)(3 −1)(3 −1)
+Total
+27
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+15 / 79
+
+--- Page 16 ---
+Independence and the u-terms
+Let
+X = (X1, X2, . . . , Xk)
+a, b, c ⊆{1, 2, . . . , k}
+a, b, c disjoint and a ∪b ∪c = {1, 2, . . . , k}
+Independence and the u-terms
+We have
+Xb ⊥⊥Xc | Xa
+if and only if all u-terms in the log-linear expansion with coordinates
+in both b and c, are equal to zero.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+16 / 79
+
+--- Page 17 ---
+Independence and the u-terms: Example
+Let X = (X1, . . . , X5), and a = {1, 3}, b = {4}, c = {2, 5}. According to
+the factorization criterion, the conditional independence
+X4 ⊥⊥(X2, X5) | (X1, X3)
+holds if, and only if, there are functions g and h such that
+log P(x1, . . . , x5) = g(x1, x3, x4) + h(x1, x2, x3, x5)
+For this to be possible, the u-terms that contain elements from both the
+sets {4} and {2, 5} have to be zero. So all u-terms
+u24, u45, u124, u145, . . . , u12345 have to be zero.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+17 / 79
+
+--- Page 18 ---
+Independence and the u-terms
+Proof: Let s be an arbitrary subset of a ∪b ∪c = {1, 2, . . . , k}.
+If for all non-zero u-terms, us, we have
+1 s ⊆a ∪b, or
+2 s ⊆a ∪c
+(i.e. s does not contain coordinates from both b and c), then
+log PK(x) =
+X
+s⊆a∪b
+us(xs) +
+X
+s⊆a∪c
+us(xs) −
+X
+s⊆a
+us(xs)
+But this function is of the form g(xa, xb) + h(xa, xc) and hence
+Xb ⊥⊥Xc | Xa by the factorisation criterion.
+Note: we subtract P
+s⊆a us(xs) because subsets of a were added twice.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+18 / 79
+
+--- Page 19 ---
+Overview of Coming Lectures
+Introduction
+Independence and Conditional Independence
+Graphical Representation of Conditional Independence
+Log-linear Models
+ Hierarchical
+Graphical
+Decomposable
+Maximum Likelihood Estimation
+Model Testing
+Model Selection
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+19 / 79
+
+--- Page 20 ---
+Hierarchical Log-Linear Models
+In most applications, it does not make sense to include the three-way
+association u123 unless the two-way associations u12, u13 and u23 are
+all present as well.
+A log-linear model is said to be hierarchical if the presence of a term
+implies that all lower-order terms are also present. That is, if uA(xA)
+is present, then for all a ⊆A, ua(xa) must be present as well.
+Hence, a hierarchical model is uniquely identiﬁed by listing its highest
+order interaction terms.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+20 / 79
+
+
+
+==================================
+FILE: 6-dm-freqpat2024.pdf
+==================================
+
+--- Page 1 ---
+Data Mining
+Frequent Pattern Mining (1)
+Frequent Item Sets and Association Rules
+Ad Feelders
+Universiteit Utrecht
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+1 / 51
+
+--- Page 2 ---
+Comparison with Graphical Models
+In graphical modelling, we are interested in
+Global models, that is, the associations between all variables
+simultaneously.
+Associations at the variable level: X and Y are dependent means that
+the value of X provides information about the value of Y
+(and vice versa).
+In frequent item set mining, we are interested in
+Local patterns, that is, the associations between sets of items.
+Associations at the value level: if all items in the set X have the value
+1, then all items in the set Y have the value 1 as well
+(with a certain support and conﬁdence).
+Diapers →Beer, support = 20%, conﬁdence = 85%
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+2 / 51
+
+--- Page 3 ---
+Association Rules
+Table db with schema R = {I1, . . . , In}, Ii is a binary attribute (item).
+For X, Y ⊆R, with X ∩Y = ∅, let:
+s(X) denote the support of X, i.e., the number of tuples that have
+value 1 for all items in X.
+for an association rule X →Y , deﬁne
+the support is s(X ∪Y )
+the conﬁdence is s(X ∪Y )/s(X)
+Task: ﬁnd all association rules with support ≥t1 and conﬁdence ≥t2,
+where t1 and t2 are thresholds to be set by the user.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+3 / 51
+
+--- Page 4 ---
+Association Rule Algorithm: sketch
+There are two thresholds we have to satisfy:
+1 Find all sets Z with suﬃcient support.
+These sets are called frequent.
+2 Test for all non-empty subsets X of frequent sets Z whether the rule
+X →Y (with Y = Z \ X) holds with suﬃcient conﬁdence.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+4 / 51
+
+--- Page 5 ---
+Finding Frequent Sets
+The ﬁrst problem is then: how do we ﬁnd the frequent sets?
+Suppose we simply check all subsets of R. Then we would have to count
+|P(R)| = 2|R|
+subsets on the data base.
+For example, if we can check 1024 sets/sec. then:
+For 10 items, we are done in 1 second;
+For 20 items, we need 1024 seconds, or 17 minutes;
+For 100 items, we need (roughly) 4 × 1018 years, which (far) exceeds
+the age of the universe!
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+5 / 51
+
+--- Page 6 ---
+The Apriori Property
+Theorem
+X is frequent ⇒∀Y ⊆X : Y is frequent.
+Proof
+Y ⊆X ⇒s(Y ) ≥s(X)
+Therefore, if Y ⊆X and s(X) ≥t1, then s(Y ) ≥t1.
+Conversely, if Y ⊆X and s(Y ) < t1, then s(X) < t1.
+In other words, we can search levelwise for the frequent sets. The level is the
+number of items in the set:
+A set X is a candidate frequent set iﬀall its subsets are frequent.
+Denote by C(k) the sets of k items that are potentially frequent (the candidate
+sets) and by F(k) the frequent sets of k items.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+6 / 51
+
+--- Page 7 ---
+Apriori Pseudocode
+Algorithm 1 Apriori(t1, R, db)
+1: C(1) ←R
+2: k ←1
+3: while C(k) ̸= ∅do
+4:
+F(k) ←∅
+5:
+for all X ∈C(k) do
+6:
+if s(X) ≥t1 then
+F(k) ←F(k) ∪{X} {Here you have to scan the database!}
+7:
+end if
+8:
+end for
+9:
+C(k + 1) ←∅
+10:
+for all X ∈F(k) do
+11:
+for all Y ∈F(k) that share k −1 items with X do
+12:
+if All Z ⊂X ∪Y of k items are frequent then
+C(k + 1) ←C(k + 1) ∪{X ∪Y }
+13:
+end if
+14:
+end for
+15:
+end for
+16:
+k ←k + 1
+17: end while
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+7 / 51
+
+--- Page 8 ---
+Example: the data
+Note that we switch to a more convenient representation of the
+transactions.
+tid
+Items
+1
+ABE
+2
+BD
+3
+BC
+4
+ABD
+5
+AC
+6
+BC
+7
+AC
+8
+ABCE
+9
+ABC
+Minimum support = 2
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+8 / 51
+
+--- Page 9 ---
+Example: Level 1
+tid
+Items
+1
+ABE
+2
+BD
+3
+BC
+4
+ABD
+5
+AC
+6
+BC
+7
+AC
+8
+ABCE
+9
+ABC
+Candidate
+Support
+Frequent?
+A
+6
+!
+B
+7
+!
+C
+6
+!
+D
+2
+!
+E
+2
+!
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+9 / 51
+
+--- Page 10 ---
+Example: Level 2
+tid
+Items
+1
+ABE
+2
+BD
+3
+BC
+4
+ABD
+5
+AC
+6
+BC
+7
+AC
+8
+ABCE
+9
+ABC
+Candidate
+Support
+Frequent?
+AB
+4
+!
+AC
+4
+!
+AD
+1
+%
+AE
+2
+!
+BC
+4
+!
+BD
+2
+!
+BE
+2
+!
+CD
+0
+%
+CE
+1
+%
+DE
+0
+%
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+10 / 51
+
+--- Page 11 ---
+Example: Level 3
+Candidate
+Support
+Frequent?
+AB
+4
+!
+AC
+4
+!
+AD
+1
+%
+AE
+2
+!
+BC
+4
+!
+BD
+2
+!
+BE
+2
+!
+CD
+0
+%
+CE
+1
+%
+DE
+0
+%
+Candidate
+Support
+Frequent?
+ABC
+2
+!
+ABE
+2
+!
+Level 3: For example, ABD and BCD are not level 3 candidates.
+Level 4: There are no level 4 candidates.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+11 / 51
+
+--- Page 12 ---
+Order, order
+Lines 10-11 of the algorithm leads to multiple generations of the set X ∪Y .
+For example, the candidate ABC is generated 3 times
+1 by combining AB with AC
+2 by combining AB with BC
+3 by combining AC with BC
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+12 / 51
+
+--- Page 13 ---
+Order, order
+The solution is to place an order on the items.
+for all X ∈F(k) do
+for all Y ∈F(k) that share the ﬁrst k −1 items with X do
+if All Z ⊂X ∪Y of k items are frequent then
+C(k + 1) ←C(k + 1) ∪{X ∪Y }
+end if
+end for
+end for
+Now the candidate ABC is generated just once, by combining AB with AC
+(using alphabetical order).
+The order itself is arbitrary, as long as it is applied consistently.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+13 / 51
+
+--- Page 14 ---
+The search space ordered by set inclusion
+A
+AB
+ABC
+ABCD
+ABCDE
+ABD ABE ACD ACE ADE BCD BCE
+BDE CDE
+ABCE
+ABDE
+ACDE
+BCDE
+AC
+AD
+AE
+BC
+BD
+BE
+CD
+CE
+DE
+B
+C
+D
+E
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+14 / 51
+
+--- Page 15 ---
+Item sets counted by Apriori
+A
+AB
+ABC
+ABCD
+ABCDE
+ABD ABE ACD ACE ADE BCD BCE
+BDE CDE
+ABCE
+ABDE
+ACDE
+BCDE
+AC
+AD
+AE
+BC
+BD
+BE
+CD
+CE
+DE
+B
+C
+D
+E
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+15 / 51
+
+--- Page 16 ---
+The Complexity of Levelwise Search
+We rejected the naive algorithm because its complexity was O(2|R|). So, what is
+the complexity of level wise search?
+Take a database with just 1 tuple consisting completely of 1’s and set minimum
+support to 1. Then, all subsets of R are frequent! Hence, the worst case
+complexity of level wise search is O(2|R|).
+However, suppose that db is sparse (by far the most values are 0), then we expect
+that the frequent sets have some maximal size m with m << |R|.
+If that expectation is met, we have a worst case complexity of:
+O
+
+
+m+1
+X
+j=1
+ |R|
+j
+
+= O(|R|m+1) << O(2|R|).
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+16 / 51
+
+--- Page 17 ---
+Generating Association Rules
+Generating association rules from the frequent sets is done as follows:
+Generate Association Rules
+For each frequent set Z do
+For all non-empty X ⊂Z do
+If s(Z)/s(X) ≥t2 then
+Output X →Y where Y = Z \ X
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+17 / 51
+
+--- Page 18 ---
+Continuing the Example
+One of the frequent sets is Z = ABE. This generates:
+X
+X →Y
+Conﬁdence
+AB
+AB →E
+2/4 = 50%
+AE
+AE →B
+2/2 = 100%
+BE
+BE →A
+2/2 = 100%
+A
+A →BE
+2/6 = 33%
+B
+B →AE
+2/7 = 29%
+E
+E →AB
+2/2 = 100%
+Suppose t2 = 0.75.
+If we already know conf(AB →E)= 0.5, do we still need to check A →BE
+and B →AE?
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+18 / 51
+
+--- Page 19 ---
+Complexity of the Generation
+Clearly, this algorithms is again exponential. For every Z, we consider all
+(2|Z| −2) non-empty proper subsets X of Z. However:
+|Z| ≤m << |R|
+Quite often one generates only those association rules with a
+singleton Y . This makes the generation algorithm linear.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+19 / 51
+
+--- Page 20 ---
+Drowning in Association Rules: Example
+One frequent set may induce many association rules.
+ABE generates:
+Itemset
+Rule
+Conﬁdence
+AB
+AB →E
+2/4 = 50%
+AE
+AE →B
+2/2 = 100%
+BE
+BE →A
+2/2 = 100%
+A
+A →BE
+2/6 = 33%
+B
+B →AE
+2/7 = 29%
+E
+E →AB
+2/2 = 100%
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+20 / 51
+
+
+
+==================================
+FILE: 7-dm-freqtrees2024.pdf
+==================================
+
+--- Page 1 ---
+Data Mining
+Frequent Pattern Mining (2)
+Sequences and Trees
+Ad Feelders
+Universiteit Utrecht
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+1 / 45
+
+--- Page 2 ---
+Frequent Pattern Mining
+1 Item Set Mining !
+2 Sequence Mining !
+3 Tree Mining !
+4 Graph Mining %
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+2 / 45
+
+--- Page 3 ---
+Frequent Pattern Mining: the bigger picture
+1 Item Set Mining: the patterns are sets of items, and an item set
+occurs in a transaction if it is a subset of the transaction.
+2 Sequence Mining: the patterns are sequences of events, and an event
+sequence occurs in a data sequence if it is a subsequence of the data
+sequence.
+3 Tree Mining: the patterns are trees, and a pattern tree occurs in a
+data tree if it is a subtree of the data tree.
+Anti-monotonicity property:
+P1 ⊆P2 ⇒s(P1) ≥s(P2),
+where P1 and P2 are patterns, ⊆denotes a generic subpattern relation,
+and s(·) denotes support.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+3 / 45
+
+--- Page 4 ---
+Sequence Mining
+1 Alphabet Σ (set of labels).
+2 Sequence s = s1s2 . . . sn where si ∈Σ.
+3 Preﬁx: s[1 : i] = s1s2 . . . si, 0 ≤i ≤n (initial segment).
+4 Suﬃx: s[i : n] = sisi+1 . . . sn, 1 ≤i ≤n + 1 (ﬁnal segment).
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+4 / 45
+
+--- Page 5 ---
+Subsequence
+Let s = s1s2 . . . sn and r = r1r2 . . . rm be two sequences over Σ.
+We say r is a subsequence of s, denoted r ⊆s, if there exists a
+one-to-one mapping
+φ : [1, m] →[1, n],
+such that
+1 r[i] = s[φ(i)], and
+2 i < j ⇒φ(i) < φ(j).
+Each position in r is mapped to a position in s with the same label, and
+the order of positions in the sequence is preserved. There may however be
+gaps between φ(i) and φ(i + 1) (i = 1, . . . , m −1).
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+5 / 45
+
+--- Page 6 ---
+Subsequence: Example
+Let Σ = {A, C, G, T} and let s = ACTGAACG.
+1 r1 = CGAAG is a subsequence of s. The corresponding mapping is
+φ(1) = 2, φ(2) = 4, φ(3) = 5, φ(4) = 6, and φ(5) = 8.
+A
+C
+T
+G
+A
+A
+C
+G
+C
+G
+A
+A
+G
+1
+2
+3
+4
+5
+1
+2
+3
+4
+5
+6
+7
+8
+φ
+2 r2 = GAGA is not a subsequence of s.
+A
+C
+T
+G
+A
+A
+C
+G
+G
+A
+A
+G
+1
+2
+3
+4
+1
+2
+3
+4
+5
+6
+7
+8
+φ
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+6 / 45
+
+--- Page 7 ---
+Frequent Sequence Mining Task
+Given a database D = {s1, s2, . . . , sN} of N sequences, and given some
+sequence r, the support of r in the database D is deﬁned as the total
+number of sequences in D that contain r:
+sup(r) = |{si ∈D : r ⊆si}|
+Given a minimum support threshold minsup, compute
+F(minsup, D) = {r | sup(r) ≥minsup}
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+7 / 45
+
+--- Page 8 ---
+Anti-Monotonicity Property
+For a database of sequences D, and two sequences r1 and r2, we have
+r1 ⊆r2 ⇒sup(r1) ≥sup(r2),
+because ∀s ∈D : r2 ⊆s ⇒r1 ⊆s.
+Hence, in a level-wise search for frequent sequences, there is no point in
+expanding infrequent ones.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+8 / 45
+
+--- Page 9 ---
+GSP Algorithm
+1 Perform level-wise search.
+2 Don’t extend infrequent sequences.
+3 Candidate generation for level k + 1: take two frequent sequences
+ra and rb of length k with ra[1 : k −1] = rb[1 : k −1] and generate
+pre-candidate rab = ra + rb[k]. Pre-candidate rab becomes a
+candidate (has to be counted) if all its subsequences of length k are
+frequent. Note that we allow ra = rb.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+9 / 45
+
+--- Page 10 ---
+Example Level-wise Search (minsup=3)
+sid
+Sequence
+1
+CAGAAGT
+2
+TGACAG
+3
+GAAGT
+Candidate
+Support
+Frequent?
+A
+3
+!
+C
+2
+%
+G
+3
+!
+T
+3
+!
+C is not frequent, so it won’t be used for candidate generation
+at the next level.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+10 / 45
+
+--- Page 11 ---
+Example Level-wise Search (minsup=3)
+sid
+Sequence
+1
+CAGAAGT
+2
+TGACAG
+3
+GAAGT
+Frequent
+Support
+A
+3
+G
+3
+T
+3
+Candidate
+Support
+Frequent?
+AA
+3
+!
+AG
+3
+!
+AT
+2
+%
+GA
+3
+!
+GG
+3
+!
+GT
+2
+%
+TA
+1
+%
+TG
+1
+%
+TT
+0
+%
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+11 / 45
+
+--- Page 12 ---
+Example Level-wise Search (minsup=3)
+sid
+Sequence
+1
+CAGAAGT
+2
+TGACAG
+3
+GAAGT
+Frequent
+Support
+AA
+3
+AG
+3
+GA
+3
+GG
+3
+Candidate
+Support
+Frequent?
+AAA
+1
+%
+AAG
+3
+!
+AGA
+1
+%
+AGG
+1
+%
+GAA
+3
+!
+GAG
+3
+!
+GGA
+0
+%
+GGG
+0
+%
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+12 / 45
+
+--- Page 13 ---
+Example Level-wise Search (minsup=3)
+sid
+Sequence
+1
+CAGAAGT
+2
+TGACAG
+3
+GAAGT
+Frequent
+Support
+AAG
+3
+GAA
+3
+GAG
+3
+Pre-candidate
+Support
+Frequent?
+AAGG
+-
+infrequent subsequence AGG
+GAAA
+-
+infrequent subsequence AAA
+GAAG
+3
+!
+GAGA
+-
+infrequent subsequence GGA
+GAGG
+-
+infrequent subsequence GGG
+Level 5 pre-candidate GAAGG has infrequent subsequence GAGG.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+13 / 45
+
+--- Page 14 ---
+Finding frequent movie sequences in Netﬂix data
+Sequence of movie titles (frequency)
+(1) “Men in Black II”, “Independence Day”, “I, Robot” (2,268)
+(2) “Pulp Fiction”,“Fight Club” (7,406)
+(3) “Lord of the Rings: The Fellowship of the Ring”, “Lord of the Rings: The Two Towers” (19,303)
+(4) “The Patriot”, “Men of Honor” (28,710)
+(5) “Con Air”, “The Rock” (29,749)
+(6) “‘Pretty Woman”, “Miss Congeniality” (30,036)
+From: KAUSTUBH BEEDKAR et al.,
+Closing the Gap: Sequence Mining at Scale,
+ACM Transactions on Database Systems, Vol. 40, No. 2, June 2015.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+14 / 45
+
+--- Page 15 ---
+Finding frequent move sequences in chess games
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+15 / 45
+
+--- Page 16 ---
+Chess game in PGN format
+[Event "RUS-ch playoff 65th"]
+[Site "Moscow"]
+[Date "2012.08.13"]
+[Round "4"]
+[White "Svidler, Peter"]
+[Black "Andreikin, Dmitry"]
+[Result "0-1"]
+[WhiteElo "2749"]
+[BlackElo "2715"]
+1. e4 e6 2. d4 d5 3. e5 c5 4. c3 Nc6 5. Nf3 Qb6 6. a3 c4 7. Nbd2 Bd7 8. g3 Na5
+9. h4 Ne7 10. Bh3 h6 11. h5 Nc8 12. O-O Qc7 13. Ne1 Nb6 14. Qe2 O-O-O 15. Ng2
+Be7 16. Rb1 Rdg8 17. f4 g6 18. Nf3 Kb8 19. Kh2 Nc6 20. Be3 Bd8 21. Bf2 Ne7 22.
+g4 gxh5 23. gxh5 Nf5 24. Rg1 Ng7 25. Nd2 f5 26. exf6 Bxf6 27. Nf1 Nc8 28. Ng3
+Nd6 29. Ne3 Bh4 30. Qf3 Be8 31. Bg4 Qf7 32. Rbf1 Bxg3+ 33. Bxg3 Ngf5 34. Re1
+Ne4 35. Bxf5 exf5 36. Bh4 Nd2 37. Qe2 Qxh5 38. Qxh5 Bxh5 39. Bf6 Nf3+ 40. Kh1
+Nxe1 41. Bxh8 Bf3+ 42. Kh2 Rxg1 43. Kxg1 Be4 0-1
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+16 / 45
+
+--- Page 17 ---
+Finding frequent move sequences in chess games
+Typical plan could be Be2/0-0/Re1/Rb1/Nf1.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+17 / 45
+
+--- Page 18 ---
+Tree Mining: Node Labeled Graph
+Deﬁnition (Node Labeled Graph)
+A node labeled graph is a quadruple G = (V , E, Σ, L) where:
+1 V is the set of nodes,
+2 E is the set of edges,
+3 Σ is a set of labels, and
+4 L : V →Σ is a labeling function that assigns labels
+from Σ to nodes in V .
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+18 / 45
+
+--- Page 19 ---
+Labeled Rooted Unordered Tree
+Deﬁnition (Labeled Rooted Unordered Tree)
+A labeled rooted unordered tree U = (V , E, Σ, L, vr) is an acyclic
+undirected connected graph G = (V , E, Σ, L) with a special node vr called
+the root of the tree.
+There exists exactly one path between the root node and any other node
+in V .
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+19 / 45
+
+--- Page 20 ---
+Labeled Rooted Ordered Tree
+Deﬁnition (Labeled Rooted Ordered Tree)
+A labeled rooted ordered tree T = (V , E, Σ, L, vr, ≤) is an unordered tree
+U = (V , E, Σ, L, vr) where between all the siblings an order ≤is deﬁned.
+To every node in an ordered tree a preorder (pre(v)) number is assigned
+according to the depth-ﬁrst preorder traversal of the tree.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+20 / 45
+
+
+
+==================================
+FILE: 8-dm-text-naivebayes.pdf
+==================================
+
+--- Page 1 ---
+Data Mining
+Text Classiﬁcation
+Naive Bayes
+Ad Feelders
+Universiteit Utrecht
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+1 / 50
+
+--- Page 2 ---
+Text Mining
+Text Mining is data mining applied to text data.
+Often uses well-known data mining algorithms.
+Text data requires substantial pre-processing.
+This typically results in a large number of attributes
+(for example, the size of the vocabulary/dictionary).
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+2 / 50
+
+--- Page 3 ---
+Text Classiﬁcation
+Predict the class(es) of text documents.
+Can be single-label or multi-label.
+Multi-label classiﬁcation is often performed by building multiple
+binary classiﬁers (one for each possible class).
+Examples of text classiﬁcation:
+topics of news articles,
+spam/no spam for e-mail messages,
+sentiment analysis (e.g. positive/negative review),
+opinion spam (e.g. fake reviews),
+music genre from song lyrics
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+3 / 50
+
+--- Page 4 ---
+Is this Rap, Blues, Metal, or Country?
+Blasting our way through the boundaries of Hell
+No one can stop us tonight
+We take on the world with hatred inside
+Mayhem the reason we fight
+Surviving the slaughters and killing we’ve lost
+Then we return from the dead
+Attacking once more now with twice as much strength
+We conquer then move on ahead
+[Chorus:]
+Evil
+My words defy
+Evil
+Has no disguise
+Evil
+Will take your soul
+Evil
+My wrath unfolds
+Satan our master in evil mayhem
+Guides us with every first step
+Our axes are growing with power and fury
+Soon there’ll be nothingness left
+Midnight has come and the leathers strapped on
+Evil is at our command
+We clash with God’s angel and conquer new souls
+Consuming all that we can
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+4 / 50
+
+--- Page 5 ---
+Probabilistic Classiﬁer
+A probabilistic classiﬁer assigns a probability to each class. In case a class
+prediction is required we typically predict the class with highest probability:
+ˆc = arg max
+c∈C P(c | d) = arg max
+c∈C
+P(d | c)P(c)
+P(d)
+where d is a document, and C is the set of all possible class labels.
+Since P(d) = P
+c∈C P(c, d) is the same for all classes, we can ignore the
+denominator if we only need to know the most likely class:
+ˆc = arg max
+c∈C P(c | d) = arg max
+c∈C P(d | c)P(c)
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+5 / 50
+
+--- Page 6 ---
+Naive Bayes
+Represent document as set of features:
+ˆc = arg max
+c∈C P(d | c)P(c) = arg max
+c∈C P(x1, . . . , xm | c)P(c)
+Naive Bayes assumption:
+P(x1, . . . , xm | c) = P(x1 | c)P(x2 | c) · . . . · P(xm | c)
+The features are assumed to be independent within each class (avoiding
+the curse of dimensionality).
+cnb = arg max
+c∈C P(c)
+m
+Y
+i=1
+P(xi | c)
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+6 / 50
+
+--- Page 7 ---
+Independence Graph of Naive Bayes
+C
+X1
+X2
+Xm
+· · ·
+The features are independent given the class label.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+7 / 50
+
+--- Page 8 ---
+Bag Of Words Representation of a Document
+it
+it
+it
+it
+it
+it
+I
+I
+I
+I
+I
+love
+recommend
+movie
+the
+the
+the
+the
+to
+to
+to
+and
+and
+and
+seen
+seen
+yet
+would
+with
+who
+whimsical
+while
+whenever
+times
+sweet
+several
+scenes
+satirical
+romantic
+of
+manages
+humor
+have
+happy
+fun
+friend
+fairy
+dialogue
+but
+conventions
+areanyone
+adventure
+always
+again
+about
+I love this movie! It's sweet, 
+but with satirical humor. The 
+dialogue is great and the 
+adventure scenes are fun... 
+It manages to be whimsical 
+and romantic while laughing 
+at the conventions of the 
+fairy tale genre. I would 
+recommend it to just about 
+anyone. I've seen it several 
+times, and I'm always happy 
+to see it again whenever I 
+have a friend who hasn't 
+seen it yet!
+it 
+I
+the
+to
+and
+seen
+yet
+would
+whimsical
+times
+sweet
+satirical
+adventure
+genre
+fairy
+humor
+have
+great
+…
+6 
+5
+4
+3
+3
+2
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+…
+Figure 6.1
+Intuition of the multinomial naive Bayes classiﬁer applied to a movie review. The position of the
+words is ignored (the bag of words assumption) and we make use of the frequency of each word.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+8 / 50
+
+--- Page 9 ---
+Bag Of Words Representation of a Document
+Not matter, the order and position do.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+9 / 50
+
+--- Page 10 ---
+Multinomial Naive Bayes for Text
+Represent document d as a sequence of words: d = ⟨w1, w2, . . . , wn⟩.
+cnb = arg max
+c∈C P(c)
+n
+Y
+k=1
+P(wk | c)
+Notice that P(w | c) is independent of word position or word order, so d is
+truly represented as a bag-of-words. Taking the log we obtain:
+cnb = arg max
+c∈C log P(c) +
+n
+X
+k=1
+log P(wk | c)
+By the way, why is it allowed to take the logarithm?
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+10 / 50
+
+--- Page 11 ---
+Multinomial Naive Bayes for Text
+Consider the text (perhaps after some pre-processing)
+catch as catch can
+We have d = ⟨catch, as, catch, can⟩, with w1 = catch, w2 = as,
+w3 = catch, and w4 = can. Suppose we have two classes, say
+C = {+, −}, then for this document:
+cnb = arg
+max
+c∈{+,−} log P(c) + log P(catch | c) + log P(as | c)
++ log P(catch | c) + log P(can | c)
+= arg
+max
+c∈{+,−} log P(c) + 2 log P(catch | c) + log P(as | c)
++ log P(can | c)
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+11 / 50
+
+--- Page 12 ---
+Training Multinomial Naive Bayes
+Class priors:
+ˆP(c) = Nc
+Ndoc
+Word probabilities within each class:
+ˆP(wi | c) =
+count(wi, c)
+P
+wj∈V count(wj, c)
+for all wi ∈V ,
+where V (for Vocabulary) denotes the collection of all words that occur in
+the training corpus (after possibly extensive pre-processing).
+count(w, c) is the number of times word w ∈V occurs in a document of
+class c ∈C.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+12 / 50
+
+--- Page 13 ---
+Interpretation of word probabilities
+Word probabilities within each class:
+ˆP(wi | c) =
+count(wi, c)
+P
+wj∈V count(wj, c)
+for all wi ∈V
+Interpretation: if we draw a word at random from a document of class c,
+the probability that we draw wi is ˆP(wi | c).
+Verify that
+X
+wi∈V
+ˆP(wi | c) = 1,
+as required.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+13 / 50
+
+--- Page 14 ---
+Training Multinomial Naive Bayes: Smoothing
+Perform smoothing to avoid zero probability estimates.
+Word probabilities within each class with Laplace smoothing are:
+ˆP(wi | c) =
+count(wi, c) + 1
+P
+wj∈V (count(wj, c) + 1) =
+count(wi, c) + 1
+P
+wj∈V count(wj, c) + |V |
+Verify that again
+X
+wi∈V
+ˆP(wi | c) = 1,
+as required.
+The +1 is also called a pseudo-count: pretend you already observed one
+occurrence of each word in each class.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+14 / 50
+
+--- Page 15 ---
+Worked Example: Sentiment of Movie Reviews
+Cat
+Documents
+Training -
+just plain boring
+-
+entirely predictable and lacks energy
+-
+no surprises and very few laughs
++
+very powerful
++
+the most fun ﬁlm of the summer
+Test
+?
+predictable with no fun
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+15 / 50
+
+--- Page 16 ---
+The Vocabulary
+The vocabulary consists of all words that occur in the training documents:
+1. just
+11. very
+2. plain
+12. few
+3. boring
+13. laughs
+4. entirely
+14. powerful
+5. predictable
+15. the
+6. and
+16. most
+7. lacks
+17. fun
+8. energy
+18. film
+9. no
+19. of
+10. surprises
+20. summer
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+16 / 50
+
+--- Page 17 ---
+Class Prior Probabilities
+Recall that:
+ˆP(c) = Nc
+Ndoc
+So we get:
+ˆP(+) = 2
+5
+ˆP(−) = 3
+5
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+17 / 50
+
+--- Page 18 ---
+Word Conditional Probabilities
+To classify the test example, we need the following probability estimates:
+ˆP(predictable | −) =
+1 + 1
+14 + 20 = 1
+17
+ˆP(predictable | +) = 0 + 1
+9 + 20 = 1
+29
+ˆP(no | −) =
+1 + 1
+14 + 20 = 1
+17
+ˆP(no | +) = 0 + 1
+9 + 20 = 1
+29
+ˆP(fun | −) =
+0 + 1
+14 + 20 = 1
+34
+ˆP(fun | +) = 1 + 1
+9 + 20 = 2
+29
+Note that the word “with” in the test document is ignored because it doesn’t
+occur in the training corpus.
+Classiﬁcation:
+ˆP(−) ˆP(predictable no fun | −) = 3
+5 × 1
+17 × 1
+17 × 1
+34 =
+3
+49, 130
+ˆP(+) ˆP(predictable no fun | +) = 2
+5 × 1
+29 × 1
+29 × 2
+29 =
+4
+121, 945
+The model predicts class negative for the test review.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+18 / 50
+
+--- Page 19 ---
+Why smoothing?
+If we don’t use smoothing, the estimates are:
+ˆP(predictable | −) = 1
+14
+ˆP(predictable | +) = 0
+9 = 0
+ˆP(no | −) = 1
+14
+ˆP(no | +) = 0
+9 = 0
+ˆP(fun | −) = 0
+14 = 0
+ˆP(fun | +) = 1
+9
+Classiﬁcation:
+ˆP(−) ˆP(predictable no fun | −) = 3
+5 × 1
+14 × 1
+14 × 0 = 0
+ˆP(+) ˆP(predictable no fun | +) = 2
+5 × 0 × 0 × 1
+9 = 0
+Both classes have estimated probability undeﬁned! (division by zero)
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+19 / 50
+
+--- Page 20 ---
+Multinomial Naive Bayes: Training
+TrainMultinomialNB(C, D)
+1
+V ←ExtractVocabulary(D)
+2
+Ndoc ←CountDocs(D)
+3
+for each c ∈C
+4
+do Nc ←CountDocsInClass(D, c)
+5
+prior[c] ←Nc/Ndoc
+6
+textc ←ConcatenateTextOfAllDocsInClass(D, c)
+7
+for each w ∈V
+8
+do countcw ←CountWordOccurrence(textc, w)
+9
+for each w ∈V
+10
+do condprob[w][c] ←
+countcw+1
+P
+w′(countcw′+1)
+11
+return V , prior, condprob
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+20 / 50
+
+
+
+==================================
+FILE: 9-dm-logreg-2024.pdf
+==================================
+
+--- Page 1 ---
+Data Mining
+Logistic Regression
+Text Classiﬁcation
+Ad Feelders
+Universiteit Utrecht
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+1 / 48
+
+--- Page 2 ---
+Two types of approaches to classiﬁcation
+In (probabilistic) classiﬁcation we are interested in the conditional distribution
+P(Y | x),
+so that, for example, when we observe X = x we can predict the class y with the
+highest probability for that value of X.
+There are two basic approaches to modeling P(Y | x):
+Generative Models (use Bayes’ rule):
+P(Y = y | x) = P(x | Y = y)P(Y = y)
+P(x)
+=
+P(x | Y = y)P(Y = y)
+P
+y′ P(x | Y = y′)P(Y = y′)
+Discriminative Models: model P(Y | x) directly.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+2 / 48
+
+--- Page 3 ---
+Generative Models
+Examples of generative classiﬁcation methods:
+Naive Bayes classiﬁer (discussed in the previous lecture)
+Linear/Quadratic Discriminant Analysis (not discussed)
+. . .
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+3 / 48
+
+--- Page 4 ---
+Discriminative Models
+Discriminative methods only model the conditional distribution of Y given
+X. The probability distribution of X itself is not modeled.
+For the binary classiﬁcation problem:
+P(Y = 1 | X) = f (X, β)
+where f (X, β) is some function of features X and parameters β.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+4 / 48
+
+--- Page 5 ---
+Discriminative Models
+Examples of discriminative classiﬁcation methods:
+Linear probability model
+Logistic regression
+Feed-forward neural networks
+. . .
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+5 / 48
+
+--- Page 6 ---
+Discriminative Models: linear probability model
+Consider the linear regression model
+E[Y | x] = β⊤x
+Y ∈{0, 1},
+where
+β⊤x =
+m
+X
+j=0
+βjxj,
+with x0 ≡1.
+But
+E[Y | x]
+=
+1 · P(Y = 1 | x) + 0 · P(Y = 0 | x)
+=
+P(Y = 1 | x)
+So the model assumes that
+P(Y = 1 | x) = β⊤x
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+6 / 48
+
+--- Page 7 ---
+Notation
+β =
+
+
+
+
+
+β0
+β1
+...
+βm
+
+
+
+
+
+x =
+
+
+
+
+
+x0
+x1
+...
+xm
+
+
+
+
+
+with x0 ≡1, so
+β⊤x =
+m
+X
+j=0
+βjxj = β0 + β1x1 + . . . + βmxm
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+7 / 48
+
+--- Page 8 ---
+Linear response function
+β⊤x
+P(Y = 1|x)
+1
+1
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+8 / 48
+
+--- Page 9 ---
+Logistic regression
+The linear probability model allows negative “probabilities” and
+“probabilities” bigger than one.
+Logistic response function
+E[Y | x] = P(Y = 1 | x) =
+eβ⊤x
+1 + eβ⊤x
+or (divide numerator and denominator by eβ⊤x)
+P(Y = 1 | x) =
+1
+1 + e−β⊤x = (1 + e−β⊤x)−1
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+9 / 48
+
+--- Page 10 ---
+Logistic Response Function
+β⊤x
+P(Y = 1|x)
+0
+1
+2
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+10 / 48
+
+--- Page 11 ---
+Linearization: the logit transformation
+Since P(Y = 1 | x) and P(Y = 0 | x) have to add up to 1, we have:
+P(Y = 1 | x) =
+eβ⊤x
+1 + eβ⊤x
+⇒
+P(Y = 0 | x) =
+1
+1 + eβ⊤x
+Hence,
+P(Y = 1 | x)
+P(Y = 0 | x) = eβ⊤x
+Therefore:
+ln
+P(Y = 1 | x)
+P(Y = 0 | x)
+
+= β⊤x
+The ratio
+P(Y = 1 | x)
+P(Y = 0 | x)
+is called the odds.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+11 / 48
+
+--- Page 12 ---
+Linear Decision Boundary
+Assign to class 1 if P(Y = 1 | x) > P(Y = 0 | x), i.e. if
+P(Y = 1 | x)
+P(Y = 0 | x) > 1
+This is true if
+ln
+P(Y = 1 | x)
+P(Y = 0 | x)
+
+> 0
+So assign to class 1 if β⊤x > 0, and to class 0 otherwise.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+12 / 48
+
+--- Page 13 ---
+Linear Decision Boundary
+x1
+x2
+β0 + β1x1 + β2x2 = 0
+Class 0
+Class 1
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+13 / 48
+
+--- Page 14 ---
+Maximum Likelihood Estimation
+Coin tossing example:
+Y = 1 if heads, Y = 0 if tails. Parameter p = P(Y = 1).
+One coin ﬂip
+P(y) = py(1 −p)1−y
+Note that P(1) = p, P(0) = 1 −p as required.
+Sequence of n independent coin ﬂips
+P(y1, y2, ..., yn) =
+n
+Y
+i=1
+pyi(1 −p)1−yi
+which deﬁnes the likelihood function when viewed as a function of p.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+14 / 48
+
+--- Page 15 ---
+Maximum Likelihood Estimation
+In a sequence of 10 coin ﬂips we observe y = (1, 0, 1, 1, 0, 1, 1, 1, 1, 0).
+The corresponding likelihood function is
+L(p | y)
+=
+p · (1 −p) · p · p · (1 −p) · p · p · p · p · (1 −p)
+=
+p7(1 −p)3
+The corresponding log-likelihood function is
+ℓ(p | y) = ln L(p | y) = ln(p7(1 −p)3) = 7 ln p + 3 ln(1 −p)
+Find the value of p that maximizes this function.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+15 / 48
+
+--- Page 16 ---
+Computing the maximum
+To determine that value, we take the derivative, equate it to zero and
+solve for p.
+Recall that
+d ln x
+dx
+= 1
+x
+So the derivative of the log-likelihood function with respect to p is:
+dℓ(p | y)
+dp
+= 7
+p −
+3
+1 −p
+Equating to zero, and solving for p yields maximum likelihood estimate
+ˆp = 0.7.
+This is just the relative frequency of heads in the sample!
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+16 / 48
+
+--- Page 17 ---
+Log-likelihood function for y = (1, 0, 1, 1, 0, 1, 1, 1, 1, 0)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+−30
+−25
+−20
+−15
+−10
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+17 / 48
+
+--- Page 18 ---
+ML estimation for logistic regression
+Logistic regression is similar to the coin tossing example, except that now
+the probability of success pi depends on xi and β:
+pi
+=
+P(Y = 1 | xi) = (1 + e−β⊤xi)−1
+1 −pi
+=
+P(Y = 0 | xi) = (1 + eβ⊤xi)−1
+we can represent its probability distribution as follows
+P(yi) = pyi
+i (1 −pi)1−yi
+yi ∈{0, 1}; i = 1, . . . , n
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+18 / 48
+
+--- Page 19 ---
+ML estimation for logistic regression
+Example
+i
+xi
+yi
+P(yi)
+1
+8
+0
+(1 + eβ0+8β1)−1
+2
+12
+0
+(1 + eβ0+12β1)−1
+3
+15
+1
+(1 + e−β0−15β1)−1
+4
+10
+1
+(1 + e−β0−10β1)−1
+The likelihood function is:
+(1+eβ0+8β1)−1 ×(1+eβ0+12β1)−1 ×(1+e−β0−15β1)−1 ×(1+e−β0−10β1)−1
+ML Estimation: ﬁnd values of β0 and β1 that maximize this probability.
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+19 / 48
+
+--- Page 20 ---
+Logistic Regression: likelihood function
+Since the yi observations are assumed to be independent
+(e.g. random sampling):
+P(y) =
+n
+Y
+i=1
+P(yi) =
+n
+Y
+i=1
+pyi
+i (1 −pi)1−yi
+Or, taking the natural logarithm:
+ln P(y) = ln
+n
+Y
+i=1
+pyi
+i (1 −pi)1−yi
+=
+n
+X
+i=1
+{yi ln pi + (1 −yi) ln(1 −pi)}
+Ad Feelders
+( Universiteit Utrecht )
+Data Mining
+20 / 48
+
+
+
+==================================
+FILE: counting-uterms.pdf
+==================================
+
+--- Page 1 ---
+Data Mining 2020
+Counting u-terms in graphical log-linear models
+Being able to count u-terms is important for
+1. determining the correct degrees of freedom for statistical tests, and
+2. computing the correct complexity penalty for a model’s AIC or BIC score.
+Let X = (X1, X2, . . . , Xk) denote a vector of k discrete random variables. Furthermore,
+let di denote the size of the domain of Xi. For example, if Xi corresponds to the variable
+“Eye Color”, with possible values {blue, brown, green, other}, then di = 4.
+The full log-linear expansion of the probability distribution PK of (X1, X2, . . . , Xk) is
+given by
+log PK(x) =
+X
+a⊆K
+ua(xa)
+where the sum is taken over all possible subsets a of K = {1, 2, . . . , k}.
+The total number of possible value assignments to (X1, X2, . . . , Xk) (the number of cells
+in the contingency table) is:
+ncell =
+k
+Y
+i=1
+di
+The number of u-terms in the full log-linear expansion (the saturated model) is equal to
+ncell. It can alternatively be computed by the formula
+X
+a⊆K
+ Y
+i∈a
+(di −1)
+!
+,
+where
+Y
+i∈∅
+(di −1)
+is taken to be equal to 1, corresponding to the constant u-term u∅. So apparently
+k
+Y
+i=1
+di =
+X
+a⊆K
+ Y
+i∈a
+(di −1)
+!
+.
+1
+
+--- Page 2 ---
+In general, a collection of u-terms ua(xa) contains
+Y
+i∈a
+(di −1)
+u-terms.
+Consider as an example the random vector X = (X1, X2, X3, X4) with d1 = 2, d2 = 3,
+d3 = 5, and d4 = 2. We compute that
+ncell =
+k
+Y
+i=1
+di = 2 × 3 × 5 × 2 = 60.
+How many u-terms are there in the graphical model with the cordless 4-cycle (1−2−3−4−1)
+as its independence graph? Recall the following deﬁnition:
+“given its independence graph G = (K, E), the log-linear model for the random
+vector X is a graphical model for X if the distribution of X is arbitrary apart
+from constraints of the form that for all pairs of coordinates not in the edge set
+E, the u-terms containing the selected coordinates are equal to zero”.
+The following edges are absent in the chordless 4-cycle: 1 −3, and 2 −4. Because of the
+absence of 1 −3 we have to set the following collections u-terms to zero: u13, u123, u134
+and u1234. Likewise, because of the absence of 2−4 we have to set the following collections
+u-terms to zero: u24, u124, u234 and u1234. The total number of u-terms that has to be
+removed is counted in the table below.
+ua
+Q
+i∈a(di −1)
+u13
+1 × 4 = 4
+u123
+1 × 2 × 4 = 8
+u134
+1 × 4 × 1 = 4
+u1234
+1 × 2 × 4 × 1 = 8
+u24
+2 × 1 = 2
+u124
+1 × 2 × 1 = 2
+u234
+2 × 4 × 1 = 8
+Total
+36
+So to test the chordless 4-cycle against the saturated model, we have to use a chi-square
+distribtion with 36 degrees of freedom. Also, to compute the AIC or BIC score, we should
+use dim(M) = 60 −36 = 24.
+2
+
+--- Page 3 ---
+Alternatively, we could directly have counted the u-terms present in the model.
+These are:
+ua
+Q
+i∈a(di −1)
+u∅
+1
+u1
+1
+u2
+2
+u3
+4
+u4
+1
+u12
+1 × 2 = 2
+u23
+2 × 4 = 8
+u34
+4 × 1 = 4
+u14
+1 × 1 = 1
+Total
+24
+3
+
+
+
+==================================
+FILE: proofs.pdf
+==================================
+
+--- Page 1 ---
+Some small proofs
+For those who are interested we give some small proofs to go with the lecture slides. In
+these proofs we use the properties of expectation listed at the end.
+Irreducible error
+First we show that if we want to minimize expected squared prediction error EP(Y | x) [(Y −c)2],
+then we should choose c = E[Y | x]. We will suppress dependence on x to simplify the
+notation. First, we expand the square, en push the expectation operator inwards:
+E
+
+(Y −c)2
+= E
+
+Y 2 −2cY + c2
+= E
+
+Y 2
+−2cE[Y ] + c2
+Note that c is a variable in the normal mathematical sense, but it is not a random variable.
+The only random variable here is Y (and any function of Y of course, in this case Y 2). So
+when it comes to taking expectations, c can be treated as a constant.
+Next, we take the derivative of this expression with respect to c:
+d E [Y 2] −2cE[Y ] + c2
+d c
+= −2E[Y ] + 2c
+Equating the derivative to zero gives
+−2E[Y ] + 2c = 0
+c = E[Y ]
+Note that the second derivative is positive everywhere, so we are dealing with a global
+minimum. Since this argument works for arbitrary values of x, we have established that
+the population regression function
+f(x) = E [Y | x]
+yields the best possible prediction for Y . Its expected squared error is
+E
+
+(Y −E[Y | x])2
+which is the variance of Y for X = x.
+1
+
+--- Page 2 ---
+Decomposition into Irreducible and Reducible error
+We suppress dependence on x to simplify the notation. We stated that for ﬁxed x and ˆf:
+E[(Y −ˆf)2] = (f −ˆf)2 + E[(Y −f)2]
+Proof:
+E[(Y −ˆf)2] = E[((Y −f) + (f −ˆf))2]
+(Add and subtract f)
+= E[(Y −f)2 + 2(Y −f)(f −ˆf) + (f −ˆf)2]
+(Expand the square)
+= E[(Y −f)2] + 2(E[Y ] −f)(f −ˆf) + (f −ˆf)2
+(Push expectation inside)
+= E[(Y −f)2] + (f −ˆf)2
+In the last step, 2(E[Y ] −f)(f −ˆf) drops out, because f = E[Y ], and therefore (E[Y ] −f)
+evaluates to zero.
+Error Reduction by Bagging
+The average error made by the models acting individually is:
+Eav = 1
+M
+M
+X
+m=1
+E
+
+em(x)2
+Similarly, the expected error from the committee is given by
+Ebag = E
+
+
+ 
+1
+M
+M
+X
+m=1
+ˆfm(x) −f(x)
+!2
+
+= E
+
+
+ 
+1
+M
+M
+X
+m=1
+em(x)
+!2
+
+If we assume that the errors have zero mean and are uncorrelated, so that
+E [em(x)en(x)] = 0, for all m ̸= n
+then we obtain
+Ebag = 1
+M Eav
+2
+
+--- Page 3 ---
+Proof:
+Ebag = E
+
+
+ 
+1
+M
+M
+X
+m=1
+em(x)
+!2
+
+=
+1
+M 2 E
+
+
+ M
+X
+m=1
+em(x)
+!2
+
+=
+1
+M 2 E
+" M
+X
+m=1
+em(x)2 +
+X
+m̸=n
+em(x)en(x)
+#
+=
+1
+M 2
+ M
+X
+m=1
+E
+
+em(x)2
++
+X
+m̸=n
+E [em(x)en(x)]
+!
+=
+1
+M 2
+M
+X
+m=1
+E
+
+em(x)2
+= 1
+M Eav
+In the last step we used the assumption that
+E [em(x)en(x)] = 0, for all m ̸= n.
+Some Useful Properties of Expectation and Variance
+1. E[c] = c for constant c. “The expected value of a constant is the constant itself”.
+2. E[cX] = cE[X].
+3. E[X ± Y ] = E[X] ± E[Y ].
+4. V[c] = 0 for constant c. “The variance of a constant is zero”.
+5. V[cX] = c2 V[X]. “The variance of a constant times a random variable is equal to
+the square of the constant times the variance of the random variable”.
+6. V[X ± Y ] = V[X] + V[Y ] if X and Y are independent.
+More generally, let Z = c0 + Pn
+i=1 ciXi. Then
+1. E[Z] = E [c0 + Pn
+i=1 ciXi] = c0 + Pn
+i=1 ciE[Xi]
+2. V[Z] = V [c0 + Pn
+i=1 ciXi] = Pn
+i=1 c2
+i V[Xi], provided that the Xi are mutually inde-
+pendent.
+3
+

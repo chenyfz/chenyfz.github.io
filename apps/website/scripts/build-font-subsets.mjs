@@ -1,5 +1,5 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { basename, dirname, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
@@ -12,23 +12,70 @@ const sourceFonts = {
   zhuque: resolve(appRoot, 'public/fonts/ZhuqueFangsong-Regular.ttf')
 };
 
-const localeInputs = {
-  zh: resolve(appRoot, 'src/i18n/pages/static-cv/zh.ts'),
-  en: resolve(appRoot, 'src/i18n/pages/static-cv/en.ts')
-};
-
-const expectedOutputs = [
-  'oppo-sans-400-zh.woff2',
-  'zhuque-fangsong-400-zh.woff2',
-  'oppo-sans-400-en.woff2',
-  'zhuque-fangsong-400-en.woff2'
-].map((file) => resolve(outputDir, file));
+const i18nRoot = resolve(appRoot, 'src/i18n');
 
 const ascii = Array.from({ length: 95 }, (_, index) => String.fromCharCode(index + 32)).join('');
 
 function hasPrebuiltSubsets() {
   return expectedOutputs.every((output) => existsSync(output));
 }
+
+function collectTypeScriptFiles(dir) {
+  const entries = readdirSync(dir, { withFileTypes: true });
+  const files = [];
+
+  for (const entry of entries) {
+    const fullPath = resolve(dir, entry.name);
+
+    if (entry.isDirectory()) {
+      files.push(...collectTypeScriptFiles(fullPath));
+      continue;
+    }
+
+    if (entry.isFile() && entry.name.endsWith('.ts')) {
+      files.push(fullPath);
+    }
+  }
+
+  return files;
+}
+
+function discoverLocaleSources() {
+  const tsFiles = collectTypeScriptFiles(i18nRoot);
+  const localeFilePattern = /^[a-z]{2}(?:-[A-Z]{2})?\.ts$/;
+  const localeToFiles = new Map();
+
+  for (const filePath of tsFiles) {
+    const fileName = basename(filePath);
+    if (!localeFilePattern.test(fileName)) {
+      continue;
+    }
+
+    const locale = basename(filePath, '.ts');
+    const existing = localeToFiles.get(locale) ?? [];
+    existing.push(filePath);
+    localeToFiles.set(locale, existing);
+  }
+
+  const localeInputs = Object.fromEntries(
+    [...localeToFiles.entries()]
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([locale, files]) => [locale, files.sort()])
+  );
+
+  const locales = Object.keys(localeInputs);
+  if (locales.length === 0) {
+    throw new Error(`No locale source files found under: ${i18nRoot}`);
+  }
+
+  return localeInputs;
+}
+
+const localeInputs = discoverLocaleSources();
+
+const expectedOutputs = Object.keys(localeInputs)
+  .flatMap((locale) => [`oppo-sans-400-${locale}.woff2`, `zhuque-fangsong-400-${locale}.woff2`])
+  .map((file) => resolve(outputDir, file));
 
 function assertRequirements() {
   for (const [name, fontPath] of Object.entries(sourceFonts)) {
@@ -92,7 +139,7 @@ function subsetFont({ input, output, textFile }) {
 }
 
 function instantiateWeight({ input, weight, locale }) {
-  const output = resolve(tmpdir(), `static-cv-oppo-${locale}-${weight}.ttf`);
+  const output = resolve(tmpdir(), `website-i18n-oppo-${locale}-${weight}.ttf`);
   const args = ['varLib.instancer', input, `wght=${weight}`, '--static', '--output', output];
   const run = spawnSync('fonttools', args, { stdio: 'pipe', encoding: 'utf8' });
 
@@ -112,9 +159,10 @@ function run() {
 
   mkdirSync(outputDir, { recursive: true });
 
-  for (const [locale, inputFile] of Object.entries(localeInputs)) {
-    const localeText = toCharacterSet(extractQuotedText(inputFile));
-    const textFile = resolve(tmpdir(), `static-cv-font-subset-${locale}.txt`);
+  for (const [locale, inputFiles] of Object.entries(localeInputs)) {
+    const localeSourceText = inputFiles.map((filePath) => extractQuotedText(filePath)).join('');
+    const localeText = toCharacterSet(localeSourceText);
+    const textFile = resolve(tmpdir(), `website-i18n-font-subset-${locale}.txt`);
     writeFileSync(textFile, localeText, 'utf8');
 
     const oppo400 = instantiateWeight({ input: sourceFonts.oppo, weight: 400, locale });
@@ -130,7 +178,7 @@ function run() {
       textFile
     });
 
-    console.log(`Generated static-cv font subsets for locale: ${locale}`);
+    console.log(`Generated font subsets for locale: ${locale} (from ${inputFiles.length} i18n files)`);
   }
 }
 

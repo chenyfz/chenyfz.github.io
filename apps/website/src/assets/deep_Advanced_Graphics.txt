@@ -1,0 +1,1614 @@
+--- Advanced Graphics (Year 2 - Period 2) ---
+
+
+
+==================================
+FILE: assignment 1.pdf
+==================================
+
+--- Page 1 ---
+Assignment 1: Acceleration Structures 
+Advanced Graphics  
+based on a previous assignment by Jacco Bikker 
+ 
+Introduction 
+The goal of this assignment is to experiment with acceleration structures.  
+Based on Jacco Bikker’s online tutorial (with code on Github) or his more recent implementation, 
+adding a BVH to an existing ray tracing-based renderer (possibly your own) should be trivial. 
+For this assignment, you will be analyzing the characteristics of the BVH and compare it to other 
+acceleration structures. 
+Acceleration Structures 
+In the lectures we discussed a number of acceleration structures, each with their own characteristics:  
+• 
+Grid 
+• 
+kD-tree 
+• 
+Octree 
+• 
+BSP 
+More options exist, such as tetrahedralization, loose grids, the Bounding Interval Hierarchy and so 
+on. We can compare data structures on various characteristics:  
+• 
+Construction speed (in terms of algorithmic complexity or actual wall-clock time)  
+• 
+Speed of various types of updates (rigid motion, deformation, full rebuild) 
+• 
+Ray tracing efficiency  
+For this assignment we ask you to focus on the ray tracing efficiency. This is the one that can be 
+made independent of implementation quality, which is beneficial for a time-constrained assignment. 
+To compare ray tracing efficiency, we could use wall-clock time but that depends on your choice of 
+programming language, compiler, low-level optimizations, etc. To make it a fair challenge, we will 
+instead compare the number of traversal steps and number of intersection tests encountered 
+during ray traversal. 
+ 
+ 
+
+--- Page 2 ---
+In the lectures we have seen this for mid-point splits versus the Surface Area Heuristic (SAH): 
+ 
+Although these heat maps provide high-level insight, more detailed data could be gathered. We 
+could gather data for various scenes and camera viewpoints, which would avoid misinterpretations 
+due to outliers. Data could be presented in a graph or in a table, or perhaps in various formats. And 
+of course, the data needs to be digested: what does it mean what we see? 
+To obtain a pass for this assignment, you will compare a BVH implementation to a different 
+acceleration structure. You may implement these acceleration structures yourself, or obtain them 
+from any source (don’t forget to reference!). You will need to feed each algorithm with the same 
+scene data. You will also need to add instrumentation to evaluate ray tracing efficiency in terms of 
+traversal steps and intersection tests. 
+Scoring beyond the pass grade requires evaluation of a more complex acceleration structure (or build 
+heuristic), and a more in-depth analysis of the data. This is detailed in the next sections. 
+Grading 
+To get a pass: 
+• 
+Implement (or find an implementation of) the Bounding Volume Hierarchy 
+• 
+Feed this implementation a triangle mesh of at least 10,000 triangles 
+• 
+Add instrumentation to measure traversal steps and intersection tests for each ray 
+• 
+Measure average, minimum and peak values for multiple camera viewpoints 
+• 
+Each team member must complete the above steps, and everyone should pick a different 
+type of acceleration structure (definitely a BVH first, then pick from a grid, kD-tree, octree, 
+etc.) 
+• 
+Compare the results and report on your findings 
+For up to 1 extra point: 
+• 
+Do the comparison for at least three scenes with different characteristics. Motivate your 
+scene selection: Make sure each scene highlights something that is not visible (or harder to 
+see) in the other scenes. 
+For up to 1 extra point: 
+• 
+Do the comparison for different ray distributions. Measure the effectiveness of each 
+acceleration structure for primary rays, shadow rays, diffuse bounces in a path tracer, and/or 
+ambient occlusion rays. 
+ 
+ 
+      
+
+--- Page 3 ---
+For up to 2 extra points: 
+• 
+Pick particularly challenging acceleration structures and implement them yourself from 
+scratch instead of using existing code. A simple grid scores no extra points; an octree or 
+nested grid scores one extra point; a BIH, BSP, or kD-tree scores up to 2 extra points, 
+assuming the implementation is correct and properly analyzed. 
+For up to one extra point: 
+• 
+Compare more acceleration structures than your number of team members. 
+For up to one extra point: 
+• 
+Include various versions of the BVH in your experiments. Measure the impact of SAH for 0.5 
+extra points; measure the impact of a 4-wide BVH for another 0.5 points. 
+Additional points may be obtained for interesting experiments that are not listed. Exceptional 
+reporting may also result in a bonus. Poor reporting and broken implementations will result in a 
+penalty, particularly if this affects the results. Consult the lecturer when in doubt. 
+Your score will be clamped to a maximum of 10. 
+Programming Language 
+This assignment may be executed in any appropriate programming language that the lecturer can 
+grade. Support from the lecturer will be mostly limited to C++ and C# however, and performance is 
+expected to be optimal for C++ code. Choice of programming language will not affect your grade. 
+Practical Details 
+You must work on this assignment in a team of 2 students. Any exception to this number must be 
+negotiated with the lecturer on an individual basis. Only one team member should hand in but 
+clearly include the other team member’s name and student number in the report; the grade will be 
+applied to both team members. 
+The deadline for this assignment is Wednesday 11 December at 17:00. This is a hard deadline. If you 
+hand in late, you will not receive a grade. 
+Please hand in your work on Blackboard. 
+The materials to submit are: 
+• 
+your project, including sources and build instructions (if they’re not obvious);  
+• 
+your report, detailing implemented functionality, division of work, references and other 
+information relevant for grading your submission. 
+Feel free to discuss the assignment with classmates at a conceptual level but do not share any code. 
+ 
+
+
+
+==================================
+FILE: Lectures\lecture 01 - intro.pdf
+==================================
+
+Error extracting: Failed to open file 'c:\\Users\\xchen\\OneDrive\\UU HCI Master\\Year 2 - Period 2\\Advanced Graphics\\Lectures\\lecture 01 - intro.pdf'.
+
+
+==================================
+FILE: Lectures\lecture 02 - whitted.pdf
+==================================
+
+--- Page 1 ---
+𝑰𝒙, 𝒙′ = 𝒈(𝒙, 𝒙′) 𝝐𝒙, 𝒙′ + න
+𝑺
+𝝆𝒙, 𝒙′, 𝒙′′ 𝑰𝒙′, 𝒙′′ 𝒅𝒙′′
+INFOMAGR – Advanced Graphics
+Peter Vangorp
+Lecture 2 - “Whitted”
+Welcome!
+
+--- Page 2 ---
+Today’s Agenda:
+▪Introduction: Appel
+▪Whitted
+▪Cook
+
+--- Page 3 ---
+Some Techniques for Shading Machine 
+Renderings of Solids, Arthur Appel, 1964.
+Idea: use rays to find geometry and shadows.
+Appel
+Advanced Graphics – Whitted 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+             3
+“Graphics” for games in 1964:
+https://en.wikipedia.org/wiki/The_Sumerian_Game
+IBM 7090
+
+--- Page 4 ---
+Some Techniques for Shading Machine 
+Renderings of Solids, Arthur Appel, 1964.
+Idea: use rays to find geometry and shadows.
+Appel
+Advanced Graphics – Whitted 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+             4
+
+--- Page 5 ---
+Recap
+Appel
+Advanced Graphics – Whitted 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+             5
+𝑃topleft
+𝑃topright
+𝑃2
+𝐸
+u
+v
+Plane: 𝑃∙𝑁+ 𝑑= 0
+Ray: 𝑃(𝑡) = 𝑂+ 𝑡𝐷
+Substituting for 𝑃(𝑡), we get
+𝑂+ 𝑡𝐷∙𝑁+ 𝑑= 0
+𝑡= −(𝑂∙𝑁+ 𝑑)/(𝐷∙𝑁)
+𝑃= 𝑂+ 𝑡𝐷
+
+--- Page 6 ---
+Appel
+Advanced Graphics – Whitted 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+             6
+Ray: 𝑃(𝑡) = 𝑂+ 𝑡𝐷
+𝒕
+
+--- Page 7 ---
+Appel
+Advanced Graphics – Whitted 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+             7
+
+--- Page 8 ---
+Today’s Agenda:
+▪Introduction: Appel
+▪Whitted
+▪Cook
+
+--- Page 9 ---
+An Improved Illumination Model for Shaded Display
+In 1980, “State of the Art” consisted of:
+▪Rasterization
+▪Shading: either diffuse (N · L) or specular ((N · H)n), both 
+not taking into account fall-off (Phong)
+▪Reflection, using environment maps (Blinn & Newell *)
+▪Stencil shadows (Williams **)
+Whitted
+** :  Williams, L. 1978. Casting curved shadows on curved surfaces.
+* : Blinn, J. and Newell, M. 1976. Texture and Reflection in Computer Generated Images.
+Advanced Graphics – Whitted 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+             9
+
+--- Page 10 ---
+An Improved Illumination Model for Shaded Display
+In 1980, “State of the Art” consisted of:
+▪Rasterization
+▪Shading: either diffuse (N · L) or specular ((N · H)n), both 
+not taking into account fall-off (Phong)
+▪Reflection, using environment maps (Blinn & Newell)
+▪Stencil shadows (Williams)
+Goal: 
+▪Solve reflection and refraction
+Improved model:
+▪Based on classical ray optics
+Whitted
+Advanced Graphics – Whitted 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+             10
+
+--- Page 11 ---
+An Improved Illumination Model for Shaded Display*
+Physical basis of Whitted-style ray tracing:
+Light paths are generated (backwards) from the camera 
+to the light sources, using rays to simulate optics.
+Color Trace( Ray r )
+   I, N, mat = NearestIntersection( scene, r )
+   return mat.color * DirectIllumination( I, N )
+Whitted
+* : T. Whitted. An Improved Illumination Model for Shaded Display. 
+Commun. ACM, 23(6):343–349, 1980.
+Advanced Graphics – Whitted 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+             11
+
+--- Page 12 ---
+An Improved Illumination Model for Shaded Display
+Color Trace( Ray r )
+   I, 𝑁, mat = NearestIntersection( scene, r )
+   return mat.color * DirectIllumination( I, 𝑁 )
+“Direct illumination”:
+Summed contribution of unoccluded point light sources, 
+taking into account:
+▪Distance to 𝐼
+▪Angle between 𝐿 and 𝑁
+▪Intensity of light source
+Note that this requires a ray per light source.
+Whitted
+Advanced Graphics – Whitted 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+             12
+
+--- Page 13 ---
+An Improved Illumination Model for Shaded Display
+Color Trace( ray r )
+   I, 𝑁, mat = NearestIntersection( scene, r )
+   if (mat == DIFFUSE)
+      return mat.color * DirectIllumination( I, 𝑁 )
+   if (mat == MIRROR)
+      return mat.color * Trace( I, reflect( r.𝐷, 𝑁 )
+Indirect illumination:
+For perfect specular object (mirrors) we extend the primary 
+ray with an extension ray:
+▪We still modulate transport with the material color
+▪We do not apply 𝑁∙𝐿
+▪We do not calculate direct illumination
+Whitted
+Advanced Graphics – Whitted 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+             13
+
+--- Page 14 ---
+Reflection
+Given a ray direction 𝐷 and a normalized surface normal ෡𝑁, the 
+reflected vector 𝑅 = 𝐷−2(𝐷∙෡𝑁) ෡𝑁.
+Derivation:
+𝑉= (𝐷∙෡𝑁) ෡𝑁
+𝑈= 𝐷−𝑉
+𝑅= 𝑈+ (−𝑉)
+𝑅= 𝐷−𝐷∙෡𝑁෡𝑁− (𝐷∙෡𝑁) ෡𝑁
+𝑅= 𝐷−2(𝐷∙෡𝑁) ෡𝑁
+Alternative if 𝑁 is not yet normalized:
+𝑅= 𝐷−2
+𝐷∙𝑁
+𝑁∙𝑁𝑁 
+Whitted
+𝑅
+𝐷
+෡𝑵
+𝑉
+𝑈
+Advanced Graphics – Whitted 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+             14
+
+--- Page 15 ---
+Question 1: For direct illumination, we take into account:
+▪Material color
+▪Distance to light source
+▪𝑁∙𝐿
+Why?
+Question 2: We use the summed contribution of all light sources.
+Is this correct?
+Question 3: Why do we not sample the light sources for a pure specular 
+surface? (can you cast a shadow on a bathroom mirror?)
+Question 4: Show geometrically that, for vectors 𝐷 and ෡𝑁, 
+𝑅 = 𝐷−2 𝐷∙෡𝑁෡𝑁 yields the reflected vector 𝑅 with the same length as 𝐷.
+Whitted
+Advanced Graphics – Whitted 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+             15
+
+--- Page 16 ---
+An Improved Illumination Model for Shaded Display
+Handling partially reflective materials:
+Color Trace( Ray r )
+   I, 𝑁, mat = NearestIntersection( scene, r )
+   s = mat.specularity
+   d = 1 – mat.specularity
+   return mat.color * (
+      s * Trace( ray( I, reflect( r.𝐷, 𝑁 ) ) ) +
+      d * DirectIllumination( I, 𝑁 ) )
+Note: this implementation is ... problematic!  (why?)
+Whitted
+Advanced Graphics – Whitted 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+             16
+
+--- Page 17 ---
+An Improved Illumination Model for Shaded Display
+Dielectrics
+Color Trace( Ray r )
+   I, 𝑁, mat = NearestIntersection( scene, r )
+   if (mat == DIFFUSE)
+      return mat.color * DirectIllumination( I, 𝑁 )
+   if (mat == MIRROR)
+      return mat.color * Trace( I, reflect( r.𝐷, 𝑁 )
+   if (mat == GLASS)
+      return mat.color * ?
+Whitted
+Advanced Graphics – Whitted 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+             17
+
+--- Page 18 ---
+Dielectrics
+The direction of the transmitted vector 𝑇 depends on 
+the refraction indices 𝑛1, 𝑛2 of the media separated 
+by the surface. According to Snell’s Law:
+𝑛1𝑠𝑖𝑛𝜃1 = 𝑛2𝑠𝑖𝑛𝜃2
+or
+𝑛1
+𝑛2
+𝑠𝑖𝑛𝜃1 = 𝑠𝑖𝑛𝜃2
+Note: left term may exceed 1, in which 
+case 𝜃2 cannot be computed. Therefore:
+𝑛1
+𝑛2 𝑠𝑖𝑛𝜃1 = 𝑠𝑖𝑛𝜃2 ⟺𝑠𝑖𝑛𝜃1 ≤𝑛2
+𝑛1  ➔  𝜃𝑐𝑟𝑖𝑡𝑖𝑐𝑎𝑙= arcsin
+𝑛2
+𝑛1 sin 𝜃2
+Whitted
+𝑇
+𝐷
+𝑵
+𝑛1
+𝑛2
+𝜃2
+𝜃1
+Advanced Graphics – Whitted 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+             18
+https://row1.ca/snells-law
+
+--- Page 19 ---
+Whitted
+Advanced Graphics – Whitted 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+             19
+
+--- Page 20 ---
+Whitted
+Advanced Graphics – Whitted 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+             20
+https://en.wikipedia.org/wiki/Snell%27s_window 
+
+
+
+==================================
+FILE: Lectures\lecture 03 - acceleration structures.pdf
+==================================
+
+--- Page 1 ---
+𝑰𝒙, 𝒙′ = 𝒈(𝒙, 𝒙′) 𝝐𝒙, 𝒙′ + න
+𝑺
+𝝆𝒙, 𝒙′, 𝒙′′ 𝑰𝒙′, 𝒙′′ 𝒅𝒙′′
+INFOMAGR – Advanced Graphics
+Peter Vangorp
+Lecture 3 - “Acceleration Structures”
+Welcome!
+
+--- Page 2 ---
+Today’s Agenda:
+▪Problem Analysis
+▪Early Work
+▪BVH Up Close
+
+--- Page 3 ---
+Analysis
+Advanced Graphics – Acceleration Structures  
+ 
+ 
+ 
+ 
+ 
+ 
+            3
+“Cornell Box”
+Voxel game
+
+--- Page 4 ---
+Analysis
+Advanced Graphics – Acceleration Structures  
+ 
+ 
+ 
+ 
+ 
+ 
+            4
+Unreal 5 Tech Demo
+Avengers Endgame
+
+--- Page 5 ---
+Characteristics
+Rasterization:
+▪Games
+▪Fast
+▪Realistic
+▪Consumer hardware
+Ray Tracing:
+▪Movies
+▪Slow
+▪Very Realistic
+▪Supercomputers
+Analysis
+Advanced Graphics – Acceleration Structures  
+ 
+ 
+ 
+ 
+ 
+ 
+            5
+Heaven7, Exceed, 2000
+LOTR: The Return of the King, 2003
+Mirror’s Edge, DICE, 2008
+Crysis, 2007
+
+--- Page 6 ---
+Characteristics
+Reality:
+▪everyone has a budget
+▪bar must be raised
+▪we need to optimize.
+Analysis
+Advanced Graphics – Acceleration Structures  
+ 
+ 
+ 
+ 
+ 
+ 
+            6
+Cost Breakdown for Ray Tracing:
+▪Pixels
+▪Primitives
+▪Light sources
+▪Rays
+Mind how the cost scales when the numbers above grow.
+Example: scene consisting of 1k spheres and 4 light 
+sources, diffuse materials, rendered to 1M pixels:
+1𝑀× 5 × 1𝑘= 5 billion ray/prim intersections.
+(multiply by desired framerate for real-time)
+
+--- Page 7 ---
+Optimizing Ray Tracing
+Options:
+1. Faster intersections (reduce cost per ray & per primitive)
+2. Faster shading (reduce cost per ray)
+3. Use more expressive primitives (trade off #primitives, intersection cost, algorithmic complexity)
+4. Fewer ray/primitive intersections (trade off total intersection cost, algorithmic complexity)
+Note for option 1:
+At 5 billion ray/primitive intersections, we will have to bring down the cost of a single intersection to 
+1 cycle on a 5Ghz CPU – if we want one frame per second.
+Analysis
+Advanced Graphics – Acceleration Structures  
+ 
+ 
+ 
+ 
+ 
+ 
+            7
+Crysis, 2007
+
+--- Page 8 ---
+Today’s Agenda:
+▪Problem Analysis
+▪Early Work
+▪BVH Up Close
+
+--- Page 9 ---
+Complex Primitives
+More expressive than a triangle:
+▪Sphere
+▪Torus
+▪Bézier surfaces
+▪Subdivision surfaces*
+▪Implicit surfaces**
+▪Fractals***
+*: Benthin et al., Packet-based Ray Tracing of Catmull-Clark Subdivision Surfaces. 2007.
+**: Knoll et al., Interactive Ray Tracing of Arbitrary Implicits with SIMD Interval Arithmetic. 
+RT’07 Proceedings, Pages 11-18
+***: Hart et al., Ray Tracing Deterministic 3-D Fractals. In Proceedings of SIGGRAPH ’89, 
+pages 289-296.
+Early Work
+Advanced Graphics – Acceleration Structures  
+ 
+ 
+ 
+ 
+ 
+ 
+            9
+Utah Teapot, Martin Newell, 1975
+Meet the Robinsons, Disney, 2007
+
+--- Page 10 ---
+Rubin & Whitted*
+“Hierarchically Structured Subspaces”
+Proposed scheme:
+▪Manual construction of hierarchy
+▪Oriented parallelepipeds
+A transformation matrix allows efficient
+Intersection of the skewed / rotated
+boxes, which can tightly enclose actual
+geometry.
+*: S. M. Rubin and T. Whitted. A 3-Dimensional Representation for Fast Rendering of Complex Scenes. In: 
+Proceedings of SIGGRAPH ’80, pages 110–116.
+Early Work
+Advanced Graphics – Acceleration Structures  
+ 
+ 
+ 
+ 
+ 
+ 
+            10
+
+--- Page 11 ---
+Amanatides & Woo*
+“3DDDA of a regular grid”
+The grid can be automatically generated.
+Considerations:
+▪Ensure that an intersection happens in the current 
+grid cell
+▪Use mailboxing to prevent repeated intersection 
+tests
+*: J. Amanatides and A. Woo. A Fast Voxel Traversal Algorithm for Ray 
+Tracing. In Eurographics ’87, pages 3–10, 1987.
+Early Work
+Advanced Graphics – Acceleration Structures  
+ 
+ 
+ 
+ 
+ 
+ 
+            11
+
+--- Page 12 ---
+Glassner*
+“Hierarchical spatial subdivision”
+Like the grid, octrees can be automatically generated.
+Advantages over grids:
+▪Adapts to local complexity: fewer steps
+▪No need to hand-tune grid resolution
+Disadvantage compared to grids:
+▪Expensive traversal steps.
+*: A. S. Glassner. Space Subdivision for Fast Ray Tracing. IEEE Computer Graphics and Applications, 4:15–22, 1984.
+Early Work
+Advanced Graphics – Acceleration Structures  
+ 
+ 
+ 
+ 
+ 
+ 
+            12
+
+--- Page 13 ---
+BSP Tree*
+*: K. Sung, P. Shirley. Ray Tracing with the BSP Tree. In: Graphics Gems III, Pages 271-274. Academic Press, 1992
+Early Work
+Advanced Graphics – Acceleration Structures  
+ 
+ 
+ 
+ 
+ 
+ 
+            13
+root
+
+--- Page 14 ---
+Early Work
+Advanced Graphics – Acceleration Structures  
+ 
+ 
+ 
+ 
+ 
+ 
+            14
+kD-Tree*
+“Axis-aligned BSP tree”
+*: V. Havran, Heuristic Ray Shooting Algorithms. PhD thesis, 2000.
+
+--- Page 15 ---
+Early Work
+Advanced Graphics – Acceleration Structures  
+ 
+ 
+ 
+ 
+ 
+ 
+            15
+kD-Tree Construction*
+A kd-tree is a binary tree that recursively subdivides the space 
+occupied by the scene.
+▪The root corresponds to the axis aligned bounding box (AABB) 
+of the scene;
+▪Interior nodes represent planes that recursively subdivide space 
+perpendicular to the coordinate axis;
+▪Leaf nodes store references to all the triangles overlapping the 
+corresponding voxel.
+*: On building fast kD-trees for ray tracing, and on doing that in O(N log N), Wald & Havran, 2006
+
+--- Page 16 ---
+Early Work
+Advanced Graphics – Acceleration Structures  
+ 
+ 
+ 
+ 
+ 
+ 
+            16
+function Build( triangles 𝑇, voxel 𝑉 )
+{
+   if (Terminate( 𝑇, 𝑉 )) return new LeafNode( 𝑇 )
+   Plane 𝑝 = FindPlane( 𝑇, 𝑉 )
+   Voxel 𝑉𝐿, 𝑉𝑅 = Split 𝑉 with 𝑝
+   triangles 𝑇𝐿=  𝑡∈𝑇 
+𝑡ځ𝑉𝐿≠0 }
+   triangles 𝑇𝑅=  𝑡∈𝑇 
+𝑡ځ𝑉𝑅≠0 }
+   return new InteriorNode( 
+      𝑝,
+      Build( 𝑇𝐿, 𝑉𝐿 ),
+      Build( 𝑇𝑅, 𝑉𝑅 )
+   )
+}
+Function BuildKDTree( triangles 𝑇 )
+{
+   Voxel 𝑉= 𝑏𝑜𝑢𝑛𝑑𝑠 𝑇 
+   return Build( 𝑇, 𝑉 )
+}
+
+--- Page 17 ---
+Early Work
+Advanced Graphics – Acceleration Structures  
+ 
+ 
+ 
+ 
+ 
+ 
+            17
+Considerations
+▪Termination
+minimum primitive count, maximum recursion depth
+▪Storage
+primitives may end up in multiple voxels: required storage hard to predict
+▪Empty space
+empty space reduces probability of having to intersect primitives
+▪Optimal split plane position / axis
+good solutions exist – will be discussed later.
+
+--- Page 18 ---
+Early Work
+Advanced Graphics – Acceleration Structures  
+ 
+ 
+ 
+ 
+ 
+ 
+            18
+Traversal*
+1. Find the point 𝑃 where the ray enters the voxel
+2. Determine which leaf node contains this point
+3. Intersect the ray with the primitives in the leaf
+If intersections are found: 
+▪
+Determine the closest intersection
+▪
+If the intersection is inside the voxel: done
+ 
+ 
+ 
+ 
+*: Space-Tracing: a Constant Time Ray-Tracer, Kaplan, 1994
+
+--- Page 19 ---
+Early Work
+Advanced Graphics – Acceleration Structures  
+ 
+ 
+ 
+ 
+ 
+ 
+            19
+Traversal*
+1. Find the point 𝑃 where the ray enters the voxel
+2. Determine which leaf node contains this point
+3. Intersect the ray with the primitives in the leaf
+If intersections are found: 
+▪
+Determine the closest intersection
+▪
+If the intersection is inside the voxel: done
+4. Determine the point B where the ray leaves the voxel
+5. Advance P slightly beyond B
+6. Goto 1.
+Note: step 2 traverses the tree repeatedly – inefficient.
+*: Space-Tracing: a Constant Time Ray-Tracer, Kaplan, 1994
+
+--- Page 20 ---
+Early Work
+Advanced Graphics – Acceleration Structures  
+ 
+ 
+ 
+ 
+ 
+ 
+            20
+Traversal – Alternative Method*
+For interior nodes:
+1. Determine ‘near’ and ‘far’ child node
+2. Determine if ray intersects ‘near’ and/or ‘far’
+If only one child node intersects the ray:
+▪
+Traverse the node (goto 1)
+       Else (both child nodes intersect the ray):
+▪Push ‘far’ node to stack
+▪Traverse ‘near’ node (goto 1)
+For leaf nodes:
+1. Determine the nearest intersection
+2. Return if intersection is inside the voxel.
+*: Data Structures for Ray Tracing, Jansen, 1986.
+
+
+
+==================================
+FILE: Lectures\lecture 04 - the perfect BVH.pdf
+==================================
+
+--- Page 1 ---
+𝑰𝒙, 𝒙′ = 𝒈(𝒙, 𝒙′) 𝝐𝒙, 𝒙′ + න
+𝑺
+𝝆𝒙, 𝒙′, 𝒙′′ 𝑰𝒙′, 𝒙′′ 𝒅𝒙′′
+INFOMAGR – Advanced Graphics
+Peter Vangorp
+Lecture 4 - “The Perfect BVH”
+Welcome!
+
+--- Page 2 ---
+Today’s Agenda:
+▪Building Better BVHs
+▪Refitting
+▪Fast BVH Construction
+▪The Top-level BVH
+
+--- Page 3 ---
+Better BVHs
+Advanced Graphics – The Perfect BVH 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            3
+
+--- Page 4 ---
+Better BVHs
+Advanced Graphics – The Perfect BVH 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            4
+
+--- Page 5 ---
+Better BVHs
+Advanced Graphics – The Perfect BVH 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            5
+What Are We Trying To Solve?
+A BVH is used to reduce the number of 
+ray/primitive intersections.
+But: it introduces new intersections.
+The ideal BVH minimizes:
+▪# of ray / primitive intersections
+▪# of ray / node intersections.
+
+--- Page 6 ---
+Better BVHs
+Advanced Graphics – The Perfect BVH 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            6
+
+--- Page 7 ---
+Better BVHs
+Advanced Graphics – The Perfect BVH 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            7
+BVH versus kD-tree
+The BVH better encapsulates geometry.
+➔This reduces the chance of a ray hitting a 
+node.
+➔This is all about probabilities!
+What is the probability of a ray hitting a 
+random triangle?
+What is the probability of a ray hitting a 
+random node?
+This probability is proportional to surface area.
+
+--- Page 8 ---
+Better BVHs
+Advanced Graphics – The Perfect BVH 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            8
+Route 1: 10% up-time, $1000 fine
+Route 2: 100% up-time, $100 fine
+
+--- Page 9 ---
+Better BVHs
+Advanced Graphics – The Perfect BVH 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            9
+Optimal Split Plane Position
+The ideal split minimizes the expected cost  of a 
+ray intersecting the resulting nodes.
+This expected cost is based on:
+▪Number of primitives that will have to be 
+intersected
+▪Probability of this happening:
+node surface area 𝑆𝐴
+The cost of a split is thus:
+𝑆𝐴𝑙𝑒𝑓𝑡∗𝑁𝑙𝑒𝑓𝑡+ 𝑆𝐴𝑟𝑖𝑔ℎ𝑡∗𝑁𝑟𝑖𝑔ℎ𝑡
+
+--- Page 10 ---
+Better BVHs
+Advanced Graphics – The Perfect BVH 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            10
+Optimal Split Plane Position
+The ideal split minimizes the expected cost  of a 
+ray intersecting the resulting nodes.
+This expected cost is based on:
+▪Number of primitives that will have to be 
+intersected
+▪Probability of this happening
+The cost of a split is thus:
+𝑆𝐴𝑙𝑒𝑓𝑡∗𝑁𝑙𝑒𝑓𝑡+ 𝑆𝐴𝑟𝑖𝑔ℎ𝑡∗𝑁𝑟𝑖𝑔ℎ𝑡
+
+--- Page 11 ---
+Better BVHs
+Advanced Graphics – The Perfect BVH 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            12
+Optimal Split Plane Position
+Which positions do we consider?
+Object subdivision may happen over 
+x, y or z axis.
+The cost function is constant 
+between primitive centroids.
+➔For N primitives: 3(𝑁−1) 
+possible locations
+➔For a 2-level tree: (3(𝑁−1))2 
+configurations
+
+--- Page 12 ---
+Better BVHs
+Advanced Graphics – The Perfect BVH 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            13
+Surface Area Heuristic (SAH)
+and Termination
+A split is ‘not worth it’ if it doesn’t yield a 
+cost lower than the cost of the parent 
+node, i.e.:
+𝑆𝐴𝑙𝑒𝑓𝑡∗𝑁𝑙𝑒𝑓𝑡+ 𝑆𝐴𝑟𝑖𝑔ℎ𝑡∗𝑁𝑟𝑖𝑔ℎ𝑡≥𝑆𝐴∗𝑁
+This provides us with a natural and 
+optimal termination criterion.
+(and it solves the problem 
+of the Bad Artist)
+
+--- Page 13 ---
+Better BVHs
+Advanced Graphics – The Perfect BVH 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            14
+Optimal Split Plane Position
+The surface area heuristic  (SAH) is applied in a greedy manner*.
+ 
+ 
+ 
+ 
+ 
+*: Heuristics for Ray Tracing using Space Subdivision, MacDonald & Booth, 1990.
+
+--- Page 14 ---
+Better BVHs
+Advanced Graphics – The Perfect BVH 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            15
+Optimal Split Plane Position
+Comparing naïve versus SAH:
+▪SAH will cut #intersections in half;
+▪expect ~2x better performance.
+SAH & kD-trees:
+▪Same scheme applies.
+
+--- Page 15 ---
+Better BVHs
+Advanced Graphics – The Perfect BVH 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            16
+Median Split
+
+--- Page 16 ---
+Better BVHs
+Advanced Graphics – The Perfect BVH 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            17
+Surface Area Heuristic
+
+--- Page 17 ---
+Better BVHs
+Advanced Graphics – The Perfect BVH 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            18
+
+--- Page 18 ---
+Better BVHs
+Advanced Graphics – The Perfect BVH 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            19
+
+--- Page 19 ---
+Better BVHs
+Advanced Graphics – The Perfect BVH 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            20
+
+--- Page 20 ---
+Today’s Agenda:
+▪Building Better BVHs
+▪Refitting
+▪Fast BVH Construction
+▪The Top-level BVH
+
+
+
+==================================
+FILE: Lectures\lecture 05 - light transport.pdf
+==================================
+
+--- Page 1 ---
+𝑰𝒙, 𝒙′ = 𝒈(𝒙, 𝒙′) 𝝐𝒙, 𝒙′ + න
+𝑺
+𝝆𝒙, 𝒙′, 𝒙′′ 𝑰𝒙′, 𝒙′′ 𝒅𝒙′′
+INFOMAGR – Advanced Graphics
+Peter Vangorp
+Lecture 5 - “Light Transport”
+Welcome!
+
+--- Page 2 ---
+Today’s Agenda:
+▪Introduction
+▪The Rendering Equation
+▪Light Transport
+
+--- Page 3 ---
+Introduction
+Advanced Graphics – Light Transport  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            3
+Whitted
+
+--- Page 4 ---
+Introduction
+Advanced Graphics – Light Transport  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            4
+Whitted
+Beyond Whitted
+
+--- Page 5 ---
+Introduction
+Advanced Graphics – Light Transport  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            5
+Missing:
+▪Area lights
+▪Glossy reflections
+▪Caustics
+▪Diffuse interreflections
+▪Diffraction
+▪Polarization
+▪Fluorescence and phosphorescence
+▪Temporal effects
+▪Motion blur
+▪Depth of field
+▪Anti-aliasing
+All(?) light transport
+Whitted
+
+--- Page 6 ---
+Introduction
+Advanced Graphics – Light Transport  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            6
+Anti-aliasing
+Adding anti-aliasing to a Whitted-style ray tracer:
+Send multiple primary rays through each pixel, 
+and average their result.
+Problem:
+▪How do we aim those rays?
+▪What if all rays return the same color?
+
+--- Page 7 ---
+Introduction
+Advanced Graphics – Light Transport  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            7
+Anti-aliasing – Sampling Patterns
+Adding anti-aliasing to a Whitted-style ray tracer:
+Send multiple primary rays through each pixel, 
+and average their result.
+Problem:
+▪How do we aim those rays?
+▪What if all rays return the same color?
+
+--- Page 8 ---
+Introduction
+Advanced Graphics – Light Transport  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            8
+Anti-aliasing – Sampling Patterns
+
+--- Page 9 ---
+Introduction
+Advanced Graphics – Light Transport  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            9
+Anti-aliasing – Sampling Patterns
+
+--- Page 10 ---
+Introduction
+Advanced Graphics – Light Transport  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            10
+Anti-aliasing – Sampling Patterns
+
+--- Page 11 ---
+Introduction
+Advanced Graphics – Light Transport  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            11
+Anti-aliasing – Sampling Patterns
+Adding anti-aliasing to a Whitted-style ray tracer:
+Send multiple primary rays through each pixel, 
+and average their result.
+Problem:
+▪How do we aim those rays?
+▪What if all rays return the same color?
+More info: https://mynameismjp.wordpress.com/2012/10/24/msaa-overview 
+
+--- Page 12 ---
+Introduction
+Advanced Graphics – Light Transport  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            12
+Whitted
+Missing:
+▪Area lights
+▪Glossy reflections
+▪Caustics
+▪Diffuse interreflections
+▪Diffraction
+▪Polarization
+▪Fluorescence and phosphorescence
+▪Temporal effects
+▪Motion blur
+▪Depth of field
+✓Anti-aliasing
+
+--- Page 13 ---
+Introduction
+Advanced Graphics – Light Transport  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            13
+Distribution Ray Tracing*
+*: Distributed Ray Tracing, Cook et al., 1984
+Soft shadows
+
+--- Page 14 ---
+Introduction
+Advanced Graphics – Light Transport  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            14
+Distribution Ray Tracing*
+*: Distributed Ray Tracing, Cook et al., 1984
+?
+
+--- Page 15 ---
+Introduction
+Advanced Graphics – Light Transport  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            15
+Distribution Ray Tracing*
+*: Distributed Ray Tracing, Cook et al., 1984
+Glossy reflections
+
+--- Page 16 ---
+Introduction
+Advanced Graphics – Light Transport  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            16
+Distribution Ray Tracing*
+*: Distributed Ray Tracing, Cook et al., 1984
+
+--- Page 17 ---
+Introduction
+Advanced Graphics – Light Transport  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            17
+Distribution Ray Tracing
+Whitted-style ray tracing is a point sampling  algorithm:
+▪We may miss small features
+▪We cannot sample areas
+Area sampling:
+▪Anti-aliasing: area of one pixel
+▪Soft shadows: area of a light source
+▪Glossy reflection: directions in a cone
+▪Depth-of-field: area of the camera aperture
+▪Motion blur: times during the camera shutter time
+
+--- Page 18 ---
+Introduction
+Advanced Graphics – Light Transport  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            18
+Area Lights
+Visibility of an area light source:
+𝐴𝑣𝑖𝑠𝑖𝑏𝑙𝑒= න
+𝐴
+𝑉𝑥, ꙍ𝑖 𝑑𝐴
+Analytical solution case 1:
+𝐴𝑣𝑖𝑠𝑖𝑏𝑙𝑒= 𝐴𝑙𝑖𝑔ℎ𝑡−𝐴𝑙𝑖𝑔ℎ𝑡⋂𝑠𝑝ℎ𝑒𝑟𝑒
+Analytical solution case 2:
+𝐴𝑣𝑖𝑠𝑖𝑏𝑙𝑒= ?
+A
+x
+wi
+
+--- Page 19 ---
+Introduction
+Advanced Graphics – Light Transport  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            19
+Approximating Integrals
+An integral can be approximated as a Riemann sum:
+𝐴𝑟𝑒𝑎 = න
+𝐴
+𝐵
+𝑓(𝑥) 𝑑𝑥 ≈ ෍
+𝑖=1
+𝑁
+𝑓𝑡𝑖 𝛥𝑖, where ෍
+𝑖=1
+𝑁
+ 𝛥𝑖= 𝐵−𝐴
+Note that the intervals do not need to be uniform, as long as we 
+sample the full domain. If the intervals are uniform, then
+ ෍
+𝑖=1
+𝑁
+𝑓𝑡𝑖 𝛥𝑖= 𝛥𝑖෍
+𝑖=1
+𝑁
+𝑓𝑡𝑖= 𝐵−𝐴
+𝑁
+ ෍
+𝑖=1
+𝑁
+𝑓𝑡𝑖.
+Regardless of uniformity, restrictions apply to 𝑁 when sampling 
+multi-dimensional functions (ideally, 𝑁= 𝑀𝑑, 𝑀∈ℕ). Also 
+note that aliasing may occur if the intervals are uniform.
+Image from Wikipedia
+A
+B
+𝐴𝑟𝑒𝑎
+width x average height
+
+--- Page 20 ---
+Introduction
+Advanced Graphics – Light Transport  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            20
+Monte Carlo Integration
+Alternatively, we can approximate an integral by taking random 
+samples:
+𝐼𝑛𝑡𝑒𝑔𝑟𝑎𝑙 = න
+𝐴
+𝐵
+𝑓(𝑥) 𝑑𝑥 ≈𝐵−𝐴
+𝑁
+ ෍
+𝑖=1
+𝑁
+𝑓𝑋𝑖
+Here, 𝑋1. . 𝑋𝑁∈[𝐴, 𝐵].
+As 𝑁 approaches infinity, the Monte Carlo sum approaches the 
+expected total value of 𝑓(X) over [𝐴, 𝐵].
+Riemann sum:
+Divide the whole domain into pieces, calculate a function value in 
+each piece, and add up.
+Monte Carlo integration:
+Take some random samples from the whole domain, calculate the 
+function value at each sample, and add up.
+Unlike in Riemann sums, we can use arbitrary 𝑁 for Monte Carlo 
+integration, regardless of dimension.
+

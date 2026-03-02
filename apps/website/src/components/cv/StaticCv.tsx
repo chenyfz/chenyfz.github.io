@@ -8,6 +8,7 @@ import type {
   StaticCvCapability,
   StaticCvBullet
 } from '@/i18n/pages/static-cv/types';
+import RichText from './RichText';
 
 interface StaticCvProps {
   text: StaticCvPageCopy;
@@ -68,7 +69,7 @@ function HeaderSection({ intro, theme, headingFontFamily }: { intro: StaticCvPag
   return (
     <header className="space-y-4">
       <h1
-        className="leading-tight text-amber-700"
+        className="leading-tight text-[var(--primary-color)] text-[18px] md:text-[20px]"
         style={{ fontFamily: headingFontFamily, fontWeight: 400 }}
       >
         {intro.title}
@@ -92,7 +93,7 @@ function HeaderSection({ intro, theme, headingFontFamily }: { intro: StaticCvPag
 
       <p className="leading-relaxed">
         <span>{intro.objectiveLabel}{intro.objectiveSeparator}</span>
-        {intro.objective}
+        <RichText text={intro.objective} isDark={isDark} />
       </p>
     </header>
   );
@@ -102,13 +103,13 @@ function BulletContent({ bullet, theme }: { bullet: StaticCvBullet; theme: Theme
   const isDark = theme === 'dark';
 
   if (typeof bullet === 'string') {
-    return <span>{bullet}</span>;
+    return <RichText text={bullet} isDark={isDark} />;
   }
 
   return (
     <>
-      <span>{bullet.text}</span>
-      {bullet.detail && <span className={isDark ? 'text-white/60' : 'text-neutral-500'}>{bullet.detail}</span>}
+      <RichText text={bullet.text} isDark={isDark} />
+      {bullet.detail && <RichText text={bullet.detail} isDark={isDark} />}
       {bullet.muted && <p className={`mt-1 ${isDark ? 'text-white/60' : 'text-neutral-500'}`}>{bullet.muted}</p>}
     </>
   );
@@ -220,7 +221,7 @@ function CapabilitySection({ capabilities, label, theme, headingFontFamily }: { 
   return (
     <section className="space-y-3">
       <h2
-        className="text-amber-700"
+        className="text-[var(--primary-color)] text-[18px] md:text-[20px]"
         style={{ fontFamily: headingFontFamily, fontWeight: 400 }}
       >
         {label}
@@ -266,12 +267,14 @@ export default function StaticCv({ text, lang }: StaticCvProps) {
         <div className={`w-full space-y-10 xl:grid xl:justify-center ${pageGridClass} xl:gap-x-14 xl:gap-y-12 xl:space-y-0`}>
           <div className="space-y-0 xl:col-span-2">
             <HeaderSection intro={text.intro} theme={theme} headingFontFamily={headingFontFamily} />
-            <p className={`max-w-[1100px] leading-relaxed ${isDark ? 'text-white/95' : 'text-neutral-800'}`}>{text.summary.content}</p>
+            <p className={`max-w-[1100px] leading-relaxed ${isDark ? 'text-white/95' : 'text-neutral-800'}`}>
+              <RichText text={text.summary.content} isDark={isDark} />
+            </p>
           </div>
 
           <section className="space-y-3 xl:col-start-1">
             <h2
-              className="text-amber-700"
+              className="text-[var(--primary-color)] text-[18px] md:text-[20px]"
               style={{ fontFamily: headingFontFamily, fontWeight: 400 }}
             >
               {text.timelineLabel}

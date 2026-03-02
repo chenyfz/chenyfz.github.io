@@ -5,12 +5,22 @@ export type MastersCourseLink = {
   localized?: boolean;
 };
 
+export type MastersCourseMediaItem = {
+  type: 'image' | 'video';
+  src: string;
+  thumbnailSrc?: string;
+  alt: string;
+  caption?: string;
+};
+
 export type MastersCourse = {
   id: string;
   title: string;
   grade: string;
   description: string;
+  practice?: string;
   links?: MastersCourseLink[];
+  media?: MastersCourseMediaItem[];
 };
 
 export type MastersCoursePeriod = {
@@ -34,6 +44,9 @@ export type MastersCoursesPageCopy = {
   detailsTitle: string;
   gradePrefix: string;
   gradeSuffix: string;
+  showMediaLabel: string;
+  hideMediaLabel: string;
+  closeViewerLabel: string;
   years: MastersCourseYear[];
   courses: MastersCourse[];
 };

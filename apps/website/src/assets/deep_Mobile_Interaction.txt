@@ -1,0 +1,3444 @@
+--- Mobile Interaction (Year 1 - Period 4) ---
+
+
+
+==================================
+FILE: slide\INFOMMOB-2023_01_intro.pdf
+==================================
+
+--- Page 1 ---
+Disclaimer: These slides are password protected because 
+they might contain copyrighted material that is used for 
+pure educational purposes based on the Fair Use policy.
+http://en.wikipedia.org/wiki/Fair_use
+INFOMMOB 2023-2024
+lecture 1
+April 22, 2024
+
+--- Page 2 ---
+Mobile Interaction
+Organizational issues
+2
+§ Contact
+§ Schedule
+§ Lectures
+§ Projects
+§ Grading
+
+--- Page 3 ---
+ 
+Wolfgang Hürst
+            Email 
+huerst@uu.nl
+ 
+ 
+Start subject with [INFOMMOB].
+ 
+ 
+Email works better/faster than contact via MS Teams.
+ 
+ 
+Infrastructure used for the course:
+        Website 
+for news, updates, material, etc. 
+ 
+ 
+We are not using Blackboard.
+ 
+ 
+https://ics.uu.nl/docs/vakken/mmob/
+    MS Teams 
+for lecture recording & project organization. 
+ 
+ 
+Channel “General” is used to record lectures. 
+ 
+ 
+Channel “Projects” is used to coordinate the projects. 
+ 
+ 
+3
+
+--- Page 4 ---
+Date
+Lectures
+Practicals / project
+Mon, 22 Apr
+Lecture 1: Introduction
+Wed, 24 Apr
+Lecture 2: Technologies
+Fri, 26 Apr: Deadline for forming groups
+Mon, 29 Apr
+Lecture 3: Touch interaction
+Wed, 1 May
+Lecture 4: Human factors
+Fri, May 3: Sign up for meeting date
+Mon, 6 May
+Lecture 5: Gestures
+Wed, 8 May
+Lecture 6: Mobile evaluation
+Fri, 10 May: Deadline for pitch slides
+Mon, 13 May
+Project pitches
+Wed, 15 May
+Lecture 7: Mobile gaming
+Fri, 17 May: Deadline for project plans
+Mon, 20 May
+(Pentecost)
+Wed, 22 May
+Lecture 8: Mobile 3D & VR
+Mon, 27 May
+Lecture 9: Mobile AR
+Mon, 27 May: Deadline presentation slides
+Wed, 29 May
+Intermediate project presentations
+Mon, 3 Jun
+Wed, 5 Jun
+Q&A session (online)
+Fri, 7 Jun: Deadline peer review paper
+Mon, 10 Jun
+Tue, 11 Jun
+Exam (on Tuesday)
+Fri, 14 Jun: Deadline for peer review
+Mon, 17 Jun
+Wed, 19 Jun
+Fri, 21 Jun: Deadline for paper & report
+Wed, 26 Jun
+Project presentations & meetings (Jun 26-28)
+Tue, 9 Jul
+Retake exam
+
+--- Page 5 ---
+Lectures
+Generally, 2 per week in May (Mon & Wed, 11:00 till 12:45).
+ 
+Then mostly project-related events.
+ 
+Exceptions may apply (e.g., project presentations 9:00 till 12:45).
+Attendance expected; some might be mandatory 
+ 
+E.g.: project presentations.
+No book, but papers are provided; some mandatory.
+ 
+Lectures will be recorded (projects not). Don’t rely on it!
+→ Exam in mid-June; counts 50%.
+→ Info will be provided throughout the course.
+→ Covers the lectures and mandatory literature.
+→ Closed book exam on campus.
+5
+
+--- Page 6 ---
+Date
+Lectures
+Mon, 22 Apr
+Lecture 1: Introduction
+Basics
+(intro, technology, touch, evaluation, …)
+Wed, 24 Apr
+Lecture 2: Technologies
+Mon, 29 Apr
+Lecture 3: Touch interaction
+Wed, 1 May
+Lecture 4: Human factors
+Mon, 6 May
+Lecture 5: Gestures
+Wed, 8 May
+Lecture 6: Mobile evaluation
+Mon, 13 May
+Wed, 15 May
+Lecture 7: Mobile gaming
+Advanced topics & use cases
+(VR/3D, AR, gaming, …)
+Mon, 20 May
+(Pentecost)
+Wed, 22 May
+Lecture 8: Mobile 3D & VR
+Mon, 27 May
+Lecture 9: Mobile AR
+Wed, 29 May
+Mon, 3 Jun
+Wed, 5 Jun
+Q&A session (online)
+Mon, 10 Jun
+Tue, 11 Jun
+Exam (on Tuesday)
+Mon, 17 Jun
+Wed, 19 Jun
+Wed, 26 Jun
+Tue, 9 Jul
+Retake exam
+
+--- Page 7 ---
+Project
+First 3 weeks:
+Preparation phase (forming groups, finding topic).
+Last 6 weeks:
+Actual project (implementation, evaluation, analysis).
+Some project-related events (presentations).
+One big project done in teams (5 students, some with 6).
+Topic: freedom of choice (within certain limits).
+Details will be provided later.
+Presentations on campus, attendance mandatory.
+→ Grading at the end; counts 50%.
+→ Info will be provided later.
+7
+
+--- Page 8 ---
+8
+Grading
+Passing
+Exam
+•
+Lectures
+•
+Mandatory reading
+COUNTS 50%
+Must be at least 5.0 
+(before rounding)
+Project
+COUNTS 50%
+Must be at least 5.0 
+(before rounding)
+Final grade
+50% exam grade + 
+50% project grade
+Must be at least 5.5 
+(before rounding)
+Retakes:
+To qualify: final grade ≥ 4.0 and participation in mandatory events.
+If total < 5.5 and/or exam < 5.0 
+è retake exam.
+If project < 5.0 
+ 
+ 
+ 
+ 
+è retake project.
+Already passed? No retake, sorry.
+See also detailed description on 
+https://ics.uu.nl/docs/vakken/mmob/2023-24/mmob_description.html
+
+--- Page 9 ---
+9
+IMPORTANT NOTES
+ 
+1. Watch website for news & announcements
+The home/news page will be updated when anything 
+changes & will be used for announcements.
+Notice the password (see your emails)
+You need it to download the slides & papers.
+The password is mmobinfo (course acronym “switched”)
+2. Make sure to keep an eye on your email
+Important information may be communicated by email 
+on short notice (e.g., cancellations, deadline changes)
+Start subject with [INFOMMOB] when emailing me
+This makes it more likely to get a reply faster
+
+--- Page 10 ---
+10
+IMPORTANT NOTES
+3. Major communication will be by email and website.
+Contacting me by email is usually faster/better than via MS Teams.
+4. MS Teams only used for lecture recording & project org.
+Channel “General” is used to record the lectures.
+Channel “Projects” is used to coordinate the projects.
+Code for joining is chyhnc4 (see your emails).
+5. We will not be using Blackboard
+
+--- Page 11 ---
+Mobile Interaction
+Project
+11
+§ Initial information
+§ Group building
+
+--- Page 12 ---
+12
+Why a project?
+ 
+It’s a course about interaction, which is always better to understand 
+if you get some hands-on experience.
+Why one big project?
+In my experience this is a better preparation for the master thesis 
+(and your later work life) than smaller exercises.
+Group projects
+•
+Ideally, group members should complement in skills
+(e.g., programming vs. evaluation).
+•
+The course has mostly HCI & GMT students (plus few others). 
+Mixed groups are encouraged, but not enforced.
+Expected effort: ca. 105 hours per person
+This is a necessary but not a sufficient passing criteria.
+One big project in a group of 5 students
+ 
+(+/- 1 might be possible, but this needs to be discussed) => 6 okay this year
+
+--- Page 13 ---
+Project topic(s)
+13
+Topic: free to chose (within certain limits)
+•
+You can / must come up with your own ideas.
+•
+It must be related to / relevant for mobile interaction.
+•
+The goal of your project is to do a scientific research project 
+that makes a contribution to the field of mobile interaction.
+•
+Using mobile devices is preferred but not required.
+•
+Implementation is preferred but not required.
+When selecting your topic:
+•
+Consider your skills 
+(mobile programming experience or not, etc.)
+•
+Consider your personal goals 
+(e.g., learning about mobile programming)
+•
+Consider your available resources
+•
+Available time (105 hours times people in the group 
+minus communication overhead)
+•
+Devices (unfortunately we can’t provide them; sorry)
+
+--- Page 14 ---
+Date
+Lectures
+Practicals / project
+Mon, 24 Apr
+Preparation phase
+(form groups, brainstorm ideas)
+Wed, 26 Apr
+Fri, 26 Apr: Deadline for forming groups
+Mon, 1 May
+Wed, 3 May
+Fri, May 3: Sign up for meeting date
+Mon, 8 May
+Wed, 10 May
+Fri, 10 May: Deadline for pitch slides
+Mon, 15 May
+Project pitches
+Wed, 17 May
+Fri, 17 May: Deadline for project plans
+Mon, 22 May
+Actual project work
+(implementation, setup)
+(evaluation/experiments,
+result analysis & reporting)
+Wed, 24 May
+Mon, 29 May
+Mon, 27 May: Deadline presentation slides
+Wed, 31 May
+Intermediate project presentations
+Mon, 5 Jun
+Wed, 7 Jun
+Fri, 7 Jun: Deadline peer review paper
+Mon, 12 Jun
+Wed, 14 Jun
+Fri, 14 Jun: Deadline for peer review
+Mon, 19 Jun
+Wed, 21 Jun
+Fri, 21 Jun: Deadline for paper & report
+Wed, 28 Jun
+Project presentations & meetings (Jun 26-28)
+Tue, 11 Jul
+
+--- Page 15 ---
+1. Check the info on the course website
+https://ics.uu.nl/docs/vakken/mmob/2023-24/mmob_project.html
+2. Start forming groups via spreadsheet
+Check channel “Projects” in MS Teams
+Next steps (project)
+
+--- Page 16 ---
+Use the spreadsheet in MS Teams under “Projects → Files”
+to sign up for a group and find team members.
+It is your responsibility to sign up and find a group. 
+Deadline is Friday, April 26, 2024.
+
+--- Page 17 ---
+1. Check the info on the course website
+https://ics.uu.nl/docs/vakken/mmob/2023-24/mmob_project.html
+2. Start forming groups via spreadsheet
+Check channel “Projects” in MS Teams
+3. Start thinking about ideas
+Next steps (project)
+•
+The goal of your project is to do a scientific research project 
+that makes a contribution to the field of mobile interaction.
+•
+Using mobile devices is preferred but not required.
+•
+Implementation is preferred but not required.
+What type of projects can we do?
+
+--- Page 18 ---
+18
+Type A: 
+A sophisticated implementation of something that solves a mobile 
+interaction problem in a unique or good/better way plus a small user 
+study (e.g., usability) or other verification (e.g., proof of concept)
+Type B: 
+A small implementation of a mobile interaction approach or technique 
+plus a detailed evaluation
+Example from previous years: environment-dependent notification system 
+(phone senses user status & environment & adapts notifications accordingly)
+Example from previous years: a small game where you steer the character 
+either by tilting the device or via on-screen joystick (plus a comparative user 
+study evaluating performance and game play experience)
+Note: this can be very simple (if you 
+want to learn mobile programming) 
+or very advanced (if you have experience 
+and want to improve your skills)
+Note that you could also test small screen design aspects on a PC if you don’t want to program mobile.
+Type C: 
+A detailed evaluation of different mobile interaction approaches 
+with existing apps
+E.g., tilting vs. joystick 
+(see example for topic B)
+
+--- Page 19 ---
+19
+More (hopefully inspiring) examples will be provided 
+in the upcoming lectures (and this one). 
+But feel encouraged to come up with your own great ideas!
+
+--- Page 20 ---
+1
+Mobile Interaction
+Introduction
+20
+§ Mobile computing
+What is it, history, …
+§ Mobile interaction
+What is it, key characteristics, …
+Some initial examples
+
+
+
+==================================
+FILE: slide\INFOMMOB-2023_02_technology.pdf
+==================================
+
+--- Page 1 ---
+Disclaimer: These slides are password protected because 
+they might contain copyrighted material that is used for 
+pure educational purposes based on the Fair Use policy.
+http://en.wikipedia.org/wiki/Fair_use
+INFOMMOB 2023-2024
+lecture 2
+April 24, 2024
+
+--- Page 2 ---
+2
+Mobile Interaction
+Enabling Technologies
+2
+§ General state of the art
+Technical specs, platforms, …
+incl. displays: characterisitics, relevance for mobile, ...
+§ Sensors & senses
+Types, usage for interaction, relation to human senses, …
+§ Tilting as input method
+Sensors & characteristics, application & usage, ...
+
+--- Page 3 ---
+3
+Enabling technologies
+Source & further data: www.gsmarena.com
+Comparison of two “flagship” devices
+Apple iPhone 13
+Samsung Galaxy S22+
+Release date
+September 2021
+February 2022
+
+--- Page 4 ---
+4
+Apple iPhone 13
+Samsung Galaxy S22+
+Platform (OS)
+iOS 14.1, up to iOS 14.4.2
+Android 12
+OS wars
+Browser wars
+Mobile 
+OS wars
+80s
+90s
+00s
+10s
+• Huge markets è various players
+• Different approaches (each with pros & cons)
+• Note that related app store offer 
+(or lack thereof) is equally important as OS
+
+--- Page 5 ---
+5
+High performance
+• Moore’s law: number of components in a single chip 
+doubles every 18 months (expected for at least another decade)
+• Consequences: Decreased chip sizes, increased clock rates, 
+higher capacity for memory chips
+Yet, not true for energy per unit of computation
+• For mobiles: size & energy consumption 
+often more important than processing power
+GPUs: advanced graphics processing needed / expected these days
+PROCESSORS & 
+MEMORY
+Apple iPhone 13
+Samsung Galaxy S22+
+Chipset
+Apple A15 Bionic (5 nm)
+Exynos 2200 (4 nm) - Europe
+Qualcomm SDM8450 Snapdragon 8 Gen (4 nm) – ROW
+CPU
+Hexa-core (2x3.23 GHz 
+Alvalance + 4x1.82 GHz 
+Blizzard)
+Octa-core (1x2.8 GHz Cortex-X2 & 3x2.5 GHz Cortex-A710 & 
+4x1.8 GHz Cortex-510) - Europe
+GPU
+Apple GPU (4-core 
+graphics)
+Xclipse 920 - Europe
+Adreno 730 - ROW
+Internal memory
+128GB 4GB RAM, 256GB 
+4GB RAM, 512GB 4GB RAM
+128 GB, 8 GB RAM, 256 GB 8 GB RAM
+Card slot
+No
+No
+è Powerful, 
+lots of opportunities 
+for interaction 
+(incl., e.g., 3D graphics, 
+actions requiring high 
+processing power (AI)) 
+
+--- Page 6 ---
+6
+Network & 
+Communication
+Apple iPhone 13
+Samsung Galaxy S22+
+Network technology
+GSM/CDMA/HSPA/EVDO/LTE/5G
+GSM/CDMA/HSPA/EVDO/LTE/5G
+WLAN
+Wi-Fi 802.11 a/b/g/n/ac/6, dual-band, 
+hotspot
+Wi-Fi 802.11 a/b/g/n/ac/6, dual-band, 
+Wi-Fi Direct, hotspot
+Bluetooth
+5.0, A2DP, LE
+5.0, A2DP, LE
+GPS
+A-GPS, GLONASS, GALILEO, BDS, QZSS
+A-GPS, GLONASS, BDS, GALILEO
+NFC
+Yes
+Yes
+USB
+Lightning, USB 2.0
+USB Type-C 3.2, USB On-The-Go
+• Medium to long-range communication
+• WLAN, GSM, UMTS
+• Low power short range communication
+• Bluetooth, …
+• Usages & trends
+• Communication & data access
+• Cloud computing
+• “Personal” networks/data exchange
+è “Passive interaction,”
+ecosystems of devices
+
+--- Page 7 ---
+7
+ENERGY
+Apple iPhone 13
+Samsung Galaxy S22+
+Battery
+Non-removable Li-Ion 3240 mAh 
+battery (12.41 Wh)
+Non-removable Li-Ion 4500 mAh 
+battery
+Battery life
+Endurance rating(1) 89h
+Endurance rating(1) 97h
+SIZE
+Apple iPhone 13
+Samsung Galaxy S22+
+Dimensions
+146.7 x 71.5 x 7.7 mm 
+(5.78 x 2.81 x 0.30 in)
+157.4 x 75.8 x 7.6 mm 
+(6.20 x 2.98 x 0.30 in)
+Weight
+179 g (6.14 oz)
+195 g / 196 g (mmWave) (6.88 oz)
+• Energy capacity does not grow exponentially
+• Mobile imposes further restrictions (size & weight) 
+influencing battery size & performance
+è Some technical limitations still 
+exist (and likely always will)
+è Some form factor limitations still 
+exist (and likely always will)
+(1) The endurance rating gives you an idea of how much battery backup you can 
+get on a single charge. An overall rating of 40h means that you'll need to fully 
+charge the device in question once every 40 hours if you do one hour of 3G 
+calls, one hour of video playback and one hour of web browsing daily.
+
+--- Page 8 ---
+8
+DISPLAY
+Apple iPhone 13
+Samsung Galaxy S22+
+Type
+Super Retina XDR OLED, HDR10, 
+Dolby Vision, 800 nits (HBM), 1200 
+nits (peak)
+Dynamic AMOLED 2X, 120Hz, HDR10+, 
+1750 nits (peak)
+Size
+6.1 inches, 90.2 cm2
+(~86.0% screen-to-body ratio)
+6.6 inches, 105.3 cm2
+(~88.3% screen-to-body ratio)
+Resolution
+1170 x 2532 pixels, 19.5:9 ratio 
+(~460 ppi density)
+1080 x 2340 pixels, 19.5:9 ratio 
+(~393 ppi density)
+Multitouch
+Yes
+Yes
+• High quality (also with respect to reflection/light)
+• High resolution (compare this to TV & PC)
+• But how about size?
+Do you play AAA games on your mobile?
+Do you watch TV shows & movies on your phone?
+è What does that mean 
+for interaction?
+
+--- Page 9 ---
+9
+Apple iPhone 13
+2532 x 1170 pixels, 
+6.1 inches, ~460 ppi
+Samsung Galaxy S22+
+2340 x 1080 pixels, 
+6.6 inches, ~393 ppi 
+Digital cinema resolutions 
+(horiz. pixel count), usually: 
+ 2K (2048×1080)
+ 4K (4096×2160)
+Screen sizes & resolution
+Standard-definition telev. (SDTV)
+ 480i (NTSC)
+ 576i (PAL)
+Enhanced-definition telev. (EDTV)
+ 480p (720 × 480)
+ 576p (720 × 576)
+High-definition television (HDTV)
+ 720p (1,280 × 720)
+ 1080i, 1080p (1,920 × 1,080)
+Ultra-high-definition telev. (UHDTV)
+ 2160p (3,840 × 2,160)
+ 4320p (7,680 × 4,320)
+
+--- Page 10 ---
+10
+Viewing distance (TV)
+Source: http://www.rtings.com/tv/reviews/by-size/size-to-distance-relationship
+
+--- Page 11 ---
+11
+http://www.theverge.com/2012/3/14/2870533/ipad-review
+Display example: retina displays
+
+--- Page 12 ---
+12
+But be careful with marketing slang!
+Not everything that’s true in theory is also relevant in practice.
+Display example: retina displays
+
+--- Page 13 ---
+13
+Viewing distance (TV)
+Source: http://www.rtings.com/tv/reviews/by-size/size-to-distance-relationship
+
+--- Page 14 ---
+14
+wp = width resolution in pixels
+di = diagonal 
+size in inch
+PPI = dp / di 
+= pixels per inch (ppi)
+hp = height resolution 
+in pixels
+dp = √ (wp2 + hp2) 
+= diagonal resolution in pixels
+Technical specs: screen resolution vs. PPI
+
+--- Page 15 ---
+15
+How Apple defines the “Retina Display”:
+The term retina is justified based on the assertion that a display of 
+approximately 300 ppi at a distance of 12 inches (305 mm) from one’s 
+eye is the maximum amount of detail that the human retina can 
+perceive. With the iPhone expected to be used at a distance of about 
+12 inches from the eyes, a higher resolution would allegedly have no 
+effect on the image's apparent quality as the maximum potential of the 
+human eye has already been met.
+[from the “iPhone 4” Wikipedia page]
+ 
+iPhone 4s: 
+326 ppi, 3.5 inch (8.9 cm), 960×640 pixels 
+iPad:  
+264 ppi, 9.7 inch (25 cm), 2048×1536 pixels
+Display example: retina displays
+
+--- Page 16 ---
+16
+Display example: retina displays
+
+--- Page 17 ---
+17
+Comparative study on tablets with 90, 120, 180, 359 pixels per inch.
+Three tasks involving images, text, videos
+Pixel density: subjective & objective effects
+Results: Effect of pixel density 
+highly depends on content
+Text: clear differences in 
+perceived media qualities
+Images & videos: smaller effect 
+on perceived media quality, 
+no effect on objective measures
+Measured data:
+Subjective: Perceived effort, 
+perceived visual quality
+Objective: Task completion 
+time, error rate, body pose
+L. Lischke et al., Subjective and Objective
+Effects of Tablet's Pixel Density, ACM CHI ‘15.
+
+--- Page 18 ---
+Display technology is (still) 
+an actively developing field
+• Quality, energy consumption, …
+• Stereoscopic displays
+• E-paper displays
+• Bended screens
+• Flexible displays
+• Projected, 
+head-mounted, …
+Mobile display technology:
+trends & research
+
+--- Page 19 ---
+19
+Display technology is (still) 
+an actively developing field
+• Quality, energy consumption, …
+• Stereoscopic displays
+• E-paper displays
+• Bended screens
+• Flexible displays
+• Projected, 
+head-mounted, …
+Mobile display technology:
+trends & research
+E.g., Mini LED backlighting technology 
+for higher brightness and greater contrast  
+TCL’s Mini 
+LED on TVs 
+(introduced 
+in 2019)
+Apple’s 
+Liquid 
+Retina XDR 
+display 
+(introduced 
+in 2021)
+Image source: https://www.crumpe.com/2021/02/mini-led-tv-what-
+makes-samsung-neo-qled-lg-qned-and-tcl-od-zero-so-special/
+
+--- Page 20 ---
+20
+Display technology is (still) 
+an actively developing field
+• Quality, energy consumption, …
+• Stereoscopic displays
+• E-paper displays
+• Bended screens
+• Flexible displays
+• Projected, 
+head-mounted, …
+Mobile display technology:
+trends & research
+LG Optimus 
+3D (2011)
+Image source: 
+https://www.youtube.com/watch?v=7VaDpIzBM0M
+
+
+
+==================================
+FILE: slide\INFOMMOB-2024_03_touch.pdf
+==================================
+
+--- Page 1 ---
+Disclaimer: These slides are password protected because 
+they might contain copyrighted material that is used for 
+pure educational purposes based on the Fair Use policy.
+http://en.wikipedia.org/wiki/Fair_use
+INFOMMOB 2023-2024
+lecture 3
+April 29, 2024
+
+--- Page 2 ---
+Mobile Interaction
+Touch-based interaction
+2
+§ General context
+History, advantages & potential issues, 
+finger vs. stylus, …
+§ Technology
+State of the art, multi-touch, 
+new developments
+3
+
+--- Page 3 ---
+Touch screens for mobile interaction
+3
+Before 2007
+After 2007
+Why are they so popular?
+
+--- Page 4 ---
+Touch screens: Historical context
+4
+Generally considered more intuitive, easier to learn and operate, …
+Command Line Interfaces (CLIs),
+terminals & keyboards
+Graphical User Interfaces (GUI),
+keyboard & mouse,
+track balls, joysticks, 
+graphics tablets, …
+touch screens, …
+Remote control 
+(input space separate 
+from output space)
+Direct control 
+(input space = 
+output space)
+Direct 
+manipu-
+lation 
+interface
+
+--- Page 5 ---
+Touch screens: Historical context
+5
+Advantages come at a price 
+& further disadvantages exist, e.g.:
+• Accuracy, precision
+• Gorilla arm
+"Gorilla arm" was a side-effect of 
+vertically-oriented touch-screen or light-
+pen use. In periods of prolonged use, 
+users’ arms began to feel fatigue and/or 
+discomfort. This effect contributed to the 
+decline of touch-screen input despite 
+initial popularity in the 1980s.
+Source: Wikipedia 
+“Gesture recognition”
+But why no touchscreens in PC?
+
+--- Page 6 ---
+Touch screens: Historical context
+6
+“Revival” in desktop computing 
+due to success of mobile touch
+
+--- Page 7 ---
+Touch screens: Historical context
+7
+HP’s TouchSmart PC
+Gorilla arm is not a problem for short-term use, 
+since they only involve brief interactions, which do 
+not last long enough to cause gorilla arm.
+Source: Wikipedia “Gesture recognition”
+“Revival” in desktop computing 
+due to success of mobile touch
+Apple Touchscreen Patent
+Windows 8
+Microsoft Surface Studio 2
+
+--- Page 8 ---
+Touch screens for mobile interaction
+8
+• Direct manipulation (more intuitive, easier to learn, …)
+• Form factor (& how they are held/used) becomes an advantage
+E.g., handheld è no Gorilla arm, 
+ 
+small è easy to reach / no large distances
+Before 2007
+After 2007
+Why are they so popular for mobiles?
+
+--- Page 9 ---
+Touch screens for mobiles: Advantages 
+9
+https://youtu.be/t4OEsI0Sc_s?t=290, video 1 on course site.
+Watch the part from the iPhone keynote speech introducing the touchscreen 
+interface from ca. 4:50 min till ca. 8:20 min (when the slide “Software” comes up). 
+
+--- Page 10 ---
+Touch screens for mobiles: Advantages 
+10
+•
+No need for external hardware
+No additional input devices needed, 
+no styli (for some touch technologies), …
+(important for mobile; 1-handed-usage)
+•
+Direct manipulation & multi-touch
+Multi-touch is often considered 
+intuitive and “natural”
+(important for usage in different contexts, 
+on-the-go, distractions, …)
+•
+Maximizes screen estate
+Reduces need for additional buttons
+(important for small size devices)
+
+--- Page 11 ---
+Touch screens for mobiles: Advantages 
+11
+Quote from the presentation:
+“… And they all have these control buttons that are fixed 
+in plastic and are the same for every application. Well, 
+every application wants a slightly different user interface, 
+a slightly optimized set of buttons, just for it. And what 
+happens if you think of a great idea six months from 
+now? You can’t run around and add a button to these 
+things. They’re already shipped. So, what do you do? It 
+doesn’t work because the buttons and the controls can’t 
+change. They can’t change for each application, and they 
+can’t change down the road if you think of another great 
+idea you want to add to this product.
+Well, how do you solve this? Hmm. It turns out, we have 
+solved it! We solved it in computers 20 years ago. We 
+solved it with a bit-mapped screen that could display 
+anything we want. Put any user interface up. And a 
+pointing device. We solved it with the mouse.” 
+
+--- Page 12 ---
+Touch screens for mobiles: Advantages 
+12
+Application specific design, e.g.:
+• Music/media player
+• Gaming
+• Camera
+• Texting
+
+--- Page 13 ---
+Touch screens for mobiles: Advantages 
+13
+Software also gives us opportunities to do “new” things 
+(see first lecture), or existing things in a better way
+E.g., cameras: click to focus
+Note how many consumer 
+cameras are equipped with 
+touchscreens these days.
+
+--- Page 14 ---
+14
+https://www.youtube.com/watch?v=bimtzHrXDog, video 2 on course site (watch yourself after lecture)
+http://graphics.stanford.edu/projects/adaptivearmatures/
+Jane et al. (2020) Adaptive Photographic Composition Guidance. ACM CHI 2020
+Touch screens for mobiles: Advantages 
+Software also gives us opportunities to do “new” things 
+(see first lecture), or existing things in a better way
+E.g., “assisted picture taking”
+
+--- Page 15 ---
+15
+Example: digital cameras
+Convergence comes at a price:
+• Ergonomics  (harder to hold, …)
+• Performance  (despite quality improvements, …)
+& functionality (lack of optical zoom, ...)
+(see comments about convergence
+  vs. divergence in lecture 1)
+
+--- Page 16 ---
+Touch screens for mobiles: Potential issues …
+16
+And sometimes, touch interfaces are just 
+a bad replacement of physical buttons.
+Major problems: size & lack of haptic feedback
+“Size” is a problem for physical buttons, too, 
+but due to better haptic feedback, 
+people might be able to easier cope with it.
+More on this later.
+
+--- Page 17 ---
+Touch screens for mobiles: … and opportunities
+17
+Yet, again, software allows us 
+to cope with this (to some degree), 
+e.g., with better, new UI designs
+Note that there is a lot of research 
+on text entry for mobiles 
+(mostly related to touch UI & 
+interaction design)
+Text input by swiping
+Predictive text
+
+--- Page 18 ---
+18
+TapBoard: Making a Touch Screen Keyboard More Touchable
+Anchored typing. One finger is 
+repeating keystrokes while the other 
+fingers are resting on the keyboard
+https://www.youtube.com/watch?v=oyLC5UeCbsA , 
+video 3 on course site (watch yourself after lecture)
+Kim, S. et al. TapBoard: making a touch screen keyboard more touchable. ACM CHI 2013.
+
+--- Page 19 ---
+Touch screens for mobiles: Technologies
+19
+ 
+Better touch-
+ç screen quality 
+ 
+& performance
+ç Support of 
+multi-touch
+
+--- Page 20 ---
+Touch screens for mobiles: Technologies
+20
+ 
+Better touch-
+ç screen quality 
+ 
+& performance
+ç Support of 
+multi-touch
+https://genius.com/Steve-jobs-iphone-keynote-2007-annotated
+
+
+
+==================================
+FILE: slide\INFOMMOB-2024_04_human.pdf
+==================================
+
+--- Page 1 ---
+Disclaimer: These slides are password protected because 
+they might contain copyrighted material that is used for 
+pure educational purposes based on the Fair Use policy.
+http://en.wikipedia.org/wiki/Fair_use
+INFOMMOB 2023-2024
+lecture 4
+May 1, 2024
+
+--- Page 2 ---
+Mobile Interaction
+Human aspects & UI design
+2
+§ Human aspects & perception
+Sound, haptics, 
+vision & related UI design,
+multimodality, ergonomics
+4
+
+--- Page 3 ---
+3
+Introduction: UI design
+Achieving optimal performance, e.g., input speed which depends on:
+• Application: precision requirements of the task
+• Device: effective bandwidth of input device
+• Human: bandwidth of muscle group to which input device attaches
+Source: M. Rohs, course on Mobile Interaction, LMU, 2011-12
+Note that “speed” is not the only performance indicator.
+• E.g., accuracy might be equally or more important (and behave contrary).
+And other, non-performance-related goals might exist, e.g.:
+•  E.g., user engagement & experience
+Likewise, there can be additional influencing human factors, e.g.,
+• E.g., other human aspects, such as perception, ergonomics, …
+• E.g., social aspects & privacy
+
+--- Page 4 ---
+4
+→ Interaction design needs to find best match between technology 
+and human aspects for a certain task under given conditions.
+Technology
+Human aspects
+Context / conditions
+Task(s) / goal(s)
+Interaction design
+
+--- Page 5 ---
+5
+Human factors – Components of cognition
+§ Perception
+• Visual system
+• Auditory system
+• Haptic system
+§ Memory
+• Sensory memory
+• Short-term / working memory
+• Long-term memory
+§ Action
+• Motor system 
+• Skill acquisition
+Source: M. Rohs, course on Mobile Interaction, LMU, 2011-12
+
+--- Page 6 ---
+6
+Perception: Auditory system
+Ear drum (4) senses sound.
+Cochlea (10) translates sound 
+into nerve impulses.
+Source: M. Rohs, course on Mobile 
+Interaction, LMU, 2011-12
+§ Sound waves are measured in 
+• Frequency (Hz); changes in 
+pressure, perceived as pitch
+• Intensity (dB); amount of pressure, 
+perceived as loudness
+§ Audible frequency: 20 Hz – 15 kHz
+§ Spatial hearing 
+→ Cocktail party effect
+Examples of important aspect for mobile include:
+•
+Age affects hearing and loundess perception.
+•
+Perception of intensity not linear. E.g.: 
+Dial tone (70dB) can be preceived twice as loud as normal conversations (60dB).
+
+--- Page 7 ---
+7
+Audio for mobile interaction
+Output:
+• As an additional sensory cue
+• As an alternative / sole modality
+• Often used for notification
+• To focus user’s attention
+• For visually impaired people
+Many guidelines and 
+recommendations exist, e.g.,
+Auditory classifications
+§ Warnings
+§ Alters & notifications
+§ Error tones
+§ Voice notifications
+§ Feedback tones
+From “Designing Mobile 
+Interfaces”, S. Hoober 
+& E. Berkman
+Input:
+• Speech recognition
+• Music recognition (Shazam, …)
+
+--- Page 8 ---
+8
+Example: modified playback
+Podcasts & mobile e-learning players 
+often allow you to modify playback 
+speed. 
+Any idea why?
+
+--- Page 9 ---
+9
+Example: modified playback
+Faster, time stretched playback of speech:
+People can still …
+• … understand speech 
+at up to 1.5/1.7 playback rates
+• ... classify speech 
+at up to 2.0 playback rates
+Interfaces for quick skimming of speech:
+faster playback, pause shortening, pitch 
+analysis, etc.
+Barry Arons. 1997. SpeechSkimmer: a system 
+for interactively skimming recorded speech. 
+ACM Trans. Comput.-Hum. Interact. 4, 1 (March 
+1997), 3-38.
+
+--- Page 10 ---
+10
+Example: modified playback
+Faster playback:
+• Quick skim to recap
+• Skip content you already know
+• Searching for concrete parts
+Possible benefit for learning (higher 
+concentration level is enforced)
+Slower playback:
+• E.g., to better understand complex 
+issues (or foreign languages)
+Podcasts & mobile e-learning players 
+often allow you to modify playback 
+speed. 
+Any idea why?
+Hint: This can come in handy when repeating lecture recordings for exam preparation ;)
+
+--- Page 11 ---
+11
+Example: modified playback
+It even works for 
+(modified) 
+backward replay
+Potential usage:
+• Skim/go back to 
+concrete position 
+(compare to reading 
+a textbook)
+Hürst, W., Lauer, T. & 
+Bürfent, C. Playing speech 
+backwards for classification tasks. 
+Proc. of ICME 2005. 
+
+--- Page 12 ---
+12
+Example: earcons & tactons
+Tactons (tactile equivalent to icons)
+Studied by (e.g.) Brewster et al. with respect to 
+location, rhythm, duration, waveform, intensity
+http://www.dcs.gla.ac.uk/~stephen/generalearcons/generalearcons1.shtml
+Earcons (acoustic equivalent to icons)
+Goal: Usage of abstract, synthetic tones 
+in structured combinations to create auditory messages.
+A brief succession of pitches arranged in such a way 
+as to produce a tonal pattern sufficiently distinct 
+to allow it to function as an individual recognizable entity.
+
+--- Page 13 ---
+13
+Perception: Haptic system
+Haptic perception of mechanical stimuli
+• Tactile perception (skin reception)
+recognizes pressure, touch & vibration on the skin
+• Kinaesthetic perception/proprioception
+perception of body, limbs, muscles and joints
+• Temperature and pain perception
+Tactile perception
+• Resolution depends on position on body
+• Vibrations: maximum sensitivity at 250 Hz
+Vital for everyday interaction
+• Surface texture, weight of objects, …
+• E.g., grabbing a raw egg 
+without haptic perception?
+Source: M. Rohs, 
+Mobile Interaction, 
+LMU, 2011-12
+Feels like 
+two points
+Feels like 
+one point
+
+--- Page 14 ---
+14
+Haptic feedback for mobile interaction
+Output:
+• Often used for notification
+• As an additional sensory cue
+• As an alternative / sole modality
+• To focus user’s attention
+• For visually impaired people
+Recommendations & 
+guidelines for usage, e.g.:
+• Haptic sense can provide support 
+when the visual and auditory 
+channels are overloaded.
+• The touch sense can respond to 
+stimuli just as quickly as the 
+auditory sense and can respond 
+even faster than the visual sense 
+(Bailey 1996).
+• In high-noise-level areas or where 
+visual and auditory detection is 
+limited, haptics can provide an 
+advantage.
+From “Designing Mobile Interfaces,” 
+S. Hoober & E. Berkman
+Input:
+• Touch screen
+• 3D touch, 
+pressure sensitive input
+
+--- Page 15 ---
+15
+Haptic feedback via vibration motors
+Vibration:
+• Applies to the human sense of touch 
+or haptic sense
+• Sensed by our skin 
+(when touching phone, 
+when device vibrates in pocket, …)
+Can provide additional sensory 
+feedback (or replace other senses), 
+e.g., in noisy environments.
+(from 
+lecture 2)
+
+--- Page 16 ---
+16
+Haptic feedback via vibration motors
+Common usage in mobiles (usually phones, not tablets):
+• Notification, e.g., support or replacement of ring tones
+• Response, e.g., confirmation of button press
+• Also: additional feedback in apps 
+(e.g., games; stronger response & better experience)
+Critical issues:
+• Inappropriate or exaggerated usage 
+may reduce user’s attention 
+(tendency to ignore)
+• Considered annoying by some users
+(from 
+lecture 2)
+
+--- Page 17 ---
+17
+Study comparing touch vs. 
+touch with tactile vs. physical buttons
+Pilot study: typing mistakes
+• Wrong letters
+• Accidental slips
+• Accidental double taps
+Can we reduce the last two 
+with tactile feedback?
+Haptic feedback via vibration motors
+Brewster, Chohan, Brown (2007) 
+Tactile feedback for mobile interactions. 
+Proc. of ACM CHI 2007.
+
+--- Page 18 ---
+18
+Two types of feedback:
+• “Error” (slip or double tap)
+• “Correct” (all other)
+Subjective feedback strongly
+in favor of tactile condition
+Laboratory study:
+• More text, fewer errors, 
+more corrections
+Subway study:
+• Only corrections 
+significantly better
+Haptic feedback via vibration motors
+
+--- Page 19 ---
+19
+Tactons (tactile equivalent 
+to icons & earcons)
+Goal: Usage of abstract, synthetic tones in structured combinations to create 
+auditory messages
+A brief succession of pitches arranged in such a way as to produce a tonal pattern 
+sufficiently distinct to allow it to function as an individual recognizable entity
+L.M. Brown et al. (2006) Multidimensional tactons for non-visual 
+information presentation in mobile devices. Proceedings MobileHCI '06.
+Possible applications: notification, navigation aid, …
+Studied with respect to, e.g., 
+location, rhythm, duration, waveform, intensity
+Spatial location (on forearm, waist, hand) very effective
+• Good performance with up to 4 locations
+• Wrist and ankle less effective, especially mobile
+Example: haptics as 
+alternate/sole modality
+
+--- Page 20 ---
+20
+Shota Shiraga et al.: Designing Smartphone Feedback Based 
+on Vibration Impression. ACM CHI EA 2016
+Two-study approach
+1. Users specify patterns for pairs of adjectives 
+(e.g., cheerless/cheerful, awkward/elegant)
+2. Quantification of pattern impressions by 
+different users.
+Investigation of user impressions of varying 
+vibration patterns and characteristics
+Results
+1. Most vibration pattern characteristics were 
+expressed by four factors: cheerfulness, 
+potency, ordinariness and smoothness.
+2. Vibration intensity mostly associated with 
+cheerfulness
+3. Degree of variation relates to potency
+
+
+
+==================================
+FILE: slide\INFOMMOB-2024_05_gestures.pdf
+==================================
+
+--- Page 1 ---
+Disclaimer: These slides are password protected because 
+they might contain copyrighted material that is used for 
+pure educational purposes based on the Fair Use policy.
+http://en.wikipedia.org/wiki/Fair_use
+INFOMMOB 2023-2024
+lecture 5
+May 6, 2024
+
+--- Page 2 ---
+Mobile Interaction
+Touch interfaces 
+& gestures
+2
+§ Touch interaction design
+Multi-touch, challenges, research examples
+§ Gesture-based interaction
+Touch gestures, kinetic gestures
+5
+
+--- Page 3 ---
+Touch screen advantage: flexible, adaptive UI design
+3
+Application specific design
+Cons
+Pros
+Innovative ideas 
+to deal with lacks
+Different usages & 
+new applications 
+and functionality
+Compromises, e.g., in 
+performance & ergonomics
+Lack of tactile 
+feedback
+And other touchscreen problems
+
+--- Page 4 ---
+Multi-touch example: mobile web browsing
+4
+Before multi-touch became omnipresent:
+Various research on mobile web browser design 
+PocketWeb (1st mobile browser, 
+Teco, Uni Karlsruhe, 1994)
+Nokia 
+MiniMap
+Summary 
+thumbnails, MS 
+Research 2005
+Collapse-to-Zoom, 
+MS Research 2004
+
+--- Page 5 ---
+Multi-touch example: mobile web browsing
+5
+And today:
+• HD screens
+• Touch & multi-touch
+Flexible, fast & intuitive 
+zooming via multi-touch
+“Intelligent zooming” 
+via double click
+•
+And better mobile website design (& mobile interaction in general)
+Note how basic principles and ideas from 
+this earlier research are still reflected here.
+
+--- Page 6 ---
+Mobile interaction design:
+Guidelines to deal with common mobile/touch problems
+6
+Source: Advanced Mobile User Interfaces course, 
+P. Aarabi, University of Toronto
+Source: “Designing Mobile Interfaces,” 
+S. Hoober & E. Berkman, O’Reilly, 2012
+Examples:
+•
+Minimum area for touch 
+interaction = 10mm (3/8”)
+•
+Touch area should not be 
+smaller than visual target
+EASY
+HARD
+REACHABILITY
+Note: related scientific research 
+reports optimal target sizes 
+of 26mm to 10.5mm 
+(see Holz et al., CHI 2010)
+
+--- Page 7 ---
+7
+iOS Human 
+Interface Guidelines
+https://developer.apple.com/
+app-store/review/rejections/
+UI design recommen-
+dations & requirements
+Android’s 
+Material Design
+Design language developed by 
+Google (June 2014)
+Apple even rejects apps violating 
+their UI guidelines for publication 
+in the app store
+Mobile interaction design:
+Guidelines to deal with common mobile/touch problems
+
+--- Page 8 ---
+8
+Comparing visual style (bar slider, left, versus thumb slider, right) 
+and slider orientation (1st and 3rd versus 2nd and 4th) 
+with respect to input performance (value selection accuracy and time).
+Ashley Colley et al. (2019) 
+Investigating the Effect of 
+Orientation and Visual Style on 
+Touchscreen Slider Performance. 
+ACM CHI 2019
+Touch screen slider design
+See also 30sec clip (video 1 on course site): 
+https://www.youtube.com/watch?v=wNSM6-hCjKI
+Bar slider
+Thumb slider
+
+--- Page 9 ---
+9
+Screenshots from user study
+Visualization
+•
+Higher offset with thumb than with bar slider
+Possible reason: width of thumb
+•
+Thumb slider significantly faster than bar slider
+Possible reasons: Faster initial press and
+faster release due to ”suggested ambiguity” of 
+solution (see offset above)
+Comparative within-subjects user study 
+20 subjects, 101 values (0-100) per subject 
+for each of the 4 conditions
+Orientation
+•
+Higher offset distortion for vertical orientation
+(phones were held in left hand, operated with 
+index finger of the right hand)
+•
+No difference in interaction time
+Differences at varying slider ranges
+•
+Larger offsets in higher ranges (>70)
+
+--- Page 10 ---
+
+--- Page 11 ---
+Mobile interaction design:
+Research and innovative ideas to deal with problems
+11
+Common touch problems: 
+• Occlusion (fat finger problem)
+• Size and softness of fingertip (also fat finger problem)
+• Midas touch problem
+Note: we do not have these problems with a mouse
+The myth of King Midas 
+(Greek mythology)
+Wished he could turn 
+everything he touched 
+into gold.
+MOUSE
+TOUCH 
+SCREEN
+MOVE
+✓
+✗
+CLICK
+✓
+✓
+CLICK & 
+MOVE
+✓
+✓
+
+--- Page 12 ---
+Example: Dealing with occlusion
+12
+Enlarged area over the finger for small target selection 
+Vogel, D. and Baudisch, P., “Shift: A Technique 
+for Operating Pen-Based Interfaces Using 
+Touch,” Proceedings of CHI 2007
+Better performance compared to 
+offset cursor and regular touch
+Callouts
+
+--- Page 13 ---
+Example: Dealing with occlusion
+13
+Continuous versus 
+discrete update
+Akira Ishii et al. (2016) Evaluation of 
+Callout Design for Ultra-small Touch 
+Screen Devices. ACM CHI 2016 Extended 
+Abstracts.
+Pointer versus 
+no pointer
+Evaluating callouts design for tiny displays (e.g., smartwatches)
+
+--- Page 14 ---
+14
+Example: Physical limitations
+Does the fat finger problem lead to imprecision?
+Holz et al. (CHI 2010) The generalized perceived input point model and 
+how to double touch accuracy by extracting fingerprints.
+Study of touch contact point with respect to 
+user ID & finger posture (pitch, roll, and yaw)
+Note: user’s mental model is relevant, too
+→ Inaccuracy 
+not caused by 
+fat finger problem, 
+but by perceived 
+input point
+Observation: 
+offset (dotted area in (a)) to target area 
+Hypothesized outcome for 
+fat finger problem (a) and generalized 
+perceived input point model (b)
+→ Correcting offset based 
+on fingerprint 
+improves accuracy by 
+1.8 to 3.3
+
+--- Page 15 ---
+15
+Example: Taking advantage of “fat fingers”
+The Fat Thumb interaction technique:
+Uses the thumb’s contact size 
+as a form of simulated pressure
+https://www.youtube.com/watch?v=E9vGU5R8nsc, video 2 on course site
+Boring et al. (2012) The fat thumb: using the thumb's contact size for single-handed mobile interaction. MobileHCI 2012
+
+--- Page 16 ---
+Example: Advanced interaction design
+16
+30sec clip (video 3 on course site): https://www.youtube.com/watch?v=GFSbboPV7NI
+Le, H. V. et al. (2018). PalmTouch: Using the Palm as an Additional Input Modality on Commodity Smartphones. ACM CHI 2018
+
+--- Page 17 ---
+17
+A. Roudaut et al. (2009) MicroRolls: expanding touch-screen input vocabulary 
+by distinguishing rolls vs. slides of the thumb. Proceedings of CHI '09
+https://www.youtube.com/watch?v=bfH0-OqgbLw, 
+video 4 on course site
+Example: Taking advantage of “fat fingers”
+
+--- Page 18 ---
+Example: Taking advantage of “fat fingers”
+18
+https://www.youtube.com/watch?v=bfH0-OqgbLw, video 4 on course site
+
+--- Page 19 ---
+Example: Advanced interaction design
+19
+Mandatory reading (you find this paper & accompanying video on the course’s website):
+Corsten, Christian, et al.: Use the Force Picker, Luke: Space-Efficient Value Input on Force-
+Sensitive Mobile Touchscreens. ACM CHI 2018
+
+--- Page 20 ---
+Touch & multi-touch: conclusion
+20
+Flexible, adaptive interface design offers various 
+opportunities but also …
+• Lots of challenges 
+Including ones not discussed yet, e.g., for touch 
+gestures: learnability, discoverability, memory
+• Important guidelines
+Often based on human perception 
+and physical limitations
+• Room for new, creative solutions
+Lots of related research projects
+EASY
+HARD
+REACHABILITY
+
+
+
+==================================
+FILE: slide\INFOMMOB-2024_06_evaluation.pdf
+==================================
+
+--- Page 1 ---
+Disclaimer: These slides are password protected because 
+they might contain copyrighted material that is used for 
+pure educational purposes based on the Fair Use policy.
+http://en.wikipedia.org/wiki/Fair_use
+INFOMMOB 2023-2024
+lecture 6
+May 8, 2024
+
+--- Page 2 ---
+Mobile Interaction
+Mobile Evaluation
+2
+§ … in general
+Some remarks on what’s special 
+about mobile research
+§ … in this course
+Some remarks on the organization as well as
+tips and comments for your projects
+6
+
+--- Page 3 ---
+3
+Important aspects for HCI research
+Contribution
+What do you want to show, prove, do, …?
+Methodology
+How do you want to show, prove, do, … it?
+Relevant for all kind of 
+research, but particulary 
+difficult for HCI.
+• Interdisciplinary
+• Involvement of humans
+• …
+Science is about increasing knowledge 
+(in a particular research field)
+This is not a “normal” lecture, but one where I mostly provide general 
+background for the project and pointers where you can get more information.
+
+--- Page 4 ---
+4
+Research contributions in HCI
+Wobbrock & Keintz: Research Contributions 
+in Human-Computer Interaction, Interactions, 
+May-June 2016
+Empirical research contributions
+Artifact contributions
+Theoretical contributions
+Methodological contributions
+Dataset contributions
+Survey contributions
+Opinion contributions
+See first 3.5 lectures of the course 
+“Current Topics in Media Computing 
+and Human-Computer Interaction” 
+by J. Borchers, RWTH Aachen
+See links on website of our course.
+Test
+⚗
+🔬Look
+Make
+🛠
+Engineering & design
+Empirical science
+Ethnography
+Methodologies
+
+--- Page 5 ---
+5
+Hürst, W, Snoek, C. G. M., Spoel, W.-J. & Tomin, M.: Keep Moving! Revisiting 
+Thumbnails for Mobile Video Retrieval. In Proc. of ACM Multimedia 2010. 
+Hürst, W.O., Snoek, C. G. M., Spoel, W.-J. & Tomin, M.: Size matters! how thumbnail 
+number, size, and motion influence mobile video retrieval. In Proc. of MMM 2011.
+
+--- Page 6 ---
+6
+Problem with timeline slider interfaces for video scrolling:
+Granularity (small slider movements cause large jumps in file for long videos)
+Timeline-based video scrolling: ZoomSlider
+Wolfgang Hürst, Georg Götz, 
+Martina Welte: Interactive 
+Video Browsing on Mobile 
+Devices. Proceedings of ACM 
+Multimedia 2007, Augsburg, 
+Germany, September 2007.
+Note that this is very similar to fine-grain scrolling in the iPhone’s video player (integrated in 2009)
+
+--- Page 7 ---
+7
+Wolfgang Hürst, Miklas Hoet (2015) Sliders Versus Storyboards – Investigating 
+Interaction Design for Mobile Video Browsing, Proceedings of MMM 2015
+UI design for mobile video – Example
+Two-handed slider-
+based interaction
+
+--- Page 8 ---
+Research in mobile video
+8
+In all three cases, we did empirical research, but with a very different goal, 
+which resulted in very different experiment designs.
+Visual perception study 
+for mobile UI design
+Functionality of concrete 
+interface element
+Full system design 
+evaluation
+Basic
+Applied
+
+--- Page 9 ---
+9
+Survey of 102 publications (from 2000-2002) on mobile HCI research, 
+categorization by research method and purpose
+From: J. Kjeldskov & J. Paay. 2012. A longitudinal review of Mobile HCI research methods. Proc. of MobileHCI’12.
+Research methods in MobileHCI
+
+--- Page 10 ---
+Research methods in Mobile HCI
+10
+Survey of 102 publications (from 2000-2002) on mobile HCI research, 
+categorization by research method and purpose
+From: J. Kjeldskov & J. Paay. 2012. A longitudinal review of Mobile HCI research methods. Proc. of MobileHCI’12.
+Strong bias toward:
+• Building systems and
+• Evaluating them in 
+laboratory settings
+Note that terminology is not 
+always used consistently 
+(e.g., different interpretations 
+of “research purpose” exist)
+→ Lack of research for 
+understanding design and 
+use, and thus limited 
+cumulative knowledge on 
+mobile HCI
+
+--- Page 11 ---
+Research methods 
+in Mobile HCI
+11
+Follow-up survey of 144 publications 
+(from 2009) on mobile HCI research
+shows methodological change
+From: J. Kjeldskov & J. Paay. 2012. A 
+longitudinal review of Mobile HCI research 
+methods. Proc. of MobileHCI’12.
+• Large increase in mobile HCI 
+publications
+• Primarily empirical driven
+• Much higher number 
+of field studies
+• Focus on evaluating, 
+understanding, and 
+(still) engineering
+• Often multi-methodological
+
+--- Page 12 ---
+Interaction design: involved disciplines
+“The product is no longer the basis of 
+value. The experience is.”
+Venkat Ramaswamy, 
+The Future of Competition
+Psychology & 
+sociology 
+Graphic & 
+industrial design
+Comp. science 
+& engineering
+HCI & 
+inform. 
+systems
+From Section 9.3 Interaction design for mobile computers, 
+in The Encyclopedia of Human-Computer Interaction, 2nd Ed.
+12
+(from 
+lecture 1)
+Project note: Different disciplines 
+not only focus on different aspects, 
+but also have different methods 
+and approaches to problems.
+Picking the right approach for the 
+right problem is essential for a 
+successful research project.
+Mobile interaction is concerned 
+with the totality of user experience 
+& all factors that may contribute
+
+--- Page 13 ---
+Inter- and multidisciplinary research
+13
+Different disciplines (e.g., computer science, mathematics, physics, social 
+sciences, psychology, …) have different research communities.
+Within each community: accepted values, approaches, methodologies, ...
+Mobile interaction is traditionally multidisciplinary (see before), 
+and sometimes also interdisciplinary.
+Bottom line: Don’t just think about your idea, but also what type of research 
+you want to do & what type of contribution you want to make.
+Even within empirical research, there are many differences.
+Often, a multi-methodological approach works best 
+(e.g., a combination between an objective empirical 
+study with a more qualitative observational study).
+
+--- Page 14 ---
+Experimental research
+14
+Controlled vs. ”natural but uncontrolled” is particularly critical for mobile HCI!
+Lab 
+study
+(-) artificial
+(+) controlled
+(+) realistic
+(-) uncontrolled
+Real world 
+study
+”Considering realistic contexts in traditional lab studies is often not even possible  
+  because we know too little about what the realistic contexts are.”
+Quote from Henze, N., & Pielot, M. (2013). 
+App stores: external validity for mobile HCI. interactions, 20(2), 33-38.
+
+--- Page 15 ---
+Basic elements of an experimental study
+15
+Manipulation
+Modify values of 
+independent 
+variables
+Measurement
+Measure value of 
+dependent 
+variables for 
+each condition
+Comparison
+Compare obser-
+vations to support, 
+refute, or refine 
+hypothesis
+Control
+Control other variables to avoid influence on results
+For example: 
+Input mode 
+(tilt vs. touch)
+For example: 
+game score
+For example: game 
+score for tilt vs. touch
+For example: age, gender, experience, location, …
+
+--- Page 16 ---
+Experimental research
+16
+Confounding / extraneous variables = variables other than the independent 
+variables that might affect the dependent variable
+• They always exist; influence on results needs to be eliminated / minimized.
+Confounding variables have an impact on validity:
+• When controlled: higher confidence on causality → high internal validity
+• When left as random: reflect variation in natural use → high external validity
+Validity is a term describing the relevance and reliability of a result:
+• Internal validity: to what degree can we assume that 
+the effect does indeed result from the change of the independent variables?
+• External validity: to what degree can we generalize our results 
+to general conditions other than the ones under which we tested?
+
+--- Page 17 ---
+Experimental research
+17
+Lab study
+ 
++ fully controlled
+ 
+- artificial, usually limited in time, size, subjects, …
+Example: Lischke et al. CHI 2015 
+(see lecture 2)
+Field study
+ 
++ more realistic (context matters!)
+ 
+- less controlled, harder to interpret, complex,  …
+Example: Brewster et al. CHI 2007 
+(see lecture on “human aspects”)
+(“Massive”) online study
+ 
++ real usage (or not?)
+ 
+- no control at all (and no “conditional knowledge”)
+Example: Henze et al. CHI 2012 
+(see following slide)
+Internal
+External
+Validity
+Hint: you can also look at these papers 
+(and others) to get inspiration & blueprints 
+for setting up your own experiments 
+
+--- Page 18 ---
+Example for a (massive) online study
+18
+Comparison of three keyboard 
+variations:
+•
+Skew compensation
+•
+Label shifting
+•
+Touch position visualization
+Niels Henze, Enrico Rukzio, Susanne Boll: Observational and Experimental Investigation of 
+Typing Behaviour using Virtual Keyboards on Mobile Devices, CHI 2012 (best paper award).
+The paper does not only address a very relevant topic related to mobile interaction (text input 
+on touch screens) but also nicely discusses pros & cons of such massive online studies.
+
+--- Page 19 ---
+Experimental research
+19
+Lab study
+ 
++ fully controlled
+ 
+- artificial, usually limited in time, size, subjects, …
+Example: Lischke et al. CHI 2015 
+(see lecture 2)
+Field study
+ 
++ more realistic (context matters!)
+ 
+- less controlled, harder to interpret, complex,  …
+Example: Brewster et al. CHI 2007 
+(see lecture on “human aspects”)
+(“Massive”) online study
+ 
++ real usage (or not?)
+ 
+- no control at all (and no “conditional knowledge”)
+Example: Henze et al. CHI 2012 
+(see following slide)
+Internal
+External
+Validity
+Hint: you can also look at these papers 
+(and others) to get inspiration & blueprints 
+for setting up your own experiments 
+
+--- Page 20 ---
+Comments on 
+field studies
+20
+Context is an important aspect 
+in mobile. E.g., being in motion.
+• Guidelines from comparison of lab versus “artificial” walking conditions: 
+treadmill can yield representative performance measures, 
+but controlled walking scenarios more likely 
+to adequately simulate actual user experience.
+Barnard et al. (2005) An empirical comparison of use-in-motion evaluation scenarios for mobile 
+computing devices. Int. J. Hum.-Comput. Stud. 62, 4.
+• Comparison of lab and Experience Sampling Method (ESM) showed that 
+both can be informative to different aspects.
+Reyal et al. (2015) Performance and User Experience of Touchscreen and Gesture Keyboards in a 
+Lab Setting and in the Wild. Proceedings of ACM CHI 2015.
+• Significant differences found for lab versus field studies (e.g., frequency and 
+severity of usability problems, user behavior & subjective responses).
+Duh et al. (2005) Usability evaluation for mobile device: a comparison of laboratory and field tests. 
+Proceedings of MobileHCI 2006.
+
+
+
+==================================
+FILE: slide\INFOMMOB-2024_07_gaming.pdf
+==================================
+
+--- Page 1 ---
+Disclaimer: These slides are password protected because 
+they might contain copyrighted material that is used for 
+pure educational purposes based on the Fair Use policy.
+http://en.wikipedia.org/wiki/Fair_use
+INFOMMOB 2023-2024
+lecture 7
+May 15, 2024
+
+--- Page 2 ---
+2
+→ Interaction design needs to find best match between technology 
+and human aspects for a certain task under given conditions.
+Technology
+Human aspects
+Context
+Task(s) / goal(s)
+Interaction design
+
+--- Page 3 ---
+7
+Mobile Interaction
+Mobile gaming
+3
+§ History & general context
+Consoles & PC gaming & mobile consoles
+(plus related interaction issues), 
+mobile gaming landscape
+§ Interaction design
+General issues, diegesis theory, 
+onscreen controllers
+§ Interaction methods (comparisons)
+Touch GUIs (onscreen controllers) vs.
+touch gestures vs. kinetic gestures
+(device & face)
+
+--- Page 4 ---
+THE HISTORY OF GAMING
+CONSOLES
+Atari 2600 Joystick
+Atari 2600 
+Paddle
+https://en.wikipedia.org/wiki/Timeline_of_video_game_console_releases_in_North_America
+4
+Interesting papers in this context:
+Pace, J. (2013). The ways we play, part 1: 
+From PCs to Consoles to Mobile Phones. 
+Computer, 46(2)
+Pace, J. (2013). The ways we play, part 2: 
+Mobile game changers. Computer, 46(4)
+
+--- Page 5 ---
+THE HISTORY OF GAMING
+CONSOLES
+Atari 2600 Joystick
+Atari 2600 
+Paddle
+https://en.wikipedia.org/wiki/Timeline_of_video_game_console_releases_in_North_America
+5
+Global revenues of the video game industry from 1978 to 1990, not adjusted 
+for inflation. The 1983 crash had rippling effects across the video game 
+industry. Source: https://en.wikipedia.org/wiki/Video_game_crash_of_1983
+The video game crash of 1983
+(due to market saturation and the rise of PC gaming)
+Interesting papers in this context:
+Pace, J. (2013). The ways we play, part 1: 
+From PCs to Consoles to Mobile Phones. 
+Computer, 46(2)
+Pace, J. (2013). The ways we play, part 2: 
+Mobile game changers. Computer, 46(4)
+
+--- Page 6 ---
+THE HISTORY OF GAMING
+CONSOLES & PC GAMING
+https://en.wikipedia.org/wiki/Timeline_of_video_game_console_releases_in_North_America
+6
+Interesting papers in this context:
+Pace, J. (2013). The ways we play, part 1: 
+From PCs to Consoles to Mobile Phones. 
+Computer, 46(2)
+Pace, J. (2013). The ways we play, part 2: 
+Mobile game changers. Computer, 46(4)
+
+--- Page 7 ---
+1997: 
+Golden
+Eye
+THE HISTORY OF GAMING
+CONSOLES & PC GAMING – 
+INTERFACES & CONTROLLERS
+Atari 2600 Joystick
+Atari 2600 
+Paddle
+1960s: First 
+computer mouse
+Atari 2600 
+Joystick
+Atari 2600 
+Paddle
+N64 
+Controller
+Gaming mice
+ & keyboards
+Playstation 1 
+Controller
+Playstation 3 
+Controller
+Wii, Move 
+& Kinect
+7
+2001: HALO
+1993: DOOM
+“.. most of the 90s it seemed 
+that consoles were good for 
+certain kinds of games and 
+PCs for others …”
+
+--- Page 8 ---
+THE HISTORY OF GAMING
+MOBILE CONSOLES
+http://www.gizmodo.com.au/2009/04/the_definitive_game_boy_timeline-2/
+Example: Nintendo Game Boy
+8
+
+--- Page 9 ---
+5/15/24
+W. Hürst, http://people.cs.uu.nl/huerst
+9
+http://www.gizmodo.com.au/2009/04/the_definitive_game_boy_timeline-2/
+Example: Nintendo Game Boy
+THE HISTORY OF GAMING
+MOBILE CONSOLES
+
+--- Page 10 ---
+1979: Microvision
+1989: Game Boy
+1989: Atari Lynx
+1990: Sega Game Gear
+10
+THE HISTORY OF GAMING
+MOBILE CONSOLES
+2004: Nintendo DS
+2004: PSP
+
+--- Page 11 ---
+THE HISTORY OF GAMING
+MOBILE CONSOLES & PHONES
+1979: Microvision
+1989: Game Boy
+1989: Atari Lynx
+1990: Sega Game Gear
+1983: Motorola 
+DynaTAC 8000X
+2003: Nokia 
+N-Gage
+Ca. 1997: Mobile gaming 
+on phones begins
+Snake (one of the first & most 
+popular mobile games)
+2007: 
+iPhone
+2008: 
+App store
+11
+THE HISTORY OF GAMING
+MOBILE CONSOLES & PHONES
+2004: PSP
+2004: Nintendo DS
+
+--- Page 12 ---
+THE HISTORY OF GAMING
+THE MOBILE GAMING LANDSCAPE
+Ca. 1997: Mobile gaming 
+on phones begins
+Snake (one of the first & most 
+popular mobile games)
+2008: 
+App store
+2007: 
+iPhone
+2010: iPad
+Casual games
+•
+Angry Birds
+•
+Flight Control
+•
+Words with Friends
+Social gaming
+•
+Farmville 
+(Facebook)
+Ø New genres appear
+Ø New user groups are 
+attracted to gaming
+Ø Likewise, hardcore 
+gamers also become 
+attracted to casual 
+gaming
+12
+
+--- Page 13 ---
+https://www.polygon.com/features/2020/5/24/21267790/
+quarantine-new-gamers-covid-19
+13
+
+--- Page 14 ---
+Casual games:
+Played in different contexts (bus, bed, …)
+Ø Needs to be considered 
+in interaction design
+Examples:
+•
+Bus: 1-handed, “shaky” environment
+•
+Shorter levels, easy to interrupt & continue, 
+…
+Conventions for good (touch) interaction design for games 
+are still evolving but starting to become more established.
+14
+THE HISTORY OF GAMING
+THE MOBILE GAMING LANDSCAPE
+Appealing to & targeted for 
+general audiences
+Ø Interaction needs to be intuitive, 
+easy to learn & understand
+
+--- Page 15 ---
+Possible due to 
+technological 
+improvement (power, 
+screen quality, …)
+Ø Popular with hardcore gamers
+Ø More and more casual gamers 
+attracted to it, too
+Conventions for good (touch) interaction design still evolving, 
+still lots of open questions (see traditional PC/console gaming).
+15
+THE HISTORY OF GAMING
+THE MOBILE GAMING LANDSCAPE
+AAA games
+(= titles with Hollywood-
+sized budgets and large 
+development teams)
+
+--- Page 16 ---
+THE STATUS & FUTURE OF GAMING
+INTERACTION
+Mostly controllers, 
+plus some others, e.g., 
+kinetic gestures (Wii, Kinect) 
+Mostly touch, 
+plus some others, 
+e.g., tilting of device
+16
+But well-established guidelines for mobile do not exist yet 
+(compare this to 3D/FPS games on consoles in the 90s)
+My prediction:
+• Some borders will stay, others will converge (see Nintendo Switch)
+• This will be complemented by AR & VR gaming
+• Mutual benefit in new ideas, approaches, … 
+in all aspects (including interaction)
+
+--- Page 17 ---
+7
+Mobile Interaction
+Mobile gaming
+17
+§ History & general context
+Consoles & PC gaming & mobile consoles
+(plus related interaction issues), 
+mobile gaming landscape
+§ Interaction design
+General issues, diegesis theory, 
+onscreen controllers
+§ Interaction methods (comparisons)
+Touch GUIs (onscreen controllers) vs.
+touch gestures vs. kinetic gestures
+(device & face)
+
+--- Page 18 ---
+MOBILE GAMING
+INTERACTION
+2004: PSP
+2003: Nokia 
+N-Gage
+Snake (one of the first & most 
+popular mobile games)
+1989: Game Boy
+2011: PlayStation Vita
+2010: 
+Nintendo 3DS
+2007: 
+iPhone
+2014: 
+iPhone 6
+Touch 
+(& others, e.g., tilting)
+Hard buttons
+(similar to 
+console controllers)
+18
+
+--- Page 19 ---
+MOBILE GAMING
+TOUCH INTERACTION & UI DESIGN
+Known issues with touch and 
+relation to mobile gaming:
+• Small screens (of different sizes; 
+see tablets vs. phones)
+• Different user communities 
+(casual vs. hardcore gamers)
+• Different locations 
+(bus, couch, bed, …)
+• Different goals (killing time, …)
+Ø Remember: context matters!
+Touch UI design:
+• General guidelines exist
+• Some suitable for gaming
+• Others not
+"In general, avoid defining new gestures 
+unless your app is a game. In games and 
+other immersive apps, custom gestures 
+can be a fun part of the experience. 
+But in apps that help people do things 
+that are important to them, it’s best 
+to use standard gestures because 
+people don’t have to make an effort to 
+discover them or remember them.”
+From Apple’s iOS 
+Human Interface Guidelines
+19
+
+--- Page 20 ---
+20
+Flow theory in UI design
+Flow in positive psychology, also known colloquially as being in the zone, is 
+the mental state in which a person performing some activity is fully 
+immersed in a feeling of energized focus, full involvement, and enjoyment 
+in the process of the activity.
+Source: https://en.wikipedia.org/wiki/Flow_(psychology)
+Source: https://bootcamp.uxdesign.cc/flow-theory-in-
+human-computer-interaction-design-f7319c54e4c4
+
+
+
+==================================
+FILE: slide\INFOMMOB-2024_08_3d.pdf
+==================================
+
+--- Page 1 ---
+Disclaimer: These slides are password protected because 
+they might contain copyrighted material that is used for 
+pure educational purposes based on the Fair Use policy.
+http://en.wikipedia.org/wiki/Fair_use
+INFOMMOB 2023-2024
+lecture 8
+May 22, 2024
+
+--- Page 2 ---
+Mobile Interaction
+Mobile 3D and
+virtual reality
+2
+§ Mobiles for VR
+Using smartphones for VR HMDs
+§ VR on mobiles
+Creating virtual & 3D experiences on mobiles
+(different approaches, …)
+§ 3D interfaces & 3D interaction
+3D interfaces on mobiles, 
+embodied interaction
+8
+
+--- Page 3 ---
+3
+Sensorama (1950s)
+First VR/AR head mounted 
+display (Ian Sutherland, 1968)
+H. Gernsback, 
+TV Glasses, 1963
+View-Master, a stereoscopic 
+visual simulator (1939)
+VIRTUAL REALITY
+Related historical 
+developments (till 70s)
+First boom
+(80s-90s)
+Second boom
+(2010s-?)
+
+--- Page 4 ---
+4
+1987: J. Lanier 
+coins the term 
+“virtual reality”
+VIRTUAL REALITY
+Related historical 
+developments (till 70s)
+First boom
+(80s-90s)
+Second boom
+(2010s-?)
+The virtual environment 
+display system by 
+NASA, 1984
+CAVE by Electronic 
+Visualization Lab, 
+Chicago, 1990
+BOOM (Binocular Omni-
+Orientation Monitor by 
+Electronic Visualization 
+Lab, Chicago, 1990
+Nintendo 
+VirtualBoy 
+(1995)
+Sega VR 
+(mid 90s)
+(Failed) attempts for 
+consumer markets
+
+--- Page 5 ---
+5
+VIRTUAL REALITY
+Related historical 
+developments (till 70s)
+First boom
+(80s-90s)
+Second boom
+(2010s-?)
+Oculus Rift 
+(2010s)
+Google Cardboard
+Samsung Gear VR
+Sony PlayStation VR
+
+--- Page 6 ---
+6
+First VR/AR head mounted 
+display (Sutherland, 1968)
+VIRTUAL REALITY
+Related historical 
+developments (till 70s)
+First boom
+(80s-90s)
+Second boom
+(2010s-?)
+The virtual environment 
+display system (NASA, 1984)
+Google Cardboard
+Oculus Rift 
+(2010s)
+Question: what is the key technology 
+enabler that led to this 2nd boom?
+
+--- Page 7 ---
+7
+Source: keynote speech “The Coming Revolution in Virtual Reality: a Historical Perspective” 
+by Henry Fuchs, University of North Carolina at Chapel Hill, USA, at IEEE ISM 2015, Dec 14.
+
+--- Page 8 ---
+8
+First VR/AR head mounted 
+display (Sutherland, 1968)
+VIRTUAL REALITY
+Related historical 
+developments (till 70s)
+First boom
+(80s-90s)
+Second boom
+(2010s-?)
+The virtual environment 
+display system (NASA, 1984)
+Google Cardboard
+Oculus Rift 
+(2010s)
+Smartphones created a mass market for cheap but high-
+quality small-sized displays also needed for high-quality VR
+
+--- Page 9 ---
+Basic principles of VR head mounted displays (HMDs)
+9
+Virtual reality 
+view
+Reality
+Lenses are used to project 
+image at viewable distance 
+and distort accordingly.
+Separate image for left and right 
+eye enable stereoscopic views
+Note that this is pretty 
+much the same principle 
+already used in the 1930s. 
+
+--- Page 10 ---
+Basic principles of VR head mounted displays (HMDs)
+10
+Virtual reality 
+view
+Reality
+Inertial measurement unit (IMU) = an electronic device 
+that measures and reports a body's specific force, angular 
+rate, and sometimes the magnetic field surrounding the 
+body, using a combination of accelerometers and 
+gyroscopes, sometimes also magnetometers.
+IMUs are used 
+to map perspective 
+to head orientation
+
+--- Page 11 ---
+Basic principles of VR head mounted displays (HMDs)
+11
+Virtual 
+reality HMD
+Big differences exist between 
+HMDs based on (e.g.):
+•
+Processing power & performance
+•
+Screen resolution (quality) &
+size (FOV, peripheral view, …)
+•
+Tracking accuracy & 
+speed (real-time, …), 
+and degrees of freedom!
+
+--- Page 12 ---
+12
+First VR/AR head mounted 
+display (Sutherland, 1968)
+VIRTUAL REALITY
+Related historical 
+developments (till 70s)
+First boom
+(80s-90s)
+Second boom
+(2010s-?)
+The virtual environment 
+display system (NASA, 1984)
+Google Cardboard
+Oculus Rift 
+(2010s)
+Virtual reality with HMDs (head mounted displays)
+But there are also other kinds of VR …
+
+--- Page 13 ---
+13
+VIRTUAL REALITY
+Related historical 
+developments (till 70s)
+First boom
+(80s-90s)
+Second boom
+(2010s-?)
+The virtual environment 
+display system by 
+NASA, 1984
+CAVE by Electronic 
+Visualization Lab, 
+Chicago, 1990
+BOOM (Binocular Omni-
+Orientation Monitor by 
+Electronic Visualization 
+Lab, Chicago, 1990
+Second Life, 3D games, Google Earth, …
+Keep in mind 
+that this was a time 
+when 3D graphics 
+was still in its infancy.
+3D graphics
+Head-tracking
+→ Fish tank VR
+Stereoscopy
+Dedicated VR setups
+VR on desktops
+
+--- Page 14 ---
+3D graphics
+14
+Perspective projection
+3D scene is projected 
+onto 2D display
+Problems / lack of realism due to:
+•
+No stereoscopy
+•
+Potential mismatch between 
+virtual camera & location of eyes
+virtual 
+camera
+& human 
+observer
+
+--- Page 15 ---
+Change in distance 
+from screen
+virtual 
+camera
+human 
+observer
+3D graphics
+15
+Perspective projection
+Motions to 
+the side
+Solution:
+Head tracking & 
+off-axis projection
+virtual 
+camera
+human 
+observer
+Mismatch of 
+virtual camera 
+& location of eyes
+
+--- Page 16 ---
+Fish tank VR example
+16
+Using the Wii remote controller to implement Fish tank VR (by Johnny Lee)
+https://www.youtube.com/watch?v=Jd3-eiid-Uw
+(video 1 & 2 on course site)
+The first minute 
+explains the problem.
+Starting at ca. 2:29 min, 
+the implementation is 
+demonstrated.
+Around 3:15 min, 
+you see one problem: 
+the collision of an object 
+with the screen border 
+destroys the illusion.
+
+--- Page 17 ---
+Fish tank VR example
+Using the Wii remote controller to implement Fish tank VR (by Johnny Lee)
+
+--- Page 18 ---
+Fish tank VR example
+Using the Wii remote controller to implement Fish tank VR (by Johnny Lee)
+
+--- Page 19 ---
+Fish tank VR example
+19
+Using the Wii remote controller to implement Fish tank VR (by Johnny Lee)
+https://www.youtube.com/watch?v=Jd3-eiid-Uw
+(video 1 & 2 on course site)
+The first minute 
+explains the problem.
+Starting at ca. 2:29 min, 
+the implementation is 
+demonstrated.
+Around 3:15 min, 
+you see one problem: 
+the collision of an object 
+with the screen border 
+destroys the illusion.
+There is another issue 
+that causes this to look 
+less realistic in real life 
+(compared to the video). 
+What is it?
+
+--- Page 20 ---
+The virtual environment 
+display system by 
+NASA, 1984
+CAVE by Electronic 
+Visualization Lab, 
+Chicago, 1990
+BOOM (Binocular Omni-
+Orientation Monitor by 
+Electronic Visualization 
+Lab, Chicago, 1990
+20
+VIRTUAL REALITY
+Related historical 
+developments (till 70s)
+First boom
+(80s-90s)
+Second boom
+(2010s-?)
+Dedicated VR setups
+How to create such 
+3D / VR environments 
+on mobiles?
+And how to interact 
+with them?
+Second Life, 3D games, Google Earth, …
+Keep in mind 
+that this was a time 
+where 3D graphics 
+was still in its infancy
+3D graphics
+Head-tracking
+→ Fish tank VR
+Stereoscopy
+VR on desktops
+
+
+
+==================================
+FILE: slide\INFOMMOB-2024_09_ar.pdf
+==================================
+
+--- Page 1 ---
+Disclaimer: These slides are password protected because 
+they might contain copyrighted material that is used for 
+pure educational purposes based on the Fair Use policy.
+http://en.wikipedia.org/wiki/Fair_use
+INFOMMOB 2023-2024
+lecture 9
+May 27, 2024
+
+--- Page 2 ---
+Mobile Interaction
+Mobile augmented reality
+2
+§ Mobile AR
+What is AR, what is mobile AR, 
+different options / incarnations,
+tracking & registration
+§ Mobile AR interaction
+3D object manipulation,
+Mobile AR drawing / authoring
+9
+
+--- Page 3 ---
+3
+Augmented reality
+REALITY
+AR
+VR
+Informally speaking, augmented reality 
+combines reality with virtuality.
+(We will see a formal definition later.)
+There are various ways to achieve that.
+(Note: we will focus on visual AR here, which is the most 
+common case. But other modalities can be augmented, too.)
+
+--- Page 4 ---
+4
+Various options for AR depending on display technology
+Source: Bimber et al. Modern approaches to augmented reality. ACM SIGGRAPH 2007 courses.
+Real object 
+(reality)
+Virtual object 
+(augmentation)
+Human
+Experiences (sees) a 
+new, augmented reality 
+as if it was all real.
+Note: Use cases exist 
+where we want humans 
+to be able to distinguish 
+between real and virtual 
+parts of the AR.
+Augmented reality (AR)
+
+--- Page 5 ---
+5
+Various options for AR - Examples
+Different options exist:
+Video see-through,
+optical see-through
+virtual retinal displays
+handheld AR
+head-attached/-worn AR
+spatial AR
+AR contact 
+lenses
+E.g., projections 
+into environment
+
+--- Page 6 ---
+6
+Handheld AR
+Basic principle:
+•
+Handheld device 
+(phone, tablet, etc.)
+•
+Life feed from video cam 
+(= reality)
+•
+Added 3D graphics 
+(= augmented reality)
+Different options depending on 
+sensors used for tracking.
+
+--- Page 7 ---
+VRScout - Changing the future 
+of classroom education.
+https://twitter.com/VRScout/status/868546691493838848
+7
+Handheld AR has many 
+limitations, but also huge 
+advantages and potential.
+Potential key benefits:
+• Ubiquitous availability
+• Collaboration
+• Spatial understanding
+https://twitter.com/VRScout/statu
+s/868546691493838848
+[video 1 on course site]
+VRScout - Changing the 
+future of classroom 
+education.
+
+--- Page 8 ---
+https://blog.google/products/google-vr/google-lens-real-time-
+answers-questions-about-world-around-you/
+https://developers.google.com/ar/
+Google Lens
+Google ARCore
+Development platform 
+for building AR apps 
+for Android mobile 
+devices
+https://www.youtube.com/watch?v=bqD9i4_S87s
+[video 2 on course site, watch for yourself]
+
+--- Page 9 ---
+9
+https://blog.google/products/google-lens/new-google-lens-features-help-you-be-more-productive-home/
+Learn new words and 
+how to pronounce them
+Copy text from paper to your laptop
+New Google Lens features to help you be more productive at home
+
+--- Page 10 ---
+10
+https://twitter.com/cyrildiagne/status/1256916982764646402
+https://twitter.com/cyrildiagne/status/1256916986816315392
+[video 3 on course site]
+AR Copy Paste
+BASNet (Qin et al, CVPR 
+2019) is used for salient 
+object detection and 
+background removal
+x/y screen 
+coordinates on the 
+screen are found 
+via OpenCV SIFT 
+based on camera 
+image and 
+screenshot from 
+computer.
+
+--- Page 11 ---
+11
+https://sodar.withgoogle.com/
+Sodar – Use AR to visualise social distancing guidelines around you.
+
+--- Page 12 ---
+https://youtu.be/i3QOGqochio?t=14
+[video 4 on course site]
+Google Maps AR view
+Images source: https://www.cnbc.com/2019/08/08/google-
+maps-ar-directions-released-for-iphones-and-android.html
+
+--- Page 13 ---
+13
+From Apple’s WWDC 2017 keynote, June 5, 2017
+
+--- Page 14 ---
+14
+From Apple’s WWDC 2019 keynote, June 3, 2019
+
+--- Page 15 ---
+15
+Important open questions:
+Will AR be the (or a) future platform of computing?
+Will smartphone-based AR just be a step 
+towards a more sophisticated AR?
+Or will it co-exist with others (e.g., HMDs)?
+Or will it be the major platform?
+And what will be good use cases?
+
+--- Page 16 ---
+https://www.instagram.com/p/W2BuMLQLRB/
+March 14, 2013
+16
+
+--- Page 17 ---
+17
+Handheld AR
+Basic principle:
+•
+Handheld device 
+(phone, tablet, etc.)
+•
+Life feed from video cam 
+(= reality)
+•
+Added 3D graphics 
+(= augmented reality)
+Different options depending on 
+sensors used for tracking.
+
+--- Page 18 ---
+18
+AR definition by Azuma
+REALITY
+AR
+VR
+“To avoid limiting AR to specific technologies, 
+this survey defines AR as systems that have 
+the following three characteristics:
+1.
+Combines real and virtual
+2.
+Registered in 3-D (*)
+3.
+Interactive in real time
+This definition allows other technologies 
+besides HMDs while retaining the essential 
+components of AR.”
+R. Azuma, A Survey of Augmented Reality. 
+Presence: Teleoperators and Virtual Environments, 
+pp. 355–385, Aug 1997.
+(*) The process of correctly aligning the virtual world with the 
+virtual one is called 3d registration. To perfectly merge the 
+virtual objects generated by computer with the real world image 
+from the camera, 3d information about the enviroment as well as 
+accurate localization of the camera in a world coordinate frame.
+
+--- Page 19 ---
+19
+Main AR loop
+1. Get video frame from camera
+2. Estimate position and orientation of camera
+3. Render the augmented scene 
+(= video & virtual content 
+or just the latter for optical see-through)
+4. Render GUI
+5. Process user input
+6. Update application status
+
+--- Page 20 ---
+20
+Main AR loop
+1. Get video frame from camera
+2. Estimate position and orientation of camera
+3. Render the augmented scene 
+(= video & virtual content 
+or just the latter for optical see-through)
+4. Render GUI
+5. Process user input
+6. Update application status
+
+
+
+==================================
+FILE: slide\INFOMMOB-2024_QandAs.pdf
+==================================
+
+--- Page 1 ---
+Disclaimer: These slides are password protected because 
+they might contain copyrighted material that is used for 
+pure educational purposes based on the Fair Use policy.
+http://en.wikipedia.org/wiki/Fair_use
+INFOMMOB 2023-2024
+Q&A session
+June 5, 2024
+
+--- Page 2 ---
+Mobile Interaction
+Infos for projects & exam
+2
+§ Comments on projects
+§ Comments on exam
+§ Short recap of lecture
+
+--- Page 3 ---
+3
+Project
+Report & paper
+Due Fri, Jun 21, 2024. Any questions?
+Slides are due Monday, but can still change.
+Final presentations
+On Wed, Jun 26, 2024. Any questions?
+Same procedure as for pitch and midterm presentations.
+Except for discussion (you should ask questions then).
+Group meetings
+On Wed, Jun 26, till Fri, Jun 28, 2024. Any questions?
+We will discuss your grade then.
+You can also show me other material then if needed.
+
+--- Page 4 ---
+4
+Exam
+§ Question style (and intension):
+§ Knowledge (6), e.g., different types of 3D visualizations and relation to VR
+§ Understanding (7), e.g., how to realize (e.g., what sensors are needed, why not, etc.)
+§ Application (8 and higher), e.g., example from paper not covered in lecture 
+(or only mentioned shortly) and related explanation, etc.
+§ Papers & videos:
+§ Mandatory papers & videos on website: Part of the exam
+§ Should we also read / know the ones referenced on the slides? 
+Easy question, hard to answer …
+§ Previous years’ exams are on the course site (bottom of ‘lecture’ page).
+§ Some also have some comments on the solutions.
+§ Contents may have changed though.
+
+--- Page 5 ---
+5
+§ Pre-COVID times (digital exam @ UU, closed book), common comments:
+§ (+) Questions
+§ (+) Coverage
+§ (-) Length
+§ COVID times (digital exam @ home, open book), common comments:
+§ Length
+§ Too much
+§ Too much thinking
+Exam
+OBJECTIVES (from website)
+•
+Students know the basics of state-of-the-art and emerging trends for mobile 
+interaction; mostly mobile devices (smartphones and tablets) plus some wearables 
+(demonstrated by the related exam questions).
+•
+Students can apply basic techniques of mobile interaction to a concrete use case; e.g., 
+a mobile game (demonstrated by the related project work; implementation part).
+•
+Students know the advantages and disadvantages of using different interaction 
+techniques and how to verify and demonstrate them (demonstrated by the related 
+project work; evaluation part).
+
+--- Page 6 ---
+6
+DISCLAIMER
+The content of this summary is not complete 
+and thus, not necessarily representative for the exam content!
+The questions might change a bit in style and content 
+from last years’ exams to this year’s exam! 
+(Closed/open book. And it was not digital until 2019.)
+Content: keep in mind that I might have discussed 
+certain topics in more or less detail in previous years.
+Style: I always try to improve the questions and how to assess your 
+knowledge (usually this works in your favor).
+Yet don’t worry. 
+If you paid attention to what I said throughout the lectures, 
+you shouldn’t have much of a problem.
+
+--- Page 7 ---
+Recap: Introduction
+7
+What we talked about
+What is mobile computing?
+•
+7 waves & characteristics
+•
+Camera for input / interaction
+What is mobile interaction?
+•
+“Definition” / descriptions
+•
+Involved disciplines
+•
+The role of context & 
+potential / resulting issues
+Take home messages
+•
+Mobile computing & interaction has 
+unique characteristics
+•
+Many potential issues and problems 
+(e.g., the role of context)
+•
+But also, huge opportunities 
+(e.g., new usages for camera-based 
+apps & camera usage for interaction)
+What you should have learned & 
+should know (e.g., in the exam)
+General understanding and 
+“feeling” for the domain 
+(no technical details & numbers)
+Some concepts 
+(e.g., camera-based interaction)
+
+--- Page 8 ---
+8
+The 7 waves of mobile computing
+1.
+Portability
+2.
+Miniaturization
+3.
+Connectivity
+4.
+Convergence
+5.
+Divergence
+6.
+Apps
+7.
+Digital ecosystems
+Why was the original iPod so successful?
+• Innovative, optimized UI
+• Large storage
+• Easy sync
+• Easy access to (legal) data
+
+--- Page 9 ---
+Recap: Enabling technologies
+9
+What we talked about
+General state of the art
+ 
+Platforms, processors & 
+memory
+ 
+Communication & 
+networks, battery
+Displays
+ 
+Size, resolution, PPI
+ 
+Relevance for interaction, 
+FOV, …
+Sensors
+ 
+Human senses & 
+sensors in phones
+ 
+Vision, sound, smell & taste
+ 
+Usage of sensors for 
+interaction (e.g., via 
+tilting/orientation of device)
+Take home messages
+General state of the art
+ 
+Performance comparable to 
+computers a few years ago 
+(“mobile mini computers”)
+ 
+Mobility & context still raise issues,
+especially for interaction
+Displays
+ 
+Technical specs are important, 
+as are human aspects
+ 
+Interaction is and will be critical
+Sensors
+•
+Sensors can be used for interaction
+•
+Relation to human senses
+a)
+Suggests potential for more 
+natural, “integrated” interaction 
+design
+b)
+Highlights the relevance of 
+context & cognitive influences 
+on UI design
+•
+Different types of orientation 
+sensing for different types of 
+interaction
+What you should have learned & know (exam)
+General state of the art
+A better understanding of hardware & related influence on usage
+A better understanding of “the mobile world” and related issues
+Displays
+Tech specs and what they mean, e.g., ppi vs. resolution, FOV 
+(human vs. virtual camera),...
+Sensors
+The relation between senses & sensors
+How certain sensors can be used for input and output 
+in mobile HCI, including:
+How they work, e.g., what data they deliver (and what not) and 
+how this data can be used for interaction.
+Example: tilting/orientation of device 
+(what do we need, how do we get that, how to use, …).
+Mandatory reading
+See comments in lecture
+Comments for exam:
+A general understanding of different senses & sensors and their role in 
+interaction. Even if we didn’t explicitly talk about them, you should be 
+able to, e.g., describe related advantages/disadvantages, possible 
+use cases, limitations & opportunities, etc.
+No technical specs / details (numbers), but their relevance.
+
+--- Page 10 ---
+Recap: Touch screens
+10
+What we talked about
+General context
+ 
+History (general & mobile)
+ 
+Advantages & 
+potential issues
+ 
+Finger vs. stylus
+Technology
+ 
+State of the art
+ 
+Multi-touch
+ 
+New developments
+Take home messages
+Lots of advantages and potential 
+for better interaction, 
+but also, limitations & issues, 
+requiring careful decisions about 
+what to use when (technology)
+and how (interaction design).
+What you should have learned & know (exam)
+General context
+Basic understanding of advantages & disadvantages, 
+what can be done (better), what can’t, …
+E.g., in the exam, you should be able to also give examples of 
+pros&cons, describe existing systems with respect to them, ...
+Technology
+Basic knowledge of existing and new technological 
+developments and their characteristics with respect to usage
+E.g., in the exam, you should be able to not just list the 
+technologies but understand their characteristics with respect 
+to use cases (e.g., what can you achieve with touch screens 
+for tactile rendering and what not?).
+Mandatory reading (ForceRay)
+General comment: Apart from, e.g., design decisions (and 
+reasons for them) also notice the different types of experiments 
+(and goals) and relations between papers and lecture 
+content.
+
+--- Page 11 ---
+Recap: Human aspects & UI design
+11
+What we talked about
+Human factors
+ 
+Auditory system
+ 
+Haptic system
+ 
+Visual system
+ 
+Multimodality
+Take home messages
+Human aspects (cognition) are as 
+important as technical ones for 
+(mobile) human-computer 
+interaction.
+Lots of limitations and issues (e.g., 
+visibility on small screens under 
+changing conditions, ergonomics, …).
+But also, opportunities for better, 
+advanced mobile interaction design 
+(e.g., faster audio playback, 
+visualizations optimized for 
+perception, ...)
+What you should have learned & know (exam)
+Human aspects
+How human perception works,
+what potential problems it might have for mobile interaction,
+how we can create interfaces that take advantage of human 
+abilities (see examples for faster playback, Gestalt theory, …)
+For the exam
+Know the issues & characteristics and 
+be able to relate them to concrete examples
+Mandatory reading
+Understanding user strategies when touching arbitrary shaped 
+objects
+Multimodal feedback for learning
+
+--- Page 12 ---
+Recap: Touch interaction & gestures
+12
+What we talked about
+Touch interaction design
+ 
+Multi-touch
+ 
+Challenges
+ 
+Research examples
+Touch gestures
+ 
+Examples
+ 
+Gesture recognition
+ 
+Gesture design
+ 
+Usage & issues
+Kinetic gestures
+ 
+Examples and 
+applications
+ 
+Potential pros & cons
+Take home messages
+Touch interaction design
+•
+Limitations, challenges, and 
+potential issues
+•
+Innovative solutions for interaction 
+design to deal with those 
+Touch & kinetic gestures
+•
+Technical challenges
+•
+Design challenges
+•
+Usage / human-related challenges
+What you should have learned & know (exam)
+Touch interaction design
+Know the basic problems and be able to discuss related issues, 
+potential solutions, and innovative new approaches
+Mandatory reading
+HeadReach Force Picker
+
+--- Page 13 ---
+13
+§ Mobile evaluation; what to know
+§ Mostly for your project, but some questions in exam may be possible, too.
+§ Know how and why certain things are done, limitations, etc.,
+including some ”formalities” (internal/external validity, variable types)
+§ Examples from papers
+§ Mobile gaming; summary
+§ Some basic stuff (e.g., diegesis theory, 
+on-screen joystick design)
+§ Also, comparison of interaction types, 
+pros and cons, …
+§ Some background of gaming industry 
+(no detailed data needed for exam, 
+only ”basic messages”),
+differences between games and 
+other mobile application contexts
+
+--- Page 14 ---
+14
+§ Mobile VR; summary
+•
+Mobiles for VR
+Using smartphones for VR HMDs
+•
+VR on mobiles
+Creating virtual & 3D experiences 
+on mobiles (different approaches, …)
+•
+3D interfaces & 3D interaction
+3D UIs on mobiles, embodied interaction
+§ Mobile AR; summary
+•
+Mobile AR
+What is mobile AR and how does it work, 
+different options / incarnations, 
+tracking & registration
+•
+Mobile AR interaction
+Different options, including embodied 
+interaction, freehand gestures
+
+--- Page 15 ---
+Conclusion
+15
+1.
+Introduction
+2.
+Technologies
+3.
+Mobile evaluation
+4.
+Touch screens
+5.
+Human factors
+6.
+Touch interfaces & gestures
+7.
+Mobile gaming
+8.
+Mobile VR & 3D
+9.
+Mobile AR
+Keep an eye on your email & the website 
+in case there are last minute changes 
+(unlikely, but not impossible)
+Report deadline:
+Friday, June 21
+Project presentations:
+Wednesday, June 26
+Project meetings:
+Wed-Thu, June 26-28 (MS Teams)
+Exam:
+Tuesday, June 11, 17:00-19:00
+(Educ-Beta, or BBG 065 
+for “minder massaal”)
+Check handout (pdf) for procedure.
+Check spreadsheet or website for schedule.
+If you didn’t like the course:
+Sorry. But it’s over soon 
+(if and only if you pass it, of course).
+If you did like it:
+Don’t be sad, because there’s more …
+If you are interested in a related 
+thesis project: contact me!
+
+--- Page 16 ---
+

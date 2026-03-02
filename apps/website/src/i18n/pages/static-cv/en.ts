@@ -42,15 +42,15 @@ const staticCvPageEn: StaticCvPageCopy = {
       title: 'Frontend Engineer (T8), Frontend Refactoring Team, Design Center, Core Product Dept, Tencent WeChat Group (腾讯微信事业群)',
       bullets: [
         {
-          text: 'Weixin Search frontend (搜一搜): owned the frontend refactor and introduced a scalable architecture.',
+          text: '[Weixin Search frontend (搜一搜)](/en/wechat-experience#search): owned the frontend refactor and introduced a scalable architecture.',
           muted: 'During peak demand growth in 2020-2021, the scope was sustained with only 2.5 FTE frontend capacity.'
         },
         {
-          text: 'WeChat 10th Anniversary internal mini program: led the 3D UI design iteration and implementation.',
+          text: '[WeChat 10th Anniversary internal mini program](/en/wechat-experience#anniversary): led the 3D UI design iteration and implementation.',
           muted: 'Delivered a production-ready internal campaign featuring collaborative multi-user interactions.'
         },
         {
-          text: 'Video Channels and Live Streaming frontend (视频号 & 直播): supported rapid feature iteration in 2021-2022.',
+          text: '[Video Channels and Live Streaming frontend (视频号 & 直播)](/en/wechat-experience#video): supported rapid feature iteration in 2021-2022.',
           muted: 'Built campaign pages, component-library modules, and creator payment and settlement workflows.'
         },
         'Promoted via fast-track from T6 to T8 (H2 2021).'
@@ -62,15 +62,15 @@ const staticCvPageEn: StaticCvPageCopy = {
       title: 'MSc in Human-Computer Interaction, Utrecht University (Cum Laude)',
       layout: 'grid-3',
       bullets: [
-        { text: 'Machine Learning', detail: ' (CV & NLP)' },
-        { text: 'Digital Fabrication', detail: ' (3D modeling & printing)' },
+        { text: '[Machine Learning](/en/masters-courses#mlhvl)', detail: ' (CV & NLP)' },
+        { text: '[Digital Fabrication](/en/masters-courses#miti)', detail: ' (3D modeling & printing)' },
         { text: 'Human-Centered Design' },
-        { text: 'Data Science', detail: ' (mining & visualization)' },
-        { text: 'Multimodal Interaction', detail: ' (XR, visual/audio/haptic/olfactory)' },
-        { text: 'Mobile Interaction' },
-        { text: 'Research Methods', detail: ' (qual. & quant.)' },
-        { text: 'Cognitive & Social Psychology' },
-        { text: 'Cognitive Modeling' }
+        { text: 'Data Science', detail: ' ([mining](/en/masters-courses#mdm) & [visualization](/en/masters-courses#mvis))' },
+        { text: '[Multimodal Interaction](/en/masters-courses#mmmi)', detail: ' (XR, visual/audio/haptic/olfactory)' },
+        { text: '[Mobile Interaction](/en/masters-courses#mmob)' },
+        { text: 'Research Methods', detail: ' ([qual.](/en/masters-courses#mqlm) & [quant.](/en/masters-courses#mqnm))' },
+        { text: '[Cognitive & Social Psychology](/en/masters-courses#mcsp)' },
+        { text: '[Cognitive Modeling](/en/masters-courses#mcm)' }
       ]
     },
     {
@@ -78,7 +78,7 @@ const staticCvPageEn: StaticCvPageCopy = {
       logo: '/static-cv/cwi-logo.png',
       title: 'Research Intern (Master\'s Thesis), CWI (Centrum Wiskunde & Informatica)',
       bullets: [
-        'Completed a master\'s thesis on interaction design for eye-tracking systems.'
+        'Completed a [master\'s thesis](/en/graduation-thesis) on interaction design for eye-tracking systems.'
       ]
     },
     {
@@ -89,7 +89,7 @@ const staticCvPageEn: StaticCvPageCopy = {
       accentDetail: 'UI / UX, product design, frontend development, and agent workflow design',
       bullets: [
         {
-          text: 'Built AI tooling for bid/tender review: qualification, pricing, commercial, technical, and process compliance checks.',
+          text: '[Built AI tooling for bid/tender review](/en/yicheng-intelligence): qualification, pricing, commercial, technical, and process compliance checks.',
           muted: 'Reduced manual cross-checking effort for long tender documents and lowered disqualification risk caused by oversight.'
         },
         'Technical scope: long-context (500+ pages) agent workflow design, multimodal document understanding, and RAG.',

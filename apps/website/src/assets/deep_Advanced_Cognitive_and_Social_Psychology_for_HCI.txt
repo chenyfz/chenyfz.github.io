@@ -1,0 +1,4849 @@
+--- Advanced Cognitive and Social Psychology for HCI (Year 1 - Period 1) ---
+
+
+
+==================================
+FILE: Schedule - Interactive Sessions.pdf
+==================================
+
+--- Page 1 ---
+Schedule Interactive Lab Sessions 
+When and Where Theme 
+Deadline 1-pager 
+Group  
+Students 
+Thu 14 September 
+11.00 – 12.45 
+Ruppert A 
+The Self 
+Wed 13 September 
+12:00PM (Noon) 
+2 
+Lili Tordai 
+Asher de Jong 
+Sebastian Daniels 
+Rens Hassfeld 
+Minh Tran 
+7 
+Ebony Omodara,  
+Moon Aben,  
+Sulaiman Alwazzan, 
+Amelie Harder 
+9 
+Viktoria Stojanov 
+Juliette de Waal 
+Lloyd van Boxtel 
+Mauro Vazquez Bassat 
+Malte Sichtermann 
+Thu 21 September 
+11.00 – 12.45 
+Ruppert A 
+Social Relationships Mon 18 September 
+23:59PM 
+6 
+Loes Jonker  
+Tomas Meeuwse 
+Lizzy Brans 
+Lara van Cappelle 
+10 
+Joop Arts 
+Anouk van Santen 
+Lara Gierschmann 
+Mart Koek 
+13 
+Nicolas Ioannou 
+Florence Herrent 
+Saskia Breit 
+Paola Horvat 
+Ivan Oskam 
+Thu 28 September 
+11.00 – 12.45 
+Ruppert A 
+Cognition, 
+Motivation & 
+Emotion 
+Mon 25 September 
+23:59PM 
+8 
+Rosa de Freitas 
+Dongcao Lu 
+Yu Su, 
+Merve Yildiz, 
+Elena Tzara 
+ 
+ 
+ 
+11 
+Anna de Wolff 
+Bjorn Tijssen 
+Yiyi Zhang 
+Isabel Fuhs 
+Yangfan Chen 
+ 
+ 
+ 
+12 
+Jurre Boellen 
+Willemin Barens 
+Nina Kersting 
+Emmanuel Fragkiadakis 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- Page 2 ---
+Thu 5 October 
+11.00 – 12.45 
+Ruppert A 
+Social Influence 
+Mon 2 October 
+23:59PM 
+1 
+Eva Oostenbrink 
+ Maureen van Veen 
+Isabelle van Aard 
+Tim van Vulpen 
+Alyssa Olthof 
+ 
+ 
+ 
+3 
+Evi Duijnhouwer 
+Ko schoemaker  
+Minna Vainikainen 
+Alan Castillo 
+Marija Anbinderytė 
+ 
+ 
+ 
+4 
+Babette Scheepers 
+Amber Kusters 
+Axel van Buren 
+Ana-Maria Cirnu 
+Alexis Ganciu 
+Thu 12 October 
+11.00 – 12.45 
+Ruppert A 
+Group Dynamics 
+Mon 9 October 
+23:59PM 
+ 
+ 
+Thu 19 October 
+11.00 – 12.45 
+Ruppert A 
+Decision Making 
+Mon 16 October 
+23:59PM 
+5 
+Wessel Dekker 
+Robert van den Brink 
+Jelle Peperzak 
+Jonathan van Diermen 
+Skip Langenberg 
+14 
+Annika Boekenstijn  
+Jesse Borghardt  
+Ruben Kole  
+Sharifa Vos  
+Tjerk de Haan  
+Thu 26 October 
+11.00 – 12.45 
+Ruppert A 
+Cognitive Theories 
+of Motivation 
+Mon 23 October 
+23:59PM 
+15 
+Iza Muller 
+Ruben Weijers 
+Shanmukha Shinagam 
+Bo van Westerlaak 
+ 
+
+
+
+==================================
+FILE: Syllabus - ACSP.pdf
+==================================
+
+--- Page 1 ---
+ 
+ 
+ 
+ 
+INFOMCSP 
+ADVANCED COGNITIVE & 
+SOCIAL PSYCHOLOGY 
+ 
+ 
+Department Information & Computing Sciences 
+Utrecht University 
+ 
+Year 2023-2024 
+Period 1 
+Timeslot C 
+ 
+[syllabus version: September 6, 2023] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Course coordinator 
+Maartje de Graaf 
+BBG 4.21 
+m.m.a.degraaf@uu.nl 
+ 
+Course teachers 
+Maartje de Graaf 
+Susanne Poeller 
+Anouk Neerincx 
+
+--- Page 2 ---
+Syllabus INFOMCSP 2023/2024 
+2 
+ 
+CONTENT 
+ 
+1. Course description .......................................................................... 3 
+2. Learning goals ................................................................................ 3 
+3. Classroom Policies .......................................................................... 4 
+3.2 Classroom Environment.................................................................... 4 
+3.2 Using AI Generated Tools ................................................................. 4 
+4. reading materials ............................................................................ 5 
+4. Assessment and grading ................................................................. 7 
+4.1 Written exam – Score: 50% .............................................................. 7 
+4.2 Research proposal – Score: 25% ....................................................... 7 
+4.3 Interactive class session – Score: 25% ............................................... 7 
+4.4 Grading ......................................................................................... 7 
+4.5 Retake .......................................................................................... 8 
+5. Assignments ................................................................................... 8 
+5.1 Research proposal ........................................................................... 8 
+5.2 Interactive class session ................................................................. 11 
+6. Schedule ....................................................................................... 13 
+ 
+ 
+ 
+
+--- Page 3 ---
+Syllabus INFOMCSP 2023/2024 
+3 
+ 
+1. COURSE DESCRIPTION 
+ 
+Emerging technologies are progressively affecting the way we relate, connect, 
+learn, and work. In this course you will study psychological processes associated 
+with the use of digital technologies, to help understand how technology affects 
+us, and to enhance interactions between humans and technologies. We will 
+discuss research in relation to the use and design of a range of applications and 
+devices, for instance, cell phones, social media, video games, and the Internet. 
+The course will include topics such as the relation between cognitive processes 
+and emotions, social identity and group behavior, and interpersonal 
+relationships. The course will mainly draw on theories from cognitive and social 
+psychology and will involve critical analysis and understanding of these theories 
+in view of our digital world. 
+ 
+Prerequisite knowledge 
+Students are expected to be familiar (or be prepared to familiarize themselves) 
+with basic knowledge of cognitive psychology and emotion theories as taught in 
+the bachelor course Cognition & Emotion, and basic (social) psychological effects 
+of technology on individuals and societies as taught in the bachelor courses 
+Mens, Maatschappij & ICT en Informatieuitwisseling. 
+ 
+If you are unfamiliar with (some of) these topics, we suggest reading the 
+following introductory texts into these fields. Both these texts are available 
+through the university library after logging in or when on campus network. 
+ 
+• 
+Cognitive psychology – Galotti, K.M. (2017) Cognitive Psychology: 
+History, methods and paradigms. In Galotti, K.M. (ed.). Cognitive 
+psychology in and out of the laboratory (pp.2-34), Sage Publications: 
+Thousand Oaks, CA. 
+• 
+Social psychology - DeLamater, J.D. (2018). Introduction to social 
+psychology. In DeLamater, J.D., Myers, D.J., & Collett, J. (eds.) Social 
+Psychology (pp. 1-29), Routledge: New York, NY, USA. 
+ 
+2. LEARNING GOALS 
+ 
+After this course, a student will be able to: 
+• 
+Apply cognitive and social psychology theories to HCI problems, such as 
+those regarding memory, attention, cognitive processing and cognitive 
+load, human decision making, emotions, engagement and motivation, 
+social identity, interpersonal communication, social influence, and group 
+dynamics. 
+• 
+Evaluate applications in respect to cognitive and social psychology 
+theories. 
+• 
+Critically review research in human-robot interaction, affective computing, 
+and games in terms of these theories. 
+ 
+ 
+
+--- Page 4 ---
+Syllabus INFOMCSP 2023/2024 
+4 
+ 
+3. CLASSROOM POLICIES 
+ 
+3.2 CLASSROOM ENVIRONMENT 
+ 
+Our goal is to create a learning environment in which everyone receives a sense 
+of authentic belonging from the group and, at the same time, is valued for their 
+unique characteristics as an individual. 
+ 
+Meaningful and constructive dialogue is encouraged in this class. This requires a 
+degree of mutual respect, willingness to listen, and tolerance of opposing points 
+of view. Classroom discussion should be civilized and respectful to everyone and 
+relevant to the topic we are discussing. Everyone is entitled to their opinion. 
+Classroom discussion is meant to allow us to hear a variety of viewpoints. This 
+can only happen if we respect each other and our differences. One’s words and 
+use of language should be temperate and within acceptable bounds of civility 
+and decency. Our use of language should be respectful of other persons or 
+groups. You need not represent any group, only yourself, though you may 
+choose to represent a group if you wish.  
+ 
+Behavior in this class will be in adherence to the University Code of Conduct. If 
+you feel uncomfortable about any aspect of the class environment, please do not 
+hesitate to discuss it with the course coordinator. 
+ 
+3.2 USING AI GENERATED TOOLS 
+ 
+AI programs such as ChatGPT, Dall-E, and GitHub Copilot are one of the many 
+tools that use artificial intelligence to generate certain outputs. Although good 
+possibility that using tools such as these are going to become an important skill 
+for careers in the not distant future, there is still an ongoing (ethical) debate of 
+when using these tools may be acceptable for three important reasons: 
+• 
+Work created by AI tools may not be considered original work, but instead 
+be a form of automated plagiarism. The provided output is derived from 
+previously created texts or pictures from other sources that the models 
+were trained on without properly giving credit to these sources. 
+• 
+AI models have built-in biases as they are trained on limited underlying 
+sources and reproduce —rather than challenge— errors in the sources. 
+• 
+AI tools have limitations as they lack critical thinking to evaluate and 
+reflect on criteria and lack abductive reasoning to make judgments with 
+incomplete information at hand. 
+ 
+Academic integrity is a core principle at our university and all students should 
+uphold this principle. Responsible use of AI-based tools in completing 
+coursework or assessments must be done in accordance with the following: 
+1. You must clearly identify the use of AI-based tools in your work. Any work 
+that utilizes AI-based tools must be clearly marked as such, including the 
+specific tool(s) used. For example, if you use ChatGPT-3, you must cite 
+"ChatGPT-3. (YYYY, Month DD of query). "Text of your query." Generated 
+using OpenAI. https://chat.openai.com/" 
+
+--- Page 5 ---
+Syllabus INFOMCSP 2023/2024 
+5 
+ 
+2. You must be transparent in how you used the AI-based tool, including 
+what work is your original contribution. An AI detector such as GPTZero  
+may be used to detect AI-driven work. 
+3. You must ensure your use of AI-based tools does not violate any copyright 
+or intellectual property laws. 
+4. You must not use AI-based tools to cheat on assessments. 
+5. You must not use AI-based tools to plagiarize without citation. 
+ 
+This policy was developed from a response by ChatGPT-3 (2023)1 and edited on 
+critical reflection by the course coordinator. Violations of this policy will be dealt 
+with in accordance with relevant university policies. 
+ 
+4. READING MATERIALS 
+ 
+Each week of the course is linked to a theme for which we assign up to 3 
+scientific articles (digitally available through the university library or Google 
+Scholar). Students are expected to have at least read the abstract, introduction, 
+and discussion/conclusion sections of these articles before attending the 
+lectures. This video offers guidance on how to efficiently read academic papers. 
+ 
+Topic: The Self 
+1. Ellison, N., Heino, R., & Gibbs, J. (2006). Managing impressions online: 
+Self-presentation processes in the online dating environment. Journal of 
+Computer-Mediated Communication, 11, 415-441. 
+2. Fotopoulou, A. (2018) From networked to quantified self: Self-tracking 
+and the moral economy of data. In Papacharissi, Z. (ed.). A Networked 
+Self: Platforms, Stories, Connections. New York: Routledge. 
+3. Zhao, S. (2005). The digital self: Through the looking glass of 
+telecopresent others. Symbolic Interaction, 28(3), 387-405. 
+ 
+Topic: Social Relationships 
+1. Antheunis, M. L., Valkenburg, P. M., & Peter, J. (2010). Getting 
+acquainted through social network sites: Testing a model of online 
+uncertainty reduction and social attraction. Computers in Human 
+Behavior, 26(1), 100-109. 
+2. Bevan, J. L., Ang, P. C., & Fearns, J. B. (2014). Being unfriended on 
+Facebook: An application of expectancy violation theory. Computers in 
+Human Behavior, 33, 171-178. 
+3. Shtatfeld, R., & Barak, A. (2009). Factors related to initiating 
+interpersonal contacts on Internet dating sites: A view from the social 
+exchange theory. Interpersona: An International Journal on Personal 
+Relationships, 3(2), 19-37. 
+ 
+Topic: Cognition, Motivation & Emotion 
+1. Dai, D. Y., & Sternberg, R. J. (2004). Beyond Cognitivism: Toward an 
+Integrated Understanding of Intellectual Functioning and Development 
+(Chapter 1). In. Dai, D. Y., & Sternberg, R. J., Motivation, Emotion, and 
+ 
+1 ChatGPT-3. (2023, February 2). "Write a syllabus policy about the academic integrity of students using ai-
+based tools." Generated using OpenAI. https://chat.openai.com/  
+
+--- Page 6 ---
+Syllabus INFOMCSP 2023/2024 
+6 
+ 
+Cognition: Integrative Perspectives on Intellectual Functioning and 
+Development. Routledge. 
+2. Ekman, P., & Cordaro, D. (2011). What is Meant by Calling Emotions 
+Basic. Emotion Review, 3(4), 364–370. 
+3. Denisova, A., Bopp, J. A., Nguyen, T. D., & and Mekler, D. E. (2021). 
+“Whatever the Emotional Experience, It’s Up to Them”: Insights from 
+Designers of Emotionally Impactful Games. In Proceedings of the 2021 
+CHI Conference on Human Factors in Computing Systems (CHI ’21). 
+ 
+Topic: Social Influence 
+1. Hertz, N., & Wiese, E. (2018). Under pressure: Examining social 
+conformity with computer and robot groups. Human factors, 60(8), 1207-
+1218. 
+2. Kaptein, M., Markopoulos, P., De Ruyter, B., & Aarts, E. (2015). 
+Personalizing persuasive technologies: Explicit and implicit personalization 
+using persuasion profiles. International Journal of Human-Computer 
+Studies, 77, 38-51. 
+3. Slater, M., Antley, A., Davison, A., Swapp, D., Guger, C., Barker, C., ... & 
+Sanchez-Vives, M. V. (2006). A virtual reprise of the Stanley Milgram 
+obedience experiments. PloS one, 1(1), e39. 
+ 
+Topic: Group Dynamics 
+1. Eyssel, F., & Kuchenbrandt, D. (2012). Social categorization of social 
+robots: Anthropomorphism as a function of robot group membership. 
+British Journal of Social Psychology, 51(4), 724-731. 
+2. Ren, Y., Harper, F. M., Drenner, S., Terveen, L., Kiesler, S., Riedl, J., & 
+Kraut, R. E. (2012). Building member attachment in online communities: 
+Applying theories of group identity and interpersonal bonds. Mis Quarterly, 
+36(8), 841-864. 
+3. Tan, B. C., Wei, K. K., Watson, R. T., Clapper, D. L., & Mclean, E. R. 
+(1998). Computer-mediated communication and majority influence: 
+Assessing the impact in an individualistic and a collectivistic culture. 
+Management Science, 44(9), 1263-1278. 
+ 
+Topic: Decision Making 
+1. Achtziger, A., & Gollwitzer, P. M. (2018). Motivation and volition in the 
+course of action (Chapter 11). In. Heckhausen, H. and Heckhausen, J. 
+Motivation and Action. Springer. 
+2. Ayton, P. (2012) Judgment and Decision Making (Chapter 11). In. 
+Braisby, N. and Gellatly, A. Cognitive Psychology. Oxford University Press. 
+3. Liedtka, J. (2015). Perspective: Linking design thinking with innovation 
+outcomes through cognitive bias reduction. Journal of product innovation 
+management, 32(6), 925-938. 
+ 
+Topic: Cognitive Theories of Motivation  
+1. McClelland, D. C., Koestner, R., & Weinberger, J. (1989). How do self-
+attributed and implicit motives differ? Psychological Review, 96(4), 690–
+702. 
+2. Oettingen, G., & Mayer, D. (2002). The motivating function of thinking 
+about the future: Expectations versus fantasies. Journal of Personality and 
+Social Psychology, 83(5), 1198–1212. 
+
+--- Page 7 ---
+Syllabus INFOMCSP 2023/2024 
+7 
+ 
+3. Depping, A. E., & Mandryk, R. L. (2017). Why is this happening to me? 
+how player attribution can broaden our understanding of player 
+experience. In Proceedings of the 2017 CHI Conference on Human Factors 
+in Computing Systems (CHI ’17). 
+4. ASSESSMENT AND GRADING 
+ 
+4.1 WRITTEN EXAM – SCORE: 50% 
+ 
+The written exam will consist of both open and multiple-choice questions based 
+on the weekly reading materials and content of the lectures. 
+ 
+4.2 RESEARCH PROPOSAL – SCORE: 25% 
+ 
+Students will write a research proposal in teams of three students. The proposal 
+should cover a psychology topic related to the course. More details about the 
+specific requirements and assessment criteria can be found in section 5.1. 
+ 
+4.3 INTERACTIVE CLASS SESSION – SCORE: 25% 
+ 
+In groups of four to five, students will prepare and lead an interactive class 
+session on a focus area related to one of the weekly topics. More details about 
+the specific requirements and assessment criteria can be found in section 5.2. 
+ 
+4.4 GRADING 
+ 
+Your final grade will be based on the theoretical (50%) and practical (50%) part 
+of the course. The individual grade for each part needs to be at least 5.5 to pass 
+the course. 
+ 
+The theoretical part consists of the final exam. Your grade of the exam will count 
+towards 50% of your final grade and needs to be at least 5.5 to pass the course. 
+ 
+The practical part consists of two assignments: (1) the interactive class session 
+and (2) the research proposal. Each will count for 25% towards your final grade 
+and each assignment needs to be at least 4.5 to pass the course. 
+ 
+Calculation of final grade = 0.5 * final exam + 0.25 * research proposal + 0.25 
+* interactive class session. However, is the weighted average of either the 
+theoretical or practical part below 5.5 OR any of the individual grades below 4.5, 
+than your final grade of the course will be a maximum of 5.0. 
+ 
+Note that the grade you received is based on your work in relation to the best 
+possible conception, as well as the full spectrum of submitted work, and is not a 
+simple matter of "starting at 10 and deducting n points for every negative 
+comment". 
+ 
+
+--- Page 8 ---
+Syllabus INFOMCSP 2023/2024 
+8 
+ 
+4.5 RETAKE 
+ 
+In case of a failing grade for the practical part of the course (the two 
+assignments), you may qualify for a repair assignment when your initial grade 
+for each course part (i.e., theoretical and practical) are at least a 4.0 and you 
+meet the best-efforts obligation. The best-efforts obligation means that a 
+student has participated in all course assessments and has met all its deadlines. 
+The maximum grade during a retake attempt of the practical part of the course 
+is a 6.0. Please contact the course coordinator if you would like to make use of 
+this opportunity. 
+ 
+In case of a failing grade for the theoretical part of the course (the written 
+exam), you can enroll for the retake exam. 
+ 
+5. ASSIGNMENTS 
+ 
+5.1 RESEARCH PROPOSAL 
+ 
+You work in teams of two to three students and together you write one research 
+proposal. 
+ 
+The aim of the assignment is to help you: 
+• 
+Develop your skills in identifying research topics, formulate research 
+questions and design a comprehensive research study. 
+• 
+Learn how to conduct a review of the literature to ensure a research 
+problem has not already been answered or has been answered 
+insufficiently.  
+• 
+Practice identifying the logical steps that must be taken to accomplish 
+one's research goals. 
+• 
+Critically review, examine, and consider the use of different methods 
+for gathering and analyzing data related to the research problem.  
+• 
+Practice your writing skills.  
+• 
+See yourself as an active participant in the process of doing research. 
+ 
+General description 
+The course Advanced Cognitive & Social Psychology covers several topics related 
+to cognitive and social psychology, and ICT. You either select one of the 
+cognitive psychology topics or one of the social psychology topics, that you think 
+hold research questions that require further investigation. You will define a 
+research question and develop a proposal to explore and answer the question, 
+using scientific methods. In this assignment, you can keep a master thesis 
+research project in mind, that generally requires 9 months to complete.  
+ 
+Your proposal should contain all the key elements involved in designing a 
+research study. The text should include sufficient information to allow readers to 
+assess the validity and usefulness of your proposed study. Make sure that you 
+understand the implications of these demands. 
+ 
+
+--- Page 9 ---
+Syllabus INFOMCSP 2023/2024 
+9 
+ 
+Regardless of the research problem you are investigating and the methodology 
+you choose, all research proposals must address the following topics: 
+1. 
+Research question. What do you plan to accomplish? Be clear and 
+succinct in defining the research problem and what it is you are 
+proposing to research. Why do you want to do it? 
+2. 
+Theoretical framework based on literature review. Conduct a review of 
+the literature and provide convincing evidence that it is a topic worthy 
+of study. Explain relevant concepts, definitions, models, and theories. 
+What questions have other researchers asked; what methods have 
+they used; what is your understanding of their findings? Explain why 
+your proposal is relevant for the domain.  
+3. 
+Research design and methods. How are you going to do it? The 
+implementation of a research problem into a doable study is a complex 
+task. Always keep in mind the type of information you need to answer 
+your research question. Consider methods and techniques used in 
+studies from your literature review, or alternative methods. Describe 
+how you expect to analyze the results.  
+4. 
+Preliminary suppositions and implications. Explain how the anticipated 
+results will impact future scholarly research, theory, or practice; so 
+theoretical, methodological, or substantial/practical significance. 
+5. 
+Conclusion. A summary of the entire study in about two paragraphs, 
+highlighting why the research problem is worth investigating, why your 
+research study is unique, and how it should advance existing 
+knowledge. 
+6. 
+References. References to literature and other sources, in APA style. 
+We expect about 10 references to publications of good scientific 
+quality. 
+ 
+Supervision and Milestones 
+Week 
+Milestones 
+Deadlines 
+Supervision 
+1-2 
+Selection of research 
+topic 
+Thursday Sept. 14, 
+23:59hrs 
+Supervisor Go / No-go 
+decision by Tuesday 
+Sep. 19 
+3-5 
+Literature research and 
+writing a theoretical 
+framework 
+ 
+ 
+5 
+Submit a research 
+question supported by a 
+literature review 
+Tuesday Oct. 3, 
+23:59hrs 
+Peer-to-Peer feedback 
+by Friday Oct. 6, 
+23:59hrs 
+6-7 
+Determine appropriate 
+research design and 
+methods. 
+ 
+ 
+7 
+Submit draft proposal 
+with theory and methods 
+Thursday Oct. 19, 
+23:59hrs 
+Supervisor feedback 
+by Wednesday Nov. 1 
+8-9 
+Writing preliminary 
+suppositions and 
+implications + conclusion 
+ 
+ 
+10 
+Submit final report 
+Friday  
+Nov. 9, 23:59hrs 
+Grading by supervisor 
+ 
+ 
+ 
+
+--- Page 10 ---
+Syllabus INFOMCSP 2023/2024 
+10 
+ 
+Practical 
+Number of words for the proposal: 2000 (±200) words excluding references. For 
+every additional 200 words, 0.5 point will be deducted from your grade. 
+ 
+For help in writing, you can use the Academic Phrasebank: 
+http://www.phrasebank.manchester.ac.uk/ 
+ 
+Assessment criteria 
+Introduction 
++ 
+Research 
+question 
+15 
+Provides the reader with a clear understanding of what 
+your research proposal will involve and what you want to 
+achieve. Presents the rationale of the proposed study and 
+clearly indicates why it is worth doing. Describes the major 
+issues or problems to be addressed. Explains how the 
+proposed study builds on previous assumptions about the 
+research problem. Sets the boundaries of the proposed 
+research to provide a clear focus. 
+Literature 
+review and 
+theoretical 
+framework 
+20 
+Information dense; well structured, organized in 
+conceptual categories. The topic is placed within the larger 
+whole of what is currently being explored and shows why 
+the proposal is original and innovative. The review is 
+critical, identifies what is missing, and states how previous 
+research has failed to adequately examine the issue that 
+your study addresses. 
+Research 
+design and 
+methods 
+15 
+Coherent and persuasive arguments for the proposed 
+research. Design and methods are clearly explained and 
+feasible. Potential barriers and pitfalls in carrying out the 
+research design are acknowledged and ways of addressing 
+them are discussed. 
+Preliminary 
+suppositions 
+and 
+implications 
+15 
+Based on literature, this section argues how and in what 
+ways you believe your research will refine, revise, or 
+extend existing knowledge in the subject area under 
+investigation. 
+Conclusion 
+10 
+Reiterates the importance or significance of the proposal 
+and provides a summary of the entire study including its 
+goals. 
+References 
+05 
+Complete and in APA-style 
+Writing & 
+layout 
+10 
+The report is concise; shows a clear sense of purpose. 
+Clear and precise, good grammar. Layout, figures, and 
+tables support reading and understanding. 
+Feedback 
+process 
+10 
+Provides constructive feedback on the research proposal 
+from at least two peers in class based on these 
+assessment criteria. Reflects on feedback received from 
+peers as well as the instructors on own research proposal. 
+ 
+100 
+ 
+ 
+ 
+ 
+
+--- Page 11 ---
+Syllabus INFOMCSP 2023/2024 
+11 
+ 
+5.2 INTERACTIVE CLASS SESSION 
+ 
+You work in teams of four to five students and together you will prepare one 
+interactive session. 
+ 
+The aim of the assignment is to help you: 
+• 
+Develop your critical thinking techniques to form academically 
+supported opinions. 
+• 
+Understand and retain key issues in the materials presented in class. 
+• 
+Investigate theoretical constructs more deeply. 
+• 
+Organize and present class material to others in an interesting and 
+informative way. 
+• 
+Develop and demonstrate communication skills. 
+ 
+General description 
+The course Advanced Cognitive & Social Psychology covers seven topics related 
+to cognitive and/or social psychology, and ICT. Each week will address one of 
+these topics for which student teams will prepare an interactive class activity. 
+ 
+Form a group of four students. Pick one of the seven topics (see Schedule for 
+weekly topics) for which you prepare: 
+1. 
+a short presentation (length: max. 10 minutes) 
+2. 
+an interactive class session (length: ±20 minutes) 
+ 
+We aim to have two student groups per week, with a maximum of three student 
+groups on the same topic. With your group, you will develop expertise on a 
+specific focus area related to that week’s topic guided by one or more research 
+questions you would like to address. You can start by reading the literature 
+assigned to that week, but you will have to extend your knowledge and focus by 
+searching additional academic papers and scanning online news media for 
+current events related to your specific focus area. The goal of this part is to 
+broaden our understanding of that week’s topic by explaining your insights into 
+your chosen focus area. 
+ 
+You will prepare the session based on four academic papers: 
+1. 
+Foundation paper that presents basic theoretical principles (often with 
+high number of citations). 
+2. 
+Relatively new paper with contemporary views on the theory. 
+3. 
+Empirical paper that tests the theoretical principles based on 
+observation and measurement. 
+4. 
+Critical paper that questions the theoretical base of the foundation 
+paper. 
+ 
+You will write a one-pager that shortly presents your focus area based on the 
+four academic papers, how it relates to that week’s topic, and which open 
+research questions or issues you have planned to address in the interactive class 
+session. Note that this one-pager and your presentation is not merely a 
+summary of the selected papers and the views of the authors; it should be an 
+engaging introduction on your focus area that addresses the importance of the 
+theoretical principles and arguments for and against. 
+ 
+
+--- Page 12 ---
+Syllabus INFOMCSP 2023/2024 
+12 
+ 
+During the class meeting, your group will lead an interactive class session 
+(length: ±20 minutes) for which your presentation (length: max. 10 minutes) 
+will serve as common ground. Your group will lead an activity that will stimulate 
+discussion of open research questions or issues related to your focus area. There 
+are multiple ways to stimulate the class to engage with theory and practice. This 
+website describes several interactive learning activities you could use: 
+https://www.brown.edu/sheridan/teaching-learning-resources/teaching-
+resources/classroom-practices/active-learning/interactive. You can pick one or 
+more of these strategies for the interactive part of your session. Or you could 
+Google “interactive learning activities” to get further inspiration. 
+ 
+Deadlines 
+Upload your one-pager on the Friday (23:59hrs) in the week before your 
+session. 
+ 
+Practical 
+Form a group of 4 or 5 students during the introduction session and submit one 
+preferred topic and one or two back-up topics by the end of the day of the 
+introduction lecture. The teacher will post the definitive schedule of interactive 
+sessions on BlackBoard. 
+ 
+Assessment criteria  
+Presentation 
+on focus area 
+25 
+- 
+Relevance to topic of that week. 
+- 
+Compelling overview of main arguments on focus 
+area. 
+- 
+Conceptual grasp of theoretical constructs is evident 
+from presented content. 
+Effective use 
+of outside 
+materials (i.e. 
+not offered in 
+the course) 
+20 
+- 
+Relevance of outside materials (i.e., academic papers 
+and news articles on current events) to focus area. 
+- 
+Quality of outside materials (i.e., peer-reviewed 
+academic sources, respected newspapers, or reports 
+from prominent research companies). 
+Facilitation of 
+class 
+interactivity 
+40 
+- 
+Incorporation of activities to engage class with theory 
+and practice related to focus area. 
+- 
+Leadership strength and ability to trigger 
+engagement of the group during activity. 
+- 
+Ability to organize and present material to others in 
+an interesting and informative way. 
+- 
+Clear summary and conclusions of the class input.  
+Style and 
+timing 
+15 
+- 
+Good presentation skills and ability to accommodate 
+the audience. 
+- 
+Balance and timing of the interactive parts during the 
+session. 
+ 
+100  
+
+--- Page 13 ---
+Syllabus INFOMCSP 2023/2024 
+13 
+ 
+6. 
+SCHEDULE 
+(version: September 6, 2023) 
+Week 
+Time and Place 
+Type 
+Teacher 
+Topic 
+Preparation + deadlines 
+36 
+Thu 7 September 
+11.00 – 12.45 
+Ruppert A 
+Lecture 
+Maartje de Graaf 
+Susanne Poeller 
+Anouk Neerincx 
+Course Introduction 
+Read the syllabus 
+Selection of interactive class session topic 
+37 
+Tue 12 September 
+13.15 – 15.00 
+Ruppert A 
+Lecture 
+Maartje de Graaf 
+The Self 
+Weekly readings 
+37 
+Thu 14 September 
+11.00 – 12.45 
+Ruppert A 
+Lab 
+session 
+Anouk Neerincx 
+Interactive Class Sessions 
+ 
+Active participation 
+Selection of research proposal topic 
+38 
+Tue 19 September 
+13.15 – 15.00 
+Ruppert A 
+Lecture 
+Maartje de Graaf 
+Social Relationships 
+Weekly readings 
+38 
+Thu 21 September 
+11.00 – 12.45 
+Ruppert A 
+Lab 
+session 
+Anouk Neerincx 
+Interactive Class Sessions 
+ 
+Active participation 
+ 
+39 
+Tue 26 September 
+13.15 – 15.00 
+Ruppert A 
+Lecture 
+Susanne Poeller 
+Cognition, Motivation & Emotion 
+ 
+Weekly readings 
+39 
+Thu 28 September 
+11.00 – 12.45 
+Ruppert A 
+Lab 
+session 
+Anouk Neerincx 
+Interactive Class Sessions 
+Instructions Peer-to-Peer feedback 
+Active participation 
+ 
+40 
+Tue 3 October 
+13.15 – 15.00 
+Ruppert A 
+Lecture 
+Maartje de Graaf 
+Social Influence 
+ 
+Weekly readings 
+40 
+Thu 5 October 
+11.00 – 12.45 
+Ruppert A 
+Lab 
+session 
+Anouk Neerincx 
+Interactive Class Sessions 
+ 
+Active participation 
+Peer-to-Peer feedback on research proposal 
+
+--- Page 14 ---
+Syllabus INFOMCSP 2023/2024 
+14 
+ 
+41 
+Tue 10 October 
+13.15 – 15.00 
+Ruppert A 
+Lecture 
+Maartje de Graaf 
+Group Dynamics 
+Weekly readings 
+Take one of the IAT tests before class 
+41 
+Thu 12 October 
+11.00 – 12.45 
+Ruppert A 
+Lab 
+session 
+Anouk Neerincx 
+Interactive Class Sessions 
+ 
+Active participation 
+ 
+42 
+Tue 17 October 
+13.15 – 15.00 
+Ruppert A 
+Lecture 
+Susanne Poeller 
+Decision Making 
+Weekly readings 
+ 
+42 
+Thu 19 October 
+11.00 – 12.45 
+Ruppert A 
+Lab 
+session 
+Anouk Neerincx 
+Interactive Class Sessions 
+General feedback on research 
+proposals 
+Active participation 
+Submit draft research proposal 
+43 
+Tue 24 October 
+13.15 – 15.00 
+Ruppert A 
+Lecture 
+Susanne Poeller 
+ 
+Cognitive Theories of Motivation 
+Weekly readings 
+ 
+43 
+Thu 26 October 
+11.00 – 12.45 
+Ruppert A 
+Lab 
+session 
+Anouk Neerincx 
+Interactive Class Sessions 
+ 
+Active participation 
+ 
+44 
+Tue 31 October 
+13.15 – 15.00 
+Ruppert A 
+Q&A 
+session 
+Maartje de Graaf 
+Susanne Poeller 
+Highlighting all course topics 
+Questions and Feedback 
+Ask us anything 
+44 
+Thu 2 November 
+11.00 – 12.45 
+Ruppert A 
+ 
+ 
+NO LECTURE 
+ 
+45 
+Tue 7 November 
+13.30 – 16.30 
+Edu Alpha 
+Written 
+exam 
+ 
+ 
+Weekly readings 
+Content lectures 
+ 
+02 
+Mon 15 January 
+17.00 – 19.00 
+Edu Alpha 
+Retake 
+ 
+ 
+Weekly readings 
+Content lectures 
+ 
+
+
+
+==================================
+FILE: Week42_AcingTheAssessmentCriteria.pdf
+==================================
+
+--- Page 1 ---
+ACING THE 
+ASSESSMENT 
+CRITERIA
+Examples, Tips & Tricks
+
+--- Page 2 ---
+RESEARCH PROPOSAL
+General feedback and 
+suggestions for improvement
+
+--- Page 3 ---
+TIPS AND TRICKS
+Check assignment + criteria
+Consult writing guides (e.g., 
+https://libguides.usc.edu/writingguide/assignments/research
+proposal)
+Formulating a more narrow RQ
+Find support for your hypotheses
+Method should match RQ + hypotheses
+
+--- Page 4 ---
+GENERAL FEEDBACK
+Research Question
+SMART formulation
+Yes/No questions ≠ Academic
+Lacking a problem statement
+Place in proposal
+Theoretical background
+Lack of structure and flow of argumentation.
+Synthesize different research papers into discussion of 
+general (new) insights for each concept related to your RQ.
+RQ or hypotheses should follow naturally.
+Focus and relevance. Only discuss concepts included in your 
+RQ and methodology.
+
+--- Page 5 ---
+GENERAL FEEDBACK
+Methodology
+Be complete and detailed. Should contain information about 
+participants, instruments/measures/variables, materials, 
+research design, and the procedure.
+Doing literature research ≠ part of method, but simply a 
+mandatory step.
+Structuring and layout
+Headers guides your reader through the proposal.
+Use connecting sentences. Answering “so what?”.
+Your argumentation(s) are often incomplete. Make all 
+implications explicit. 
+No “meta-writing”. Do not write: "this section will describe the 
+theory“ but write what you are going to discuss / explain etc. 
+and why the reader needs to know that to understand your 
+research.
+Person-first language.
+
+--- Page 6 ---
+WRITTEN EXAM
+Instructions & Example Questions
+
+--- Page 7 ---
+RULES DURING THE EXAM
+Duration is 2 hours (120 minutes). Extra timers +20 minutes.
+You cannot leave in the first 30 minutes of the exam. Allows 
+late-comers to still enter and start the exam.
+You cannot leave in the last 15 minutes of the exam. Allow all 
+students to finish the exam without disturbance.
+Mobile phones are switched off and in your bag.
+You are not allowed to have anything but the cheat sheet, 
+some food and drinks on your desk during the exam.
+
+--- Page 8 ---
+TYPE OF QUESTIONS
+Mostly multiple choice.
+Some open questions.
+3 scenarios.
+
+--- Page 9 ---
+EXAMPLE MULTIPLE CHOICE
+The big three needs (motives) described in Motive Disposition 
+Theory are:
+a.
+Relatedness, autonomy, and competence
+b.
+Food, sleep, and shelter
+c.
+Performance, communication, and security
+d.
+Affiliation, power, and achievement
+
+--- Page 10 ---
+EXAMPLE OPEN QUESTION
+QUESTION:
+Our motivation to join social groups is often explained from an 
+evolutionary psychological perspective. It is considered one of 
+our human needs. What is the name of the layer in Maslow’s 
+pyramid to which this need is associated, and which basic needs 
+do we strive to fulfill before we seek relationships?
+ANSWER:
+Maslow’s layer for seeking relationships is called “belongingness 
+and love needs”.
+There are two basic needs that need to be fulfilled first, namely 
+“physiological needs” and “safety needs”.
+
+--- Page 11 ---
+EXAMPLE SCENARIO
+WHAT IS IT?
+A short scenario of everyday situations for which you need to 
+identify, explain, and apply two theories. For each scenario, you 
+will need to: 
+a. Select 2 underlying theories from a multiple-choice menu.
+b. Describe how the theory works in general.
+c.
+Apply the theory to the situation.
+More than two theories will work for each scenario.
+You only have to provide answers for two theories per scenario. 
+Using around 500 words for your answers to b and c together. 
+Less words might not be conclusive enough.
+
+--- Page 12 ---
+EXAMPLE SCENARIO
+SCENARIO:
+Liam, a mountain lover, finally convinces his friends Mark and Lisa to 
+go for a trekking trip. Liam is an experienced mountaineer and 
+plans the route because the others have never been trekking before. 
+The day passes by smoothly, but on their way to their campsite, they 
+realize they are lost. They hear something that resembles howling. 
+Mark thinks that could be a wolf. He is very scared. He notices his 
+heart racing, and he's suddenly feeling very warm. Lisa barely 
+notices the howling, but she observes Mark's reaction, and she starts 
+feeling scared as well. Liam is aware that his friends are scared. He 
+is very calm instead, and he does not feel any physiological 
+reaction. "Don't be scared. Sometimes owls really resemble wolves, 
+but the presence of a wolf here is very unlikely. There is nothing to 
+be afraid of", he says, to avoid panic and he continues hiking to the 
+campsite. Mark and Lisa look at each other. They are still worried, 
+but they do not feel like arguing with Liam. They simply want to set 
+up camp before sunset.
+
+--- Page 13 ---
+EXAMPLE SCENARIO
+a.
+Name the underlying theories (max 2). More than two theories will work 
+for each scenario, so you have some freedom.
+ANSWERS:
+Theory of Constructed Emotions
+Cognitive Appraisal Theory
+Two-Factor Theory (Schachter-Singer Theory)
+Obedience
+
+--- Page 14 ---
+EXAMPLE SCENARIO
+b. Describe how the underlying theories work in general while 
+providing a bit more detail on aspects related to the 
+scenario (max 2).
+ANSWER FOR THEORY OF CONSTRUCTED EMOTIONS:
+According to the theory of constructed emotions, how we 
+interpret our emotions is not biologically prewired, rather, 
+emotions emerge when our sensations (simple feelings) become 
+conscious and give these sensations meaning. Such simple 
+feelings are a basic summary of what is going on inside the 
+body and we are then interpreting them by comparing them to 
+past experiences, evaluating what is going on around us in the 
+world, which leads to us responding to the situation. These 
+constructions are the emerging emotions (or affect).
+
+--- Page 15 ---
+EXAMPLE SCENARIO
+c.
+Apply the theories to the situation.
+ANSWER FOR OBEDIENCE:
+Lisa and Mark's decision to follow Liam in continuing their hike to 
+camp captures a behavior of obedience. Liam, the authoritative 
+figure due to his hiking expertise, states that the emotions are 
+inappropriate, and his behavior (continuing their hike) suggests 
+that it is safe to set up camp. Lisa and Mark, who have entered 
+and subconsciously agreed to the social hierarchy, do not doubt 
+Liam's opinion, trusting the leader of the group. Since they have 
+so far followed Liam’s lead (behavior consistency), want to reach 
+their campsite in time (group shared goal), and feel 
+uncomfortable to speak up (respecting social hierarchy), they 
+disregard any potential danger and continue hiking to camp..
+
+
+
+==================================
+FILE: WrittenExamCheatSheet.pdf
+==================================
+
+--- Page 1 ---
+MCSP Written Exam Cheat Sheet 
+ 
+The Self 
+3 Domains of Self by Edward Tory Higgins 
+Symbolic Interactionism by Charles Cooley 
+Self-Development in Cyberspace by Shanyang Zhao  
+Social Information Processing Theory by Joseph Walther 
+ 
+Social Relationships 
+Uncertainty Reduction Theory by Berger & Calabrese 
+Expectation Violation Theory by Judee K. Burgoon 
+Social Exchange Theory by Thibaut & Kelley 
+Social Penetration Theory by Altman & Taylor 
+Social Enhancement or Rich-get-Richer hypothesis by Kraut et al. 
+Social Compensation hypothesis by McKenna & Bargh 
+ 
+Cognition, Motivation, and Emotion 
+Social Desirability & Response Styles (e.g., Allen Edwards) 
+The Wundt Curve by Daniel Berlyne 
+Yerkes-Dodson Law by Robert Yerkes & John Dodson 
+Basic Emotion Theory by Paul Ekman 
+Theory of Constructed Emotion by Lisa Feldman Barrett 
+Two-Factor Theory of Emotion by Stanley Schachter & Jerome Singer 
+Cognitive Appraisal Theory by Richard Lazarus 
+Broaden-and-Build Theory of Positive Emotions by Barbara Fredrickson 
+Mood-Congruent Memory & Mood-Dependent Memory 
+ 
+Social Influence 
+Informational Influence vs. Normative influence by Deutsch & Gerard 
+Six principles of Compliance by Robert Cialdini 
+Obedience by Stanley Milgram 
+Conformity by Solomon Asch 
+Captology and Persuasive Technology Tools by Brian Jeffrey Fogg 
+Personalized Susceptibility to Persuasion by Maurits Kaptein 
+Group Dynamics 
+Hierarchy of Needs by Abraham Maslow 
+Need to belong Baumeister & Leary 
+Stages of group formation by Bruce Tuckman 
+Social Identity Theory by Taijfel & Turner  
+Collective Identity by Abrams & Hogg 
+The Media Equation by Reeves & Nass 
+Groupthink by Irving Janis 
+ 
+Decision-Making 
+Expectancy-Value-Theories (e.g., John Atkinson) 
+Affect-Infusion Model by Joseph Forgas 
+Drive Reduction Theory by Clark Hull 
+Cognitive Dissonance Theory by Leon Festinger 
+Subjective expected utility theory (SEU) by Leonard Savage 
+Attribution Error, Heuristics & Biases 
+ 
+Cognitive Theories of Motivation 
+Approach and Avoidance Motivation (e.g., Philip Gable) 
+Self-Determination Theory by Edward Deci & Richard Ryan 
+Motive-Disposition Theory by David McClelland 
+Self-Regulation Theory (Personality-Systems-Interaction Theory) by Kuhl 
+Rethinking Positive Thinking by Gabriele Oettingen 
+Attribution Theory by Bernard Weiner 
+
+
+
+==================================
+FILE: Lectures\1 - Introduction.pdf
+==================================
+
+--- Page 1 ---
+Cognitive a nd Socia l 
+Psychology of 
+Hum a n-Com puter  
+Inter a ction
+Maartje de Graaf
+Susanne Poeller
+Anouk Neerincx
+
+--- Page 2 ---
+Getting to know  
+ea ch other
+
+--- Page 3 ---
+Ma a r tje de Gr a a f
+Behavioral scientist
+•
+BBA Communication Management (Amsterdam University of Applied Sciences)
+•
+MSc Media Communication (Twente University)
+•
+PhD Communication Science and Human-Robot Interaction (Twente University)
+Research interest
+•
+People’s affective, behavioral, and cognitive responses to robots.
+•
+The societal and ethical consequences of those responses.
+Goal
+•
+Influence technology design and policy direction.
+•
+Pursue the development of socially acceptable robots that benefit society.
+
+--- Page 4 ---
+Susa nne Poeller
+Human-Computer-Interaction researcher
+•
+BSc Psychology (University of Trier)
+•
+MSc Psychology (University of Trier)
+•
+PhD Psychology (University of Trier)
+Research interests
+•
+Interindividual differences in human motivation
+•
+Player experience in video games
+Goal
+•
+Combat toxicity and discrimination in gaming communities
+•
+Emphasize the importance of player differences in game design
+
+--- Page 5 ---
+Anouk Neer incx
+Behavioral scientist
+•
+BSc Psychology (Leiden University)
+•
+MSc AI (VU Amsterdam)
+•
+Now: PhD student (UU)
+Research interest
+•
+Social Human-Robot Interaction
+•
+Implementation of social robots in youth and family care
+Goal
+•
+Make childcare services more efficient, effective and engaging 
+with the help of social robots.
+
+--- Page 6 ---
+And you are?
+https://app.wooclap.com/GNBPER  
+
+--- Page 7 ---
+Or ga niza tion 
+of the cour se
+
+--- Page 8 ---
+Lectur es a nd 
+la b sessions
+Lectures
+•
+Tuesdays 13:15 – 15:00
+•
+Ruppert A
+•
+Preparation: read the literature before the lecture
+Lab sessions – your presence is mandatory
+•
+Thursdays 11:00 – 12:45
+•
+Ruppert A
+•
+2-3 student presentations and discussions in each session
+
+--- Page 9 ---
+Lea r ning Goa ls
+After completing this course, you have 
+learned to:
+• apply cognitive and social psychology theories to 
+HCI problems;
+• evaluate applications in respect to cognitive and 
+social psychology theories;
+• critically review research in human-robot interaction, 
+affective computing, and games in terms of these 
+theories.
+
+--- Page 10 ---
+Cour se str uctur e 
+7 themed weeks of two sessions each:
+• Traditional one with theoretical overview
+• Interactive one with activities and discussions
+Themes:
+1. The self
+2. Social relationships
+3. Cognition, motivation & emotion
+4. Social influence
+5. Group dynamics
+6. Decision-making
+7. Cognitive theories of motivation
+
+--- Page 11 ---
+Assessm ent
+Written exam (50 % of the total grade)
+•
+Individual assessment
+Research proposal (25% of total grade)
+•
+Group alignment (2-3 students)
+•
+Paper for each (~2000 words)
+Interactive class session (25% of total grade)
+•
+Group assignment (4-5 students)
+•
+Short presentation (10 minutes)
+•
+Interactive class activity (20 mins)
+
+--- Page 12 ---
+Resea r ch pr oposa l 
+(gr oup - 25% of tota l gr a de)
+Aim
+•
+Develop research skills
+•
+Learn to conduct literature review
+•
+Identify logical steps in research process
+•
+Practice writing skills
+•
+Arise as researcher
+Process
+•
+Form groups of 2-3 students
+•
+Submit research idea (Go/No-go decision) by Sep. 14
+•
+Write research proposal in stages
+•
+Receive feedback from peers and teachers
+
+--- Page 13 ---
+Resea r ch pr oposa l 
+(gr oup - 25% of tota l gr a de)
+Requirements
+•
+Relevant topic related to course
+•
+Feasible research proposal for a 9-month master thesis 
+project
+•
+±2000 words (excluding references)
+Assessment
+•
+15p – Introduction + Research question
+•
+20p – Literature review and theoretical framework
+•
+15p – Research methodology
+•
+15p – Preliminary suppositions and implications 
+•
+10p – Conclusion
+•
+05p – References 
+•
+10p – Writing & Layout
+•
+10p – feedback process
+
+--- Page 14 ---
+Inter a ctive cla ss session
+(gr oup - 25% of tota l gr a de)
+Aim
+•
+Develop critical thinking techniques to form academic opinion
+•
+Understand and retain key issues in class materials
+•
+Investigate theoretical constructs more deeply
+•
+Organize and present class material
+•
+Develop and demonstrate communication skills
+Process
+•
+Form a group of 4-5 students
+•
+Pick one preferred theme and two back-ups by 23:59h today
+•
+We will post definitive schedule on Blackboard
+•
+Present your specific focus area (max. 10 min.) 
+•
+Facilitate activities to engage with theory and practice (±20 min.)
+
+--- Page 15 ---
+Inter a ctive cla ss session
+(gr oup - 25% of tota l gr a de)
+Requirements
+•
+Relevant to week’s theme
+•
+Based on 4 academic papers
+•
+Makes use of outside materials
+•
+Deliver one-pager about session on Friday the week before
+Assessment
+•
+25p – Presentation on focus area
+•
+20p – Effective use of outside materials
+•
+40p – Facilitation of class interactivity
+•
+15p – Style and timing
+
+--- Page 16 ---
+Schedule
+Week
+Lecture
+Teacher
+Content
+36
+Course Introduction
+Maartje de Graaf
+Susanne Poeller
+Anouk Neerincx
+Lecture
+Getting to know each other
+37
+The Self
+Maartje de Graaf
+Lecture
+37
+Interactive Class Sessions
+Anouk Neerincx
+Interactive sessions by students
+38
+Social Relationships
+Maartje de Graaf
+Lecture
+38
+Interactive Class Sessions
+Anouk Neerincx
+Interactive sessions by students
+39
+Cognition, Motivation & Emotion
+Susanne Poeller
+Lecture
+39
+Interactive Class Sessions
+Instructions Peer-to-Peer feedback
+Anouk Neerincx
+Interactive sessions by students
+40
+Social Influence
+Maartje de Graaf
+Lecture
+40
+Interactive Class Sessions
+Anouk Neerincx
+Interactive sessions by students
+
+--- Page 17 ---
+Schedule
+Week
+Lecture
+Teacher
+Content
+41
+Group Dynamics
+Maartje de Graaf
+Lecture
+41
+Interactive Class Sessions
+Anouk Neerincx
+Interactive sessions by students
+42
+Decision-Making
+Susanne Poeller
+Lecture
+42
+Interactive Class Sessions
+General feedback on research proposals
+Anouk Neerincx
+Interactive sessions by students
+43
+Cognitive Theories of Motivation
+Susanne Poeller
+Lecture
+43
+Interactive Class Sessions
+Anouk Neerincx
+Interactive sessions by students
+44
+Q&A session
+Maartje de Graaf
+Susanne Poeller
+Anouk Neerincx
+Ask us anything
+44
+No lecture on Thursday!
+45
+Written exam
+02
+Retake
+
+--- Page 18 ---
+Pr er equisite 
+know ledge a nd 
+topics of cour se
+
+--- Page 19 ---
+Socia l 
+psychology
+ba ckgr ound
+Social psychology is the systematic study of the nature and causes of 
+human social behavior.
+Sociological approach:
+•
+Focus on relation between individuals and groups.
+•
+Rely on surveys, experiments, and observations.
+•
+Includes topics such as conformity, self-presentation, social interaction, group processes, 
+cooperation.
+Psychological approach:
+•
+Focus on effect of social stimuli on individual behavior and internal states.
+•
+Rely on laboratory experimental methodology.
+•
+Includes topics such as self, perception, attribution, personality, social learning, altruism, 
+interpersonal attraction.
+Social psychology provides a frame of reference for interpreting and comparing a wide 
+range of social situations and behaviors.
+
+--- Page 20 ---
+Them es –  
+Socia l Psychology
+The Self
+Lecture: September 12 – Lab session: September 14
+•
+Self presentation and Impression management
+•
+Effects of CMC on identity formation and self presentation
+•
+Quantified self
+Social Relationships
+Lecture: September 19 – Lab session: September 21
+•
+Violation of expectation
+•
+Uncertainty reduction strategies
+•
+Online dating
+•
+Use of CMC to develop and negotiate our relationships
+
+
+
+==================================
+FILE: Lectures\2 - The Self.pdf
+==================================
+
+--- Page 1 ---
+THE SELF
+A DVA N C E D  C O G N I T I V E  A N D  S O C I A L  
+P S Y C H O L O G Y
+M A A R T J E  D E  G R A A F
+
+--- Page 2 ---
+I AM….
+D E S C R I B E  YO U R S E L F  I N  O N E  O R  T W O  W O R D S
+
+--- Page 3 ---
+The Self
+3 Domains
+[Higgins, 1987]
+Actual Self
+Ideal Self
+Ought Self
+3 Parts
+[Rogers, 1959]
+Ideal Self
+Self-Image
+Self-Esteem
+Concept of Self
+Self-
+presentation
+Self-perception
+Symbolic 
+Interactionism
+Others serve as 
+looking glass
+Social Identity 
+Theory
+[Taijfel, 1979]
+Categorization
+Identification
+Comparison
+Intrapersonal focus
+Interpersonal focus
+Self concept, self identity, and social identity
+YouTube: https://youtu.be/PaA0mLVQd3k
+
+--- Page 4 ---
+IDENTITY
+“Development of one’s self-concept, 
+including one’s thoughts and feelings 
+about oneself.” 
+[Rosenberg, 1986]
+“An individual’s sense of self 
+defined by: 
+(a)
+a set of […] characteristics that is 
+not wholly shared with any other 
+person
+(b)
+a range of affiliations and social roles 
+[…] involves a sense of continuity.”
+[APA]
+
+--- Page 5 ---
+IDENTITY
+Linked to multiple roles we hold in our 
+lives.
+Influences how we think and behave.
+Operates on conscious and 
+subconscious levels.
+How much we identify with certain 
+roles defines how much effort we put 
+into “correct” performance in that 
+role.
+
+--- Page 6 ---
+SELF – 3 DOMAINS 
+[HIGGINS, 1987]
+• Actual  – Characteristics a person genuinely possesses.
+• Ideal  – Characteristics a person would like to possess.
+• Ought  – Characteristics a person feel that they should possess.
+People strive to align those three domains of self
+
+--- Page 7 ---
+SYMBOLIC INTERACTIONISM
+“The other serves as a looking 
+glass in which we see 
+ourselves.” 
+[Cooley, 1902]
+I build my 
+own self 
+based on the 
+other’s 
+reaction
+The other 
+reacts to my 
+self-
+presentation
+I present 
+myself to the 
+other
+
+--- Page 8 ---
+IDENTITY DEVELOPMENT 
+[ZHAO, 2005]
+Stage 1 – Particular social context
+Stage 2 – Larger society
+1.
+Family
+2.
+School
+3.
+Neighborhood
+
+--- Page 9 ---
+IDENTITY DEVELOPMENT 
+[ZHAO, 2005]
+Stage 1 – Particular social context
+Stage 2 – Larger society
+1.
+Family
+2.
+School
+3.
+Neighborhood
+4.
+Online world
+Anonymous and disembodied strangers also affect the 
+formation of self.
+
+--- Page 10 ---
+SELF-DEVELOPMENT 
+IN CYBERSPACE 
+[ZHAO, 2005]
+Others convey their appraisals of our self-presentations 
+through both verbal and nonverbal behaviors, either 
+purposefully or unwittingly, which in turn shape how we 
+view ourselves. [Goffman, 1959]
+A lack of (mainly non-verbal) cues in cyberspace limits us to 
+validate our self-claims since we don’t know others’ real 
+appraisals.
+9/12/2023
+
+--- Page 11 ---
+SYMBOLIC INTERACTIONISM IN A DIGITAL WORLD
+I build my 
+own self 
+based on the 
+other’s 
+reaction
+The other 
+reacts to my 
+self-
+presentation
+I present 
+myself to the 
+other
+As I 
+prefer, 
+choosing 
+what to 
+show
+Without 
+nonverbal 
+cues in 
+CMC
+Limited to 
+our self-
+appraisals
+
+--- Page 12 ---
+THE SELF IN 
+COMPUTER-
+MEDIATED 
+COMMUNICATION
+Online self: [Ellison et al., 2006]
+Complex since one has the possibility 
+to express multiple versions of the 
+self. 
+Digital self: [Zhao, 2005]
+The self conceived online under the 
+influence of the E-audience.
+
+--- Page 13 ---
+ONLINE WORLD 
+OFFERS 
+OPPORTUNITIES 
+TO EXPLORE 
+THE SELF
+
+--- Page 14 ---
+EXPLORE THE SELF
+• No stigma on appearance, shyness, and other 
+disadvantages that prevent people from constructing 
+desired identities.
+• Outlet for “hidden selves”.
+• Exploration of non-conventional identities.
+
+--- Page 15 ---
+SHOW MY TRUE SELF?
+3 Domains of Self [Higgens, 1987]
+•
+Actual  – Characteristics a person genually possesses.
+•
+Ideal 
+ – Characteristics a person would like to possess.
+•
+Ought  – Characteristics a person feel that they should possess.
+Online anonymity… [Ellison et al., 2006]
+…allows people to present any of these three selves,
+…permits to better present aspects of their true selves (compared to face-
+to-face interaction)
+True Self – Hidden aspects of the actual self. [Rogers, 1951]
+
+--- Page 16 ---
+ONLINE 
+SELF-
+PRESENTATION
+
+--- Page 17 ---
+Individually (± 2 minutes)
+• Describe yourself in maximum of 5 characteristics or traits
+W H O  A M  I ?
+
+--- Page 18 ---
+W H AT  C A N  S O M E O N E ’ S  
+P R O F I L E  T E L L  M E ?
+In pairs (±5 minutes)
+• Pair up with a fellow student.
+• Login to your Facebook, Instagram, etc. account. 
+Whichever you use the most.
+• Have a look at each other’s page and each write down 
+5 words that best describes the other person.
+
+--- Page 19 ---
+H O W  D O  O T H E R S  
+S E E  M E ?
+In pairs (±5 minutes)
+• Compare the offline life answers 
+with what the other wrote about 
+your online profile.
+• Does the offline you and your 
+online profile match or vary 
+completely?
+
+--- Page 20 ---
+Be back in 10 minutes
+
+
+
+==================================
+FILE: Lectures\3 - Social Relationships.pdf
+==================================
+
+--- Page 1 ---
+Social 
+relationships
+Cognitive and Social Psychology of HCI
+Maartje de Graaf
+
+--- Page 2 ---
+Social media facts
+72% of people use some form of social 
+media.
+Facebook and YouTube most popular, 
+Instagram and Snapchat is popular 
+among young adults (>30yo).
+YouTube and Reddit have strongest 
+growth of users.
+VR and AR applications will be 
+changing the game of social media.
+
+--- Page 3 ---
+Many (relevant) theories
+Intrapersonal
+
+Message Design Logic
+
+Attribution Theory
+
+Uncertainty Reduction Theory
+
+Expectation Violation Theory
+
+Speech Act Theory
+
+Coordinated Message of Meaning
+
+…
+Interpersonal
+
+Interaction Adaptation Theory
+
+Politeness Theory
+
+Social Exchange Theory
+
+Moral Conflict Theory
+
+Relational Dialectics Theory
+
+Interpersonal Deception Theory
+
+Social Penetration Theory
+
+…
+
+--- Page 4 ---
+Online 
+relationships
+Superficial or rewarding?
+
+--- Page 5 ---
+Critical views
+Online relationships are superficial.
+Mainly based on personal fantasies 
+(not reality).
+Projected thoughts and feelings 
+distort our perceptions of the 
+other.
+Because people need to fill the gap for 
+the missing social cues.
+
+--- Page 6 ---
+More positive views
+Online relationships can be rewarding.
+Cyberspace offers fascinating new ways for people to 
+communicate.
+But the online world is a supplement and alternative to 
+in-person relationships, not a substitute.
+
+--- Page 7 ---
+Discussion Starters
+Who uses social media (Facebook, Twitter, Instagram, Snapchat, 
+TikTok) for friendships?
+What impact has social media on your social relationships?
+Are online friendships as meaningful as offline friendships?
+How does contact via social media differ from offline contact?
+Who are your online friends?
+
+--- Page 8 ---
+Getting 
+acquainted in 
+cyberspace
+How do people meet online?
+
+--- Page 9 ---
+Uncertainty 
+Reduction 
+Theory (URT)
+[Berger & Calabrese, 1975]
+When strangers meet, their primary 
+concern is one of uncertainty 
+reduction (or increasing predictability).
+Assumptions:
+
+People communicate to minimize 
+uncertainties.
+
+People experience uncertainty on a regular 
+basis.
+
+Experiencing uncertainty is unpleasant.
+
+Communication is our fundamental tool for 
+reducing uncertainty.
+
+--- Page 10 ---
+Uncertainty Reduction Theory
+[Berger & Calabrese, 1975]
+Types of uncertainty:
+
+Behavioral uncertainty – which actions are 
+appropriate in a given situation.
+
+Cognitive uncertainty – what attitude and believes 
+does the other hold.
+Uncertainty reduction strategies:
+
+Passive – observing others and your environment to 
+gather clues.
+
+Active – seeking information from third party who 
+may know about person or situation.
+
+Interactive – go straight to the source an ask as 
+many questions as possible.
+
+--- Page 11 ---
+URT and getting 
+acquainted online
+[Antheunis et al., 2010]
+Computer-Mediated Communication has two 
+dimensions:
+
+Cue-poor vs. cue-rich
+
+Dyadic vs. open communication
+What happens to URT strategies in open, cue-
+richer online environments (SNS, MMORPG)?
+
+Examined URT-strategies used to gain information about 
+a person met online and how this affects social 
+attraction.
+
+Uncertainty and social attraction.
+
+Similarity and social attraction. 
+
+--- Page 12 ---
+URT and getting acquainted 
+online
+[Antheunis et al., 2010]
+Study results:
+
+High similarity and interactive strategies reduce uncertainty.
+
+Participants used all strategies:
+
+Passive (most used)
+
+Interactive (most effective in reducing uncertainty)
+
+Active (less used)
+
+Low level of uncertainty increases social attraction.
+
+The valence of information mediates the relationship:
+
+Weaker URT effect when the information is perceived as positive.
+
+Stronger URT effect when the information is perceived as negative.
+How can we explain these results?
+
+--- Page 13 ---
+Relationship development 
+in cyberspace
+How do online relationships develop?
+
+--- Page 14 ---
+Social Penetration Theory
+[Altman & Taylor, 1978]
+Describes the process of bonding that moves a relationship from 
+superficial to more intimate and explain how information exchange (self-
+disclosure) functions in the development and dissolution of interpersonal 
+relationships.
+
+Orientation Stage — Getting acquainted with “small talk” and first impressions. 
+Interaction adheres to social norms.
+
+Exploratory Affective Stage — Revealing more about themselves. Casual friendships are 
+established. Most relationships stay at this level.
+
+Affective Stage — Disclosure of personal and private matters. Comfortable enough to 
+argue or criticize each other. Romantic relationships develop at this stage.
+
+Stable Stage — Disclosure is open and comfortable. Able to predict how the other 
+person will react to certain types of information.
+
+Depenetration — One or both communicators perceive that the cost of self-disclosure 
+outweighs its benefits. Withdraw from self-disclosure, thus ending the relationship.
+
+--- Page 15 ---
+Social Penetration Theory
+[Altman & Taylor, 1978]
+Reward-Cost Assessment
+
+Self-disclosure results in vulnerability.
+
+Amount of self-disclosure depends on cost-reward assessment.
+
+Reward-cost assessments become more critical and frequent as relationships deepen 
+and the risks of self-disclosure rise.
+Barriers to Self-Disclosure
+
+Person factors of influence: gender, race, religion, personality, social status, and ethnic 
+background.
+
+Can slow the rate of self-disclosure and even prevent relationships from forming.
+
+--- Page 16 ---
+Social 
+Enhancement 
+Hypothesis
+[Kraut et al., 2002]
+Also known as Rich-get-richer
+Extroverts will primarily benefit from 
+the internet.
+
+Make easier contacts.
+
+Fully develop their already greater social 
+skills.
+This facilitates friendship formation.
+
+--- Page 17 ---
+Social 
+Compensation 
+Hypothesis
+[McKenna & Bargh, 2000]
+Introverts will primarily benefit from 
+the internet.
+
+Reduced social cues and anonymity 
+compensates for a lack of social skills.
+
+This eases self-disclosures which facilitates 
+friendship formation.
+
+--- Page 18 ---
+Antecedents of 
+online friendship formation 
+[Peter et al., 2005]
+A combination of self-disclosure and intro/extra-version.
+
+Extraverted adolescents self-disclosed and communicated online more 
+frequently, which facilitated the formation of online friendships.
+
+Introverted adolescents were more strongly motivated to communicate 
+online to compensate for lacking social skills, which increased their 
+chances of making friends online.
+Psychological characteristics together with motives and 
+internet use patterns determine online friendship formation.
+
+Both the rich-get-richer and the social compensation hypotheses fall 
+short in explaining online friendship formation.
+
+Online friendship formation is complex.
+
+--- Page 19 ---
+Social relationships: 
+A balancing act
+Alone or in pairs (±5 minutes):
+
+Choose a person in your life (friend, 
+supervisor, trainer, sibling, etc.)
+
+Identify the advantages or benefits 
+your get out of this relationship.
+
+Identify the disadvantages or costs of 
+being in this relationship.
+My relationship with my cat
+Costs
+Rewards
+Pukes on carpet
+Purrs to great me
+Wakes me up at 3am
+Keeps me company
+Cleaning litterbox
+Petting benefits health
+
+--- Page 20 ---
+What relationship did you choose?
+
+
+
+==================================
+FILE: Lectures\4 - Cognition, Motivation, and Emotion.pdf
+==================================
+
+--- Page 1 ---
+Cognition, 
+Motivation, 
+and Emotion
+Advanced Cognitive & Social Psychology for HCI – 2023
+Department of Information and Computing Sciences, Utrecht University
+Susanne Poeller
+26/09/2023
+
+--- Page 2 ---
+Some guidance for the exam
+Content that you should memorize and that you should be able to reproduce in the exam
+A topic you should reflect and form your opinion on so you could write a short argument
+Slides that add context or are (overly) simplified for illustration; not part of the exam
+All other slides are normal slides. They are relevant for the exam and you should have understood them, be able 
+to recognize the theories or mention and use them as part of your arguments or apply them to a context.
+You do not need to have all the content memorized by heart and you do not need to form a strong opinion on it.
+(e.g., you should be able to list Ekman’s 7 basic emotions and have an idea what they mean but I will not ask you to reproduce the exact definition for each basic emotion.)
+This only applies to the 3 cognitive psychology lectures; If you have any questions or need clarification, please send an email to s.poeller@uu.nl
+
+--- Page 3 ---
+The “cognitive revolution” in psychology
+(simplified version)
+The 
+unconscious
+Behaviourism
+COGNITIVE 
+“REVOLUTION” 
+We do not know 
+what is in the 
+unconscious mind, 
+but it matters
+We do not 
+care what is 
+in the mind
+Actually, we care 
+a lot about what 
+is in the mind
+The 1950ies
+
+--- Page 4 ---
+Why care about 
+historical views?
+Why learn about 
+outdated theories?
+“You can't understand what lays ahead If you don't understand the past”
+History shows the origins of our current situation, the evolution 
+of ideas, and the consequences of past actions. 
+By learning from the past, we can avoid repeating mistakes, 
+innovate more effectively and avoid to “re-invent the wheel”.
+
+--- Page 5 ---
+• Cognitive psychology is often associated with experiments and 
+quantitative methods.
+• There has been a rise in the use of self-report questionnaires and 
+quantitative methods such as factor analysis.
+• This focus was fruitful and important for the development of 
+psychology, but where do we go from here? 
+
+--- Page 6 ---
+
+--- Page 7 ---
+Topics of 
+General 
+Psychology
+Perception
+Attention
+Language 
+Cognition
+Memory
+Learning 
+Motivation
+Emotion
+Action
+
+--- Page 8 ---
+What to keep in mind when applying theories
+Living beings do not always make fully predictable decisions and 
+individual differences always matter
+Comparing the information processing of human-beings to computers 
+(that do not experience motivation and emotion) is limiting
+Every psychological theory is ultimately false: theories are 
+approximations that help us make sense of complex interactions
+“The whole is more than the sum of its parts”
+
+--- Page 9 ---
+However…
+• Good experimental design is always important 
+(but there is not just one way of designing a good experiment)
+• Both quantitative and qualitative methods have their use cases
+• Using the right methods for each research question is always key
+• Certain methods only allow for a limited interpretation of results
+• Every study design has limitations – always consider what they are
+
+--- Page 10 ---
+Latent Constructs
+•Latent constructs are theoretical
+•They cannot be measured or observed 
+directly
+•A latent variable needs to be measured 
+indirectly based on a definition
+DEPRESSION
+MOTIVATION
+EXTRAVERSION
+INTELLIGENCE
+
+--- Page 11 ---
+Example: Depression
+Possible Definition: Depression is a mood disorder. Those who 
+suffer from depression experience persistent feelings of 
+sadness and hopelessness and lose interest in activities they 
+once enjoyed. Individuals can also present with a physical 
+symptom such as chronic pain or digestive issues. For a 
+diagnosis, symptoms must be present for at least two weeks.
+
+--- Page 12 ---
+Example: 
+Depression
+Depression is a mood disorder. Those who suffer from 
+depression experience persistent feelings of sadness and 
+hopelessness and lose interest in activities they once 
+enjoyed. Individuals can also present with a physical 
+symptom such as chronic pain or digestive issues. For a 
+diagnosis, symptoms must be present for at least two weeks.
+
+--- Page 13 ---
+The limitations of self-
+report questionnaires
+Social desirability
+Personality differences
+Response styles
+Self-reflection
+Points of reference
+
+--- Page 14 ---
+Social desirability
+• The tendency to respond to questions in a 
+way that will be seen favourably by others.
+• Social desirability is a challenge for any self-
+report method
+Examples:
+• Exaggerating the amount of physical exercise
+• Inflating the amount that one has donated to charities
+• Denying or not reporting frowned-upon behaviours, such as 
+cheating, or lying
+
+--- Page 15 ---
+Personality differences
+• Personality aspects, such as how agreeable or 
+how self-confident we are can affect how we 
+think of ourselves. This makes accurate 
+measurement with self-report difficult.
+Example: A humble person would likely think of 
+themselves as less humble than a non-humble 
+person. Their humility might be precisely why 
+they would likely indicate that they are less 
+humble than they actually are.
+
+--- Page 16 ---
+Response styles - examples
+• Extreme response style: people who are 
+more decisive and dislike ambiguity tend 
+to give extreme answers on Likert-scales.
+• Moderacy bias/compressed scale: 
+prefers to use middle options
+• Acquiescence: Prefers to agree when 
+asked a question 
+(the opposite is disacquiescence)
+1-not at all to 5-very
+1
+2
+3
+4
+5
+How happy are you?
+X
+How sad are you?
+X
+1-not at all to 5-very
+1
+2
+3
+4
+5
+How happy are you?
+X
+How sad are you?
+X
+no
+yes
+Are you happy?
+X
+Are you sad?
+X
+
+--- Page 17 ---
+Self-reflection
+• Some questions require participants to accurately 
+recognize and reflect on their actions and habits, 
+which is not easy for everyone.
+Example Questions: 
+“Do you tend to make other people upset?”
+“Do other people enjoy being around you?”
+“Do you think that your performance is above average?”
+(see also: Above Average Effect/Illusory Superiority)
+
+--- Page 18 ---
+Points of reference
+• How we respond to questionnaires can 
+be influenced by who we compare 
+ourselves too.
+Example: If an individual has a highly 
+organized sibling, they might think of 
+themselves as less organized than they 
+actually are because their point of 
+reference is an extreme one.
+(see also: upward social comparison, 
+downward social comparison, and
+contrast effect)
+
+--- Page 19 ---
+Example 
+Research 
+Question
+RQ: How does willingness to help others influence 
+life satisfaction?
+Independent Variable: 
+Willingness to help
+Dependent Variable: 
+Life Satisfaction 
+(both measured by self-report through questionnaires)
+Hypothesis: People who are more willing to help 
+others will experience higher life satisfaction.
+What kind of problems might the researchers face?
+
+--- Page 20 ---
+Good Research Questions
+describe the subject of the latent construct of interest
+• Should be free of prejudice
+• Should be transparent and allow for replication
+• Should be tested systematically and objectively
+• Can be operationalized
+
+
+
+==================================
+FILE: Lectures\5 - Social Influence.pdf
+==================================
+
+--- Page 1 ---
+SOCIAL 
+INFLUENCE
+COGNITIVE AND SOCIAL 
+PSYCHOLOGY OF HCI
+MAARTJE DE GRAAF
+
+--- Page 2 ---
+WHAT IS SOCIAL INFLUENCE?
+
+--- Page 3 ---
+DEFINITION OF 
+SOCIAL 
+INFLUENCE
+“How we are affected by 
+the real or imagined and 
+even virtual presence of 
+others.” 
+[Barton, 2016]
+
+--- Page 4 ---
+SOCIAL INFLUENCE IN CYBERSPACE
+PLAYING WITH 
+(ARTIFICIAL) OTHERS IN 
+GAMES
+NUMBER OF LIKES ON 
+SOCIAL MEDIA
+PRESENCE OF LURKERS 
+IN CHAT ROOMS
+RECOMMENDATIONS, 
+REVIEWS AND/OR 
+RATINGS IN ONLINE 
+RETAIL
+ETCETERA…
+
+--- Page 5 ---
+TWO TYPES OF SOCIAL INFLUENCE 
+[DEUTSCH & GERARD, 1955]
+Informational 
+influence
+Accepting information from another because it 
+appeals to our reason, and we agree with what the 
+other says.
+Normative     
+influence
+Accepting information because we want to fit in and 
+be accepted or seek approval by the source of 
+information.
+
+--- Page 6 ---
+THREE PROCESSES OF SOCIAL INFLUENCE
+• External or obvious change in behavior (but not one’s actual 
+attitude) in response to a direct request or when under the 
+influence of a group. [Cialdini & Goldstein, 2004]
+Compliance
+• Compliance with the wishes of authority figure. [Milgram, 1974]
+Obedience
+• A change in attitude or behavior as a result of pressure either from 
+friends (peer pressure) or from belonging to a group (group norms).
+Conformity
+
+--- Page 7 ---
+COMPLIANCE
+
+--- Page 8 ---
+DEFINITION OF 
+COMPLIANCE
+External or obvious 
+change in behavior (but 
+not one’s actual attitude) 
+in response to a direct 
+request or when under 
+the influence of a group. 
+[Cialdini & Goldstein, 2004]
+
+--- Page 9 ---
+SIX PRINCIPLES THAT MAKE US COMPLY 
+[CIALDINI, 2001]
+Feeling obligated to repay a favor is universal in humans.
+Reciprocity
+More willing to comply with request of someone we like.
+Liking
+Perceiving limited availability.
+Scarcity
+Perceiving behavior as ‘correct’ in given situation because we observe others do it.
+Social proof
+Preference to appear consistent; when we say A, we do A.
+Commitment 
+and consistency
+Accept recommendation from someone with moral or legal right or ability to control.
+Authority
+
+--- Page 10 ---
+TECHNIQUES 
+OF 
+COMPLIANCE
+Foot in the door
+Starting with an extremely small 
+request almost certain to be 
+agreed to, followed by a large(er) 
+request.
+Appeals to our need for 
+commitment and consistency by 
+repeating to accept requests.
+Door in the face
+Starting with an extremely large 
+request almost certain to be 
+declined, followed by a more 
+modest request. (reciprocity of 
+returning a concession)
+Appeals to our need of reciprocity 
+by responding to the perceived 
+concession made by the other.
+
+--- Page 11 ---
+OBEDIENCE
+
+--- Page 12 ---
+DEFINITION OF 
+OBEDIENCE
+Compliance with the 
+wishes of authority figure. 
+[Milgram, 1974]
+
+--- Page 13 ---
+MILGRAM’S 
+ELECTRIC 
+SHOCK 
+EXPERIMENT 
+[MILGRAM, 1974]
+
+--- Page 14 ---
+VALIDATION 
+BY VARIATION
+Original study had obedience of 65%
+
+Clothing: Everyday cloths (vs. uniform) drops to 20%
+
+Location: Run-down office (vs. Yale University) drops to 47.5%
+
+Responsibility: Instruct assistant (vs. doing themselves) raises to 92.5%
+
+Consequence: Forcing touch (vs. simply undergoing) drops to 40%
+
+Social support: Others disobey (vs. alone) drops to 10%
+
+Absent authority: Tele-present (vs. nearby) instructions drops 20.5%
+
+--- Page 15 ---
+CRITIQUE ON 
+MILGRAM’S 
+SHOCK 
+EXPERIMENT
+Biased sample?
+
+Gender: All male participants.
+
+Pre-selection: Half of participants self-selection by response to poster.
+
+Yet, replication: 636 participants in 18 separate experiments.
+Ethical issues
+
+Deception: Believed electric shocks were real.
+
+Participant protection: Exposure to stress  psychological harm.
+
+Right to withdraw: Verbal statements discouraged withdrawal.
+
+Debriefing: Milgram did fully debrief participants at the end.
+
+--- Page 16 ---
+RECENT 
+CONFIRMATIONS 
+OF MILGRAM’S 
+ELECTRIC SHOCK 
+EXPERIMENT 
+[MILGRAM, 1974]
+Partial replication study shows that obedience to 
+authority remains high in the 21st century. 
+[Burger, 2009]
+People will continue to perform a tedious task even 
+when the authority figure is a robot (though less 
+compared to human authority figure; 46% vs. 86%). 
+[Geiskkovitch et al., 2016]
+People feel discomfort even when the learner that 
+receives the electric shocks is a virtual character. 
+[Slater et al., 2006]
+
+--- Page 17 ---
+VIRTUAL REPRISE OF MILGRAM'S OBEDIENCE STUDY
+[SLATER ET AL., 2006]
+Two conditions:
+
+Visible: virtual learner was seen and heard 
+throughout the whole experiment.
+
+Hidden: virtual learner only shown at introduction, 
+rest of communication via text.
+Findings:
+
+A hidden learner results in more given shocks.
+
+A visible learner causes higher stress and greater 
+awareness of such physiological indicators.
+
+--- Page 18 ---
+VIRTUAL REPRISE OF MILGRAM'S OBEDIENCE STUDY
+[SLATER ET AL., 2006]
+People tend to respond realistically at 
+subjective, physiological, and behavioral 
+levels to virtual characters and 
+environments.
+Response patterns replicate Milgram’s 
+shock experiment, albeit at lesser 
+intensity.
+
+--- Page 19 ---
+Be back in 10 minutes
+
+--- Page 20 ---
+CONFORMITY
+
+
+
+==================================
+FILE: Lectures\6 - Group Dynamics.pdf
+==================================
+
+--- Page 1 ---
+Group 
+Dynamics
+COGNITIVE AND SOCIAL PSYCHOLOGY OF HCI
+MAARTJE DE GRAAF
+
+--- Page 2 ---
+Groups: 
+What and Why?
+
+--- Page 3 ---
+Group
+Any collection of people 
+who define themselves 
+as a group and whose 
+attitudes and behaviors 
+are governed by the 
+norms of the group.
+
+Friends in neighborhood
+
+Classmates in school
+
+Colleagues at work
+
+….
+
+Member of an online 
+community
+
+--- Page 4 ---
+Group definitions
+“What matters is a sense of belonging” [Tajfel, 1981]
+“A group exists of 2 or more individuals 
+perceiving themselves as a member of the same 
+group” [Brown, 1995]
+“A group exists if […] its existence is recognized 
+by at least another person (external)” [Turner, 1981]
+
+Shared goals
+
+Interdependence
+
+Interactions
+
+Mutual influence
+
+--- Page 5 ---
+Hierarchy 
+of Needs
+[Maslow, 1943]
+
+--- Page 6 ---
+Need to 
+Belong
+[Baumeister & Leary, 1995]
+Seeking bonds 
+with others 
+aids survival in 
+many ways
+Keeping 
+children 
+close to 
+caregivers
+Mutual 
+protection in 
+a group
+Cooperation 
+in hunting 
+and sharing 
+food
+Division of 
+labor to allow 
+growing food
+Emotional 
+support to 
+get through 
+crisis
+
+--- Page 7 ---
+Reasons to join online groups
+Need to alleviate loneliness.
+Attraction of relative anonymity.
+Seeking like-minded people.
+Allow for remote communication.
+Present a ‘version’ of themselves to their group.
+Possibility of forming multinational groups.
+[Bargh & McKenna, 2004; Code & Zaparyniuk, 2009; Kirwan & Power, 2014; Murgado-
+Armenteros et al., 2012; Riva, 2002; Wallace, 1999; Walther, 2007]
+
+--- Page 8 ---
+Social Network Theory 
+[Monge, & Contractor, 2003]
+The study of how the social structure of 
+relationships around a person, group, or 
+organization affects beliefs or behaviors.
+
+Focuses on relationships between people (not 
+characteristics of people).
+
+Uncover the emergent and informal communication 
+patterns present in a community (e.g., organization).
+
+Generates information about the types of network roles 
+(e.g., bridges, isolates, stars).
+
+--- Page 9 ---
+Stages of 
+Group 
+Formation
+[Tuckman, 1965]
+Forming
+•Members expose first info 
+about themselves
+•Exploration of group purposes 
+and information gathering
+Storming
+•Conflict phase
+•Hierarchy definition (some may 
+seek to increase their status)
+•Role taking
+Norming
+•Cohesion and trust
+•Shared norms and values
+•Emotional investment
+Performing
+•Objective oriented
+•Group therapy: insights and 
+changes
+•Activity
+•Intimacy
+Adjourning
+•Conclusion
+•Deal with the “loss” connected
+
+--- Page 10 ---
+
+--- Page 11 ---
+How do people 
+behave in groups?
+
+--- Page 12 ---
+Group Identity
+Social Identity:
+Self-concept corresponding to 
+the group membership, 
+together with the value and 
+emotional significance of that 
+membership. [Tajfel, 1978]
+Collective Identity:
+How people are similar to each 
+other, when psychological 
+connection between individual 
+self and the social group is 
+considered.
+[Abrams & Hogg, 2001]
+
+--- Page 13 ---
+Building 
+Membership 
+Attachment
+[Ren et al., 2012]
+Online communities:
+
+Many advantages
+
+Difficult to build
+Increasing members’ attachment?
+Insights from social psychology:
+
+Interpersonal bonds
+
+Group identity
+
+--- Page 14 ---
+Affect generalization: Affect towards one attitude object spreads to related objects.
+
+Can occur also in organization: Affective commitment to a workgroup generalize to the whole 
+organization.
+
+By increasing commitment to members or to subgroups.
+Bond-based attachment: Focus member attention on individual people:
+
+Web features to promote attachment to individual members of the community.
+
+People develop relations with other group members.
+Identity-based attachment: Focus member attention on the group
+
+Web features to promote attachment to a group within the community.
+
+People feel connected to characteristics of the group or its purpose.
+Building Membership Attachment
+[Ren et al., 2012]
+
+--- Page 15 ---
+Building Membership 
+Attachment
+[Ren et al., 2012]
+Two new sets of website features to 
+MovieLens.org:
+1.
+To increase identity-based attachment
+
+Movie groups profile page
+
+Recent group activity page
+
+Group communication
+2.
+To increase bond-based attachment
+
+Individual profile pages
+
+Individual activity pages
+
+Interpersonal communication
+
+--- Page 16 ---
+Building Membership Attachment
+[Ren et al., 2012]
+Main findings:
+
+Both features increase attachment to the group.
+
+Frequency of visits
+
+Number of post views
+
+Identity-based features had stronger effect.
+
+Easier to establish.
+
+Type of website or community (movie website works differently from 
+social networks in terms of friendship formation).
+
+Stronger influence on participation than member retention.
+
+More independent.
+
+Competing sites.
+
+--- Page 17 ---
+Intergroup bias
+
+--- Page 18 ---
+Intergroup bias 
+Social Identity Theory [Tajfel & Turner, 1986]
+Automatic categorization of people on 
+exterior characteristics.
+Ingroup bias towards own members:
+
+Give higher rewards.
+
+Show more prosocial behavior.
+
+Experience more positive affect.
+
+Judge products more favorable.
+
+--- Page 19 ---
+Implicit bias
+Implicit Association Test (IAT) 
+measures attitudes and beliefs that 
+people may be unwilling or unable 
+to report.
+
+Who took the Implicit Association Test?
+
+--- Page 20 ---
+Gender-Science Association
+Science
+
+Astronomy
+
+Biology
+
+Chemistry
+
+Engineering
+
+Geology
+
+Mathematics
+
+Physics
+Liberal Arts
+
+Arts
+
+English
+
+History
+
+Humanities
+
+Literature
+
+Music
+
+Philosophy
+Male
+
+Man
+
+Son
+
+Father
+
+Boy
+
+Uncle
+
+Grandpa
+
+Husband
+Female
+
+Woman
+
+Daughter
+
+Mother
+
+Girl
+
+Aunt
+
+Grandma
+
+Wife
+
+
+
+==================================
+FILE: Lectures\7 - Decision Making.pdf
+==================================
+
+--- Page 1 ---
+Decision-
+Making
+Advanced Cognitive & Social Psychology for HCI – 2023
+Department of Information and Computing Sciences, Utrecht University
+Susanne Poeller
+17/10/2023
+
+--- Page 2 ---
+Different types of decisions
+• What kind of goals do we choose
+(e.g., long-term commitments, 
+what we are motivated for)
+versus
+• in-the-moment (final) choices 
+(e.g., managerial decisions)
+
+--- Page 3 ---
+Decision-making
+• Is the cognitive process resulting in 
+the selection of a belief or a course 
+of action among several alternative 
+possibilities
+• Is based on the values, preferences 
+and beliefs of the decision maker
+
+--- Page 4 ---
+What is (a) 
+motivation?
+How would you describe a “motivated person”?
+
+--- Page 5 ---
+Motivation & Volition
+Motivation focuses on decisions of 
+which goals are attractive and feasible 
+(goal-setting) 
+Volition involves the actions and 
+thoughts directed towards achieving 
+those goals (goal-striving)
+
+--- Page 6 ---
+The Rubicon Model of Action Phases
+Person: 
+Needs, 
+Motives, 
+Goals
+Situation: 
+Opportunities, 
+Possible incentives
+Person-
+Situation 
+Interaction
+Action
+Outcome
+Consequences
+Planning
+Volitional Phases
+(Planning & Action)
+Motivation
+(Deliberation)
+Motivation
+(Evaluation)
+Intention 
+Formation
+Intention 
+Initiation
+Intention 
+Deactivation
+
+--- Page 7 ---
+The Rubicon Model of Action Phases
+Is a theoretical model that illustrates the distinction between motivation and 
+volition (it should not be interpreted as a rigid process as the phases can overlap in practice)
+Highlights that motivation is always an interaction between a person and a 
+situation, leading to the forming of intentions and making decisions
+Emphasizes the “point of no return” where a course of action is initiated
+The evaluation of the consequences that an action has will contribute to future 
+deliberations (future motivation)
+
+--- Page 8 ---
+The Rubicon Model of Action Phases
+Person: 
+Caesar was proud 
+and ambitious 
+(power-motivated)
+Situation:
+Caesar receives an 
+ultimatum. If he brings his 
+armies across the river 
+Rubicon, the Republic will 
+be in a state of civil war.
+Person-
+Situation 
+Interaction
+Action
+Outcome
+Consequences
+Planning
+Volitional Phases
+(Planning & Action)
+Motivation
+(Deliberation)
+Motivation
+(Evaluation)
+Intention 
+Formation
+Intention 
+Initiation
+Intention 
+Deactivation
+Caesar crossed
+the river Rubicon
+The gamble paid off. Caesar was victorious
+and was made dictator for life.
+
+--- Page 9 ---
+Designing for Motivation 
+• Motivation is an interaction between a person and a situation
+A: make it relevant to them 
+(how is the topic relevant for 
+their own needs and goals) 
+B: make it easier for them 
+(improve their situation, 
+provide an incentive)
+If we want to facilitate for people to be “motivated” to do something 
+(e.g., behaving more sustainable), we can:
+e.g.: make something more fun, 
+lower barriers
+e.g.: personalization, education
+
+--- Page 10 ---
+Expectancy-Value-Theories
+• They provided a fundamental 
+basis for numerous modern 
+theories of motivation
+Individuals strive for those goals 
+that appear most valuable or 
+desirable (hold incentives), while 
+taking into account how likely it 
+is to attain these goals.
+Note: 
+the term ‘incentives’ can be used to refer to both activity 
+incentives (enjoying to do something) and external 
+rewards – the term is not limited to extrinsic motivation)
+
+--- Page 11 ---
+Fundamental Attribution Error
+• The fundamental attribution error is a 
+cognitive bias in which people tend to 
+give too much importance to a person's 
+character or personality traits when 
+explaining their behavior, while not 
+considering the influence of the 
+situation or environment.
+Example: 
+Concluding that someone is just not as inherently 
+‘motivated’ as someone else without considering 
+that both might be in very different situations
+• Different opportunities
+• Different expertise/training/abilities
+• Differences in social support
+• …
+
+--- Page 12 ---
+Designing for Volition 
+• Volition enables us to overcome 
+obstacles and act on our intentions. 
+Volition facilitates perseverance and 
+long-term behavioural tendencies
+(An intention might have been formed; a decision was made 
+but individuals can still struggle to persevere.)
+Examples:
+• Reminding people of their goals and plans
+• Supporting self-regulation and time management
+• Reducing stress levels or cognitive load
+
+--- Page 13 ---
+Designing to help people 
+make better decisions?
+• Person A:  “It is not realistic to cook healthier meals at 
+home. With my busy schedule, I often buy fast food or 
+order takeout.” 
+• Person B: “I know I should be more concerned about 
+my health, but honestly, I just don't care enough to 
+make the effort. It's not that it's particularly hard to 
+do; it's just that I don't find it enjoyable.”
+• Person C: “It would be really important to me to live a 
+healthier lifestyle. But I find it difficult to follow 
+through with this plan.”
+
+--- Page 14 ---
+Influences on 
+Judgments and 
+Decision-Making
+
+--- Page 15 ---
+Affect-Infusion Model (Forgas, 1995)
+affect infusion is the process whereby affectively 
+loaded information exerts an influence on and 
+becomes incorporated into the judgmental process 
+our affect can influence our decisions
+Affect infusion is likely to happen when judgments 
+require constructive processing (no previous 
+evaluation or goal is available), which leads to: 
+• a heuristic, simplified or a 
+• a substantive, generative processing strategy.
+Forgas, J. P. (1995). Mood and judgment: the affect infusion model (AIM). Psychological bulletin, 117(1), 39.
+
+--- Page 16 ---
+Affect-Infusion Model (Forgas, 1995)
+Target Features
+• familiarity
+• typicality
+• complexity
+Judge Features
+• personal relevance
+• motivational goals
+• affective state
+• cognitive capacity
+Situation Features
+• need for accuracy
+• availability of criteria
+• social desirability
+Direct Access
+• crystallized
+• full search
+• direct search
+Motivational
+• goal-directed
+• partial search
+• directed search
+Heuristic
+• simplified
+• partial search
+• open search
+Substantive
+• extensive
+• full search
+• open search
+Stereotyping?
+Mood-control?
+Affect-as-information?
+Affect-priming?
+low infusion strategies
+(reconstructive)
+high infusion strategies
+(constructive)
+
+--- Page 17 ---
+Low Affect Infusion Strategies (reconstructive)
+(not likely to be influenced by affect)
+(1) direct access to a preexisting evaluation
+Direct access processing is likely when the target is known or familiar. The judge is 
+not personally involved; there are no strong cognitive, affective, motivational, or 
+situational forces mandating elaborate processing.
+(2) motivated processing in service of a preexisting goal
+Likely when there are strong motivational pressures towards a judgmental 
+outcome. In these circumstances, judges are likely to engage in a selective 
+information search. Motivated processing is when preferences guide judgments.
+
+--- Page 18 ---
+High Affect Infusion Strategies (constructive)
+(likely to be influenced by affect)
+(3) heuristic processing
+When neither a prior evaluation nor a strong motivational goal help to determine 
+the outcome and there is limited cognitive capacity. Heuristic processing requires 
+the minimum possible effort, considering only some of the available information 
+and using whatever shortcuts or simplifications are readily available.
+(4) substantive processing
+Substantive processing requires judges to select, learn, and interpret novel 
+information about a target and relate this information to preexisting knowledge 
+structures. It is more likely when the target is complex or atypical and the judge has 
+adequate cognitive capacity and is motivated to be accurate.
+
+--- Page 19 ---
+Striving to 
+reduce 
+tension and 
+uncertainty
+
+--- Page 20 ---
+Drive Reduction Theory (Hull)
+• Proposed the assumption that individuals 
+strive to maintain homeostasis and that 
+behaviour is reinforced by terminating a 
+negative experience (tension). 
+Example: 
+When experiencing hunger, tension arises, and consuming 
+food helps to reduce this tension and restore homeostasis. 
+An individual then learns that eating is an appropriate way 
+to counteract hunger.
+
+
+
+==================================
+FILE: Lectures\8 - Cognitive Theories of Motivation.pdf
+==================================
+
+--- Page 1 ---
+Cognitive 
+Theories of 
+Motivation
+Advanced Cognitive & Social Psychology for HCI – 2023
+Department of Information and Computing Sciences, 
+Utrecht University
+Susanne Poeller
+24/10/2023
+
+--- Page 2 ---
+Motivation and Volition
+Motivation focuses on decisions of 
+which goals are attractive and feasible 
+(goal-setting) 
+Volition involves the actions and 
+thoughts directed towards achieving 
+those goals (goal-striving)
+
+--- Page 3 ---
+Approach and Avoidance Motivation
+Approach Motivation is when a person is 
+motivated by the wish to achieve a positive 
+outcome; actively seeking out positive affect
+(e.g., studying for a good 
+grade or out of interest)
+Avoidance Motivation is when a person is 
+motivated by the wish to avoid a negative 
+outcome; trying to minimize negative affect
+(e.g., studying in order 
+to not fail an exam)
+
+--- Page 4 ---
+Approach and Avoidance Behaviour
+(Poeller, Birk, Baumann & Mandryk, 2018. Let Me Be Implicit: Using Motive Disposition Theory to Predict and Explain Behaviour in Digital Games)
+(no fear)
+(acting to avoid a scary outcome)
+(passive avoidance out of fear)
+
+--- Page 5 ---
+Intrinsic and Extrinsic Motivation
+Intrinsic Motivation
+has been defined as:
+• “in the activity”
+• “the need for self-determination”
+• “interest and involvement”
+• “a correspondence between 
+actions and their goals”
+Extrinsic Motivation
+• Is often equated with activities 
+that are carried out to receive 
+external rewards which is
+• sometimes assumed to undermine 
+intrinsic motivation, however, this 
+effect is disputed
+Woodworth (1918) was the first to use the term “intrinsic” to describe incentives residing in the 
+performance of an activity and to distinguish “intrinsic” from “extrinsic” forms of motivation.
+Rheinberg, F., & Engeser, S. (2018). Intrinsic motivation and flow. Motivation and action, 579-622.
+There is no clear consensus among motivation researchers how intrinsic and extrinsic should be defined. 
+
+--- Page 6 ---
+Flow Theory
+Flow is often described as a pleasant and motivating state that is likely to 
+occur when there is an optimal balance between challenge and skill.
+Rheinberg, F., & Engeser, S. (2018). Intrinsic motivation and flow. Motivation and action, 579-622.
+
+--- Page 7 ---
+Self-
+Determination 
+Theory
+(Basic Psychological 
+Needs Theory)
+Individuals tend to experience more flow, intrinsic 
+motivation, and well-being in situations in which they 
+experience three universal human needs (that all individuals 
+share): relatedness, autonomy, and competence. The 
+theory suggests that individuals will seek out situations that 
+allow for the satisfaction of these three needs repeatedly.
+• This theory centers around the experiential outcomes of a situation 
+and in general focuses on improving situations rather than on 
+understanding individuals.
+See: Tyack, A., & Mekler, E. D. (2020, April). Self-determination theory in HCI games research: Current uses and open questions. 
+In Proceedings of the 2020 CHI conference on human factors in computing systems (pp. 1-22).
+
+--- Page 8 ---
+Self-
+Determination 
+Theory in HCI
+Everything is better if we add some salt to the mix
+
+--- Page 9 ---
+Motives
+Motive-Disposition Theory
+(McClelland, 1985)
+
+--- Page 10 ---
+Overview: Motive Disposition Theory (McClelland, 1985)
+(Also known as ‘Human Motivation Theory’, ‘Need Theory’, ‘Three Need Theory’, ‘Learned Needs Theory’, …)
+‘Big Three’ Motives:
+Affiliation, Power, Achievement (sometimes: Autonomy)
+Dimension:
+Implicit (Unconscious/Operant), Explicit (Conscious/Self-
+ascribed)
+Enactment Strategy:
+Approach, Approach to Avoid, Avoidance
+
+--- Page 11 ---
+Social Motives (both correlate with Extraversion)
+Affiliation
+Power
+horizontal relationships
+vertical relationships
+(correlates positively with agreeableness)
+(correlates negatively with agreeableness)
+
+--- Page 12 ---
+A wish for mutually satisfying relationships 
+on the same level (Boyatzis, 1973)
+THE AFFILIATION MOTIVE
+
+--- Page 13 ---
+Affiliation-motivated individuals…
+• …strive for harmonious integration 
+into a group
+• …are likely to show pleasant 
+nonverbal behaviour towards 
+opponents in competitive matches 
+• …tend to have a better memory for 
+communal events
+(See: Poeller, S., Waldenmeier, K., Baumann, N., & Mandryk, R. (2021, May). Prepare for trouble and make it double: the power motive predicts 
+pokemon choices based on apparent strength. In Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems (pp. 1-12).)
+
+--- Page 14 ---
+A need for relationships with the 
+aim to influence or have power 
+over others (Winter, 1973)
+THE POWER MOTIVE
+14
+
+--- Page 15 ---
+The dual nature of power
+“Two faces”:
+socialized (prosocial) and 
+personalized (dominant) power 
+(McClelland, 1970)
+
+--- Page 16 ---
+Power-motivated individuals…
+(See: Winter, D. G. (1973). The power motive.)
+• …are likely to subtly change the views of group 
+members over time before they eventually emerge as 
+the group leader.
+• …tend to take opportunities to gain influence, by 
+whichever strategy works best to maximize their 
+power in that context.
+• … are often more effective leaders. However, if the 
+power-motive is too high and accompanied by low 
+levels of affiliation-motivation, the leadership style is 
+likely to become dictatorial
+
+--- Page 17 ---
+The wish for reaching high standards of 
+excellence (McClelland, Atkinson, Clark & Lowell, 1953)
+THE ACHIEVEMENT MOTIVE 
+
+--- Page 18 ---
+Achievement-motivated individuals…
+(See: Pang, J. S. (2010). The achievement motive: A review of theory and assessment of n achievement, 
+hope of success, and fear of failure. Implicit motives, 1, 30-71.)
+• …often prefer tasks of moderate 
+difficulty levels
+• …tend to persist longer in tasks after 
+failure
+• …experience more satisfaction 
+(positive valence) after successfully 
+completing a task
+
+--- Page 19 ---
+The need for self-preservation by 
+establishing and protecting boundaries 
+between the self and others (Alsleben, 2008)
+THE AUTONOMY MOTIVE
+
+--- Page 20 ---
+Autonomy-motivated individuals…
+(See: Baum, I. R., & Baumann, N. (2021). Arousing autonomy: A valid assessment of the implicit autonomy motive. 
+Personality and Individual Differences, 168.)
+• …show a higher flow experience and 
+well-being when given a lot of autonomy
+• …tend to have higher intrinsic 
+motivation in physical education classes 
+in which autonomy is supported
+• …are often creative and likely to prefer 
+teachers who use innovative methods
+
+
+
+==================================
+FILE: Lectures with notes\1 - Introduction.pdf
+==================================
+
+--- Page 1 ---
+Cognitive a nd Socia l 
+Psychology of 
+Hum a n-Com puter  
+Inter a ction
+Maartje de Graaf
+Susanne Poeller
+Anouk Neerincx
+
+--- Page 2 ---
+Getting to know  
+ea ch other
+
+--- Page 3 ---
+Ma a r tje de Gr a a f
+Behavioral scientist
+•
+BBA Communication Management (Amsterdam University of Applied Sciences)
+•
+MSc Media Communication (Twente University)
+•
+PhD Communication Science and Human-Robot Interaction (Twente University)
+Research interest
+•
+People’s affective, behavioral, and cognitive responses to robots.
+•
+The societal and ethical consequences of those responses.
+Goal
+•
+Influence technology design and policy direction.
+•
+Pursue the development of socially acceptable robots that benefit society.
+
+--- Page 4 ---
+Susa nne Poeller
+Human-Computer-Interaction researcher
+•
+BSc Psychology (University of Trier)
+•
+MSc Psychology (University of Trier)
+•
+PhD Psychology (University of Trier)
+Research interests
+•
+Interindividual differences in human motivation
+•
+Player experience in video games
+Goal
+•
+Combat toxicity and discrimination in gaming communities
+•
+Emphasize the importance of player differences in game design
+
+--- Page 5 ---
+Anouk Neer incx
+Behavioral scientist
+•
+BSc Psychology (Leiden University)
+•
+MSc AI (VU Amsterdam)
+•
+Now: PhD student (UU)
+Research interest
+•
+Social Human-Robot Interaction
+•
+Implementation of social robots in youth and family care
+Goal
+•
+Make childcare services more efficient, effective and engaging 
+with the help of social robots.
+
+--- Page 6 ---
+And you are?
+https://app.wooclap.com/GNBPER  
+
+--- Page 7 ---
+Or ga niza tion 
+of the cour se
+
+--- Page 8 ---
+Lectur es a nd 
+la b sessions
+Lectures
+•
+Tuesdays 13:15 – 15:00
+•
+Ruppert A
+•
+Preparation: read the literature before the lecture
+Lab sessions – your presence is mandatory
+•
+Thursdays 11:00 – 12:45
+•
+Ruppert A
+•
+2-3 student presentations and discussions in each session
+
+--- Page 9 ---
+Lea r ning Goa ls
+After completing this course, you have 
+learned to:
+• apply cognitive and social psychology theories to 
+HCI problems;
+• evaluate applications in respect to cognitive and 
+social psychology theories;
+• critically review research in human-robot interaction, 
+affective computing, and games in terms of these 
+theories.
+
+--- Page 10 ---
+Cour se str uctur e 
+7 themed weeks of two sessions each:
+• Traditional one with theoretical overview
+• Interactive one with activities and discussions
+Themes:
+1. The self
+2. Social relationships
+3. Cognition, motivation & emotion
+4. Social influence
+5. Group dynamics
+6. Decision-making
+7. Cognitive theories of motivation
+
+--- Page 11 ---
+Assessm ent
+Written exam (50 % of the total grade)
+•
+Individual assessment
+Research proposal (25% of total grade)
+•
+Group alignment (2-3 students)
+•
+Paper for each (~2000 words)
+Interactive class session (25% of total grade)
+•
+Group assignment (4-5 students)
+•
+Short presentation (10 minutes)
+•
+Interactive class activity (20 mins)
+
+--- Page 12 ---
+Resea r ch pr oposa l 
+(gr oup - 25% of tota l gr a de)
+Aim
+•
+Develop research skills
+•
+Learn to conduct literature review
+•
+Identify logical steps in research process
+•
+Practice writing skills
+•
+Arise as researcher
+Process
+•
+Form groups of 2-3 students
+•
+Submit research idea (Go/No-go decision) by Sep. 14
+•
+Write research proposal in stages
+•
+Receive feedback from peers and teachers
+
+--- Page 13 ---
+Resea r ch pr oposa l 
+(gr oup - 25% of tota l gr a de)
+Requirements
+•
+Relevant topic related to course
+•
+Feasible research proposal for a 9-month master thesis 
+project
+•
+±2000 words (excluding references)
+Assessment
+•
+15p – Introduction + Research question
+•
+20p – Literature review and theoretical framework
+•
+15p – Research methodology
+•
+15p – Preliminary suppositions and implications 
+•
+10p – Conclusion
+•
+05p – References 
+•
+10p – Writing & Layout
+•
+10p – feedback process
+
+--- Page 14 ---
+Inter a ctive cla ss session
+(gr oup - 25% of tota l gr a de)
+Aim
+•
+Develop critical thinking techniques to form academic opinion
+•
+Understand and retain key issues in class materials
+•
+Investigate theoretical constructs more deeply
+•
+Organize and present class material
+•
+Develop and demonstrate communication skills
+Process
+•
+Form a group of 4-5 students
+•
+Pick one preferred theme and two back-ups by 23:59h today
+•
+We will post definitive schedule on Blackboard
+•
+Present your specific focus area (max. 10 min.) 
+•
+Facilitate activities to engage with theory and practice (±20 min.)
+
+--- Page 15 ---
+Inter a ctive cla ss session
+(gr oup - 25% of tota l gr a de)
+Requirements
+•
+Relevant to week’s theme
+•
+Based on 4 academic papers
+•
+Makes use of outside materials
+•
+Deliver one-pager about session on Friday the week before
+Assessment
+•
+25p – Presentation on focus area
+•
+20p – Effective use of outside materials
+•
+40p – Facilitation of class interactivity
+•
+15p – Style and timing
+
+--- Page 16 ---
+Schedule
+Week
+Lecture
+Teacher
+Content
+36
+Course Introduction
+Maartje de Graaf
+Susanne Poeller
+Anouk Neerincx
+Lecture
+Getting to know each other
+37
+The Self
+Maartje de Graaf
+Lecture
+37
+Interactive Class Sessions
+Anouk Neerincx
+Interactive sessions by students
+38
+Social Relationships
+Maartje de Graaf
+Lecture
+38
+Interactive Class Sessions
+Anouk Neerincx
+Interactive sessions by students
+39
+Cognition, Motivation & Emotion
+Susanne Poeller
+Lecture
+39
+Interactive Class Sessions
+Instructions Peer-to-Peer feedback
+Anouk Neerincx
+Interactive sessions by students
+40
+Social Influence
+Maartje de Graaf
+Lecture
+40
+Interactive Class Sessions
+Anouk Neerincx
+Interactive sessions by students
+
+--- Page 17 ---
+Schedule
+Week
+Lecture
+Teacher
+Content
+41
+Group Dynamics
+Maartje de Graaf
+Lecture
+41
+Interactive Class Sessions
+Anouk Neerincx
+Interactive sessions by students
+42
+Decision-Making
+Susanne Poeller
+Lecture
+42
+Interactive Class Sessions
+General feedback on research proposals
+Anouk Neerincx
+Interactive sessions by students
+43
+Cognitive Theories of Motivation
+Susanne Poeller
+Lecture
+43
+Interactive Class Sessions
+Anouk Neerincx
+Interactive sessions by students
+44
+Q&A session
+Maartje de Graaf
+Susanne Poeller
+Anouk Neerincx
+Ask us anything
+44
+No lecture on Thursday!
+45
+Written exam
+02
+Retake
+
+--- Page 18 ---
+Pr er equisite 
+know ledge a nd 
+topics of cour se
+
+--- Page 19 ---
+Socia l 
+psychology
+ba ckgr ound
+Social psychology is the systematic study of the nature and causes of 
+human social behavior.
+Sociological approach:
+•
+Focus on relation between individuals and groups.
+•
+Rely on surveys, experiments, and observations.
+•
+Includes topics such as conformity, self-presentation, social interaction, group processes, 
+cooperation.
+Psychological approach:
+•
+Focus on effect of social stimuli on individual behavior and internal states.
+•
+Rely on laboratory experimental methodology.
+•
+Includes topics such as self, perception, attribution, personality, social learning, altruism, 
+interpersonal attraction.
+Social psychology provides a frame of reference for interpreting and comparing a wide 
+range of social situations and behaviors.
+
+--- Page 20 ---
+Them es –  
+Socia l Psychology
+The Self
+Lecture: September 12 – Lab session: September 14
+•
+Self presentation and Impression management
+•
+Effects of CMC on identity formation and self presentation
+•
+Quantified self
+Social Relationships
+Lecture: September 19 – Lab session: September 21
+•
+Violation of expectation
+•
+Uncertainty reduction strategies
+•
+Online dating
+•
+Use of CMC to develop and negotiate our relationships
+
+
+
+==================================
+FILE: Lectures with notes\2 - The Self.pdf
+==================================
+
+--- Page 1 ---
+THE SELF
+A DVA N C E D  C O G N I T I V E  A N D  S O C I A L  
+P S Y C H O L O G Y
+M A A R T J E  D E  G R A A F
+
+--- Page 2 ---
+I AM….
+D E S C R I B E  YO U R S E L F  I N  O N E  O R  T W O  W O R D S
+
+--- Page 3 ---
+The Self
+3 Domains
+[Higgins, 1987]
+Actual Self
+Ideal Self
+Ought Self
+3 Parts
+[Rogers, 1959]
+Ideal Self
+Self-Image
+Self-Esteem
+Concept of Self
+Self-
+presentation
+Self-perception
+Symbolic 
+Interactionism
+Others serve as 
+looking glass
+Social Identity 
+Theory
+[Taijfel, 1979]
+Categorization
+Identification
+Comparison
+Intrapersonal focus
+Interpersonal focus
+Self concept, self identity, and social identity
+YouTube: https://youtu.be/PaA0mLVQd3k
+
+--- Page 4 ---
+IDENTITY
+“Development of one’s self-concept, 
+including one’s thoughts and feelings 
+about oneself.” 
+[Rosenberg, 1986]
+“An individual’s sense of self 
+defined by: 
+(a)
+a set of […] characteristics that is 
+not wholly shared with any other 
+person
+(b)
+a range of affiliations and social roles 
+[…] involves a sense of continuity.”
+[APA]
+
+--- Page 5 ---
+IDENTITY
+Linked to multiple roles we hold in our 
+lives.
+Influences how we think and behave.
+Operates on conscious and 
+subconscious levels.
+How much we identify with certain 
+roles defines how much effort we put 
+into “correct” performance in that 
+role.
+
+--- Page 6 ---
+SELF – 3 DOMAINS 
+[HIGGINS, 1987]
+• Actual  – Characteristics a person genuinely possesses.
+• Ideal  – Characteristics a person would like to possess.
+• Ought  – Characteristics a person feel that they should possess.
+People strive to align those three domains of self
+
+--- Page 7 ---
+SYMBOLIC INTERACTIONISM
+“The other serves as a looking 
+glass in which we see 
+ourselves.” 
+[Cooley, 1902]
+I build my 
+own self 
+based on the 
+other’s 
+reaction
+The other 
+reacts to my 
+self-
+presentation
+I present 
+myself to the 
+other
+
+--- Page 8 ---
+IDENTITY DEVELOPMENT 
+[ZHAO, 2005]
+Stage 1 – Particular social context
+Stage 2 – Larger society
+1.
+Family
+2.
+School
+3.
+Neighborhood
+
+--- Page 9 ---
+IDENTITY DEVELOPMENT 
+[ZHAO, 2005]
+Stage 1 – Particular social context
+Stage 2 – Larger society
+1.
+Family
+2.
+School
+3.
+Neighborhood
+4.
+Online world
+Anonymous and disembodied strangers also affect the 
+formation of self.
+
+--- Page 10 ---
+SELF-DEVELOPMENT 
+IN CYBERSPACE 
+[ZHAO, 2005]
+Others convey their appraisals of our self-presentations 
+through both verbal and nonverbal behaviors, either 
+purposefully or unwittingly, which in turn shape how we 
+view ourselves. [Goffman, 1959]
+A lack of (mainly non-verbal) cues in cyberspace limits us to 
+validate our self-claims since we don’t know others’ real 
+appraisals.
+9/12/2023
+
+--- Page 11 ---
+SYMBOLIC INTERACTIONISM IN A DIGITAL WORLD
+I build my 
+own self 
+based on the 
+other’s 
+reaction
+The other 
+reacts to my 
+self-
+presentation
+I present 
+myself to the 
+other
+As I 
+prefer, 
+choosing 
+what to 
+show
+Without 
+nonverbal 
+cues in 
+CMC
+Limited to 
+our self-
+appraisals
+
+--- Page 12 ---
+THE SELF IN 
+COMPUTER-
+MEDIATED 
+COMMUNICATION
+Online self: [Ellison et al., 2006]
+Complex since one has the possibility 
+to express multiple versions of the 
+self. 
+Digital self: [Zhao, 2005]
+The self conceived online under the 
+influence of the E-audience.
+
+--- Page 13 ---
+ONLINE WORLD 
+OFFERS 
+OPPORTUNITIES 
+TO EXPLORE 
+THE SELF
+
+--- Page 14 ---
+EXPLORE THE SELF
+• No stigma on appearance, shyness, and other 
+disadvantages that prevent people from constructing 
+desired identities.
+• Outlet for “hidden selves”.
+• Exploration of non-conventional identities.
+
+--- Page 15 ---
+SHOW MY TRUE SELF?
+3 Domains of Self [Higgens, 1987]
+•
+Actual  – Characteristics a person genually possesses.
+•
+Ideal 
+ – Characteristics a person would like to possess.
+•
+Ought  – Characteristics a person feel that they should possess.
+Online anonymity… [Ellison et al., 2006]
+…allows people to present any of these three selves,
+…permits to better present aspects of their true selves (compared to face-
+to-face interaction)
+True Self – Hidden aspects of the actual self. [Rogers, 1951]
+
+--- Page 16 ---
+ONLINE 
+SELF-
+PRESENTATION
+
+--- Page 17 ---
+Individually (± 2 minutes)
+• Describe yourself in maximum of 5 characteristics or traits
+W H O  A M  I ?
+
+--- Page 18 ---
+W H AT  C A N  S O M E O N E ’ S  
+P R O F I L E  T E L L  M E ?
+In pairs (±5 minutes)
+• Pair up with a fellow student.
+• Login to your Facebook, Instagram, etc. account. 
+Whichever you use the most.
+• Have a look at each other’s page and each write down 
+5 words that best describes the other person.
+
+--- Page 19 ---
+H O W  D O  O T H E R S  
+S E E  M E ?
+In pairs (±5 minutes)
+• Compare the offline life answers 
+with what the other wrote about 
+your online profile.
+• Does the offline you and your 
+online profile match or vary 
+completely?
+
+--- Page 20 ---
+Be back in 10 minutes
+
+
+
+==================================
+FILE: Lectures with notes\3 - Social Relationships.pdf
+==================================
+
+--- Page 1 ---
+Social 
+relationships
+Cognitive and Social Psychology of HCI
+Maartje de Graaf
+
+--- Page 2 ---
+Social media facts
+72% of people use some form of social 
+media.
+Facebook and YouTube most popular, 
+Instagram and Snapchat is popular 
+among young adults (>30yo).
+YouTube and Reddit have strongest 
+growth of users.
+VR and AR applications will be 
+changing the game of social media.
+
+--- Page 3 ---
+Many (relevant) theories
+Intrapersonal
+
+Message Design Logic
+
+Attribution Theory
+
+Uncertainty Reduction Theory
+
+Expectation Violation Theory
+
+Speech Act Theory
+
+Coordinated Message of Meaning
+
+…
+Interpersonal
+
+Interaction Adaptation Theory
+
+Politeness Theory
+
+Social Exchange Theory
+
+Moral Conflict Theory
+
+Relational Dialectics Theory
+
+Interpersonal Deception Theory
+
+Social Penetration Theory
+
+…
+
+--- Page 4 ---
+Online 
+relationships
+Superficial or rewarding?
+
+--- Page 5 ---
+Critical views
+Online relationships are superficial.
+Mainly based on personal fantasies 
+(not reality).
+Projected thoughts and feelings 
+distort our perceptions of the 
+other.
+Because people need to fill the gap for 
+the missing social cues.
+
+--- Page 6 ---
+More positive views
+Online relationships can be rewarding.
+Cyberspace offers fascinating new ways for people to 
+communicate.
+But the online world is a supplement and alternative to 
+in-person relationships, not a substitute.
+
+--- Page 7 ---
+Discussion Starters
+Who uses social media (Facebook, Twitter, Instagram, Snapchat, 
+TikTok) for friendships?
+What impact has social media on your social relationships?
+Are online friendships as meaningful as offline friendships?
+How does contact via social media differ from offline contact?
+Who are your online friends?
+
+--- Page 8 ---
+Getting 
+acquainted in 
+cyberspace
+How do people meet online?
+
+--- Page 9 ---
+Uncertainty 
+Reduction 
+Theory (URT)
+[Berger & Calabrese, 1975]
+When strangers meet, their primary 
+concern is one of uncertainty 
+reduction (or increasing predictability).
+Assumptions:
+
+People communicate to minimize 
+uncertainties.
+
+People experience uncertainty on a regular 
+basis.
+
+Experiencing uncertainty is unpleasant.
+
+Communication is our fundamental tool for 
+reducing uncertainty.
+
+--- Page 10 ---
+Uncertainty Reduction Theory
+[Berger & Calabrese, 1975]
+Types of uncertainty:
+
+Behavioral uncertainty – which actions are 
+appropriate in a given situation.
+
+Cognitive uncertainty – what attitude and believes 
+does the other hold.
+Uncertainty reduction strategies:
+
+Passive – observing others and your environment to 
+gather clues.
+
+Active – seeking information from third party who 
+may know about person or situation.
+
+Interactive – go straight to the source an ask as 
+many questions as possible.
+
+--- Page 11 ---
+URT and getting 
+acquainted online
+[Antheunis et al., 2010]
+Computer-Mediated Communication has two 
+dimensions:
+
+Cue-poor vs. cue-rich
+
+Dyadic vs. open communication
+What happens to URT strategies in open, cue-
+richer online environments (SNS, MMORPG)?
+
+Examined URT-strategies used to gain information about 
+a person met online and how this affects social 
+attraction.
+
+Uncertainty and social attraction.
+
+Similarity and social attraction. 
+
+--- Page 12 ---
+URT and getting acquainted 
+online
+[Antheunis et al., 2010]
+Study results:
+
+High similarity and interactive strategies reduce uncertainty.
+
+Participants used all strategies:
+
+Passive (most used)
+
+Interactive (most effective in reducing uncertainty)
+
+Active (less used)
+
+Low level of uncertainty increases social attraction.
+
+The valence of information mediates the relationship:
+
+Weaker URT effect when the information is perceived as positive.
+
+Stronger URT effect when the information is perceived as negative.
+How can we explain these results?
+
+--- Page 13 ---
+Relationship development 
+in cyberspace
+How do online relationships develop?
+
+--- Page 14 ---
+Social Penetration Theory
+[Altman & Taylor, 1978]
+Describes the process of bonding that moves a relationship from 
+superficial to more intimate and explain how information exchange (self-
+disclosure) functions in the development and dissolution of interpersonal 
+relationships.
+
+Orientation Stage — Getting acquainted with “small talk” and first impressions. 
+Interaction adheres to social norms.
+
+Exploratory Affective Stage — Revealing more about themselves. Casual friendships are 
+established. Most relationships stay at this level.
+
+Affective Stage — Disclosure of personal and private matters. Comfortable enough to 
+argue or criticize each other. Romantic relationships develop at this stage.
+
+Stable Stage — Disclosure is open and comfortable. Able to predict how the other 
+person will react to certain types of information.
+
+Depenetration — One or both communicators perceive that the cost of self-disclosure 
+outweighs its benefits. Withdraw from self-disclosure, thus ending the relationship.
+
+--- Page 15 ---
+Social Penetration Theory
+[Altman & Taylor, 1978]
+Reward-Cost Assessment
+
+Self-disclosure results in vulnerability.
+
+Amount of self-disclosure depends on cost-reward assessment.
+
+Reward-cost assessments become more critical and frequent as relationships deepen 
+and the risks of self-disclosure rise.
+Barriers to Self-Disclosure
+
+Person factors of influence: gender, race, religion, personality, social status, and ethnic 
+background.
+
+Can slow the rate of self-disclosure and even prevent relationships from forming.
+
+--- Page 16 ---
+Social 
+Enhancement 
+Hypothesis
+[Kraut et al., 2002]
+Also known as Rich-get-richer
+Extroverts will primarily benefit from 
+the internet.
+
+Make easier contacts.
+
+Fully develop their already greater social 
+skills.
+This facilitates friendship formation.
+
+--- Page 17 ---
+Social 
+Compensation 
+Hypothesis
+[McKenna & Bargh, 2000]
+Introverts will primarily benefit from 
+the internet.
+
+Reduced social cues and anonymity 
+compensates for a lack of social skills.
+
+This eases self-disclosures which facilitates 
+friendship formation.
+
+--- Page 18 ---
+Antecedents of 
+online friendship formation 
+[Peter et al., 2005]
+A combination of self-disclosure and intro/extra-version.
+
+Extraverted adolescents self-disclosed and communicated online more 
+frequently, which facilitated the formation of online friendships.
+
+Introverted adolescents were more strongly motivated to communicate 
+online to compensate for lacking social skills, which increased their 
+chances of making friends online.
+Psychological characteristics together with motives and 
+internet use patterns determine online friendship formation.
+
+Both the rich-get-richer and the social compensation hypotheses fall 
+short in explaining online friendship formation.
+
+Online friendship formation is complex.
+
+--- Page 19 ---
+Social relationships: 
+A balancing act
+Alone or in pairs (±5 minutes):
+
+Choose a person in your life (friend, 
+supervisor, trainer, sibling, etc.)
+
+Identify the advantages or benefits 
+your get out of this relationship.
+
+Identify the disadvantages or costs of 
+being in this relationship.
+My relationship with my cat
+Costs
+Rewards
+Pukes on carpet
+Purrs to great me
+Wakes me up at 3am
+Keeps me company
+Cleaning litterbox
+Petting benefits health
+
+--- Page 20 ---
+What relationship did you choose?
+
+
+
+==================================
+FILE: Lectures with notes\4 - Cognition, Motivation, and Emotion.pdf
+==================================
+
+--- Page 1 ---
+Cognition, 
+Motivation, 
+and Emotion
+Advanced Cognitive & Social Psychology for HCI – 2023
+Department of Information and Computing Sciences, Utrecht University
+Susanne Poeller
+26/09/2023
+
+--- Page 2 ---
+Some guidance for the exam
+Content that you should memorize and that you should be able to reproduce in the exam
+A topic you should reflect and form your opinion on so you could write a short argument
+Slides that add context or are (overly) simplified for illustration; not part of the exam
+All other slides are normal slides. They are relevant for the exam and you should have understood them, be able 
+to recognize the theories or mention and use them as part of your arguments or apply them to a context.
+You do not need to have all the content memorized by heart and you do not need to form a strong opinion on it.
+(e.g., you should be able to list Ekman’s 7 basic emotions and have an idea what they mean but I will not ask you to reproduce the exact definition for each basic emotion.)
+This only applies to the 3 cognitive psychology lectures; If you have any questions or need clarification, please send an email to s.poeller@uu.nl
+
+--- Page 3 ---
+The “cognitive revolution” in psychology
+(simplified version)
+The 
+unconscious
+Behaviourism
+COGNITIVE 
+“REVOLUTION” 
+We do not know 
+what is in the 
+unconscious mind, 
+but it matters
+We do not 
+care what is 
+in the mind
+Actually, we care 
+a lot about what 
+is in the mind
+The 1950ies
+
+--- Page 4 ---
+Why care about 
+historical views?
+Why learn about 
+outdated theories?
+“You can't understand what lays ahead If you don't understand the past”
+History shows the origins of our current situation, the evolution 
+of ideas, and the consequences of past actions. 
+By learning from the past, we can avoid repeating mistakes, 
+innovate more effectively and avoid to “re-invent the wheel”.
+
+--- Page 5 ---
+• Cognitive psychology is often associated with experiments and 
+quantitative methods.
+• There has been a rise in the use of self-report questionnaires and 
+quantitative methods such as factor analysis.
+• This focus was fruitful and important for the development of 
+psychology, but where do we go from here? 
+
+--- Page 6 ---
+
+--- Page 7 ---
+Topics of 
+General 
+Psychology
+Perception
+Attention
+Language 
+Cognition
+Memory
+Learning 
+Motivation
+Emotion
+Action
+
+--- Page 8 ---
+What to keep in mind when applying theories
+Living beings do not always make fully predictable decisions and 
+individual differences always matter
+Comparing the information processing of human-beings to computers 
+(that do not experience motivation and emotion) is limiting
+Every psychological theory is ultimately false: theories are 
+approximations that help us make sense of complex interactions
+“The whole is more than the sum of its parts”
+
+--- Page 9 ---
+However…
+• Good experimental design is always important 
+(but there is not just one way of designing a good experiment)
+• Both quantitative and qualitative methods have their use cases
+• Using the right methods for each research question is always key
+• Certain methods only allow for a limited interpretation of results
+• Every study design has limitations – always consider what they are
+
+--- Page 10 ---
+Latent Constructs
+•Latent constructs are theoretical
+•They cannot be measured or observed 
+directly
+•A latent variable needs to be measured 
+indirectly based on a definition
+DEPRESSION
+MOTIVATION
+EXTRAVERSION
+INTELLIGENCE
+
+--- Page 11 ---
+Example: Depression
+Possible Definition: Depression is a mood disorder. Those who 
+suffer from depression experience persistent feelings of 
+sadness and hopelessness and lose interest in activities they 
+once enjoyed. Individuals can also present with a physical 
+symptom such as chronic pain or digestive issues. For a 
+diagnosis, symptoms must be present for at least two weeks.
+
+--- Page 12 ---
+Example: 
+Depression
+Depression is a mood disorder. Those who suffer from 
+depression experience persistent feelings of sadness and 
+hopelessness and lose interest in activities they once 
+enjoyed. Individuals can also present with a physical 
+symptom such as chronic pain or digestive issues. For a 
+diagnosis, symptoms must be present for at least two weeks.
+
+--- Page 13 ---
+The limitations of self-
+report questionnaires
+Social desirability
+Personality differences
+Response styles
+Self-reflection
+Points of reference
+
+--- Page 14 ---
+Social desirability
+• The tendency to respond to questions in a 
+way that will be seen favourably by others.
+• Social desirability is a challenge for any self-
+report method
+Examples:
+• Exaggerating the amount of physical exercise
+• Inflating the amount that one has donated to charities
+• Denying or not reporting frowned-upon behaviours, such as 
+cheating, or lying
+
+--- Page 15 ---
+Personality differences
+• Personality aspects, such as how agreeable or 
+how self-confident we are can affect how we 
+think of ourselves. This makes accurate 
+measurement with self-report difficult.
+Example: A humble person would likely think of 
+themselves as less humble than a non-humble 
+person. Their humility might be precisely why 
+they would likely indicate that they are less 
+humble than they actually are.
+
+--- Page 16 ---
+Response styles - examples
+• Extreme response style: people who are 
+more decisive and dislike ambiguity tend 
+to give extreme answers on Likert-scales.
+• Moderacy bias/compressed scale: 
+prefers to use middle options
+• Acquiescence: Prefers to agree when 
+asked a question 
+(the opposite is disacquiescence)
+1-not at all to 5-very
+1
+2
+3
+4
+5
+How happy are you?
+X
+How sad are you?
+X
+1-not at all to 5-very
+1
+2
+3
+4
+5
+How happy are you?
+X
+How sad are you?
+X
+no
+yes
+Are you happy?
+X
+Are you sad?
+X
+
+--- Page 17 ---
+Self-reflection
+• Some questions require participants to accurately 
+recognize and reflect on their actions and habits, 
+which is not easy for everyone.
+Example Questions: 
+“Do you tend to make other people upset?”
+“Do other people enjoy being around you?”
+“Do you think that your performance is above average?”
+(see also: Above Average Effect/Illusory Superiority)
+
+--- Page 18 ---
+Points of reference
+• How we respond to questionnaires can 
+be influenced by who we compare 
+ourselves too.
+Example: If an individual has a highly 
+organized sibling, they might think of 
+themselves as less organized than they 
+actually are because their point of 
+reference is an extreme one.
+(see also: upward social comparison, 
+downward social comparison, and
+contrast effect)
+
+--- Page 19 ---
+Example 
+Research 
+Question
+RQ: How does willingness to help others influence 
+life satisfaction?
+Independent Variable: 
+Willingness to help
+Dependent Variable: 
+Life Satisfaction 
+(both measured by self-report through questionnaires)
+Hypothesis: People who are more willing to help 
+others will experience higher life satisfaction.
+What kind of problems might the researchers face?
+
+--- Page 20 ---
+Good Research Questions
+describe the subject of the latent construct of interest
+• Should be free of prejudice
+• Should be transparent and allow for replication
+• Should be tested systematically and objectively
+• Can be operationalized
+

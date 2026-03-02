@@ -1,0 +1,4057 @@
+--- Concepts of Programming Language Design (Year 1 - Period 2) ---
+
+
+
+==================================
+FILE: Assignment-0.pdf
+==================================
+
+--- Page 1 ---
+INFOMCPD Assignment 0: Getting started with Haskell
+Tom Smeding, Gabriele Keller
+November 14, 2023
+1
+Installing the Haskell compiler
+To do the assignments it is most convenient to be able to develop on your own computer.
+The best way to install GHC, the primary Haskell compiler, is to use GHCup: go to https:
+//www.haskell.org/ghcup/ and follow the instructions for your platform. During the GHCup
+installation, be sure to install GHC and Cabal, but not Stack1; if you want interactive compiler
+feedback in your editor, also install HLS2. (For VSCode there is a Haskell plugin that works well
+with HLS.)
+If the GHCup installation does not work, ﬁrst ask us (we might know what is going wrong and be
+able to ﬁx it). If we cannot ﬁx it, an alternative is to install Stack using the instructions at https:
+//docs.haskellstack.org/en/stable/; if you do this, you will need the stack instructions
+instead of the cabal instructions in the rest of this document.
+On Windows, a common cause for GHCup installation failure is overly aggressive anti-virus
+software; this may be the cause if the initial part of the script seems to work but downloading the
+actual software later fails. If you run into this, a ﬁx is probably to remove your current anti-virus
+and install Microsoft Defender instead.
+Haskell tutorial: the rest of this assignment will assume that you have some basic knowledge
+of how Haskell works, or at least that you know how to look things up. A good tutorial is
+http://learn.hfm.io/; note that there is a small amount of overlap with the end of that tutorial
+and this assignment.
+2
+Submission and grading
+The submission system for this assignment is at: https://mcpd23.tomsmeding.com . Credentials
+for logging in are not your Solis account; you should have received credentials by email on your
+UU email address. Policy for the submission system:
+• Please do not abuse. There may be consequences for unnecessarily excessive numbers of
+submissions or attempts to break the system.
+• Please test your program on your machine before submitting.
+• In principle the number of attempts you make, even if incorrect, does not matter for your
+grade: all that matters is that you eventually (but before their deadlines) get a correct
+submission for each of the assignments.
+• If anything is unclear about the system, or things don’t seem to be working, please get in
+touch with Tom Smeding and we will try to ﬁx it.
+1While installing Stack is not harmful at all, Cabal and Stack have roughly the same purpose and having both
+can be confusing at times, especially with language-server-based editor support.
+2Haskell Language Server
+1
+
+--- Page 2 ---
+This assignment has three parts: 0.1, 0.2 and 0.3. All three parts are mandatory:
+• Assignment 0.1 (Section 4): 5% of your ﬁnal grade (0.5 grade point) (due 2023-12-01 23:59)
+• Assignment 0.2 (Section 5): 5% of your ﬁnal grade (0.5 grade point) (due 2023-12-08 23:59)
+• Assignment 0.3 (??): 5% of your ﬁnal grade (0.5 grade point) (due 2023-12-15 23:59)
+All together, assignment 0 (this document) is 15% of your ﬁnal grade (or 30% of the practical
+component), giving you a 1.5 grade if you would do nothing else in the course.
+You get the points for a part if you submit a working program that conforms to the speciﬁcation.
+Programming style is not graded, though you can of course ask for feedback on style and approach
+during the lab sessions.
+Why?
+This assignment is intended to let you get somewhat familiar with Haskell in a simple
+setting, so that the larger assignment later in the course will allow you to focus more on the
+content and less on learning the language. We made it mandatory on purpose: if you do not know
+Haskell well yet, it is a good exercise or a good refresher; if you are already adept at Haskell, it
+should take you very little time. Hence, in neither case do you have an excuse. :)
+3
+Reverse Polish Notation (RPN)
+Since the ﬁrst assignment (Section 4) is about arithmetic expressions in postﬁx notation, also
+called Reverse Polish Notation, here is a brief introduction about how those work. Normal
+arithmetic expressions have operators like + and * between their arguments; this is called inﬁx
+notation. In inﬁx, the sum of 1 and 2 is written 1 + 2, and the product of that and 3 is written
+(1 + 2) * 3. Note that we needed to use parentheses to disambiguate the order of operations;
+without parentheses and without precedence rules, it would be ambiguous whether 1 + 2 * 3
+meant (1 + 2) * 3 or 1 + (2 * 3).
+In postﬁx notation, the operators are written after their arguments. For example, the sum of 1
+and 2 is written 1 2 +, and the product of that and 3 is written 1 2 + 3 *. Note that we do
+not need to use parentheses here; indeed, looking from the back, the multiplication * needs two
+arguments. The second argument is clearly the 3, and the ﬁrst argument must then be the next
+previous thing — the addition of 1 and 2.
+An alternative interpretation of postﬁx notation is by evaluation using a stack. For example,
+evaluation of the expression 2 3 7 + 4 * + would proceed as follows:
+Initial stack:
+After 2:
+2
+After 3:
+2
+3
+After 7:
+2
+3
+7
+After +:
+2
+10
+After 4:
+2
+10
+4
+After *:
+2
+40
+After +:
+42
+You will not need to write a stack-based evaluator in this style, but we hope this helps to clarify
+the meaning of a postﬁx expression.
+2
+
+--- Page 3 ---
+4
+Assignment 0.1: RPN
+You are going to write an interpreter for postﬁx (RPN) expressions. You will only have to support
+non-negative integers, and only addition (+) and multiplication (*). In addition to the examples
+given in Section 3, here are some more RPN expressions that you will need to be able to handle:
+Input expression
+Evaluation
+12 3 * 6 +
+(12 · 3) + 6 = 42
+1 2 3 4 5 + + + +
+1 + (2 + (3 + (4 + 5))) = 15
+123 0 + 2 2 * +
+(123 + 0) + (2 · 2) = 127
+123 0+2
+2*
++
+(123 + 0) + (2 · 2) = 127
+— You need to handle this too
+Your program will be split in three parts:
+1. You will write one function to split the input into tokens: numbers, plus signs and multipli-
+cation signs.
+2. Then you will write a function to parse the input expression (in concrete syntax) to an
+internal representation (the abstract syntax).
+3. Finally, you will write a function that evaluates the expression in this internal, abstract
+representation to its integer result.
+Due to the simplicity of this task, going through the intermediate representation might feel
+redundant; please follow this two-part structure anyway, because it allows you get practice with
+some relevant concepts in this course.
+4.1
+Setting up your development environment
+Create a ﬁle called, for example, rpn.hs. Open it in your editor, and to the side of your editor,
+open a terminal (or cmd on Windows) in the directory where your ﬁle is stored. Then type ghci
+rpn.hs in the terminal (if you installed via Stack instead of GHCup, type stack repl rpn.hs).
+Make sure that opens correctly and asks for input with a prompt that looks like ghci> or *Main>.
+Next, put foo = "hello!" your ﬁle, and type :r (followed by Enter) in your terminal (i.e. in
+ghci). It should reload the module, and afterwards you should be able to type foo (and Enter),
+which will show "hello!". You can remove the deﬁnition of foo from the ﬁle now that you have
+veriﬁed that ghci works.
+Recommendation: Put the following line all the way at the top of your program:
+{-# OPTIONS -Wall #-}
+This enables warnings in ghci, such as when your pattern matches are not exhaustive (i.e. when
+they do not cover all possibilities). This is very helpful while developing.
+4.2
+Lexing
+Note: There is a template ﬁle for this assignment here: https://ics.uu.nl/docs/vakken/
+mcpd/website/exercises/asg-0-1-template.hs
+Important: Even if you don’t use the template, you must start your ﬁle with module RPN where.
+This module name is necessary for grading to proceed correctly.
+Splitting up the input string into tokens is often called tokenisation or lexing. Deﬁne a data type
+called Token that has three constructors: one for numbers (with an Int ﬁeld), one for plus signs
+and one for multiplication signs. The second and third constructor of your Token type do not
+need any ﬁelds; this is almost like an enumeration type.
+3
+
+--- Page 4 ---
+Don’t forget to make your Token type showable! You do this by appending deriving (Show)
+after your data type deﬁnition, like so:
+data Token = ...
+deriving (Show)
+This ensures that you will have a much nicer debugging experience in ghci.
+After you have deﬁned Token, deﬁne a function called lexer with the type signature String ->
+[Token] that will take the input string and produce a list of tokens. If some invalid input is
+detected, the function is allowed to error out using error; you do not need to do proper error
+handling in this assignment.
+Be sure to use pattern matching to walk over the input, and recursion to parse “the rest” of the
+input after you have parsed one token. Functions that may come in handy:
+• isDigit :: Char -> Bool 3 (you need to import Data.Char for this)
+• read :: String -> Int 4; actually this function has a much more general type, but you
+can use it at this type as well. If you want to try read in ghci, write something like read
+"123" :: Int to constrain its return type to Int.
+• span :: (a -> Bool) -> [a] -> ([a], [a]) 5: this function returns the preﬁx of the
+given list that satisﬁes the predicate, as well as the rest of the list.
+You can test your function in ghci (remember to type :r ﬁrst to reload the ﬁle): for example, try
+entering lexer "1 2 +" in ghci, or see what error is thrown on invalid input such as in lexer
+"1!" or lexer "abc".
+ghci> lexer "1 2 +"
+[TNum 1,TNum 2,TPlus]
+ghci>
+(You do not need to name the constructors of your Token data type like I did — though these
+are common choices.)
+4.3
+Parsing
+After you have split the input into tokens, you will now parse them into an expression tree. Deﬁne
+a data type called Expr with three constructors: one for numbers again, and two for addition
+and multiplication, each with two ﬁelds of type Expr. This type is an abstract representation
+of an arithmetic expression: there is no concept of parentheses or any kind of syntax anymore.
+Furthermore, it is unambiguous: there is no ambiguity in the order of operations like with (1 +
+2) * 3 versus 1 + (2 * 3).
+The actual parsing will be done by a helper function parser’ :: [Expr] -> [Token] -> Expr,
+where the [Expr] argument is a stack of expressions, and the [Token] argument is the list of
+tokens still to parse. The parsing model is similar to the evaluation example in Section 3, except
+here the stack contains expressions instead of integers. The top-level parsing function, parser ::
+[Token] -> Expr, will simply initialise the stack with the empty stack, [], and delegate the rest
+to parser’.
+In parser’, recurse over the input token list, pattern matching on (the top of) the stack whenever
+you need some expressions from it (i.e. when you encounter the tokens for plus signs and
+multiplication signs). You can push something on the stack simply by passing the enlarged stack
+to the recursive call to parser’.
+3https://hackage.haskell.org/package/base-4.16.3.0/docs/Data-Char.html#v:isDigit
+4https://hackage.haskell.org/package/base-4.16.3.0/docs/Prelude.html#v:read
+5https://hackage.haskell.org/package/base-4.16.3.0/docs/Prelude.html#v:span
+4
+
+--- Page 5 ---
+Again, test your function (or some half-done version of your function) in ghci by running it on
+some inputs (and see what error is thrown on invalid input such as parser (lexer "1 +") or
+parser (lexer "1 1")). You can either go through your lexer and run parser (lexer "1 2
++") or you can pass a list of tokens directly: the list notation that you get from running lexer
+"1 2 +" is valid Haskell syntax and can be typed in directly as an argument to parser.
+4.4
+Evaluation
+After you have written the parser, all that is left is to evaluate the arithmetic expression in Expr.
+For this, write a recursive eval function of type Expr -> Int. This function will be quite short.6
+A note: in a way, this eval function follows the big-step semantics of arithmetic expressions.
+What exactly this means you will learn later on in the course.
+After this, you have two data types (Token and Expr) and three functions (lexer, parser and
+eval). (Actually, you also have parser’, but that is simply a helper function for parser.) With
+that, this task is done: hand it in to the submission system noted at the top of Section 2.
+5
+Assignment 0.2: Inﬁx
+You received complaints from your users that they want to write expressions in inﬁx form, not in
+preﬁx form. So you get to work.
+Note: There is a template ﬁle for this assignment here: https://ics.uu.nl/docs/vakken/
+mcpd/website/exercises/asg-0-2-template.hs
+Important: Start your ﬁle with module Infix where — this line is necessary for grading to
+proceed correctly.
+You will update the lexer and the parser to now parse inﬁx expressions with non-negative numbers,
+addition, multiplication and parentheses. For this, your Token type will need to be expanded as
+well. However, the expression returned from your new parser will be expressed in the same Expr
+data type as in Assignment 0.1; indeed, preﬁx versus inﬁx is just a choice of concrete syntax. The
+abstract syntax, here the Expr data type, does not change, and neither does the semantics, your
+evaluator eval.
+Name your updated token type TokenInfix, and name your updated lexer and parser functions
+as follows:
+lexerInfix :: String -> [TokenInfix]
+parserInfix :: [TokenInfix] -> Expr
+You do need to handle operator precedence (order of operations): 1 * 2 + 3 should parse the
+same as (1 * 2) + 3, and 1 + 2 * 3 should parse the same as 1 + (2 * 3). However, the
+operators do not need to be left-associative: you can parse 1 + 2 + 3 + 4 either as ((1 + 2) +
+3) + 4 or as 1 + (2 + (3 + 4)); both are allowed.
+Some examples that you can test your code on:
+6For the mathematicians in the room: eval is a nice example of a catamorphism.
+5
+
+--- Page 6 ---
+Input expression
+Result
+3 + 12
+15
+3*12
+36
+3 * (12 + 2)
+42
+(3 * 12) + 2
+38
+3 * 12 + 2
+38
+12 + 3 * 6
+30
+1 + 2 + 3 + 4 + 5
+15
+1 +
+2+ 3 *4+5
+20
+(1 + (
+((2) * 7)) + 3 )*(4+5)
+162
+Your previous lexer and parser functions are allowed to remain in your submission for Assignment
+0.2, but they don’t have to.
+6
+Assignment 0.3: Lambda
+Your users are again complaining; they wanted a programming language, not a calculator. So
+you get to work again. This time, you will be writing a very simple interpreter for the lambda
+calculus with numbers, addition and multiplication — but as before, you are going to give your
+users exactly what they asked for, and nothing more. Indeed, your users did not ask for an easy
+to use programming language.
+This assignment is separate from the last two; it will be a single ﬁle again, but you should start
+from scratch.
+Note: There is a template ﬁle for this assignment here: https://ics.uu.nl/docs/vakken/
+mcpd/website/exercises/asg-0-3-template.hs
+Important: Start your ﬁle with module Lambda where — this line is necessary for grading to
+proceed correctly.
+The syntax of your language is as follows:
+v Var
+e Expr
+#ve Expr
+Lambda
+e1 Expr
+e2 Expr
+`e1e2 Expr
+App
+v Var
+v Expr Var
+n Num
+n Expr Num
+where the Var judgement matches on a sequence of 1 or more letters (a–z A–Z) and the Num
+judgement matches on a sequence of 1 or more digits (0-9).
+For example, the following example programs have the listed meaning in normal lambda calculus
+notation:
+Input expression
+Meaning in normal notation
+` f x
+f x
+` ` f x y
+f x y
+` f ` g x
+f (g x)
+# x ` ` add x 1
+λx. add x 1
+#x``add x 1
+λx. add x 1
+` #x ``add x 1 10
+(λx. add x 1) 10
+` f #x ``add x 1
+f (λx. add x 1)
+` #f `f 10 #x ``mul 2 x
+(λf. f 10) (λx. mul 2 x)
+` #inc `inc 10 #x ``add 1 x
+(λinc. inc 10) (λx. add 1 x)
+And some more examples, all of which evaluate to an integer:
+6
+
+--- Page 7 ---
+Input expression
+Result
+`` add 2 3
+5
+`` mul 11 3
+33
+`` mul 6 `` add 3 4
+42
+` #inc `inc 10 #x ``add 1 x
+11
+``#r#t```r t`add 1 0#f```f f f f#f#x`f`f x
+65536
+Split your implementation into three parts: a lexer (that splits up the input String into a list of
+tokens, [Token]), a parser (that parses a list of tokens [Token] into an expression Expr), and an
+evaluator (that evaluates an Expr to a Value). Note that because not all expressions evaluate to
+integers any more in this language, the evaluator cannot simply return an Int.
+Instead, deﬁne a data type Value with two constructors, one for integers and one for functions.
+This data type looks as follows:
+data Value = VInt Int | VFun (Value -> Value)
+deriving (Show)
+You must use this data type — though you are allowed to change the constructor names VInt
+and VFun if you want.
+You will notice that if you put deriving (Show) on this deﬁnition, Haskell will reject your code,
+saying that there is no instance of Show deﬁned for Value -> Value. Indeed, by default, Haskell
+deﬁnes no method for printing functions, as that is kind of hard to do in general in a compiled
+language like Haskell. However, you can cop-out by writing:
+import Text.Show.Functions ()
+which adds a dummy instance that shows any function value as <function>. With that, deriving
+(Show) on Value should be accepted.
+6.1
+The evaluator
+Since this language has support for variables, your evaluator will need to get a slightly diﬀerent
+type. Import the following modules:
+import Data.Map.Strict (Map)
+import qualified Data.Map.Strict as Map
+This allows you to use the Map type in your code, with the Map operations written as for example
+Map.insert. The documentation for this type in the supported operations can be found at https:
+//hackage.haskell.org/package/containers-0.6.5.1/docs/Data-Map-Strict.html. Partic-
+ularly relevant operations are empty, insert and lookup7.
+A value of type Map k v is a ﬁnite map from keys of type k to values of type v — also known as
+dictionaries, tree-maps, hashmaps (although in this case they are in fact tree-maps), etc. You
+will store the variables currently in scope, together with their values, in a Map in your evaluator.
+Deﬁne the core of your evaluator with this type:
+eval’ :: Map String Value -> Expr -> Value
+and then deﬁne a (very short) wrapper that initialises evaluation with an empty environment:
+eval :: Expr -> Value
+The top-level interpreter.
+Finally, deﬁne the following function:
+interpret :: String -> Value
+7Consume the result of Map.lookup using a case expression.
+7
+
+--- Page 8 ---
+that composes your lexer, your parser and your evaluator. The interpret function is the function
+that will be evaluated when the grading your submission for Assignment 0.3. Again you may
+assume that all input is valid, i.e. you may throw errors using error if you do encounter invalid
+input.
+8
+
+
+
+==================================
+FILE: evaluator.pdf
+==================================
+
+--- Page 1 ---
+Concepts of Programming Language Design — Assignment
+An abstract machine for MinHs
+Version 1.0
+Due date: Friday, 19/01/2024
+History
+12/12/2023
+Initial spec released
+Overview
+In this assignment you will implement an evaluator for MinHS programs in form of an abstract
+machine, based on the E-machine. This abstract machine is part of an evaluator of MinHs, a small
+functional language similar to ML and Haskell. MinHs is fully typed, with types speciﬁed by the
+programmer. The assignment consists of a base component, worth 60% of the overall marks for
+the assignment, and ﬁve additional components, each worth another 8%.
+• Task 1 (60%)
+Implement an interpreter for the MinHs language presented in the lectures, using an envi-
+ronment semantics, including support for recursion and closures.
+• Task 2 (8%)
+Extend the abstract machine to support partial application of prim-ops and the list con-
+structor Cons.
+• Task 3 (8%)
+Extend the abstract machine to support n-ary functions
+• Task 4 (8%)
+Extend the abstract machine to support multiple bindings in the one let form.
+• Task 5 (8%)
+Extend the abstract machine to support let bindings that take parameters, deﬁnining non-
+recursive functions.
+• Task 6 (8%)
+Extend the abstract machine to support inﬁnite lists.
+Each of these parts is explained in detail below.
+The front end of the interpreter (lexer, parser, type checker) is provided for you, along with
+the implementation of the evaluate and evalE functions (found in the ﬁle Evaluator.hs). The
+function evaluate requires a program as argument, and returns an object of type Value, and
+evalE takes an expression as argument. You will need to extend the set of constructors for Value,
+but not the implementation for evaluate and evalE. The return value of evaluate is used to
+check the correctness of your assignment.
+1
+
+--- Page 2 ---
+The types of the functions msInFinalState, msGetValue and msStep are provided and may
+not be changed. The deﬁnition of the type MachineState is currently empty, and you have to
+ﬁnd a suitable deﬁnition modelling the diﬀerent states of the machine. The control stack and the
+environment are part of the machine state. For the environment, you can use the predeﬁned type
+VEnv, but you have to deﬁne your own data type to model the control stack.
+Apart from Evaluator.hs, no other ﬁles can be modiﬁed!
+The function msStep performs one single evaluation step in the E-machine, with an explicit
+control stack and environment, and may not be recursive. The function evalE acts as driver
+and calls msStep on the machine state until it ends up in a ﬁnal state. Given a closed expression
+e, then passing the expression to evalE should result in the value as speciﬁed by the big step
+semantics given in Section 2.
+You can assume the typechecker has done its job and will only give you correct programs to
+evaluate. The type checker will, in general, rule out invalid programs, so the abstract machine
+does not have to consider them.
+The dynamic (big step) semantics of MinHs is given in Section 2, and you should use this as a
+speciﬁcation for the behaviour of your abstract machine for the core tasks. That is, iﬀan expression
+e under the environment Γ evaluates to a value v according to the big step semantics, then it should
+evaluate, under the same environment and an intially empty control stack, to the same value v
+and an empty control stack in a ﬁnite number of steps in your E-machine implementation. For the
+subset of the language we discussed in the lecture, you can directly use the E-machine rules. For
+the remaining language constructs, you still need to ﬁnd the corresponding rules. For the advanced
+tasks, you have to come up with the formal sematics from the informal description yourself.
+Ask in the MS Teams assignment chat if you have any questions about the
+assignment.
+1
+Task 1
+This is the core part of the assignment. You are to implement an abstract machine for MinHs.
+The following expressions must be handled:
+• variables. v,u
+• integer constants. 1,2,..
+• boolean constants. True,False
+• some primitive arithmetic and boolean operations. +,*,<,<=,..
+• constructors for lists. Nil, Cons
+• destructors for lists. head, tail
+• inspectors for lists. null
+• function application. f x
+• if e then e1 else e2
+• let x :: τx = e1; y :: τy = e2; . . . in e2
+• recfun f :: (τ1 -> τ2) x = e expressions
+These cases are explained in detail below. The abstract syntax deﬁning these syntactic entities
+is in Syntax.hs. You should understand the data type Exp and Bind well.
+The big step semantics of a higher-order abstract syntax representation of MinHs is given is
+this document. Your task is to design a corresponding E-machine semantics (that is, with explicit
+control stack and environment, not substitution!) and implement it in Haskell.
+Page 2
+
+--- Page 3 ---
+If a runtime error occurs, which is possible, abort the execution and use Haskell’s error ::
+String -> a function to emit a suitable error message (the error code returned by error is non-
+zero, which is what will be checked for – the actual error message is not important). You do not
+need to model an error state in the machine.
+1.1
+Program structure
+A program in MinHs may evaluate to either an integer, a list of integers, or a boolean, depending
+on the type assigned to the main function. The main function must always be deﬁned; furthermore,
+for this task, main is always the only top-level binding. For example:
+main :: Int = 1 + 2;
+or
+main :: Bool
+= let x :: Int = 1;
+in if x + ((recfun f :: (Int -> Int) y = y * y) 2) == 0
+then True
+else False;
+1.2
+Variables, Literals and Constants
+MinHs is a spartan language. We only have to consider 4 types:
+Int
+Bool
+t1 -> t2
+[Int]
+The only literals you will encounter are integers. The only non-literal constructors are True
+and False for the Bool type, and Nil and Cons for the [Int] type.
+1.3
+Function application
+MinHs is, by virtue of its Haskell implementation, a non-strict language.
+An argument to a
+function is only evaluated when needed — when the function tries to inspect its value. This does
+not add a great deal of complexity to your implementation — it will occur naturally as you will
+be writing the abstract machine in Haskell, which is also a non-strict language.
+The result of a function application may in turn be a function.
+1.4
+Primitive operations
+You need to implement the following primitive operations:
++
+:: Int -> Int -> Int
+-
+:: Int -> Int -> Int
+*
+:: Int -> Int -> Int
+/
+:: Int -> Int -> Int
+negate
+:: Int -> Int
+>
+:: Int -> Int -> Bool
+>=
+:: Int -> Int -> Bool
+<
+:: Int -> Int -> Bool
+<=
+:: Int -> Int -> Bool
+Page 3
+
+--- Page 4 ---
+==
+:: Int -> Int -> Bool
+/=
+:: Int -> Int -> Bool
+head :: [Int] -> Int
+tail :: [Int] -> [Int]
+null :: [Int] -> Bool
+These operations are deﬁned over Ints, [Int]s, and Bools, as usual. negate is the primop
+representation of the unary negation function, i.e. -1. The abstract syntax for primops is deﬁned
+in Syntax.hs.
+1.5
+if - then - else
+MinHs has an if e then e1 else e2 construct. The types of e1 and e2 are the same. The type of
+e is Bool.
+1.6
+let
+For the ﬁrst task you only need to handle simple let expressions of the kind we have discussed in
+the lectures. Like these:
+main :: Int
+= let
+x :: Int = 1 + 2;
+in x;
+or
+main :: Int
+= let f :: (Int -> Int)
+= recfun f :: (Int -> Int) x = x + x;
+in f 3;
+For the base component of the assignment, you do not need to handle let bindings of more
+than one variable at a time (as is possible in Haskell). Remember, a let may bind a recursive
+function deﬁned with recfun .
+1.7
+recfun
+The recfun expression introduces a new, named function value. It has the form:
+(recfun f :: (Int -> Bool) x = x + x)
+A recfun value is a ﬁrst-class value, and may be bound to a variable with let. The value ‘f’
+is bound in the body of the function, so it is possible to write recursive functions:
+recfun f :: (Int -> Int) x =
+if x < 10 then f (x+1) else x
+Be very careful when implementing this construct, as there can be problems when using envi-
+ronments in a language allowing functions to be returned by functions.
+Page 4
+
+--- Page 5 ---
+1.8
+Evaluation strategy
+We have seen in the lecture how it is possible to evaluate expressions via substitution. This is
+an extremely ineﬃcient way to run a program. In this assignment you are to use an environment
+instead. You will be penalised for an abstract machine that operates via substitution. The module
+Env.hs provides a data type suitable for most uses. Consult the lecture notes on how environments
+are to be used in the E-machine. The strategy is to bind variables to values in the environment,
+and look them up when requried.
+In general, you will need to use: empty, lookup and addAll to begin with an empty environ-
+ment, lookup the environment, or to add a binding to the environment, respectively. As these
+functions clash with functions in the Prelude, a good idea is to import the module Env qualiﬁed:
+import qualified MinHS.Env as E
+This makes the functions accessible as E.empty and E.lookup, to disambiguate from the Pre-
+lude versions.
+2
+Dynamic Semantics of MinHs
+Big-step semantics
+We deﬁne a relation ⇓which relates an environment Γ, which maps variables to values1 and an
+expression in higher-order abstract syntax e ∈E to the resultant value v of that expression V .
+Note that the Haskell representation you will be working on for the assignment is a ﬁrst-order
+representation.
+Our value set for V , initially, consists of:
+• Machine integers
+• Boolean values
+• Lists of integers
+We will also need to add closures, or function values to our value set to deal with the
+recfun construct in a sound way. See the section on Function Values for details.
+Environment
+The environment Γ maps variables to values, and is used in place of substitution. It is speciﬁed
+as follows:
+Γ ::= · | Γ, x=v
+Values bound in the environment are closed – they contain no free variables. This requirement
+creates a problem with function values created with recfun whose bodies contain variables bound
+in an outer scope. We must bundle them with their associated environment as a closure.
+Constants and Boolean Constructors
+Γ ⊢(Num n) ⇓n
+Γ ⊢(Con True) ⇓True
+Γ ⊢(Con False) ⇓False
+1Or, possibly, to an unevaluated computation of the value, but in Haskell these two things are indistinguishable.
+Page 5
+
+--- Page 6 ---
+Primitive operations
+Γ ⊢e1 ⇓v1
+Γ ⊢e2 ⇓v2
+Γ ⊢(Plus e1 e2) ⇓v1 + v2
+Similarly for the other arithmetic and comparison operations (as for the language of arithmetic
+expressions, and in chapters 7,8 of Harper [2].).
+Note that division by zero should cause your abstract machine to throw an error using Haskell’s
+error function.
+The abstract syntax of the abstract machine re-uses function application to represent applica-
+tion of primitive operations, so (Plus e1 e2) is actually represented as:
+(App ((App ((Prim Plus) e1)) e2))
+For this ﬁrst part of the assignment, you may assume that prim-ops are never partially applied
+— that is, they are fully saturated with arguments, so the term (App ((Prim Plus) e1)) will never
+occur in isolation.
+Evaluation of if -expression
+Γ ⊢e1 ⇓True
+Γ ⊢e2 ⇓v
+Γ ⊢(If e1 e2 e3) ⇓v
+Γ ⊢e1 ⇓False
+Γ ⊢e3 ⇓v
+Γ ⊢(If e1 e2 e3) ⇓v
+Variables
+Γ(x) = v
+Γ ⊢x ⇓v
+List constructors and primops
+Γ ⊢Nil ⇓[]
+Γ ⊢e ⇓ve
+Γ ⊢es ⇓ves
+Γ ⊢(Cons e es) ⇓(ve:ves)
+Γ ⊢e ⇓(v:vs)
+Γ ⊢(Head e) ⇓v
+Γ ⊢e ⇓(v:vs)
+Γ ⊢(Tail e) ⇓vs
+Γ ⊢e ⇓(v:vs)
+Γ ⊢(Null e) ⇓False
+For the ﬁrst part of the assignment, you may assume that Cons is also never partially applied,
+as with prim-ops.
+Variable Bindings with Let
+Γ ⊢e1 ⇓v1
+Γ, x=v1⊢e2⇓v2
+Γ ⊢(Let e1 (x.e2)) ⇓v2
+Page 6
+
+--- Page 7 ---
+Function values
+To maintain soundness with function values, we need to pair a function with its environment,
+forming a closure. We introduce the following syntax for function values:
+⟨⟨Γ, f.x.e⟩⟩
+You will need to decide on a suitable representation of closures as a Haskell data type.
+Now we can specify how to introduce closed function values:
+Γ ⊢(Recfun τ1 τ2 (f.x.e1)) ⇓⟨⟨Γ, f.x.e⟩⟩
+Function Application
+Γ ⊢e1 ⇓⟨⟨Γ′, f.x.ef⟩⟩
+Γ ⊢e2 ⇓v2
+Γ′, f=v1, x=v2⊢ef⇓r
+Γ ⊢(App e1 e2) ⇓r
+3
+Advanced Tasks
+3.1
+Task 2: Partial Primops
+In the base part of the assignment, you are allowed to assume that all primitive operations (and the
+constructor Cons) are fully saturated with arguments. In this task you are to implement partial
+application of primitive operations (and Cons), which removes this assumption. For example:
+main :: Int
+= let inc :: (Int -> Int)
+= (+) 1;
+in inc 2;
+-- returns 3
+Note that the expression (+) 1 partially applies the primop Plus to 1, returning a function
+from Int to Int.
+You will need to develop a suitable dynamic semantics for such expressions and implement it
+in your evaluator. The parser and type checker are already capable of dealing with expressions of
+this form.
+3.2
+Task 3: n-ary functions
+In this task you are to implement n-ary functions. In other words, you should modify the abstract
+machine to handle bindings of functions of more than 1 argument.
+main :: Bool
+= let eq :: (Int -> Int -> Bool)
+= recfun eq :: (Int -> Int -> Bool) x y = x == y;
+in eq 3 4;
+We haven’t discussed the semantics of such functions in the lectures so you will need to work
+out a reasonable dynamic semantics for n-ary functions on your own, based on the semantics
+for unary functions.
+The parser and type checker are once again already capable of handling
+expressions of this form, so the only extension necessary is in the evaluator component.
+Hint: Is the following example semantically diﬀerent to the previous?
+Page 7
+
+--- Page 8 ---
+main :: Bool
+= let eq :: (Int -> Int -> Bool)
+= recfun eq :: (Int -> Int -> Bool) x =
+recfun eq2 :: (Int -> Bool) y = x == y;
+in eq 3 4;
+3.3
+Task 4: Multiple bindings in let
+In the base part of the assignment, we specify that let expressions contain only one binding. In
+this task, you are to extend the abstract machine so that let expressions with multiple bindings,
+like:
+main :: Int
+= let a :: Int = 3;
+b :: Int = 2;
+in a + b;
+are evaluated the same way as multiple nested let expressions:
+main :: Int
+= let a :: Int = 3;
+in let b :: Int = 2;
+in a + b;
+Once again the only place where extensions need to be made are in the evaluator, as the type
+checker and parser are already capable of handling multiple let bindings.
+3.4
+Task 5: let bindings declare functions
+In this task you are to extend the let construct further so that let bindings can take parameters
+— deﬁning non-recursive functions. This makes programming in MinHs much less verbose, as
+recfun is only necessary for deﬁning recursive functions. For example:
+main :: Int
+= let y :: Int = 3;
+in let f :: (Int -> Int) x = x + 1;
+in f y;
+-- returns 4
+Note that these bindings are non-recursive, so let x = x is a scope error, as the x in the
+binding is not in scope.
+3.5
+Task 6: Lazy Lists
+We re-use the recfun syntax, only without arguments, to construct inﬁnite lists. The recursive
+reference is provided but no function argument is necessary. When the inﬁtine liste one is passed
+as argument to a list operation, it should be evaluated to so-called weak head normal form, that
+is, just far enough to expose its topmost constructor (Cons or Nil).
+Therefore, the following program should terminate
+main :: [Int]
+= let ones :: [Int] = recfun ones :: [Int] = Cons 1 ones;
+in Cons (head ones) (Cons (head (tail ones)) Nil);
+and evaluate to
+(Cons 1 (Cons 1 Nil))
+Page 8
+
+--- Page 9 ---
+4
+Testing
+Your assignments will be tested very rigorously. You are encouraged to test yourself. minhs comes
+with a regress tester script, and you should add your own tests to this. Simply add test programs
+names prgname.mhs and a corresponding ﬁle with the expected result prgname.out anywhere in
+the tests subdirectory, and the testscript will ﬁnd it and run it.
+The tests that come with this assignment tarball cover the base part (the ﬁrst 60%) of the
+assignment only. You are responsible for testing the other parts adequately.
+5
+Building minhs
+minhs (the compiler/abstract machine) is written in Haskell, and can be used with either the
+cabal build tool or the stack build tool. You can use whichever works best on your machine.
+5.1
+Building with cabal
+You should be able to build the project by simply invoking:
+$ cabal build
+To see the debugging options, run (after building):
+$ cabal exec minhs-1
+To get, for example, the parser output for a file.mhs, type
+$ cabal exec minhs-1 -- --dump parser-raw file.mhs
+To run the compiler with a particular ﬁle, run:
+$ cabal exec minhs-1 -- foo.mhs
+And to run all of our tests, if you are on Mac or Linux, type: (remember to run cabal build
+ﬁrst!)
+$ ./run_tests_cabal.sh
+If you are on Windows, type:
+$ .\run_tests_cabal.cmd
+5.2
+Building with stack
+Incidentally, the same as in Section 5.1, except replace all occurrences of “cabal” with “stack”
+(and in particular, use the test script ./run_tests_stack.sh, or the Windows variant, which can
+be run using .\run_tests_stack.cmd).
+6
+Submitting
+Submission will be via Blackboard. Remember that you must submit only the ﬁle Evaluator.hs.
+This means that you must not modify any of the other ﬁles.
+Page 9
+
+--- Page 10 ---
+7
+Late Penalty
+Unless otherwise stated if you wish to submit an assignment late, you may do so, but a late penalty
+reducing the maximum available mark applies to every late assignment. The maximum available
+mark is reduced by 10% if the assignment is one day late, by 25% if it is 2 days late and by 50%
+if it is 3 days late. Assignments that are late 4 days or more will be awarded zero marks. So if
+your assignment is worth 88% and you submit it one day late you still get 88%, but if you submit
+it two days late you get 75%, three days late 50%, and four days late zero.
+Assignment extensions are only awarded for serious and unforeseeable events. Therefore aim
+to complete your assignments well before the due date in case of last minute illness, and make
+regular backups of your work.
+8
+Plagiarism
+This assignment is an individual assignment. All work submitted for assessment must be entirely
+your own work. We regard unacknowledged copying of material, in whole or part, as an extremely
+serious oﬀence.
+If you haven’t done so yet, please read the plagiarism policy of UU:
+https://students.uu.nl/en/practical-information/policies-and-procedures/fraud-and-plagiarism
+In this course submission plagiarism includes any work derived from another person, or solely
+or jointly written by and or with someone else, without clear and explicit acknowledgement. Note
+this includes including unreferenced work from books, the internet, etc.
+Do not provide or show your assessable work to any other person. If you knowingly provide or
+show your assessment work to another person for any reason, and work derived from it is subse-
+quently submitted you will be penalized, even if the work was submitted without your knowledge
+or consent. This will apply even if your work is submitted by a third party unknown to you. You
+should keep your work private until submissions have closed.
+If you are unsure about whether certain activities would constitute plagiarism ask us before
+engaging in them!
+References
+[1] Report on the Programming Language Haskell 98, eds. Simon Peyton Jones, John Hughes,
+(1999) http://www.haskell.org/onlinereport/
+[2] Robert Harper, Programming Languages: Theory and Practice, (Draft of Jan 2003), http:
+//www-2.cs.cmu.edu/~rwh/plbook/.
+[3] The Implementation of Functional Programming Languages, Simon Peyton Jones, published
+by Prentice Hall, 1987. Full text online (as jpg page images).
+[4] Simon Peyton-Jones, Implementing Functional Languages : a tutorial, 2000.
+Page 10
+
+--- Page 11 ---
+A
+Lexical Structure
+The lexical structure of MinHS is an small subset of Haskell98. See section 2.2 of the Haskell98
+report[1]. The lexical conventions are implemented by the Parsec parser library, which we use for
+our Parser implementation.
+B
+Concrete syntax
+The concrete syntax is based ﬁrstly on Haskell. It provides the usual arithmetic and boolean
+primitive operations (most of the Int-type primitive operations of GHC). It has conventional let
+bindings. At the outermost scope, the let is optional. As a result, multiple outer-level bindings
+are treated as nested let bindings down the page. It is required that a distinguished main function,
+of atomic type, exist. There is an if-then-else conditional expression. The primitive types of
+MinHS are Int,Bool and [Int]. MinHS also implements, at least partially, a number of extensions
+to MinML: inline comments, n-ary functions, inﬁx notation, more primitive numerical operations
+and a non-mutually recursive, simultaneous let declaration (treated as a nested-let). Function
+values may be speciﬁed with recfun .
+The concrete syntax is described and implemented in the Parser.hs module, a grammar
+speciﬁed using the Parser combinator library Parsec.
+Features of Haskell we do not provide:
+• No nested comments
+• No layout rule. Thus, semi-colons are required to terminate certain expressions. Consult
+the grammar.
+C
+Abstract syntax
+The (ﬁrst-order) abstract syntax is based closely on the MinHs syntax introduced in the lectures.
+It is implemented in the ﬁle Syntax.hs. Extensions to the MinHs abstract syntax take their cue
+from the Haskell kernel language. Presented below is the abstract syntax, with smatterings of
+concrete syntax for clarity.
+D
+Static semantics
+The static semantics are based on those of the lecture, and of and MinML, from Bob Harper’s
+book. They are implemented by the module TypeChecker.hs.
+D.1
+n-ary functions
+Functions may be declared to take more than 1 argument at a time.
+E
+Environments
+Environments are required by typechecker and possibly by the abstract machine. The typechecker
+needs to map variables to types, and the abstract machine might need to map variables to functions
+or values (like a heap). This latter structure is used to provide a fast alternative to substitution.
+We provide a general environment module, keyed by identiﬁers, in Env.hs.
+Environments are generally simpler in MinHs than in real Haskell.
+We still need to bind
+variables to partially evaluated functions, however.
+Page 11
+
+--- Page 12 ---
+Types
+τ
+::=
+Int | Bool | τ -> τ
+Literals
+n
+::=
+. . . | 0 | 1 | 2 | . . .
+b
+::=
+True | False
+Primops
+o
+::=
++ | - | * | / |
+|
+> | >= | == | /= | < | <=
+Expressions
+exp
+→
+(Var x)
+|
+(Lit n)
+|
+(Con b)
+|
+(Apply exp exp)
+|
+(Let [bind] exp)
+|
+(Letrec [bind] exp)
+|
+(Recfun bind)
+|
+(If exp exp exp)
+Bind
+bind
+→
+(Bind f τ [arg] e)
+Figure 1: The expression abstract syntax of MinHS
+F
+Dynamic semantics
+The dynamic semantics are described in this document, the lectures, and resemble that of Harper
+[2]. Implemented in the module Evaluator.hs.
+F.1
+Abstract Machine
+The abstract machine is the backend that runs by default. It should implement the dynamic
+semantics of MinHs.
+G
+Interfaces
+The basic types are found in Syntax.hs, which contains deﬁnitions for the structure of terms,
+types, primOps, and others.
+Printing
+Most structures in MinHS need to be printed at some point. We have included the prettyprinter
+library for you to use; follow the example of the printValue function in Evaluate.hs. A number
+of MinHS types already have a printer function deﬁned in the MinHS.Pretty module.
+Note that you will not be able to deﬁne instances of the Pretty class of the prettyprinter
+library if you want to use any of the functions deﬁned in MinHS.Pretty, because we are using
+ANSI terminal colours which require use of the ANSI terminal backend for the library. This
+forces the ann type parameter of Doc to be AnsiStyle, but the Pretty class requires its methods
+to be polymorphic in the annotation type. Deﬁning manual top-level functions does work; we have
+provided prettyList’ as a replacement for prettyList from the Pretty class if you need it.
+Page 12
+
+--- Page 13 ---
+Testing
+./run_tests_cabal.sh (or if you are using stack: ./run_tests_stack.sh). Remember to cabal
+build (or stack build) ﬁrst.
+Test directories may have an optional ‘Flag’ ﬁle, that contains ﬂags you wish to pass to minhs
+in that directory, or the magic ﬂag, ‘expect-fail’, which inverts the sense in which success is deﬁned
+by the driver.
+Page 13
+
+
+
+==================================
+FILE: handbook.pdf
+==================================
+
+--- Page 1 ---
+Concepts
+of
+Programming Language Design
+Gabriele Keller
+Liam O’Connor
+Tom Smeding
+Utrecht University
+
+--- Page 2 ---
+2
+
+--- Page 3 ---
+Contents
+1
+Introduction
+7
+1.1
+The implementation of programming languages . . . . . . . . . . . . . . . . . . . .
+7
+1.2
+Abstract and virtual machines
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+9
+2
+Preliminaries
+11
+2.1
+Judgements and Inference Rules
+. . . . . . . . . . . . . . . . . . . . . . . . . . . .
+11
+2.1.1
+Derivable and Admissible Rules . . . . . . . . . . . . . . . . . . . . . . . . .
+15
+2.1.2
+Notation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+15
+2.1.3
+Inductive Deﬁnitions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+16
+2.1.4
+Judgements and Relations . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+16
+2.2
+Rule Induction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+16
+2.2.1
+Ambiguity . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+18
+2.2.2
+Simultaneous Induction . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+20
+2.3
+Examples . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+23
+2.3.1
+Boolean Expressions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+23
+2.3.2
+More Arithmetic . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+24
+3
+Syntax
+25
+3.1
+From Concrete to Abstract Syntax . . . . . . . . . . . . . . . . . . . . . . . . . . .
+26
+3.2
+First Order Abstract Syntax . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+27
+3.3
+Scope of a Variable . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+28
+3.4
+Higher-Order Abstract Syntax
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+29
+3.5
+Substitution and α-equivalence . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+30
+4
+Semantics
+33
+4.1
+Static Semantics
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+33
+4.2
+Dynamic Semantics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+34
+4.2.1
+Small Step or Structural Operational Semantics (SOS) . . . . . . . . . . . .
+35
+4.2.2
+Big Step Semantics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+38
+4.3
+Comparing SOS and Evaluation Semantics . . . . . . . . . . . . . . . . . . . . . . .
+38
+5
+MinHs – a functional core language
+43
+5.1
+Concrete Syntax
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+44
+5.2
+Higher-order Abstract Syntax . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+46
+5.3
+Static Semantics
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+46
+5.3.1
+Example . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+48
+5.4
+Dynamic Semantics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+48
+6
+TinyC
+51
+6.1
+Language deﬁnition . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+51
+6.2
+Static Semantics
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+52
+6.3
+Dynamic Semantics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+54
+3
+
+--- Page 4 ---
+4
+CONTENTS
+6.3.1
+The environment g . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+54
+6.3.2
+Program Execution . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+54
+6.3.3
+Example . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+56
+7
+Abstract Machines
+59
+7.1
+The C-Machine . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+59
+7.1.1
+C-Machine States
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+60
+7.1.2
+Formalising the C-Machine . . . . . . . . . . . . . . . . . . . . . . . . . . .
+61
+7.1.3
+Example . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+64
+7.2
+The E-Machine . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+65
+7.2.1
+Example . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+67
+7.2.2
+Closures . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+68
+8
+Type Safety, Errors and Exceptions
+71
+8.1
+Type Safety . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+71
+8.2
+Dealing with Partiality . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+72
+8.2.1
+Exceptions
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+73
+9
+Composite Data Types
+75
+9.1
+Products . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+75
+9.2
+Sums . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+76
+9.3
+Unit Type . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+77
+9.4
+Recursive Types
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+78
+9.5
+Haskell Datatypes
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+79
+10 References
+81
+10.1 References in functional languages
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+81
+10.2 References in stateful languages . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+82
+10.3 References for TinyC . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+84
+10.3.1 Static semantics of references . . . . . . . . . . . . . . . . . . . . . . . . . .
+85
+10.3.2 Dynamic semantics of references
+. . . . . . . . . . . . . . . . . . . . . . . .
+86
+10.4 Memory management
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+88
+11 Parametric Polymorphism
+91
+11.1 Explicitly typed polymorphic MinHS . . . . . . . . . . . . . . . . . . . . . . . . . .
+92
+11.1.1 Polymorphic Types . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+93
+11.1.2 Typing Rules . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+93
+11.1.3 Dynamic Semantics and Implementation . . . . . . . . . . . . . . . . . . . .
+94
+11.2 First-class polymorphism versus rank-1 polymorphism . . . . . . . . . . . . . . . .
+95
+11.3 Implicitly typed polymorphic MinHs . . . . . . . . . . . . . . . . . . . . . . . . . .
+96
+11.3.1 Hindley-Milner Type Inference
+. . . . . . . . . . . . . . . . . . . . . . . . .
+97
+11.3.2 Principal Types . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 101
+12 Overloading
+103
+12.1 Compile-time Resolution of Overloading . . . . . . . . . . . . . . . . . . . . . . . . 103
+12.2 Type Classes in Haskell
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 104
+12.3 Type Classes in MinHs . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 105
+12.3.1 Predicate Entailment . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 105
+12.3.2 Overloading Resolved
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 108
+
+--- Page 5 ---
+CONTENTS
+5
+13 Featherweight Java
+109
+13.1 Syntax . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 109
+13.1.1 Class declarations. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 109
+13.1.2 Constructor declarations.
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . 109
+13.1.3 Method declarations. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 110
+13.1.4 Types. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 110
+13.1.5 Expressions. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 110
+13.2 Static Semantics of Featherweight Java . . . . . . . . . . . . . . . . . . . . . . . . . 111
+13.3 Dynamic Semantics of Featherweight Java . . . . . . . . . . . . . . . . . . . . . . . 114
+14 Subtyping
+117
+14.1 Subset and Coercion Interpretation . . . . . . . . . . . . . . . . . . . . . . . . . . . 118
+14.2 Properties . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 118
+14.3 Coherency of Coercion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 118
+14.4 Variance . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 119
+
+--- Page 6 ---
+6
+CONTENTS
+
+--- Page 7 ---
+1
+|
+Introduction
+Programming languages are essential tools for software engineers and computer scientists, and
+there are countless diﬀerent languages in existence, with new languages appearing and others
+falling out of favour. We have not only general-purpose languages, such as C, C++, C#, Go,
+Java, JavaScript, Python, Scala, Haskell, and many others, but also a vast number of domain-
+speciﬁc ones. Some of them, like LaTeX, SQL, and PHP, are well-known, but many are used solely
+within a single company or organisation, for a very speciﬁc purpose.
+As this landscape is constantly changing, it makes sense to study the theory of underlying
+concepts instead of just focusing on the current top ten most popular languages. Most of these
+concepts have been around for a long time, but in some cases, they are only just beginning to be
+utilised in mainstream languages. Understanding them not only facilitates learning new languages
+but also provides the basis for deciding what constitutes a good programming language for a
+speciﬁc purpose, what the trade-oﬀs are, and how to design a programming language.
+Moreover, to engage in discussions about program correctness, it is essential to possess a formal
+understanding of the semantics of a language, enabling comprehension of speciﬁcations for both
+formal veriﬁcation and testing.
+The ﬁrst aspect of a language we typically learn is its syntax.
+Although the syntax of a
+programming language strongly inﬂuences its usability, it is not the primary focus of this course.
+We will cover it only to the extent that it is necessary for specifying a language. Instead, we are
+delving into the semantics, or the meaning, of diﬀerent languages and language features. When
+examining the semantics of programming languages, we distinguish between static and dynamic
+semantics. Roughly speaking, static semantics encompasses anything that can be checked and
+analyzed without actually executing a program, while dynamic semantics pertains to the execution
+behavior of a program. The demarcation of this line depends on the particular language. For
+example, for most languages, the scope of an identiﬁer — meaning where in the program it can be
+used — is part of the static semantics. However, there are also languages where this is resolved
+at runtime.
+1.1
+The implementation of programming languages
+Only programs written in machine language can be directly executed on a speciﬁc architecture.
+Programs composed in any other language, including assembly code, must either be compiled into
+machine language for execution or interpreted by another program.
+Assembly language is closely related to machine code. Whereas the latter is in binary format,
+the former incorporates human-readable names for instructions and registers. Assembly language
+can be directly translated into machine language.
+In contrast to higher-level languages, both
+machine code can easily be converted back to assembly code. However, it’s important to note that
+both machine code and assembly language are speciﬁc to a particular architecture. While assembly
+instructions are readable, comprehending their functionality and operation can be exceptionally
+challenging.
+In this course, we focus on high-level languages designed with human programmers in mind.
+There are several ways to execute programs in high-level languages: An interpreter can process the
+7
+
+--- Page 8 ---
+8
+CHAPTER 1. INTRODUCTION
+statements or expressions from the source program and executes or evaluates them sequentially.
+Or, a compiler handles the entire program, analysing and optimising it, and subsequently generates
+machine code. The resulting code is contingent on the hardware architecture of the executing
+machine and the operating system (OS), as it contains calls to functions provided by the latter.
+Increasingly, hybrid approaches are gaining popularity. In these cases, a compiler translates
+the source program into a more low-level intermediate code.
+This intermediate code is then
+interpreted. The advantage of this hybrid approach lies in the fact that all compiler checks and
+many optimizations remain viable, while the intermediate code retains its independence from
+speciﬁc architectures and operating systems.
+For high-level languages, the implementation process consists of several steps and components,
+each playing a crucial role in translating human-readable code into machine-executable instruc-
+tions.
+• Lexical Analysis and Parsing: Lexical analysis, often referred to as scanning, involves
+breaking down the source code into a series of tokens. These tokens are the smallest units
+of meaning in a programming language.
+Parsing takes these tokens and arranges them into a hierarchical structure, typically repre-
+sented as an abstract syntax tree (AST). The AST captures the grammatical structure of
+the program.
+• Semantic Analysis: This phase checks for semantic correctness, ensuring that the program
+adheres to the language’s rules and constraints. It covers areas such as type checking, scope
+resolution, and name resolution.
+• Intermediate Code Generation: Some compilers employ an intermediate representation
+of the code. This intermediate code is an abstraction of the original program, designed to
+facilitate further optimisation and translation.
+• Optimisation: This phase aims to improve the performance and eﬃciency of the gener-
+ated code. It involves a range of techniques, including constant folding, loop unrolling, and
+inlining of functions. Code Generation: Here, the compiler translates the optimized interme-
+diate code into the target machine code. This process requires deep knowledge of the target
+architecture, including instruction set, memory management, and calling conventions.
+• Linking: In cases where multiple source ﬁles are involved, the linker combines the generated
+machine code into a single executable. It resolves dependencies between diﬀerent parts of
+the program.
+• Interpreter Design: Interpreters operate by directly executing the source code. They often
+include components for lexical analysis, parsing, and an execution engine that interprets and
+executes the AST or bytecode directly.
+• Garbage Collection: In languages with automatic memory management, the implemen-
+tation includes a garbage collector responsible for reclaiming memory that is no longer in
+use. The design of the garbage collector signiﬁcantly impacts the runtime performance of
+the language.
+• Runtime Libraries: These libraries provide essential functionalities that may not be di-
+rectly supported by the machine code.
+They include routines for I/O operations, string
+manipulation, and memory management.
+• Virtual Machines: Some languages, like Java and C#, employ virtual machines that
+execute bytecode. The virtual machine serves as an intermediary layer between the compiled
+code and the actual hardware, providing platform independence.
+• Error Handling: Robust error handling and debugging features are integral to a language’s
+implementation. This includes mechanisms for detecting and reporting errors
+
+--- Page 9 ---
+1.2. ABSTRACT AND VIRTUAL MACHINES
+9
+Our focus in this course is on semantic aspects, so we mainly look into semantic analysis, but
+also touch on topics like error handling and garbage collection.
+1.2
+Abstract and virtual machines
+Abstract and virtual machines are both imaginary machines, which provide an abstraction over
+concrete, existing hardware and operating systems. They are often characterised by the data types
+or values they support natively, their machine language, and sometimes their memory model. Al-
+though sometimes these terms are used interchangeably, they do diﬀer in some important aspects.
+An abstract machine is essentially a model of computation, and they are often used to analyse
+the properties or specify the semantics of a programming language. Generally, an abstract machine
+is characterised by the set of states it can be in, initial and ﬁnal states, and rules which describe
+how the machine transitions from one step to the next. The state usually entails values the machine
+can represent, and a program or expression, which the machine executes or evaluates, respectively,
+as it transitions from state to state, until it reaches a ﬁnal state. Many abstract machines can
+not be implemented faithfully, as their state may contain components like inﬁnite memory, or for
+parallel models, unlimited parallelism.
+The probably most well known abstract machine, the Turing machine [?], was invented by Alan
+Turing in 1936 to investigate the concept of computability, to show that the Entscheidungsprob-
+lem (decision problem) posed by Hilbert is not decidable.
+More recent examples for abstract
+machines, just to name a few, are the Algol Object Code [?], an abstract machine deﬁning the
+semantics of Algol60, the G-machine, for lazy functional languages [?]. If you are interested in a
+more comprehensive discussion, and more background on abstract machines, [?] presents a good
+overview.
+A virtual machine can be viewed as an abstract machine with an implementation. Some are
+used to abstract over concrete hardware or operating systems, and some to serve as a common
+compilation target for a range of languages.
+The Java Virtual Machine (JVM)[?] was initially designed to serve as compilation target for
+Java, but other languages, such as Scala, Kotlin and Clojure, and more recently also Go, OCaml
+and Haskell. A Java (or JVM compatible) compiler emits Java Bytecode, with is then interpreted
+by the interpreter of JVM, or compiled at runtime by a JIT (just in time) compiler to machine
+code. OpenJDK [?] is now the oﬃcial reference implementation, but there are many others.
+The .NET framework[?], developed by Microsoft provides a versatile platform that spans both
+architecture and source language. At its core, the framework introduces the Virtual Execution
+System (VES), a virtual machine designed to execute code written in the Common Intermediate
+Language (CIL), also known as Microsoft Intermediate Language (MSIL). This intermediary lan-
+guage serves as an intermediate representation of the source code, allowing it to be executed on
+any system equipped with the .NET runtime environment.
+The strength of the .NET framework lies in its ability to unify various programming languages
+under a common umbrella. Through adherence to the Common Language Speciﬁcation (CLS),
+languages like C#, F#, VB.NET, and others can seamlessly interoperate within the .NET ecosys-
+tem. This interoperability extends to the use of libraries and components written in diﬀerent
+languages, enabling developers to leverage the strengths of each language while working on a
+uniﬁed platform.
+Additionally, the .NET framework provides an extensive class library, known as the Base Class
+Library (BCL), which oﬀers a rich set of pre-built components and functionalities. This library
+encompasses a wide range of features, from data manipulation to networking, enabling developers
+to accelerate the development process and build robust, feature-rich applications.
+LLVM [?] is another framework which is designed to provide common infrastructure for multiple
+programming languages and abstract over the concrete hardware and operating system, and has
+been used to compile many languages, such as C, C++, Rust, and Haskell. The name LLVM used
+to stand for Low Level VIrtual Machine, but the LLVM framework now provides functionality far
+beyond that of a virtual machine. In contrast to JVM and .NET, its language, LLVM intermediate
+
+--- Page 10 ---
+10
+CHAPTER 1. INTRODUCTION
+representation (IR) does not provide high-level features like memory safety and such, and its
+abstraction level is only slightly higher than that of actual assembly languages. LLVM is not tied
+to a speciﬁc vendor or operating system. It is a versatile compiler infrastructure that facilitates
+the generation of optimised machine code from an intermediate representation.
+In recent years, WebAssembly (WASM) [?, ?] has emerged as a new technology. It represents
+a binary instruction format designed for safe and eﬃcient execution on web browsers. Unlike
+traditional JavaScript, WASM allows high-performance applications to run directly in the browser,
+providing a signiﬁcant boost to web-based software.
+Both the .NET framework and LLVM have played crucial roles in the evolution of WASM.
+The .NET ecosystem, through projects like Blazor, has embraced WASM as a target environment,
+enabling developers to build web applications using C# and .NET languages. This integration
+leverages the strengths of .NET while extending its reach to the web, creating a seamless devel-
+opment experience for web and desktop applications alike.
+On the other hand, LLVM has contributed to the WASM ecosystem by providing a robust
+compilation target. Compilers like Emscripten, which leverages LLVM, can convert code written
+in languages like C and C++ into WASM-compatible format. This integration enables developers
+to take advantage of the performance beneﬁts oﬀered by WASM, making it an attractive option
+for performance-critical web applications.
+The convergence of WASM with technologies like .NET and LLVM highlights the adaptabil-
+ity and extensibility of modern programming ecosystems. By integrating with these established
+platforms, WASM has opened up new avenues for web development, enabling the creation of
+high-performance web applications with a wide range of programming languages. This interaction
+between WASM, .NET, and LLVM showcases the dynamic nature of the programming landscape
+and the collaborative eﬀorts driving innovation in the ﬁeld.
+
+--- Page 11 ---
+2
+|
+Preliminaries
+In this course, we are going to discuss and reason about properties of various programming lan-
+guages and language features. To do this properly, we need a formal meta-language which allows
+us to make statements about these properties and formally prove such statements. For example,
+we want to specify what constitutes a legal program in a language, and the static semantics (often
+in form of typing and scoping rules) and dynamic semantics of a language. Fortunately, it turns
+out that a single formalism, namely inductive deﬁnitions built on inference rules, is suﬃcient to
+do this.
+2.1
+Judgements and Inference Rules
+A judgement is simply a statement that a certain property holds for a speciﬁc object1.
+For
+example, the following statements are judgements:
+• 3 + 4 * 5 is a valid arithmetic expression
+• the string "aba" is a palindrome
+• 0.43423 is a ﬂoating point value
+Judgements are not unlike predicates you might know from predicate logic. We write
+a S
+for a judgement of the form The property S holds for object a. In predicate logic, this is usually
+written diﬀerently, as S(a). However, we will see later that for our purpose, it is much more
+convenient to write it in the post-ﬁx notation shown above.
+Instead of viewing S as a predicate, we can also interpret it as a set of objects with a certain
+property, and read the judgement a S as: a is an element of the set S. Some examples of judgements
+and how to read them are:
+- 5 Even
+– 5 is even, or
+– 5 is an element of the set of even numbers
+- 3 + 4 * 5 Expr
+– 3 + 4 * 5 is a syntactically correct expression, or
+– 3 + 4 * 5 an element of the set containing all syntactically correct expressions
+- 0.43423 float
+– 0.43423 is a ﬂoating point value
+1More generally, a relationship between a number of objects holds. For now, we just look at statements about
+a single object.
+11
+
+--- Page 12 ---
+12
+CHAPTER 2. PRELIMINARIES
+– 0.43423 is an element of the set of ﬂoating points values
+Judgements by themselves would be boring and fairly useless.
+Most interesting sets have an
+inﬁnite number of elements, and to deﬁne such a set, it would obviously be impossible to explicitly
+list them all using simple judgements. Luckily, the sets we are interested in are also no random
+collections of objects, but for example programs which can be constructed according to a ﬁxed set
+of rules. We deﬁne them using so-called inference rules.
+Inference rules allow us to combine judgements to obtain new judgements. They have the
+following general form:
+If judgements J1, and J2, and . . . and Jn are inferable, then the judgement J is
+inferable
+and are usually given in the following standard notation:
+J1 J2 . . . Jn
+J
+where the judgements J1 to Jn are called premises, and J is called a conclusion. An inference
+rule does not have to have premises, it can consist of a single conclusion. Such inference rules are
+called axioms. But let us have a look at a concrete example now.
+We start by deﬁning the set of natural numbers (Nat), and some simple properties over this
+set. For simplicity reasons, we represent them as terms, with 0, (s 0), (s (s 0)), (s (s (s 0)))
+for 0, 1, 2, 3, and so on (s here stands for successor). So, ﬁrst of all, how can we deﬁne Nat itself
+using inference rules? Listing all the element of Nat would be equivalent to including an axiom
+for each number:
+0 Nat
+(Nat-1)
+(s 0) Nat
+(Nat-2a)
+(s (s 0)) Nat
+(Nat-2b)
+...
+Clearly, this is not feasible, and luckily, also not necessary, since we can easily see that, apart from
+the ﬁrst one, all the rules have the form
+(s x) Nat
+where x Nat has been established by the previously listed axiom. In words, we have
+1. 0 is in Nat, and
+2. for all x, if x is in Nat, then (s x) is in Nat
+which can be translated directly into the following two inference rules:
+0 Nat
+(Nat-1)
+x Nat
+(s x) Nat
+(Nat-2)
+where x can be instantiated to any term.
+
+--- Page 13 ---
+2.1. JUDGEMENTS AND INFERENCE RULES
+13
+With Rule Nat-1 and Rule Nat-2, we do not need axioms Rule Nat-2a, Rule Nat-2b and such,
+because we can derive the membership of each number. For example, we can proof (s 0) Nat by
+instantiating s in Rule Nat-2 to 0. We then get
+0 Nat
+(s 0) Nat(Nat-2)
+This leaves us with the proof obligation 0 Nat, which holds because of Rule Nat-1. Since this is
+an axiom, no further proof obligations are left.
+In the same way as we deﬁned Nat, we can deﬁne the sets or properties Even
+0 Even
+(Even-1)
+x Even
+(s (s x)) Even
+(Even-2)
+and Odd:
+(s 0) Odd
+(Odd-1)
+x Odd
+(s (s x)) Odd
+(Odd-2)
+Rules do work in two ways: we can use them to deﬁne a property, but we can also use them
+to show that a judgement is valid. For example, assume we want to show that some judgement J
+is valid. We have to look for a rule which has J as a conclusion. If this rule is an axiom, we are
+already done. If not, we have to show that all of its premises are valid by recursively applying the
+same strategy to all of them. For example, we can show that (s (s 0)) Even, since
+0 Even
+(s (s 0)) Even(Even-2)
+and
+0 Even(Even-1)
+As the last rule is an axiom, there are no premises left to prove, and we are done.
+Similarly, we can show that (s (s (s (s 0)))) Even . An alternative and often quite conve-
+nient way to write inference proofs is to stack the rules we apply together and draw a “proof tree”
+— in our example, more a proof stack, since each rule has just a single premise. We add the name
+of the rule we apply in each step.
+0 Even(Even-1)
+(s (s 0)) Even(Even-2)
+(s (s (s (s 0)))) Even(Even-2)
+Note that inference works on a purely syntactic basis. Given the rules above, we are not able
+to prove 2 Even, even though we can show that (s (s 0)) Even, and we know that (s (s 0)) is
+equal to 2, we cannot apply that knowledge, since we have no rule which tells us it is ok to do so.
+We just mechanically manipulate terms according to the given rules.
+Let us look at a slightly more interesting example: we want to deﬁne the language M which
+contains all expressions of properly matched parenthesis (and no other characters) (ϵ represents
+the empty string).
+M = {ϵ, (), ()(), ()()(), . . . , (()), ((())), . . . , ()(()), ()()(()), . . .}
+Again, let us start by describing the rules in (semi-)natural language. There are basically two
+ways to “legally” combine parenthesis: we can either nest them, or concatenate them:
+
+--- Page 14 ---
+14
+CHAPTER 2. PRELIMINARIES
+1. The empty string (denoted by ϵ) is in M
+2. If s1 and s2 are in M, then s1s2 is in M
+3. If s is in M, then (x) is in M
+These rules can be directly translated into inference rules:
+ϵ M
+(M-1)
+s1 M
+s2 M
+s1s2 M
+(M-2)
+s M
+(s) M
+(M-3)
+How can we show that ()(()) is in M? As we did previously, we check if there is a rule whose
+conclusion matches the judgement we want to infer. If we apply Rule (M-2), we have to show
+that both () and (()) are in M. Since ()=(ϵ), we can apply Rule (M-3), and only have to show
+that ϵ is in M (Rule (M-1)). By applying Rule (M-3) in the same way, we can show that (()) is
+in M as well, and we are done.
+ϵ M(M-1)
+() M
+(M-3)
+...
+() M(see proof on the left)
+(()) M
+(M-3)
+()(()) M
+(M-2, with s1 = (), s2 = (()))
+This proof worked, but only because we know how to break the string into substrings which
+are in M. But nothing in the rules tells us which rule to apply when. For example, instead of
+Rule (M-2), we could also have applied Rule (M-3), to strip away the two outer brackets. It has
+only a single premise, so we only have to prove that )(() is in M. The only rule that’s applicable
+now is Rule (M-2), and we could apply it in several diﬀerent ways resulting in diﬀerent premises:
+) M
+(() M
+)(() M
+(M-2)
+or
+)( M
+() M
+)(() M
+(M-2)
+or
+)(( M
+) M
+)(() M
+(M-2)
+In the ﬁrst application, we end up with the premise: ) is in M, but there is no rule which we
+can apply to get rid of it. This is not that surprising, since M should only contain expressions of
+properly matched parenthesis, and ), as well as )(() are not properly matched. So, by choosing
+the wrong rule, or applying the right rule in a wrong way – for example, splitting ()() up into
+()( and ) – it is easily possible to end up with premises which are not actually valid and reach a
+dead end. Or, we could have started with Rule M-2, but split the string at a diﬀerent position,
+instantiating s1 to ()((, and s2 to )). This would have resulted in a dead end as well, as the
+substrings are not in M.
+In our example, it was not hard to see which rule to apply, and how. It can be extremely
+diﬃcult to decide which rule to apply and how, without some background knowledge about the
+objects and properties, as there might be an inﬁnite number of possibilities. This is one reason why
+it is not possible to write a program which automatically infers judgements, and which guarantees
+to ﬁnd such a derivation if it exists. It is, however, possible to write semi-automatic theorem
+provers, which come up with proofs in cases where it is fairly standard, and rely on user input
+otherwise.
+
+--- Page 15 ---
+2.1. JUDGEMENTS AND INFERENCE RULES
+15
+Figure 2.1: Notation and fonts
+2.1.1
+Derivable and Admissible Rules
+What would happen if we added the following rule:
+s M
+((s)) M
+(Extra-1)
+Does this change the set M in any way, that is, is there a string s for which we can infer s M if we
+use Extra-1, but not otherwise? This doesn’t seem very likely: the rule just says that, if a string
+s is in M it is ok to add two pairs of matching parenthesis. Since we already had a rule which
+allows us to add one pair of parenthesis, we can apply this rules twice and achieve the same eﬀect:
+s M
+(s) M (M-3)
+((s)) M
+(M-3)
+This means that Rule Extra-1 is derivable from the existing rules.
+In all the previous rules, the strings in the premises were simpler than the string in the con-
+clusion, and this is the case for most inference rules we will look at, but premises don’t have to be
+simpler. For example, we might add the following rule:
+()s M
+s M
+(Extra-2)
+Interestingly, although Rule Extra-2 does not introduce any new strings to M, the rule is also not
+derivable from any of the existing rules. Such a rule, which is not derivable, but does also not
+introduce new elements, is called admissible.
+2.1.2
+Notation
+Before we continue, a few words about the notation used in the lecture notes. To make it easier
+to read the inference rules and other formalisations, we choose diﬀerent fonts to denote diﬀerent
+parts of a judgement, rule or proof (see also Figure 2.1.1):
+• Objects which are part of our language, such as strings or terms, are set in black type
+writer font.
+• Variables which represent arbitrary objects are set in green italics.
+
+--- Page 16 ---
+16
+CHAPTER 2. PRELIMINARIES
+• The name (or later also symbols) of properties or sets are set in bold, blue italics.
+• The name of a rule in black italics.
+Whenever we deﬁne a rule, the name of the rule is given on the right. When we use a rule in
+a proof, we often annotate the horizontal line of the inference with the name of the rule, and
+sometimes additional information, like the instantiation of the variables in the rule.
+2.1.3
+Inductive Deﬁnitions
+A set of inference rules R deﬁning a set A is called an inductive deﬁnition of A, if s A holds if
+and only if s A is derivable using R. All the examples we discussed are inductive deﬁnitions.
+Not all sets can be deﬁned using inductive deﬁnitions. For example, while natural numbers
+are one of the standard examples for such sets, ﬂoating point numbers cannot be deﬁned in such
+a way.
+2.1.4
+Judgements and Relations
+So far, we deﬁned a judgement to be a statement about a property of an object. We can gener-
+alise this deﬁnition to a relation between a number of objects. Consider the following inductive
+deﬁnition of the relation “a < b” on natural numbers. For convenience reasons, we choose an inﬁx
+notation here:
+n Nat
+0 < (s n)
+(<-1)
+n < m
+(s n) < (s m)
+(<-2)
+As before, we can also view this as an inductive deﬁnition of a set. In this case, a set of pairs,
+where (a, b) in < if and only if a is less than b. The inductive deﬁnition of < depends on the
+deﬁnition of Nat.
+2.2
+Rule Induction
+Natural deduction by itself is sometimes not powerful enough. For example, although we can see
+that the Rule Extra-2 in Section 2.1.1 is valid for every string s in M, we cannot show this by simply
+combining the existing rules. We will therefore introduce another proof technique here, called
+induction. You will probably know induction over natural numbers and structural induction from
+mathematics and previous courses. Both are special cases of a more general induction principle
+called rule induction or natural induction.
+Let us go back to our previous example set M of properly matched parenthesis. The rules M-1
+to M-3 provide an inductive deﬁnition of M:
+ϵ M
+(M-1)
+s1 M
+s2 M
+s1s2 M
+(M-2)
+s M
+(s) M
+(M-3)
+Now, let us assume we want to prove some property P of the strings in M, that is: show that if
+s M then s P. Since we know that there is a derivation for each s M, we only need to show that:
+
+--- Page 17 ---
+2.2. RULE INDUCTION
+17
+• ϵ P
+• if s1 P and s2 P, then s1s2 P
+• if s P, then (s) P
+Which in essence correspond to the original rules only with M replaced by P. For example, if we
+have functions, which count the number of opening and closing brackets, respectively, in a string,
+and for which we have the following set of rules:
+open(ϵ) = 0
+(open-1)
+open((s) = 1 + open(s)
+(open-2)
+open()s) = open(s)
+(open-3)
+open(s1s2) = open(s1) + open(s2)
+(open-4)
+close(ϵ) = 0
+(close-1)
+close((s) = close(s)
+(close-2)
+close()s) = 1 + close(s)
+(close-3)
+close(s1s2) = close(s1) + close(s2)
+(close-4)
+Now, if we want to show that all s in M have the same number of opening and closing brackets,
+that is, if s M is derivable, then open(s) = close(s), we need to prove the following statements:
+1. open(ϵ) = close (ϵ)
+Proof: open(ϵ) = 0 = close (ϵ)
+2. if open(s1) = close (s1) and open(s2) = close (s2) then open(s1 s2) = close (s1 s2)
+For the proof, we assume that the statements corresponding to the judgements in the
+premises of the rules hold. These assumptions are called the induction hypothesis.
+• Induction Hypothesis 1: open(s1) = close (s1)
+• Induction Hypothesis 2: open(s2) = close (s2)
+Proof: open(s1 s2) = open(s1) + open (s2) = close(s1) + close (s2) = close (s1s2)
+3. if open(s) = close (s) then open((s))
+• Induction Hypothesis 1: open(s) = close (s)
+Proof:
+open((s))
+=
+{open-4}
+open(() + open(s) + open())
+=
+{open-3, open-2,open-4}
+1 + open(s) + 0
+=
+{Induction Hypothesis,Arithmetic}
+1 + close(s) + 0
+=
+{property of close}
+close(() + close(s) + close())
+=
+{property of close}
+close((s))
+In the proof, we used the rules of arithmetic, and that properties of close and open, such as
+open(() = close ()) = 1, and open()) = close(() = 0.
+
+--- Page 18 ---
+18
+CHAPTER 2. PRELIMINARIES
+2.2.1
+Ambiguity
+The deﬁnition of M, although correct, has a undesirable property: for any string in M, we do
+not have just one derivation, but an inﬁnite number of possible derivations, since any string s can
+be split into ϵ and s by applying Rule M-2, and then Rule M-1 to get rid of ϵ. However, this
+derivation step is completely unnecessary.
+Fortunately, if we take a more structured view on the elements of this language, we can come
+up with an alternative set of rules, where we have exactly one derivation for each string in the set.
+We can interpret each string as a possibly empty list (L) of non-empty parenthesis expressions
+(N) according to the following inference rules:
+ϵ L
+(L-1)
+s1 N
+s2 L
+s1s2 L
+(L-2)
+s L
+(s) N
+(N-1)
+The interesting point here is that L and N are deﬁned in terms of each other: we have a mutually
+recursive deﬁnition.
+Let us look at one more example of an ambiguous deﬁnition: simple arithmetic expressions,
+given here both in BNF2 and as inductive deﬁnition using inference rules:
+The BNF
+Expr
+::=
+Int | (Expr) | Expr + Expr | Expr * Expr
+describes the same language as the following set of inference rules, where Int is the set of integer
+constants we assume deﬁned elsewhere (from now on, we use i to denote an integer, without
+explicitly specifying i ∈Int as precondition).
+i ∈Int
+i Expr
+(E-1)
+e Expr
+(e) Expr
+(E-2)
+e1 Expr
+e2 Expr
+e1 + e2 Expr
+(E-3)
+e1 Expr
+e2 Expr
+e1 * e2 Expr
+(E-4)
+Although in this case, there are not an inﬁnite number of possible derivations for each expression,
+every expression which contains more than a single arithmetic operation still can be derived in
+more than one way:
+1 Expr(E-1)
+2 Expr(E-1)
+1 + 2 Expr
+(E-3)
+3 Expr(E-1)
+1+2*3 Expr
+(E-4)
+1 Expr(E-1)
+2 Expr(E-1)
+3 Expr(E-1)
+2 * 3 Expr
+1+2*3 Expr
+(E-3)
+2BNF means ’Backus-Naur form’: we’re using this sometimes in the course as compact description of a language,
+always in combination with an alternative description, so it is not a problem if you are not familiar with it – you
+can safely ignore it.
+
+--- Page 19 ---
+2.2. RULE INDUCTION
+19
+Although both derivations are correct with respect to the rules given, the second derivation
+is more appropriate for an arithmetic expression, as it decomposes the expression ﬁrst into two
+summands.
+We give an alternative deﬁnition, which takes precedence and associativity of the operators
+into account:
+e1 SExpr
+e2 PExpr
+e1 + e2 SExpr
+(S-1)
+e PExpr
+e SExpr
+(S-2)
+e1 PExpr
+e2 FExpr
+e1 * e2 PExpr
+(P-1)
+e FExpr
+e PExpr
+(P-2)
+e SExpr
+(e) FExpr
+(F-1)
+n ∈Int
+n FExpr
+(F-2)
+These rules reﬂect the fact that, given an expression of the form e1 + e2, we only want to break
+it apart at the + operator if e2 is a number, parenthesised expression, or a multiplication, but not
+if it’s another addition. We use SExpr to represent all arithmetic expressions (the same set as
+Expr), and PExpr the subset of SExpr which excludes (unparenthesised) additions. Similarly,
+expressions of the form e1 * e2 should only be separated if e1 is an PExpr, and e2 either a number
+or a parenthesised expression (denoted by FExpr).
+Consider the previous expression again, to try and show it is in SExpr, we can still apply the
+”wrong”, that is the product rule, ﬁrst:
+??
+1+2 FExpr(??)
+3 FExpr(F-2)
+3 PExpr
+(P-2)
+1+2*3 PExpr
+(P-1)
+1+2*3 SExpr
+(S-2)
+However, there is not way to derive 1+2 FExpr, and we are stuck. The only way to derive 1+2*3
+SExpr successfully is by applying the sum-rule ﬁrst:
+1 PExpr(F-2)
+1 PExpr
+(P-2)
+1 SExpr
+(S-2)
+2 FExpr(F-2)
+2 PExpr
+(F-2)
+3 FExpr(F-2)
+2*3 PExpr
+(P-1)
+1+2*3 SExpr
+(S-1)
+The unambiguous grammar is, again, much more complicated than the original grammar, even
+for such a simple language. This is not surprising, as it contains additional structural information.
+For programming languages, ambiguous grammars are problematic, as they may allow diﬀerent
+interpretations of programs, and are therefore usually avoided.
+
+--- Page 20 ---
+20
+CHAPTER 2. PRELIMINARIES
+2.2.2
+Simultaneous Induction
+How can we apply the principle of rule induction to mutually recursive deﬁnitions like those of
+L and SExpr? In most cases, we have to generalise the proof goal. For example, if we want to
+prove a property P for all e in SExpr, that is e SExpr implies e PExpr. By the principle of rule
+induction we have to show that
+• under the assumption that
+- e = e1 + e2
+- e1 SExpr
+- e2 PExpr
+and the Induction Hypothesis
+- e1 P
+show that e1+e2 P
+• under the assumption that
+- e PExpr
+show that e P
+The problem is that, since we only try to show something about SExpr, the induction hypoth-
+esis does not say anything about e2 (we only know that e2 PExpr, and nothing directly about e
+in for the second rule3. In most cases, this is not enough to prove anything. The solution is often
+to try and prove a more general statement instead which leads to stronger induction hypothesis
+using simultaneous induction.
+We try to show simultaneously that
+• e SExpr implies e P, and
+• e PExpr implies e P, and
+• e FExpr implies e P
+We do have more cases to cover (one for each inference rule which has PExpr, SExpr or
+FExpr in the conclusion) as a consequence, but we do get something for our eﬀorts – the induction
+hypothesis is stronger this way, as it covers all the premises in the rules:
+• under the assumption that
+- e = e1 + e2
+- e1 SExpr
+- e2 PExpr
+and the Induction Hypothesis
+- e1 P
+- e2 P
+show that e1+e2 P
+• under the assumption that
+3In this particular example, it is not much of a problem, since PExpr is a subset of SExpr, we can easily show
+that anything that is true for all objects in SExpr has to be true for the objects in PExpr. In general, though, this
+is not the case and generalising the property as suggested simpliﬁes the proof
+
+
+
+==================================
+FILE: Assignment-0\readme.md
+==================================
+
+template for assignment 0.1: 
+
+```haskell
+{-# OPTIONS -Wall #-}
+module RPN where
+
+import Data.Char
+
+data Token = DefineYourTokenConstructorsHere
+  deriving (Show)
+
+lexer :: String -> [Token]
+lexer = error "implement me"
+
+data Expr = DefineYourExprConstructorsHere
+  deriving (Show)
+
+parser :: [Token] -> Expr
+parser = error "implement me using parser'"
+
+parser' :: [Expr] -> [Token] -> Expr
+parser' = error "implement me"
+
+eval :: Expr -> Int
+eval = error "implement me"
+```
+
+template for assignment 0.2:
+```haskell
+{-# OPTIONS -Wall #-}
+module Infix where
+
+import Data.Char
+
+data TokenInfix = DefineYourTokenConstructorsHere
+  deriving (Show)
+
+lexerInfix :: String -> [TokenInfix]
+lexerInfix = error "implement me"
+
+data Expr = DefineYourExprConstructorsHere
+  deriving (Show)
+
+parserInfix :: [TokenInfix] -> Expr
+parserInfix = error "implement me"
+
+eval :: Expr -> Int
+eval = error "implement me"
+```
+
+==================================
+FILE: Exercise\Abstract_machines_exercises.pdf
+==================================
+
+--- Page 1 ---
+Concepts of Programming Language Design
+Abstract Machines Exercises
+Liam O’Connor-Davis
+Gabriele Keller
+December 12, 2023
+1. Decision Machines: Suppose we have a language of nested brackets N (where ϵ is the empty
+string):
+ϵ N
+(N-1)
+e N
+(e) N
+(N-2)
+e N
+⟨e⟩N
+(N-3)
+e N
+[e] N
+(N-4)
+Note that ()() is not a string in this language.
+We developed a simple abstract machine to check if strings are in this language. We set the
+states for the machine to be simply strings. Initial states are all non-empty strings, and the
+ﬁnal state is the empty string. Then, our state transition relation is:
+(e)7→e
+(M-1)
+[e]7→e
+(M-2)
+⟨e⟩7→e
+(M-3)
+(a) A machine recognises a language if any machine in the state corresponding to a string S
+will eventually reach a ﬁnal state if and only if the string S is in the language.
+i. Show that the string ([⟨⟩]) is in the language N, and show that our machine reaches
+a ﬁnal state given the same string, i.e: ([⟨⟩])
+!7→ϵ.
+ii. Show that the string []()[] is not in the language juN, and show that our machine
+reaches a stuck state given the same string, i.e, there exists some stuck states such
+that []()[]
+⋆
+7→s
+iii. Possibly diﬃcult Prove that the machine recognises the language N, that is:
+1
+
+--- Page 2 ---
+α) s N =⇒s
+!7→ϵ. Remember that
+!7→is just
+⋆
+7→, where the second state is a
+ﬁnal state.
+⋆
+7→of course being the reﬂexive transitive closure of 7→, that is:
+s
+⋆
+7→s
+Refl*
+s17→s2
+s2
+⋆
+7→s3
+s1
+⋆
+7→s3
+Trans*
+β) s
+!7→ϵ =⇒s N
+(b) Suppose that we were unable to eﬃciently read from both the beginning and end of the
+string simultaneously (For example, if a tape or a linked list is used to represent the
+string). This makes our original machine highly ineﬃcient, as each state transition must
+examine the end of a string for a closing bracket.
+We develop a new, stack-based machine that attempts to solve this problem. Our stack
+consists of three symbols, P, A, and B, one for each type of bracket. The states of the
+machine are of the form s | e, where s is a stack and e is a string. Our initial states are
+all states with an empty stack and a non-empty string, i.e: ◦| e, our ﬁnal state is ◦| ϵ,
+and our state transitions are as follows:
+s | (e 7→P ▷s | eS1
+s | ⟨e 7→A ▷s | eS2
+s | [e 7→B ▷s | eS3
+P ▷s | )e 7→s | eS4
+A ▷s | ⟩e 7→s | eS5
+B ▷s | ]e 7→s | eS6
+i. Show the execution of the new stack machine given the start state ◦| [(⟨⟩)].
+ii. Does the new machine recognise N?
+α) Diﬃcult: Prove or disprove that s N =⇒◦| s
+!7→◦| ϵ for all strings s. Hint:
+You may ﬁnd it useful to prove the following lemma:
+s1
+⋆
+7→s2
+s27→s3
+s1
+⋆
+7→s3
+Lemma
+Also, you may need to generalise your proof goal to a broader claim.
+β) Prove or disprove that ◦| s
+!7→◦| ϵ =⇒s N
+iii. If your answer to the previous question was no, amend the structure of the stack
+machine so that it does recognise N (eﬃciently). Explain your answer.
+2. Computing Machines: Abstract machines are not just used for decision problems (yes/no
+answers), they can also be used to compute results. Can you think of a machine to compute
+binary addition?
+(a) Formalise such a machine.
+Hint: Think about the algorithm you would use when adding up large binary numbers
+on paper.
+(b) Compute the result 110 + 1010 with your machine. Show each execution step.
+Page 2
+
+
+
+==================================
+FILE: Exercise\Datatype_exercises.pdf
+==================================
+
+--- Page 1 ---
+Concepts of Programming Language Design
+Data types in Explicitly Typed Languages
+Liam O’Connor-Davis, Gabriele Keller
+December 19, 2023
+1. Data and Type Constructors
+(a) Just looking at the dynamic semantics of MinHs with algebraic data types: what is the diﬀerence
+between constructors, such as Pair, Inl, Inl, Inr, and Roll, and destructors such as Fst, Snd, Case,
+and Unroll?
+(b) What are possible types for the following MinHs terms?
+1. (3, True)
+2. snd (3, True)
+3. Inl (3, True)
+4. Roll (3, True)
+5. Roll (Inl (3, True))
+2. Relating Haskell and MinHs Types: Determine a MinHS type that is isomorphic to the following
+Haskell type declarations:
+(a) data Maybe Int = Just Int | Nothing
+(b) data Nat = Zero | Suc Nat
+(c) data IntTree = Tree Int IntTree IntTree | Leaf Int
+3. Inhabitation: Do the following MinHS types contain any (ﬁnite) values? If not, explain why. If so, give
+an example value. For those who do not, can you write a function which, according to the typing rules
+given in the lecture, can have this type as return type?
+(a) Rec t. Int + t
+(b) Rec t. Int ∗t
+(c) (Rec t. Int ∗t) + Bool
+4. Isomorphism
+(a) What types (other than Bool) are isomorphic to Bool? Give an example, and show how it is isomorphic
+by providing the mapping from Bool and inverse mapping to Bool.
+(b) What types (other than Int) are isomorphic to Int? Give an example and show it to be isomorphic.
+Remember that Int in MinHS is the full set Z not just machine integers.
+5. Functional Programming: A type isomorphic to a list of integers in MinHS is simply Rec t. ((Int ∗t) +
+Unit). Implement a variety of utility functions to manipulate these lists in MinHS.
+(a) The function sum, which computes the sum of a list of integers.
+(b) The function map, which takes a function f of type Int →Int and an input list i, returning a new list
+which consists of f applied to every element of the list i.
+(c) The function ﬁlter, which takes a predicate p of type Int →Bool, and an input list i, returning a new
+list which consists of all elements x in i for which p(x) is True.
+(d) The function foldl, which takes an initial value (called an accumulator) a (of type Int), a binary
+function op ∶Int ∗Int →Int, and a list of integers. When given an empty list, the function returns
+the accumulator. For a non-empty list with head h and tail t, it will recursively call itself with the new
+accumulator being op(a,h), the same op, and the list t.
+(e) Implement sum and also product (which multiplies a list of integers) using foldl.
+1
+
+
+
+==================================
+FILE: Exercise\FeatherweightJava_exercises.pdf
+==================================
+
+--- Page 1 ---
+Concepts of Programming Language Design
+Featherweight Java Exercises
+Gabriele Keller
+January 22, 2024
+1. Dynamic versus static method dispatch In C#, in contrast to (Featherweight)Java, methods are
+dispatched statically. That is, if you have a method invocation, than the method is selected depending on
+the object’s static type, not its actual, dynamic type.
+Which static and dynamic semantics rules would have to change if we want to implement static dispatch,
+without compromising type safety.
+2. FeatherWeight Java Consider the following Featherweight Java code, where we assume the existence of
+integers and booleans, an equal (==) and modulo (%) operator on integer values, and the logic and operator
+(&&).
+class Colour extends Object {
+int red;
+int green;
+int blue;
+Colour (int r, int g, int b) {
+super ();
+this.red
+= r % 256;
+this.green = g % 256;
+this.blue
+= b % 256;
+}
+bool isEqual (Colour col) {
+return (this.red == col.red && this.blue == col.blue && this.green == col.green);
+}
+bool isBoring () {return (this.blue == 0);}
+}
+class Point extends Object {
+int x;
+int y;
+Point (int x, int y) {
+super ();
+this.x = x;
+this.y = y;
+}
+bool isBoring () {return (this.x == 0);}
+bool isEqual (Point p) {return (p.x == this.x && p.y == this.y);}
+}
+class ColourPoint extends Point {
+Colour c;
+1
+
+--- Page 2 ---
+ColourPoint (int x, int y, Colour c) {
+super (x, y);
+this.c = c;
+}
+bool isBoring () {return (this.c.red == 0);}
+bool isEqual (Point p) {return (p.isEqual (this) && ((ColourPoint) p).c.isEqual (this.c));}
+}
+For each of the following four expressions, explain very brieﬂy whether they are legal according to Feather-
+weight Java’s static semantics (if not, why?). If so, what would they evaluate to according the Featherweight
+Java’s dynamic semantics? You do not need to provide a formal proof or derivation.
+(a) (new ColourPoint (10, 20, new Colour (0, 0, 0))).isBoring();
+(b) ((ColourPoint)(new Point (0, 0))).isBoring();
+(c) (new Point (0,0)).isEqual (new ColourPoint (0, 1, new Colour (255, 255, 255)))
+(d) (new ColourPoint (0, 0, Colour (255, 255, 255))).isEqual (new Point (0,0))
+What would happen if we replaced the isEqual method in the ColourPoint class with
+bool isEqual (ColourPoint p) {return (this.c.isEqual (p.c));}
+3. Type safety and security Software vulnerabilities like format string attack (uncontrolled format string)
+are not possbile in a truly type safe language. Why?
+What are the costs or down sides of type safety?
+Page 2
+
+
+
+==================================
+FILE: Exercise\MinHs_exercises.pdf
+==================================
+
+--- Page 1 ---
+Concepts of Programmig Language Design
+MinHs Exercises
+Gabriele Keller
+December 3, 2023
+1. Extending MinHs: Add let-bindings (with a single binding, like in our arithmetic expression language)
+to MinHs and extend the static semantics accordingly.
+How would the static semantics rule change if we extend the scope of the bound variable to the right hand
+side of the binding (like in Haskell)?
+Does the following expression type check according to your rules?
+let
+f = recfun g (Int -> Int) x = if x == 0 then 0 else 1 + f (x-1)
+in f 1
+If not, is this ﬁxable?
+2. Type safety in MinHs : Give a (partial) proof for type safety in MinHs. For a full proof, we need to
+show that
+• Progress: If we can derive ⊢e : τ, then either e is a ﬁnal value, or there is e′ such that e 7→e′.
+• Preservation: If sstepee′, and ⊢e:τ then ⊢e′:τ
+Give for both progress and preservation all the base cases for the proof, and all inductive cases for if-
+expressions.
+3. Equational reasoning in (purely) functional languages.
+In Haskell, computations which depend
+on an explicit state (such as computations of type IO) can be composed in a user-friendly way using the
+do-notation. However, this notation can be used for any type constructor m for which we can deﬁne the
+function return ::
+a -> m a and the inﬁx operator (>>=) ::
+m a -> (a -> m b) -> m b such that
+the following equalities hold:
+• return a >>= f is equivalent to f a
+• m >>= return is equivalent to m
+• (m >>= f) >>= g is equivalent to m >>= (\x -> f x >>= g)
+For the type constructor Maybe we can deﬁne these functions as follows:
+data Maybe a = Nothing | Just a
+return :: a -> Maybe a
+return a = Just a
+(>>=) :: Maybe a -> (a -> Maybe b) -> Maybe b
+(>>=) Nothing
+f = Nothing
+(>>=) (Just a) f = f a
+Show that the equalities listed above (also called Monad laws) indeed hold for any type correct application.
+1
+
+
+
+==================================
+FILE: Exercise\Polymorphism_exercises.pdf
+==================================
+
+--- Page 1 ---
+Concepts of Programming Language Design
+Polymorphism Exercises
+Gabriele Keller
+January 9, 2024
+1. Find the MGU of the following pairs of type terms, if it exists:
+(a)
+• (a →a) ∗Int and b ∗c
+• (a →a) ∗Int and b →c
+• (a →a) ∗a and b ∗b
+• Rec t.(t + Int) and Rec t.(t + a)
+• Rec t.(t + Int) and Rec t.(a + Int)
+2. Parametric polymorphism In the lecture, we introduced two sets of typing rules for an implicitly typed
+variant of MinHs. While the ﬁrst set of rules speciﬁed when a certain polymorphic type can be inferred,
+it did not describe an algorithm to infer the principal type of an expression, in contrast to the second set,
+which is a formalisation of the Hindley-Milner type inference algorithm.
+(a) For the non-algorithmic typing rules, the rule for the Pair constructor is exactly the same as for
+explicitly typed MinHs. For each set of rules, show that
+{} ⊢Apply(Recfun (f.x.Pair x x)) (Num 5) :: (Int ∗Int)
+is derivable.
+(b) Consider this (explicitly typed) program (we’re using Haskell notation here):
+g :: forall b. ((forall a. (a -> a)) -> b -> Int)
+g f x = if f True
+then (f 1)
+else 2
+The type of g is not a legal type in polymorphic MinHs as discussed in the lecture. Which restriction
+we put on MinHs excludes this type?
+(c) In a language which permits this type, what can you tell about the behaviour of the function g?
+(d) The higher-order abstract syntax term below represents this program:
+Recfun (g.f. (Recfun (h.x. (If (Apply f (Const True)) (Num 1) (Num 2)))))
+Is the type ∀b.((∀a.(a →a)) →b →Int) for this expression inferable with the non-algorithmic or the
+algorithmic typing rules? Explain why.
+(e) What is the type of the expression as derived by Hindley-Milner?
+3. Coercions and Subtyping
+You are given the type Rectangle, parameterised by its height and width, and the type Square parameterised
+by the length of one of its sides. Neither type is mutable.
+(a) Which type is the subtype, which type is the supertype?
+(b) Give a subtype/supertype ordering of the following set of function types:
+Rectangle -> Rectangle
+Rectangle -> Square
+Square -> Rectangle
+Square -> Square.
+(c) Deﬁne a data type Square and a data type Rectangle in Haskell. Then deﬁne a coercion function from
+elements of the subclass to elements of the superclass.
+(d) Show that the ordering you have given in the previous question is correct by deﬁning coercion functions
+for each pair of types in a subtyping relationship in part (b).
+1
+
+--- Page 2 ---
+4. Constructor variance
+List some examples of a covariant, contravariant and invariant type constructor.
+Page 2
+
+
+
+==================================
+FILE: Exercise\Semantics_exercises.pdf
+==================================
+
+--- Page 1 ---
+Concepts of Programmig Language Design
+Semantics Exercises
+Liam O’Connor-Davis, Gabriele Keller
+November 27, 2023
+1. Logical Formulae: Imagine we have a simple propositional expression language1:
+⊤Prop
+⊥Prop
+e1 Prop
+e2 Prop
+e1 ∧e2 Prop
+e1 Prop
+¬e1 Prop
+(a) The big-step semantics is given as
+• The set of evaluable expressions: E = {e | e Prop}
+• The set of values: V = {True, False}
+and the ⇓-relation, deﬁned by the following rules:
+⊤⇓TrueTrue
+⊥⇓FalseFalse
+e1⇓True
+¬e1⇓FalseNot1
+e1⇓False
+¬e1⇓TrueNot2
+e1⇓False
+e1 ∧e2⇓FalseAnd1
+e1⇓True
+e2⇓v
+e1 ∧e2⇓v
+And2
+Determine a small step (SOS) semantics for the language Prop.
+i. Identify the set of states Q, the set of initial states I, and the set of ﬁnal states F.
+ii. Provide inference rules for a relation 7→: Q × Q, which performs one step only of
+the expression evaluation.
+(b) Long, but not diﬃcult: We shall now prove that the reﬂexive, transitive closure of 7→,
+⋆
+7→, is implied by the big-step semantics above.
+⋆
+7→is deﬁned by the following rules:
+e1
+⋆
+7→e1
+Refl∗
+e1 7→e2
+e2
+⋆
+7→z
+e1
+⋆
+7→z
+Trans∗
+i. First prove the following transitivity lemma:
+p
+⋆
+7→q
+q
+⋆
+7→r
+p
+⋆
+7→r
+Transitive
+ii. Now prove the following two lemmas about Not:
+e1
+⋆
+7→⊤
+¬e1
+⋆
+7→⊥
+Lemma-Not1
+e1
+⋆
+7→⊥
+¬e1
+⋆
+7→⊤
+Lemma-Not2
+iii. Now prove the following lemmas about And:
+e1
+⋆
+7→⊥
+e1∧e2
+⋆
+7→⊥
+Lemma-And1
+e1
+⋆
+7→⊤
+e1∧e2
+⋆
+7→e2
+Lemma-And2
+1Yes, the grammar is ambiguous, but assume it’s just a symbolic representation of abstract syntax.
+1
+
+--- Page 2 ---
+iv. Using these lemmas or otherwise, show that E ⇓V implies QE
+⋆
+7→QV , where QE is
+the state corresponding to the expression E and QV is the ﬁnal state corresponding
+to the value V .
+(c) Suppose we wanted to add quantiﬁers and variables to our logic language:
+e Prop
+∃(x.x) Prop
+e Prop
+∀(x.e) Prop
+x is a variable name
+x Prop
+It is no longer as easy to write static semantics for this language, as the formula may
+not be decidable, however we can still write static checkers that perform analysis on
+a more superﬁcial level. Write a static semantics judgement for this language, written
+⊢e Ok (with whatever context you like before the ⊢), that ensures that there are no
+free variables in a given logical formula. Remember that a free variable is a variable that
+is not bound by a quantiﬁer or lambda.
+2. Bizarro-Poland: Imagine we have a reverse Polish notation calculator language. Reverse
+Polish notation is an old calculator format that does not require the use of parenthetical
+expressions. To achieve this, it moves all operators to post-ﬁx, rather than in-ﬁx order. E.g
+1 + 2 becomes 1 2 +, or 1 −(3 + 2) becomes 1 3 2 + −. These calculators evaluated these
+expressions by pushing symbols onto a stack until an operator was encountered, when two
+symbols would be popped oﬀand the result of the operation pushed on. The grammar is
+easily deﬁned:
+x ∈N
+x Symbol
+x ∈{+, −, /, ∗}
+x Symbol
+ϵ RPN
+x Symbol
+xs RPN
+x xs RPN
+(a) The issue is that this grammar allows for invalid programs (such as 1 + 2 or −+ ∗).
+i. Write some static semantics inference rules for a judgement ⊢e Ok to ensure that
+programs are well formed.
+ii. Show that ⊢1 3 2 + −Ok.
+(b) We will now deﬁne some big-step evaluation semantics for this calculator. It may be
+helpful to read the program from right-to-left rather than left-to-right.
+i. Identify the set of evaluable expressions E, and the set of result values V .
+ii. Deﬁne a relation ⇓: E × V which evaluates RPN programs.
+(c) Now we will try small-step semantics.
+Our states Q will be of the form s ⊢p where s is a stack of natural numbers and p is an
+RPN program.
+Initial states are all states of the form ◦⊢p.
+Final states are all states of the form n ▷◦⊢ϵ.
+i. Deﬁne a relation 7→: Q × Q, which evaluates one step of the calculation.
+(d) Now we will prove small step and big step equivalent.
+i. Show using rule induction on ⇓that, for all expressions e, if e⇓v then Qe⇓Qv (where
+Qe and Qv are initial and ﬁnal states respectively corresponding to e and v).
+Hint: You may ﬁnd it helpful to assume the following lemma (A proof of it is provided
+in the solutions):
+◦⊢xs
+⋆
+7→v ⊢ϵ
+◦⊢xs x
+⋆
+7→v ⊢x
+Append
+It is worth noting that the lemma Transitive from Question 1 applies here also.
+Page 2
+
+--- Page 3 ---
+ii. Show using rule induction on
+⋆
+7→that, for all expressions e and values v, if Qe
+⋆
+7→Qv
+then bstepev. It may be useful to assume the inverse of Append:
+◦⊢xs x
+⋆
+7→v ⊢x
+◦⊢xs
+⋆
+7→v ⊢ϵ
+Append−1
+(e) Show that your static semantics deﬁned in (a) ensure that the program will evaluate to
+a value. That is, show that ⊢e Ok =⇒e⇓s, for some s. You may ﬁnd it helpful to
+generalise your proof goal before beginning induction.
+Page 3
+
+--- Page 4 ---
+3. Dynamic semantics of a simple robot control language A robot moves along a grid
+according to a simple program. The program consists of a possibly empty sequence of the
+commands move and turn, separated by semicolons. Initially, the robot faces east and starts
+at the grid coordinates (0,0). The command turn causes the robot to turn 90 degrees counter-
+clockwise, and move to move one unit in the direction it is facing.
+(a) Small step semantics: devise a set of small-step semantics rules for this language. This
+means determining answers to the following questions:
+• What is the set of states?
+• Which of those states are ﬁnal states, and which are initial states?
+• What transitions exist between those states?
+(b) Big step semantics: what would a suitable a set of big-step evaluation rules for this
+language look like? In particular:
+• What is the set of evaluable expressions?
+• What is the set of values?
+• How do evaluable expressions evaluate to those values?
+4. TinyC The semantics we deﬁned for TinyC in the lecture is a call-by-value semantics. That
+is, we only pass the value to the function.
+Extend TinyC such that the type of a function parameter in a function declaration can be
+preceeded by the keyword var so that this variable is passed by reference.
+For example,
+evaluating the following TinyC program would result in the value 20:
+int swap (var int a; var int b) {
+int tmp = a;
+a = b;
+b = tmp;
+return 0;
+}
+{
+int x = 10;
+int y = 20;
+swap (x, y);
+return (x);
+}
+• Which (if any) adjustments to the static semantics are necessary?
+• How can you model this in the operational dynamic semantics?
+Page 4
+
+
+
+==================================
+FILE: Exercise\Syntax_exercises.pdf
+==================================
+
+--- Page 1 ---
+Concepts of Programming Language Design
+Syntax Exercises
+Liam O’Connor-Davis
+Gabriele Keller
+November 17, 2023
+1. Here is a concrete syntax for specifying binary logic gates with convenient if −then −else
+syntax.
+Note that the else clause is optional, which means we must be careful to avoid
+ambiguity – we introduce mandatory parentheses around nested conditionals:
+⊤Output
+⊥Output
+α Input
+β Input
+c Input
+t IExpr
+e Expr
+if c then t else e Expr
+c Input
+t IExpr
+if c then t Expr
+x Output
+x IExpr
+e Expr
+(e) IExpr
+e IExpr
+e Expr
+If an else clause is omitted, the result of the expression if the condition is false is defaulted
+to ⊥. For example, an AND or OR gate could be speciﬁed like so:
+AND : if α then (if β then ⊤)
+OR : if α then ⊤else (if β then ⊤)
+Or, a NAND gate:
+if α then (if β then ⊥else ⊤) else ⊤
+(a) Devise a suitable abstract syntax A for this language.
+(b) Write rules for a parsing relation (↔) for this language.
+(c) Here’s the parse derivation tree for the NAND gate above:
+α Input↔
+β Input↔
+⊥Output↔
+⊥IExpr↔
+⊤Output↔
+⊤IExpr↔
+⊤Expr↔
+if β then ⊥else ⊤Expr↔
+(if β then ⊥else ⊤) IExpr↔
+⊤Output↔
+⊤IExpr↔
+⊤Expr↔
+if α then (if β then ⊥else ⊤) else ⊤Expr↔
+Fill in the right-hand side of this derivation tree with your parsing relation, labelling
+each step as you progress down the tree.
+2. Here is a ﬁrst order abstract syntax for a simple functional language, Lc. In this language, a
+lambda term deﬁnes a function. For example, (Lambda "x" (Var "x")) is the identity function,
+which simply returns its input.
+e1 Lc
+e2 Lc
+(App e1 e2) Lc
+x VarName
+e Lc
+(Lambda x e) Lc
+x VarName
+(Var x) Lc
+1
+
+--- Page 2 ---
+(a) Give an example of name shadowing using an expression in this language, and provide
+an α-equivalent expression which does not have shadowing.
+(b) Here is an incorrect substitution algorithm for this language:
+((App e1 e2))[v := t]
+7→
+(App (e1[v := t]) (e2[v := t]))
+((Var v))[v := t]
+7→
+t
+((Lambda x e))[v := t]
+7→
+(Lambda x (e[v := t]))
+What is wrong with this algorithm? How can you correct it?
+(c) Aside from the diﬃculties with substitution, using arbitrary strings for variable names
+in ﬁrst-order abstract syntax means that α-equivalent terms can be represented in many
+diﬀerent ways, which is very inconvenient for analysis. For example, the following two
+terms are equivalent, but have diﬀerent representations:
+(Lambda "x" ((Lambda "y" ((App ((Var "x")) ((Var "y")))))))
+(Lambda "a" ((Lambda "b" ((App ((Var "a")) ((Var "b")))))))
+One technique to achieve canonical representations (i.e α-equivalence is the same as
+equality) is called higher order abstract syntax (HOAS). Explain what HOAS is and
+how it solves this problem.
+3. Consider the following two deﬁnitions of a simple expression language deeply embedded in
+Haskell.
+First order embedding:
+data FOExpr
+= FONum Int
+| FOVar String
+| FOPlus FOExpr FOExpr
+| FOTimes FOExpr FOExpr
+| FOLetBnd String FOExpr FOExpr
+Higher order embedding:
+data HOExpr
+= HONum Int
+| HOPlus HOExpr HOExpr
+| HOTimes HOExpr HOExpr
+| HOLetBnd HOExpr (HOExpr -> HOExpr)
+(a) Deﬁne a function of type
+foToHO :: FOExpr -> HOExpr
+which converts a ﬁrst order expression into the corresponding higher-order expression.
+(b) It is also possible to write a function of type
+hoToFO :: HOExpr -> FOExpr
+such that for all ﬁrst order terms t with:
+hoToFO (foToHO t) = t'
+the term t’ is α-equivalent to t.
+Hint: it is necessary to extend the data type of the higher-order representation with one
+additional data constructor, which is used during the transformation.
+(c) Not for all higher order terms teh we will have that
+foToHO
+(hoToFO h) = h
+Give a counter example for a term h for which this equality does not hold.
+Page 2
+
+
+
+==================================
+FILE: Slides\1 - Preliminaries.pdf
+==================================
+
+--- Page 1 ---
+Revision: 
+Judgements, Inference Rules & Proofs
+Gabriele Keller
+Tom Smeding
+Concepts of Programming Language Design 2023/2024
+
+--- Page 2 ---
+• Formalisation of programming languages (PLs)
+★to reason about PLs, we need a language in which we can describe PLs and 
+their properties
+★a language to talk about other languages is called a meta-language
+★to be sufficiently precise, we need a formal language
+• This is what we need to be able to describe:
+★language grammar syntax
+★scoping rules  static semantics
+★type systems  static semantics
+★execution behaviour dynamic semantics
+ Fortunately, we can use natural deduction/inference rules for all of these tasks!!
+Our Toolbox
+
+--- Page 3 ---
+Definition: Judgement
+A judgement is a statement asserting a certain property for an object
+Judgements and Inference Rules
+Examples
+-
+3+4*5 is a valid arithmetic expression
+-
+the string “madam” is a palindrome
+-
+0.21312423 is a floating point value
+-
+the number 3 is even
+A formal notation: we denote that property A holds for object s by writing s A
+formally, s is an element of a universe U (a set) where
+- A ⊆ U and s ∈ A
+
+--- Page 4 ---
+Definition: Inference Rules
+Given judgements J, J1, J2 up to Jn, an inference rule is an implication of the form:
+If J1, J2, up to Jn are inferable, then J is inferable
+Inference Rules
+J1, J2  ...  Jn
+J
+Terminology: 
+- We call J1 to Jn the premises of the rule and
+- J its conclusion
+- if a rule has no premise, it is called an axiom
+A formal notation: we denote an inference rule formally by writing
+
+--- Page 5 ---
+• Using inference rules to define the set of natural numbers
+- to assert that 5 is a natural number, we write           
+• Inference rules to define this judgement
+- “0 is a natural number” (axiom)
+- ”if x is a natural number, then (s x) is a natural number (s for successor)
+★this set of rules characterises the set of syntactic objects
+Nat = {0, (s 0), (s(s 0)), (s(s(s 0))), ....}
+x Nat
+(s x) Nat
+Examples
+   
+5 Nat
+   
+0 Nat
+
+--- Page 6 ---
+• Using inference rules to define the set of even and odd natural numbers
+★n Even and n Odd
+• Inference rules used to define the judgement
+★“0 is even” (axiom)
+★“if n is even, then s(s(n)) is even”
+★“if n is even, then (s n) is odd”
+Examples
+0 Even
+n Even
+(s(s n)) Even
+n Even
+(s n) Odd
+
+--- Page 7 ---
+• A judgement states that a certain property holds for a specific object (which 
+corresponds to a set membership)
+• More generally, judgements express a relationship between a number of objects 
+(n-ary relations)
+• Examples:
+- 4 divides 16 (binary relationship)
+- ail is a substring of mail (binary)
+- 3 plus 5 equals 8 (tertiary)
+• Infix notation to denote binary relations
+-  4 div 16
+- ail substr mail
+Judgements revisited
+
+--- Page 8 ---
+Definition: A binary relation R is
+symmetric, iff for all a, b,  aRb implies bRa
+reflexive, iff for all a,  aRa holds
+transitive, iff for all a, b, c,   aRb and bRc implies aRc
+Relations
+Definition: 
+A relation which is symmetric, reflexive, and transitive is called an equivalence 
+relation.
+
+--- Page 9 ---
+Relations
+• Example
+- how can we define the ’less than’ relation on natural numbers inductively?
+- <   ⊆    Nat ⨉ Nat
+(s n) <  (s m)
+n <  m
+0 <  (s n)
+n Nat   
+
+--- Page 10 ---
+• What we covered:
+- definitions of sets/properties using judgements
+- using inference rules to describe the elements of a set
+• What we want to do
+- how can we formally show that an object is an element of such a set?
+‣ a natural number is odd or even
+‣ a program is valid in a particular language
+• Natural deduction: to show that s A holds
+1) find a rule whose conclusion matches s A
+2) show that the precondition of the rule holds
+3) continue until all preconditions have been reduced to axioms
+Proofs by natural deduction
+
+--- Page 11 ---
+• Example: show that  (s(s(s(s 0)))) is even
+• Let’s start informally
+- (s(s(s(s 0)))) is even if (s(s 0)) is even
+- (s(s 0)) is even if 0 is even
+- 0 is even
+• Note: the preconditions of the rules we use become proof obligations
+Natural deduction 
+
+--- Page 12 ---
+Derivation Tree
+ (s(s(s(s 0))))  Even
+0 Even
+n Even
+(s(s n)) Even
+(Even-1)
+(Even-2)
+ (s(s 0))      Even
+(Even-2)
+0 Even
+(Even-2)
+(Even-1)
+n
+
+--- Page 13 ---
+• Example: take the set of properly matched parentheses
+M = {ε, (), (()), ()(), (()()),()()(),...}
+• Informally
+‣ the empty string (denoted by ε) is in M
+‣ if s1 and s2 are in M, so is s1s2 (concatenation)
+‣ if s is in M, so is (s)
+• Definition as BNF (Backus–Naur form) 
+‣ M ::=  ε | MM  | (M)
+Grammars as inference rules
+
+--- Page 14 ---
+Definition by inference rules
+(1) the empty string is in M 
+(2) if s1 and s2 are in M, so is s1s2 
+(concatenation)
+(3) if s is in M, so is (s)
+Grammars as inference rules
+ε   M
+s1 M    s2 M
+s1s2 M
+s M    
+(s) M
+(M-3)
+(M-1)
+(M-2)
+
+--- Page 15 ---
+• Show that () (()) M  
+Natural deduction
+() (()) M
+() M
+(())  M
+() M
+ε  M
+  
+ε M
+  
+   
+{
+{
+    s1    s2
+• But what happens if we start with Rule (3) instead?
+• if we’re running into a `dead end’ trying to prove a judgement, it doesn’t mean 
+that this judgement is not derivable
+ε   M
+s1 M    s2 M
+s1s2 M
+s M    
+(s) M
+(M-3)
+(M-1)
+(M-2)
+(M-2)
+(M-3)
+(M-3)
+(M-3)
+(M-1)
+(M-1)
+
+--- Page 16 ---
+• What happens if we add the following rule to the system?
+Admissible and derivable rules
+‣ this rule is derivable wrt to the original three - it’s the same as applying Rule (3) 
+twice - adding it to the rules would not add any new objects to M
+And this?
+‣ this rule is admissible wrt to the original three rules,  because it doesn’t add 
+any new objects to M, but it is not derivable (not just a combination of the 
+original rules)
+And this?
+‣ not admissible: we could derive )( M  using this rule!
+s M    
+((s)) M
+()s M    
+s M
+(s) M    
+s M
+
+--- Page 17 ---
+• We call a set of inference rules an inductive definition of a judgement if the rules 
+are exhaustive; i.e,
+- if a judgement holds, it can be inferred from the rules, and
+- if a judgement can be inferred, it holds
+• Example: Rules (1)-(3) of M are an inductive definition of the set of perfectly 
+matched parentheses:
+‣ for every string s of properly matched parenthesis, we can infer s M
+‣ whenever we can infer s M, s really is a string of properly matched 
+parentheses
+• If we want to show that a property holds for every element of an inductively 
+defined set, how can we do this?
+Rule Induction
+
+--- Page 18 ---
+Rule Induction (structural induction)
+ε   M
+s1 M    s2 M
+s1s2 M
+s M    
+(s) M
+(M-3)
+(M-1)
+(M-2)
+
+--- Page 19 ---
+Definition: Rule Induction
+Given a set of rules R, we can prove inductively that a property P holds for all 
+judgements that can be inferred from R:
+For each rule of the form
+show that
+if P holds for the objects in  J1 to Jn, then P holds  for the object in J.
+Rule Induction
+J1, J2,  ...  ,Jn
+J
+Base cases and induction steps:
+- axioms form the base case of the induction
+- all other rules form the induction steps 
+- the Ji become the Induction Hypothesis 
+
+--- Page 20 ---
+• We have two rules which define the natural numbers:
+Rule Induction over Natural Numbers
+ Therefore, if we can show that a property P 
+holds for 0 and
+holds for (s n)  if (under the assumption that) it holds for n 
+we have shown that it holds for any n in Nat
+Induction over natural numbers is just a special case of rule induction!
+x Nat
+(s x) Nat
+   
+0 Nat
+
+
+
+==================================
+FILE: Slides\10 - Refs.pdf
+==================================
+
+--- Page 1 ---
+Concepts of Programming Language Design  
+Reference Types
+Gabriele Keller 
+Tom Smeding
+
+--- Page 2 ---
+• Variables in TinyC represent values stored in a fixed memory location 
+- assigning a new value to a variable updated the value in that location 
+• Reference types refer to a location a value is stored 
+• Reference types are usually implemented as pointers, that is as address into the 
+memory of a process (often with some associated meta data, such as the size of the 
+data pointed to) 
+• Most high-level languages support or use reference types in one way or another 
+- explicitly, in an abstract way: only expose the interface (creation, read and write a 
+value) 
+- implicitly, using them behind the scenes to implement data structures 
+- explicitly, exposing the implementation as pointer: C
+Reference types
+
+--- Page 3 ---
+• A pointer: 
+- machine address, possibly some meta data (size of the data it points to) 
+• A reference is an abstract data type: 
+- we have a set of operations defined on it 
+‣ create, read, write, update 
+- often represented internally as pointer, but no guarantee that the address 
+stays constant, runtime system may relocate the data 
+Reference types vs pointers
+
+--- Page 4 ---
+• Haskell has not explicit built-in reference types, but Data.IORef provides it 
+as abstract data type:
+Reference types
+• these are functions which have an effect on the world (or depend on the 
+current state of the world)
+ 
+  
+xRef
+5
+10
+x1
+  
+5
+x2
+  
+10
+
+--- Page 5 ---
+Reference types
+ 
+  
+xRef
+5
+10
+x1
+  
+5
+x2
+  
+10
+  
+yRef
+x1: 5  x2: 10
+
+--- Page 6 ---
+• Haskell also uses references behind the scenes 
+-  even basic values (Int etc) are internally represented as 
+references to these values (boxed representation) or to as 
+to yet unevaluated computations 
+- enables sharing
+Reference types
+  
+0 
+ys
+ 
+  
+  
+ 
+1 
+2 
+3 
+xs
+ 
+
+--- Page 7 ---
+• The boxed representation is an efficient representation for lazy evaluation
+Reference types
+• This means evaluation has a side effect 
+(this can be problematic for parallel 
+execution)
+ 
+x
+⟪sum [1,2..10]⟫
+ 
+y
+⟪2 *    ⟫
+ 
+z
+⟪3 +    ⟫
+
+--- Page 8 ---
+• The boxed representation is an effective representation for sharing (lazy 
+evaluation!)
+Reference types
+ 
+x
+ 
+y
+⟪2 *    ⟫
+ 
+z
+⟪3 +    ⟫
+ 
+55
+
+--- Page 9 ---
+• The boxed representation is an effective representation for sharing (lazy 
+evaluation!)
+Reference types
+• This means evaluation has a side effect 
+(this can be problematic for parallel 
+execution)
+ 
+x
+ 
+y
+ 
+z
+⟪3 +    ⟫
+ 
+55
+ 
+110
+
+--- Page 10 ---
+• In functional languages, it doesn’t matter for the semantics of a program whether 
+a value has a boxed or unboxed representation 
+- it does affect performance, as dereferencing is expensive 
+- in Haskell, it’s possible to explicitly use unboxed types (denoted by # - 
+Int#…)
+Reference types
+
+--- Page 11 ---
+• In languages with side effect, it is important to know whether we deal with 
+reference or value types to understand the behaviour of 
+- assignments 
+- function calls 
+• Unfortunately, this is not uniform, even across closely related languages
+References in stateful languages
+
+--- Page 12 ---
+• In C#, Java some values are represented via references, some directly a the value 
+- value types: 
+‣ value types: boolean, integers,  floating point  numbers 
+- reference types: 
+‣ classes, interfaces, arrays 
+• Also in Swift 
+- everything value type but functions, closures and classes 
+• C++ 
+- all value types, references and pointers are explicit
+Reference types vs value types
+
+--- Page 13 ---
+C#:
+C++:
+ob2.value = 10
+ob2.value = 20
+
+--- Page 14 ---
+https://en.wikipedia.org/wiki/Value_type_and_reference_type
+Check out differences in value & reference type classification 
+when switching to a new language! 
+
+--- Page 15 ---
+⠇
+• Pointer types in C are denoted by a * after the 
+type name 
+• Dereferencing a pointer is done by the * operator 
+• The operator & returns the address of a variable 
+• Memory has to allocated and freed explicitly by 
+the programmer
+Pointers in C
+5
+x_ptr
+x_ptrptr
+
+--- Page 16 ---
+⠇
+• Pointers in C are very powerful, but very unsafe! 
+- forget to free memory 
+- free an address which has not been allocated 
+- access a memory location after freeing 
+- return an address of a local variable 
+• Pointer arithmetic
+Pointers in C
+5
+x_ptr
+
+--- Page 17 ---
+• Also called pass-by-reference/pass-by-value 
+• What is the calling convention for procedures/functions/methods? 
+• Call by value 
+- like in TinyC (and C): the value of the argument expression gets bound to the 
+formal parameter.  
+- function calls don’t affect the values of the variables in the caller 
+• Java, C#, C++ are all call by value, but since classes are reference types in C# & 
+Java, the behaviour is different  
+- Java/C#: the reference gets copied 
+- C++, the object gets copied)  
+• Fortran is always call by reference - even on constant values! 
+- this can result of constant values being changed!
+Call-by-value vs call-by reference
+
+--- Page 18 ---
+Call-by-value vs call-by reference
+
+--- Page 19 ---
+• We add references as abstract data type to the language 
+- declaration & instantiation of a reference and the value it points to 
+- reading the value a reference points to 
+- updating the value a reference points to
+TinyC with references
+
+--- Page 20 ---
+Adding references
+
+
+
+==================================
+FILE: Slides\11 - Polymorphism.pdf
+==================================
+
+--- Page 1 ---
+Concepts of Programming Language Design  
+Parametric Polymorphism
+Gabriele Keller 
+Tom Smeding
+
+--- Page 2 ---
+Overview
+semantic features
+tools to talk about languages
+static & dynamic 
+scoping
+static & dynamic 
+typing
+explicit & implicit 
+typing
+language concepts
+functional 
+procedural/imperative
+higher & first-order syntax
+big step and small step operational 
+semantics
+abstract machines
+inference rules, induction
+(algebraic) data types
+partial application/function closures
+value & type environments
+control stacks
+parametric polymorphism/ 
+generics
+explicit & implicit 
+typing
+type checking
+
+--- Page 3 ---
+Parametric Polymorphism
+• Example: swap the elements of a pair (in Haskell) 
+• What is swap’s type? 
+- In Haskell: 
+- in MinHs:
+      swap (x, y) = (y, x)         
+      swap :: (a, b) -> (b, a)   
+recfun swapIntBool :: (Int, Bool) -> (Bool, Int) pair = 
+  (snd pair, fst pair) 
+recfun swapBoolInt :: (Bool, Int) -> (Int, Bool) pair = 
+  (snd pair, fst pair) 
+..... 
+forall a. forall b. (a,b) -> (b,a)
+
+--- Page 4 ---
+Parametric polymorphism
+The term polymorphism is used in the PL context to mean several different 
+concepts: 
+- Parametric polymorphism (when functional programmers talk about 
+polymorphism, often referred to as ‘generics’ by OO ppl) 
+‣ the operation can work on any type
+swap :: (a, b) -> (b, a) 
+swap (x, y) = (y, x) 
+swap (1,”Hello”)   
+swap (‘c’, \x -> x + 1) 
+swap (True, odd) 
+
+--- Page 5 ---
+Parametric polymorphism
+• Adhoc polymorphism (when OO programmers talk about polymorphism) 
+‣ a function or operation is overloaded with multiple implementations to 
+work on some specific types
+ 5 + 3 
+ 3.7 + 1.234 
+ “Hello” + “ World” 
+ 
+Sometimes polymorphism is used to refer to subtyping
+We will cover all of these concepts in the course
+
+--- Page 6 ---
+Parametric Polymorphism in Haskell
+• Parametric polymorphism: 
+- a and b are type variables 
+• Using a polymorphic function:  
+- when a polymorphic function is applied to a concrete value, the type variables 
+are instantiated: 
+- instantiates type variable a to Int, b to Bool
+swap :: (a, b) -> (b, a)  
+swap pair = 
+  (snd pair, fst pair)
+      swap (1, True)    
+
+--- Page 7 ---
+Parametric Polymorphism (generics) in C#
+static void Swap<T>(ref T a, ref T b) { 
+  T temp; 
+  temp = a; 
+  a    = b; 
+  b    = temp; 
+} 
+      
+static void Main(string[] args) { 
+  int a, b; 
+  char c, d; 
+  a = 5; 
+  b = 10; 
+  c = 'X'; 
+  d = ‘Y'; 
+         
+  Swap<int>(ref a, ref b); 
+  Swap<char>(ref c, ref d); 
+          
+ } 
+} 
+explicit introduction of type variable
+explicit instantiation of type variable
+
+--- Page 8 ---
+Parametric Polymorphism (generics) in Swift
+func swap<T>(_ a: inout T, _ b: inout T) { 
+  let tmp = a 
+	
+ a = b 
+	
+ b = tmp 
+}	
+ 
+var x = 3 
+var y = 107 
+swap(&x, &y)	
+ 
+var str1 = “hello" 
+var str2 = "world" 
+swap(&str1, &str2)
+explicit introduction of type variable
+
+--- Page 9 ---
+Adding Parametric Polymorphism to MinHs
+• First: with explicit typing (as in C#)  
+- introduction of type variables is explicit 
+- instantiation of type variables is explicit
+static void Swap<T>(ref T a, ref T b)
+func swap<T>(_ a: inout T, _ b: inout T)
+Swap<int>(ref a, ref b)
+• Later, we look into how this works for implicit typing (i.e., programmer does not 
+have to provide the type
+
+--- Page 10 ---
+Adding Parametric Polymorphism to MinHs
+• Type abstraction in polymorphic (explicitly typed) MinHs: 
+• Type instantiation 
+evaluates to
+(Type a in 
+(Type b in 
+  recfun swap :: ((a * b) ➔ (b * a)) pair = 
+    (snd pair, fst pair))) 
+ 
+(inst (Type a in 
+(inst (Type b in 
+   recfun swap :: ((a * b) ➔ (b * a)) pair = 
+     (snd pair, fst pair) 
+   Bool) 
+   Int)))
+recfun swap :: (Int * Bool) ➔ (Bool * Int) pair =  
+  (snd pair, fst pair)
+explicit introduction of type variables
+explicit instantiation of type variables
+
+--- Page 11 ---
+Parametric Polymorphism
+• What is the type of this function? 
+• Universal quantification: 
+- it is        ∀a.∀b.(a * b) ➔ (b * a) 
+- written in Haskell (leading forall a. forall b. optional)
+(Type a in 
+(Type b in 
+  recfun swap :: ((a * b) ➔ (b * a)) pair = 
+    (snd pair, fst pair)))
+      forall a. forall b. (a * b) ➔ (b * a)
+
+--- Page 12 ---
+Polymorphic MinHS - Concrete Syntax
+Polytypes
+σ
+::=
+τ | ∀ Ident . σ
+Monotypes
+τ
+::=
+Bool | Int | (τ ➔ τ) | Ident 
+Expressions
+Expr ::=
+ Ident 
+| inst (Expr, τ)
+| recfun  Ident ::(τ ➔ τ) Ident = Expr
+| Type Ident in Expr | ...
+• Note that we only allow quantifiers at the outermost position 
+- this restriction is not necessary for explicitly typed MinHs
+
+--- Page 13 ---
+Polymorphic MinHS
+• Valid Types:  
+- types can now contain type variables, but they need to be “in scope” (bound 
+by a quantifier)
+t ∈ Δ
+Δ ⊢ t ok
+Δ ⊢ ∀ t. σ ok
+Δ ∪ {t} ⊢ σ  ok      t ∉     Δ
+Δ ⊢ τ1 ➔ τ2 ok
+Δ ⊢ τ1 ok
+Δ ⊢ τ1 ok
+Δ ⊢ Bool ok
+Δ ⊢ Int ok
+
+--- Page 14 ---
+Polymorphic MinHS 
+• Typing rules
+Δ ∪ {t}, Γ ⊢ e : σ      t ∉ Δ
+Δ, Γ ⊢ (Type (t.e )):
+Δ, Γ ⊢ e: ∀ t. σ       Δ ⊢ τ  ok
+Δ, Γ ⊢ (Inst e τ):
+∀ t. σ
+σ [t := τ]
+
+--- Page 15 ---
+Polymorphic MinHS 
+• Dynamic Semantics
+(Inst e  τ) ↦M (Inst e’  τ) 
+e  ↦M e’
+(Inst(Type(t.e)) τ) ↦M e[t:= τ]
+
+--- Page 16 ---
+Polymorphic MinHs
+• Polymorphic MinHs with 
+- explicit introduction of type variables:  
+‣ (Type a in recfun id :: (a -> a) x = x)   
+-  explicit instantiation of type variables: 
+‣ (Inst(Type a in recfun id : (a->a) x = x) Bool)
+:: ∀ a.a ➔ a
+:: Bool ➔ Bool
+
+--- Page 17 ---
+Parametric Polymorphism
+• We only allow quantifiers in a type at the outermost position. Does this matter? 
+- Example: can we give a type to this function?
+strangeFun f = if (f True)  
+                 then (f 5) 
+                 else 10
+- Possible type:    
+       strangeFun :: (∀ a. a ➔ a) ➔ Int
+but there is not possible type which would be legal in our MinHs definition! 
+• Polymorphic types are not first class citizens!  
+- we can’t specify that a function requires or produces a polymorphic 
+function/value!  
+
+--- Page 18 ---
+Implementing parametric polymorphism
+• We discussed the implications of parametric polymorphism/generics for the static 
+and dynamic semantics  
+• But how can it actually be implemented? What code should be generated by the 
+compiler for polymorphic functions 
+• Let’s look how generics can be faked in a language which doesn’t support 
+parametric polymorphism
+
+--- Page 19 ---
+Implementing parametric polymorphism
+C:
+#define SWAP(x, y, T) {T SWAPTMP = x; x = y; y = SWAPTMP;} 
+double x = 10.12; 
+double y = 2.123; 
+SWAP(x, y, double);
+void swap (void **x, void **y){ 
+  void *tmp = *x; 
+  *x = *y; 
+  *y = *x; 
+} 
+double *a = malloc (sizeof (double)); 
+*a = 10.12; 
+double *b = malloc (sizeof (double)); 
+*b = 3.14; 
+swap((void**)&a, (void**)&b);
+
+--- Page 20 ---
+Implementing parametric polymorphism
+• There are two choices (somewhat simplified): 
+- generate monomorphic code for every instance used 
+‣ code size? 
+‣ separate compilation? 
+- `box’ every value, so all polymorphic operations can be expressed in terms on 
+operations on pointers 
+‣ runtime overhead? 
+‣ locality? 
+- monomorphisation optimisation: boxed values, but specialise to 
+monomorphic version where possible
+• OO languages where everything is an object and associated with a vTable have  
+other options available (similar to overloading, will be covered later)
+
+
+
+==================================
+FILE: Slides\12 - PolymorphismInf.pdf
+==================================
+
+--- Page 1 ---
+Concepts of Programming Language Design  
+Parametric Polymorphism
+Gabriele Keller 
+Tom Smeding
+
+--- Page 2 ---
+Overview
+semantic features
+tools to talk about languages
+static & dynamic 
+scoping
+static & dynamic 
+typing
+explicit & implicit 
+typing
+language concepts
+functional 
+procedural/imperative
+higher & first-order syntax
+big step and small step operational 
+semantics
+abstract machines
+inference rules, induction
+(algebraic) data types
+partial application/function closures
+value & type environments
+control stacks
+parametric polymorphism/ 
+generics
+explicit & implicit 
+typing
+type checking
+
+--- Page 3 ---
+Parametric Polymorphism
+• Example: swap the elements of a pair (in Haskell) 
+• What is swap’s type? 
+- In Haskell: 
+- in MinHs:
+      swap (x, y) = (y, x)         
+      swap :: (a, b) -> (b, a)   
+recfun swapIntBool :: (Int, Bool) -> (Bool, Int) pair = 
+  (snd pair, fst pair) 
+recfun swapBoolInt :: (Bool, Int) -> (Int, Bool) pair = 
+  (snd pair, fst pair) 
+..... 
+forall a. forall b. (a,b) -> (b,a)
+
+--- Page 4 ---
+Parametric polymorphism
+The term polymorphism is used in the PL context to mean several different 
+concepts: 
+- Parametric polymorphism (when functional programmers talk about 
+polymorphism, often referred to as ‘generics’ by OO ppl) 
+‣ the operation can work on any type
+swap :: (a, b) -> (b, a) 
+swap (x, y) = (y, x) 
+swap (1,”Hello”)   
+swap (‘c’, \x -> x + 1) 
+swap (True, odd) 
+
+--- Page 5 ---
+Parametric polymorphism
+• Adhoc polymorphism (when OO programmers talk about polymorphism) 
+‣ a function or operation is overloaded with multiple implementations to 
+work on some specific types
+ 5 + 3 
+ 3.7 + 1.234 
+ “Hello” + “ World” 
+ 
+Sometimes polymorphism is used to refer to subtyping
+We will cover all of these concepts in the course
+
+--- Page 6 ---
+Parametric Polymorphism in Haskell
+• Parametric polymorphism: 
+- a and b are type variables 
+• Using a polymorphic function:  
+- when a polymorphic function is applied to a concrete value, the type variables 
+are instantiated: 
+- instantiates type variable a to Int, b to Bool
+swap :: (a, b) -> (b, a)  
+swap pair = 
+  (snd pair, fst pair)
+      swap (1, True)    
+
+--- Page 7 ---
+Parametric Polymorphism (generics) in C#
+static void Swap<T>(ref T a, ref T b) { 
+  T temp; 
+  temp = a; 
+  a    = b; 
+  b    = temp; 
+} 
+      
+static void Main(string[] args) { 
+  int a, b; 
+  char c, d; 
+  a = 5; 
+  b = 10; 
+  c = 'X'; 
+  d = ‘Y'; 
+         
+  Swap<int>(ref a, ref b); 
+  Swap<char>(ref c, ref d); 
+          
+ } 
+} 
+explicit introduction of type variable
+explicit instantiation of type variable
+
+--- Page 8 ---
+Parametric Polymorphism (generics) in Swift
+func swap<T>(_ a: inout T, _ b: inout T) { 
+  let tmp = a 
+	
+ a = b 
+	
+ b = tmp 
+}	
+ 
+var x = 3 
+var y = 107 
+swap(&x, &y)	
+ 
+var str1 = “hello" 
+var str2 = "world" 
+swap(&str1, &str2)
+explicit introduction of type variable
+
+--- Page 9 ---
+Adding Parametric Polymorphism to MinHs
+• First: with explicit typing (as in C#)  
+- introduction of type variables is explicit 
+- instantiation of type variables is explicit
+static void Swap<T>(ref T a, ref T b)
+func swap<T>(_ a: inout T, _ b: inout T)
+Swap<int>(ref a, ref b)
+• Later, we look into how this works for implicit typing (i.e., programmer does not 
+have to provide the type
+
+--- Page 10 ---
+Adding Parametric Polymorphism to MinHs
+• Type abstraction in polymorphic (explicitly typed) MinHs: 
+• Type instantiation 
+evaluates to
+(Type a in 
+(Type b in 
+  recfun swap :: ((a * b) ➔ (b * a)) pair = 
+    (snd pair, fst pair))) 
+ 
+(inst (Type a in 
+(inst (Type b in 
+   recfun swap :: ((a * b) ➔ (b * a)) pair = 
+     (snd pair, fst pair) 
+   Bool) 
+   Int)))
+recfun swap :: (Int * Bool) ➔ (Bool * Int) pair =  
+  (snd pair, fst pair)
+explicit introduction of type variables
+explicit instantiation of type variables
+
+--- Page 11 ---
+Parametric Polymorphism
+• What is the type of this function? 
+• Universal quantification: 
+- it is        ∀a.∀b.(a * b) ➔ (b * a) 
+- written in Haskell (leading forall a. forall b. optional)
+(Type a in 
+(Type b in 
+  recfun swap :: ((a * b) ➔ (b * a)) pair = 
+    (snd pair, fst pair)))
+      forall a. forall b. (a * b) ➔ (b * a)
+
+--- Page 12 ---
+Polymorphic MinHS - Concrete Syntax
+Polytypes
+σ
+::=
+τ | ∀ Ident . σ
+Monotypes
+τ
+::=
+Bool | Int | (τ ➔ τ) | Ident 
+Expressions
+Expr ::=
+ Ident 
+| inst (Expr, τ)
+| recfun  Ident ::(τ ➔ τ) Ident = Expr
+| Type Ident in Expr | ...
+• Note that we only allow quantifiers at the outermost position 
+- this restriction is not necessary for explicitly typed MinHs
+
+--- Page 13 ---
+Polymorphic MinHS
+• Valid Types:  
+- types can now contain type variables, but they need to be “in scope” (bound 
+by a quantifier)
+t ∈ Δ
+Δ ⊢ t ok
+Δ ⊢ ∀ t. σ ok
+Δ ∪ {t} ⊢ σ  ok      t ∉     Δ
+Δ ⊢ τ1 ➔ τ2 ok
+Δ ⊢ τ1 ok
+Δ ⊢ τ1 ok
+Δ ⊢ Bool ok
+Δ ⊢ Int ok
+
+--- Page 14 ---
+Polymorphic MinHS 
+• Typing rules
+Δ ∪ {t}, Γ ⊢ e : σ      t ∉ Δ
+Δ, Γ ⊢ (Type (t.e )):
+Δ, Γ ⊢ e: ∀ t. σ       Δ ⊢ τ  ok
+Δ, Γ ⊢ (Inst e τ):
+∀ t. σ
+σ [t := τ]
+
+--- Page 15 ---
+Polymorphic MinHS 
+• Dynamic Semantics
+(Inst e  τ) ↦M (Inst e’  τ) 
+e  ↦M e’
+(Inst(Type(t.e)) τ) ↦M e[t:= τ]
+
+--- Page 16 ---
+Polymorphic MinHs
+• Polymorphic MinHs with 
+- explicit introduction of type variables:  
+‣ (Type a in recfun id :: (a -> a) x = x)   
+-  explicit instantiation of type variables: 
+‣ (Inst(Type a in recfun id : (a->a) x = x) Bool)
+:: ∀ a.a ➔ a
+:: Bool ➔ Bool
+
+--- Page 17 ---
+Parametric Polymorphism
+• We only allow quantifiers in a type at the outermost position. Does this matter? 
+- Example: can we give a type to this function?
+strangeFun f = if (f True)  
+                 then (f 5) 
+                 else 10
+- Possible type:    
+       strangeFun :: (∀ a. a ➔ a) ➔ Int
+but there is not possible type which would be legal in our MinHs definition! 
+• Polymorphic types are not first class citizens!  
+- we can’t specify that a function requires or produces a polymorphic 
+function/value!  
+
+--- Page 18 ---
+Implementing parametric polymorphism
+• We discussed the implications of parametric polymorphism/generics for the static 
+and dynamic semantics  
+• But how can it actually be implemented? What code should be generated by the 
+compiler for polymorphic functions 
+• Let’s look how generics can be faked in a language which doesn’t support 
+parametric polymorphism
+
+--- Page 19 ---
+Implementing parametric polymorphism
+C:
+#define SWAP(x, y, T) {T SWAPTMP = x; x = y; y = SWAPTMP;} 
+double x = 10.12; 
+double y = 2.123; 
+SWAP(x, y, double);
+void swap (void **x, void **y){ 
+  void *tmp = *x; 
+  *x = *y; 
+  *y = *x; 
+} 
+double *a = malloc (sizeof (double)); 
+*a = 10.12; 
+double *b = malloc (sizeof (double)); 
+*b = 3.14; 
+swap((void**)&a, (void**)&b);
+
+--- Page 20 ---
+Implementing parametric polymorphism
+• There are two choices (somewhat simplified): 
+- generate monomorphic code for every instance used 
+‣ code size? 
+‣ separate compilation? 
+- `box’ every value, so all polymorphic operations can be expressed in terms on 
+operations on pointers 
+‣ runtime overhead? 
+‣ locality? 
+- monomorphisation optimisation: boxed values, but specialise to 
+monomorphic version where possible
+• OO languages where everything is an object and associated with a vTable have  
+other options available (similar to overloading, will be covered later)
+
+
+
+==================================
+FILE: Slides\13 - Subtyping.pdf
+==================================
+
+--- Page 1 ---
+Concepts of Programming Language Design 
+Subtyping
+Gabriele Keller 
+Tom Smeding
+
+--- Page 2 ---
+Overview
+semantic features
+tools to talk about languages
+static & dynamic 
+scoping
+static & dynamic 
+typing
+language concepts
+functional 
+procedural/imperative
+higher & first-order syntax
+big step and small step operational 
+semantics
+abstract machines
+inference rules, induction
+(algebraic) data types
+partial application/function closures
+value & type environments
+control stacks
+parametric polymorphism/ 
+generics
+explicit & implicit 
+typing
+sub typing
+
+--- Page 3 ---
+• Why subtyping? 
+- eliminates the need to explicitly convert between elements of different types 
+                 1  +Float 1.565
+- can be used to express program properties 
+- essential in OO-languages: closely related to the subclass-relationship 
+• Subtype relation 
+-  τ ≤ σ : τ  is a subtype of σ
+- what does it mean for a type τ to be a subtype of another type σ? 
+‣ wherever a value of type σ is required, we can use a value of type 
+instead τ
+Subtyping
+Int 
+Float 
+
+--- Page 4 ---
+• Subset interpretation 
+- if τ ≤ σ, then every value τ  of is also a value of σ, 
+- e.g., 
+‣ even integers ≤ integers 
+‣ non-empty lists ≤ lists 
+‣ squares ≤ rectangles ≤  polygons 
+• Coercion interpretation 
+- if then every value τ of can be coerced to a value of type σ in a unique way 
+- e.g., 
+‣ Int ≤ Float (e.g.,  3 to 3.0) 
+‣ Char ≤ String (e.g., ‘w’ to “w”) 
+• The subclass relationship in OO is a special form of subtyping, but we 
+will cover it separately
+Two different forms of subtyping
+
+--- Page 5 ---
+• MinHs extensions:  
+- Add type Float 
+- Add operations +Float , *Float  and so on 
+• We want to be able to write 
+-   1   +Float 1.1232312
+-  1.7 +Float 5 
+-  1   +Float 5
+• How can we implement a coercion interpretation? 
+- dynamic resolution 
+‣ floating point operation dynamically checks whether operands can be coerced 
+to Float, and coerces on the fly 
+- static resolution 
+‣ type checker inserts coercions at compile time
+Adding Subtyping to MinHs
+
+--- Page 6 ---
+• Coercion vs subset interpretation 
+- coercion interpretation is more expressive than subset interpretation 
+- we discuss coercion interpretation in more detail 
+• Soundness of subtyping 
+- the subtyping relation needs to meet certain formal properties 
+- otherwise, type safety will be compromised
+Properties of Subtyping
+
+--- Page 7 ---
+• Required properties: reflexivity and transitivity
+Properties of Subtyping
+τ ≤ τ
+τ1 ≤ τ3
+τ1 ≤ τ2
+τ2 ≤ τ3
+• Subset interpretation 
+‣ reflexivity and transitivity follow from properties of subset relation 
+• Coercion interpretation 
+‣ reflexivity (coercion function is the identity), transitivity (coercion function by 
+composing the two coercion functions)
+
+--- Page 8 ---
+• Coherence: a subtyping relationship must be coherent 
+- this means, the coerced value has to be unique 
+- if a value can be coerced in two ways, both must yield the same result 
+- example: 
+‣ assume: Int ≤  Float, Int ≤  String, Float ≤  String
+‣ consider print (3::Int) 
+‣ what might go wrong here? 
+• direct coercion:      “3“ 
+• coercion via Float:  “3.0” 
+Properties of Subtyping
+
+--- Page 9 ---
+• Coercions might hide actual programming bugs 
+• Coercion behaviour unexpected, may differ from language to language 
+Examples: 
+‣ JS vs PHP:   
+(“5” > “11” ? “TRUE” : “FALSE”) 
+(“0”       ? “TRUE” : “FALSE”) 
+Problems with automatic coercion
+JS: compares strings alph. : “True”
+PHP: converts, then compares: “False"
+JS: non-null object: “True”
+PhP:converts to o:  “False”
+
+--- Page 10 ---
+Problems with automatic coercion
+short int          i =  -1; 
+short unsigned int j =   0; 
+float              x = 1.0; 
+short unsigned int k = i + j;  
+printf ("test1: %f ", x + k);  
+printf ("test2: %f ", x + i + j)
+test1: 65536.000000  
+test2: 0.000000
+-32,768 … 32,767
+0           … 65,535
+
+--- Page 11 ---
+• The rule of subsumption - implicit subtyping
+Subsumption
+ Γ ⊢ e : σ 
+ τ ≤ σ
+ Γ ⊢ e : τ
+• The rule of subsumption - explicit subtyping (with cast expression (σ))
+ Γ ⊢ (σ) e  : σ 
+ τ ≤ σ
+ Γ ⊢ e : τ
+
+--- Page 12 ---
+• If Int ≤  Float, what is then then relationship between the following types: 
+(Int   * Int) 
+(Float * Int) 
+(Int   * Float) 
+(Float * Float) 
+• How about sums? 
+• Subtyping rules for products and sums:
+Composite Types and Subtyping
+(τ1 * τ2) ≤ (σ1 * σ2)
+τ1 ≤ σ1
+τ2 ≤ σ2
+(τ1 + τ2) ≤ (σ1 + σ2)
+τ1 ≤ σ1
+τ2 ≤ σ2
+
+--- Page 13 ---
+• What is the relationship between the following types: 
+    Int ➔ Int 
+  Float ➔ Int 
+    Int ➔ Float 
+  Float ➔ Float 
+• Given a coercion function intToFloat:: Int ➔ Float,  can we define coercion 
+functions of the following types:
+Composite Types and Subtyping
+  (Int ➔ Int)     ➔ (Float ➔ Int) 
+  (Float ➔ Int)   ➔ (Int ➔ Float) 
+    (Int ➔ Float)   ➔ (Float ➔ Float) 
+(Float ➔ Float) ➔ (Int ➔ Int) 
+....
+
+--- Page 14 ---
+• What is the relationship between the following types: 
+    Int ➔ Int 
+  Float ➔ Int 
+    Int ➔ Float 
+  Float ➔ Float 
+• Subtyping rules for function types
+Composite Types and Subtyping
+(τ1 ➔ τ2) ≤ (σ1 ➔ σ2)
+σ1 ≤ τ1 τ2 ≤ σ2
+
+--- Page 15 ---
+• Rules specifying how a type constructor interacts with subtyping are called variance 
+principles 
+• If a constructor preserves subtyping, it is called co-variant 
+- the sum and product constructor are co-variant in both arguments 
+• If a constructor inverts subtyping, it is called contra-variant 
+- the function type constructor is contra-variant in the first argument 
+- and co-variant in the second argument
+Composite Types and Subtyping
+
+--- Page 16 ---
+• What about array/reference types?
+Variance
+newIORef   :: a            -> IO (IORef a) 
+writeIORef :: a -> IORef a -> IO () 
+readIORef  ::      IORef a -> IO a
+• Is IORef co- or contra-variant?
+Int ≤ Float 
+fRef :: IORef Float 
+iRef :: IORef Int 
+readIORef fRef   
+readIORef iRef 
+writeIORef  (5.2423 :: Float) fRef 
+writeIORef  (5.2423 :: Float) iRef 
+writeIORef  (5 :: Int) iRef 
+writeIORef  (5 :: Int) fRef 
+readIORef iRef   
+readIORef fRef 
+to get a FLOAT
+we can read from iRef, and convert Int to Float
+to store a Float
+we cannot  use an iRef to store a Float!
+to store an Int
+we can convert 5  to a Float, and store it in fRef
+we cannot  use an fRef to get an Int!
+to get an Int
+
+--- Page 17 ---
+• What about array/reference types?
+Variance
+• If a constructor is neither co- nor contra-variant, it is called invariant
+• Is IORef co- or contra-variant? 
+it’s neither co- nor contra-variant!
+• Java and C#  have arrays as co-variant type constructors 
+• how is it handled?
+newIORef   :: a            -> IO (IORef a) 
+writeIORef :: a -> IORef a -> IO () 
+readIORef  ::      IORef a -> IO a
+

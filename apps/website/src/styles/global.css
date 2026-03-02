@@ -52,6 +52,8 @@
   --app-fg: #121418;
   --font-size-base: 16px;
   --font-size-lg: 18px;
+  --primary-color: #d97706; /* 亮色模式：橙色 */
+  --primary-hover: #b45309;
   --glass-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.68), rgba(232, 232, 228, 0.26));
   --glass-bg-color: rgba(236, 236, 232, 0.16);
   --glass-border-color: rgba(255, 255, 255, 0.62);
@@ -78,6 +80,8 @@ body {
 html[data-theme='dark'] {
   --app-bg: #0b1118;
   --app-fg: #e6edf3;
+  --primary-color: #fbbf24; /* 暗色模式：亮橙色 */
+  --primary-hover: #f59e0b;
   --glass-gradient: linear-gradient(rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0));
   --glass-bg-color: transparent;
   --glass-border-color: rgba(255, 255, 255, 0.1);

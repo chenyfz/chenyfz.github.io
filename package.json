@@ -2,6 +2,7 @@
   "name": "ohyangfan-monorepo",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@10.30.0",
   "scripts": {
     "dev": "pnpm -r --parallel --if-present run dev",
     "build": "pnpm --filter apps-website run build",

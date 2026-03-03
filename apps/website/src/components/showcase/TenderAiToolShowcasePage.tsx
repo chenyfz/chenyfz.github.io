@@ -1,5 +1,8 @@
 import { useEffect, useRef } from 'react';
 import type { Locale } from '@/i18n/config';
+import { t } from '@/i18n/t';
+import tenderAiToolShowcaseEn from '@/i18n/pages/tender-ai-tool-showcase/en';
+import tenderAiToolShowcaseZh from '@/i18n/pages/tender-ai-tool-showcase/zh';
 import gsap from 'gsap';
 import useThemeMode from '@/hooks/useThemeMode';
 import {
@@ -12,9 +15,9 @@ interface TenderAiToolShowcasePageProps {
 }
 
 export default function TenderAiToolShowcasePage({ lang }: TenderAiToolShowcasePageProps) {
-  void lang;
   const isDark = useThemeMode() === 'dark';
   const bodyFontFamily = getStaticCvBodyFontFamily(lang);
+  const text = t({ en: tenderAiToolShowcaseEn, zh: tenderAiToolShowcaseZh }, lang);
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -61,7 +64,7 @@ export default function TenderAiToolShowcasePage({ lang }: TenderAiToolShowcaseP
           className={`pointer-events-none absolute bottom-10 left-1/2 z-20 -translate-x-1/2 text-[18px] sm:bottom-12 ${isDark ? 'text-white/92' : 'text-neutral-800'}`}
           style={{ fontFamily: '"SimHei", "Heiti SC", "Microsoft YaHei", sans-serif' }}
         >
-          投标文件检查工具截图概览
+          {text.caption}
         </p>
 
         <div className="mx-auto flex h-full w-full max-w-none flex-col justify-center">

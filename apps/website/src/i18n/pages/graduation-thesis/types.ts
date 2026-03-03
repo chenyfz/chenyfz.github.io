@@ -13,6 +13,31 @@ export type GraduationProjectSection = {
   links?: GraduationLinkItem[];
 };
 
+export type GraduationThesisMetric = {
+  label: string;
+  value: string;
+  note?: string;
+};
+
+export type GraduationThesisMedia = {
+  type: 'image' | 'video';
+  src: string;
+  alt: string;
+  caption?: string;
+  poster?: string;
+};
+
+export type GraduationThesisNarrativeSection = {
+  id: string;
+  kicker?: string;
+  title: string;
+  lead?: string;
+  points?: string[];
+  quote?: string;
+  metrics?: GraduationThesisMetric[];
+  media?: GraduationThesisMedia[];
+};
+
 export type GraduationThesisPageCopy = {
   meta: {
     title: string;
@@ -27,6 +52,8 @@ export type GraduationThesisPageCopy = {
   };
   abstractTitle: string;
   abstractParagraphs: string[];
+  narrativeTitle: string;
+  narrativeSections: GraduationThesisNarrativeSection[];
   reflectionsTitle: string;
   reflectionsParagraphs: string[];
   primaryLinks: GraduationLinkItem[];

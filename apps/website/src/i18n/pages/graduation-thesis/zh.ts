@@ -18,6 +18,98 @@ const graduationThesisZh: GraduationThesisPageCopy = {
     '初步评估（N=16）表明，在模拟校准漂移时，ZoomPursuit 的准确性媲美手动微调，速度则接近自动缩放方案。然而研究也揭示了其隐式自动修正与用户控制感之间的冲突。为此我们开展第二轮研究（N=7），并设计出整合自动校正与手动微调的两阶段模型。最终该设计在无初始校准的情况下实现了 0.10 度的指向精度，并在交互过程中动态校准。',
     '本研究详细阐述了一种面向通用 GUI 的平滑追视交互技术的设计演化。最终设计验证了一个既能保证技术效率，又能保留用户能动性的交互模型。'
   ],
+  narrativeTitle: '答辩演示回顾',
+  narrativeSections: [
+    {
+      id: 'slide-0-teaser',
+      kicker: '先睹为快',
+      title: '眼动追踪自动纠偏交互',
+      lead: '只要在放大前后都看住目标，系统会在放大过程中自动修正大部分注视偏移；随后用手势完成二阶段精修。',
+      points: [
+        '视频中每一次都以字母 o 为目标。',
+        '黑色圆圈表示注视位置；起始时未落在 o 上，这是眼动追踪误差与偏移造成的。',
+        '触发放大后，ZoomPursuit 在第一阶段自动完成大部分纠偏，这是本文最关键的技术创新点。',
+        '随着连续使用，系统会持续动态校准，因此后续偏移更小，再由二阶段手势完成最终精修。'
+      ],
+      media: [
+        { type: 'video', src: '/thesis/0303.mp4', alt: 'ZoomPursuit 引导演示视频', caption: '演示视频：每次任务都以字母 o 为目标；黑色圆圈为系统估计的注视位置。' }
+      ]
+    },
+    {
+      id: 'slide-1-background-gap',
+      kicker: '问题定义',
+      title: '机会与缺口：Smooth Pursuit 尚未走向通用 GUI',
+      lead: '这类方法在抗漂移与免校准方面有优势，但仍难直接用于未修改的通用 GUI。',
+      points: [
+        '已知优势：免显式校准、抗漂移，并可利用交互过程做动态校准。',
+        '关键限制：多数方法依赖界面层注入运动刺激，难以直接用于未修改 GUI。',
+        '研究问题：如何保留其优势，同时适配任意通用 GUI？'
+      ],
+      media: [
+        { type: 'image', src: '/thesis/figures/related-work-pursuit-methods.png', alt: 'Smooth Pursuit 原理示意图', caption: '图1：Smooth Pursuit 的基本思想——视线跟随屏幕中的运动目标，并通过轨迹匹配完成选择。' }
+      ]
+    },
+    {
+      id: 'slide-2-mechanism',
+      kicker: '方法核心',
+      title: 'ZoomPursuit：利用系统缩放生成可追视运动',
+      lead: '缩放会让每个像素相对缩放中心产生唯一运动向量，系统据此估计目标偏差并求解校正向量。',
+      points: [
+        '图中展示了放大前（1×）与放大后（2×）的对应关系。',
+        '同一放大中心下，不同像素点会得到不同的位移向量（方向与位移量均不同）。',
+        '系统利用这种独特向量模式匹配眼动轨迹并估计偏差。',
+        '依赖系统级缩放 API，无需修改应用代码或界面结构；如需推导细节可查看论文 MSc Thesis（Section 3）。'
+      ],
+      media: [
+        { type: 'image', src: '/thesis/figures/mechanism-before.png', alt: '放大前 1x 示意图', caption: '放大前（1×）：记录放大中心与候选点的相对位置。' },
+        { type: 'image', src: '/thesis/figures/mechanism-after.png', alt: '放大后 2x 示意图', caption: '放大后（2×）：屏幕每个点都有独特的特征向量（位移和方向）。' }
+      ]
+    },
+    {
+      id: 'slide-3-two-stage-workflow',
+      kicker: '交互设计',
+      title: '两阶段流程：自动纠偏 + 手势精修',
+      lead: '一阶段用于快速消解大偏差，二阶段用于可控微调，兼顾效率与控制感。',
+      points: [
+        '一阶段（自动纠偏）：放大期间估计校正向量，先消解大部分偏差。',
+        '二阶段（手势 refine）：用户接管微调，完成最终落点确认。',
+        '使用策略：偏差小可停在一阶段；偏差大进入二阶段。'
+      ],
+      media: [
+        { type: 'image', src: '/thesis/figures/zoom-pursuit-with-gaze&pinch.png', alt: '两阶段 Gaze + Pinch 工作流', caption: '两阶段工作流：先自动纠偏，再手势精修。' }
+      ]
+    },
+    {
+      id: 'slide-4-evidence',
+      kicker: '实证结果',
+      title: '研究一 + 研究二：效率、精度与可控性的整体证据',
+      lead: '本节合并展示研究一与研究二的关键实证结论。',
+      points: [
+        '研究一（设计）：在模拟的 1° 与 3° 误差条件下（分别代表轻度与较重偏移），对比 ZoomPursuit 与两种基线方法。',
+        '两种基线分别代表“中心静态放大后重定位目标”和“通过方向盘平移视图”的策略。',
+        '研究一结果：在 3° 模拟误差下，ZoomPursuit 准确率更高且速度更快。',
+        '研究二结果：一阶段平均消解 62% 偏移；两阶段精度 1.47° -> 0.56° -> 0.10°；20 次交互后校准误差 1.89° -> 0.84°。',
+        '若对实验流程、统计建模与显著性细节感兴趣，请查看论文“实证研究”部分。'
+      ],
+      media: [
+        { type: 'image', src: '/thesis/figures/study-1-target-and-methods.png', alt: '研究一实验设计概览', caption: '图注：实验任务与三种技术流程（按阶段组织）。阶段1注视目标，阶段2按键触发 2× 放大，阶段3进入各方法的细化过程：ZoomPursuit 通过追视估计并应用纠偏，ZoomCenter 在中心静态放大后重新寻目标，ZoomDPad 通过方向盘平移视图；阶段4松键确认。ZoomPursuit 与 ZoomCenter 长按 >3s 会进入 4× 放大并重复阶段2-3。' }
+      ]
+    },
+    {
+      id: 'slide-7-conclusion',
+      kicker: '结论与落点',
+      title: '结论：通用 GUI 的两阶段纠偏策略',
+      lead: '核心结论：轻偏差用一阶段，重偏差进入二阶段。',
+      points: [
+        '一阶段（自动纠偏）：在放大过程中快速消解大部分偏移。',
+        '轻度漂移：一阶段通常已足够。',
+        '重度偏差：二阶段手势精修更稳妥。'
+      ],
+      media: [
+        { type: 'image', src: '/thesis/figures/teaser-figure.png', alt: 'ZoomPursuit 总体流程与适用场景概览', caption: '总结图：在通用 GUI 中按偏差规模在一阶段（自动纠偏）与二阶段（手势精修）之间切换。' }
+      ]
+    }
+  ],
   reflectionsTitle: '一些随想',
   reflectionsParagraphs: [
     '我的毕业设计始于导师的 [DatAR](https://www.projects.science.uu.nl/ics-datar/) 项目。这个项目通过在 HoloLens 2 中可视化脑区与脑疾病的研究文献数据，来帮助神经科学家发现新的研究机会。我参与这个项目的原因其实很简单：我想用 HoloLens 2 做毕业设计。这款 2019 年发布的头显在当年给我留下了深刻的印象，曾让我断断续续脑洞好多混合现实交互的想法，终于有机会动手实现了。',
@@ -33,7 +125,7 @@ const graduationThesisZh: GraduationThesisPageCopy = {
     '以上，就是我最终完成这个毕业设计背后的一些随想。感谢阅读。'
   ],
   primaryLinks: [
-    { label: '下载论文', href: '/250805-Yangfan-MScThesis-ZoomPursuit-Submission.pdf' },
+    { label: '下载论文', href: '/thesis/250805-Yangfan-MScThesis-ZoomPursuit-Submission.pdf' },
     { label: '在 GitHub 上查看代码库', href: 'https://github.com/chenyfz/GazeControl', external: true },
     { label: '返回硕士课程总览', href: '/zh/masters-courses' }
   ],
@@ -46,7 +138,7 @@ const graduationThesisZh: GraduationThesisPageCopy = {
       summary: '聚焦解决眼动交互在通用桌面界面中的漂移与精度问题，探索免校准前提下的可用交互方案。',
       bullets: ['毕业阶段在 CWI 完成研究见习。', '通过两轮用户研究迭代并验证两阶段模型。'],
       links: [
-        { label: '论文 PDF', href: '/250805-Yangfan-MScThesis-ZoomPursuit-Submission.pdf' },
+        { label: '论文 PDF', href: '/thesis/250805-Yangfan-MScThesis-ZoomPursuit-Submission.pdf' },
         { label: '代码仓库', href: 'https://github.com/chenyfz/GazeControl', external: true }
       ]
     },

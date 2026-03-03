@@ -1,0 +1,65 @@
+<html lang="en">
+<!-- region html-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>05 - 增加控制器</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a href="../../index.html" class="return-button">返回目录</a>
+</body>
+<!-- endregion -->
+<script type="module">
+import * as THREE from '../../build/three.module.js'
+import { GLTFLoader } from '../../build/gltf-loader.js'
+import { materialConfigs, materialNames } from './config.js'
+import { envUrls } from '../../assets/resource.js'
+import { OrbitControls } from '../../build/orbit-controller.js'
+import { TrackballControls } from './trackball-controller.js'
+
+let camera, scene, renderer, model, light, control
+
+init()
+
+function init () {
+  camera = new THREE.PerspectiveCamera(18, window.innerWidth / window.innerHeight, 1, 1600)
+  camera.position.set(35, 20, 35)
+  camera.lookAt(new THREE.Vector3(0, 0, 0))
+
+  scene = new THREE.Scene()
+
+  const loader = new GLTFLoader()
+  loader.load('../../assets/v23.glb', gltf => {
+    model = gltf.scene.children[0]
+
+    const envMap = new THREE.CubeTextureLoader().load(envUrls)
+
+    model.children.forEach(child => {
+      const material = materialConfigs[materialNames[Math.floor(Math.random() * materialNames.length)]]
+      child.children[0].material = new THREE.MeshStandardMaterial({ ...material, envMap, envMapIntensity: 2 }) // envMapIntensity = 2, 让反射亮亮亮亮亮起来！
+    })
+
+    // 在这里增加了控制器，THREE 提供的 TrackballControls 并不能完全满足我们的需求，需要拷贝修改源码达成我们的目的。
+    // 为 TrackballControls 增加了第三个参数 model，并在同目录下的 TrackballControls 中修改源码
+    // 以达到只旋转物体不旋转相机的效果
+    control = new TrackballControls(camera, renderer.domElement, model)
+
+    scene.add(model)
+  })
+
+  renderer = new THREE.WebGLRenderer({ antialias: true })
+  renderer.setSize(window.innerWidth, window.innerHeight)
+  renderer.setPixelRatio(3)
+  renderer.setAnimationLoop(animation)
+  document.body.appendChild(renderer.domElement)
+}
+
+function animation () {
+  control && control.update()
+  renderer.render(scene, camera)
+}
+</script>
+</html>

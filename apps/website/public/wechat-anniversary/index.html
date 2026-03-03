@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="demo/style.css">
+    <title>年会小程序分享 Kit</title>
+</head>
+
+<style>
+body {
+    margin: 0;
+    padding: 24px 48px;
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-sizing: border-box;
+    background: black;
+    overflow: hidden;
+}
+
+body > div {
+    width: 100%;
+    max-width: 327px;
+}
+
+h2 {
+    opacity: 0.9;
+    position: relative;
+    line-height: 21px;
+    padding-left: 38px;
+}
+
+
+h2:before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    width: 21px;
+    height: 21px;
+    opacity: 0.8;
+    background: url("/assets/icon.svg") no-repeat;
+    transition: .2s;
+    background-size: contain;
+}
+</style>
+
+<body>
+
+<div>
+    <h2>目录</h2>
+    <a href="./demo/01" class="li-link">01 - Hello World</a>
+    <a href="./demo/02" class="li-link">02 - 载入模型</a>
+    <a href="./demo/03" class="li-link">03 - 金属材质</a>
+    <a href="./demo/04" class="li-link">04 - 用环境贴图点亮场景</a>
+    <a href="./demo/05" class="li-link">05 - 添加控制器</a>
+    <a href="./demo/06" class="li-link">06 - 动画动起来</a>
+</div>
+
+</body>
+</html>

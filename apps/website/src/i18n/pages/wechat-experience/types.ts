@@ -17,7 +17,6 @@ export type WechatExperiencePageCopy = {
   };
   title: string;
   subtitle: string;
-  tocTitle: string;
   detailsTitle: string;
   sections: WechatExperienceSection[];
 };

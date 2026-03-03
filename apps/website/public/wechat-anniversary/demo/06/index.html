@@ -1,0 +1,133 @@
+<html lang="en">
+<!-- region html-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>06 - 动画动起来！</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a href="../../index.html" class="return-button">返回目录</a>
+</body>
+<!-- endregion -->
+<script type="module">
+import * as THREE from '../../build/three.module.js'
+import { GLTFLoader } from '../../build/gltf-loader.js'
+import { materialConfigs, materialNames } from './config.js'
+import { envUrls } from '../../assets/resource.js'
+import { TrackballControls } from '../../build/trackball-controller.js'
+
+let camera, scene, renderer, model, light, control, animations, actions, mixer, clock, activeAction
+
+init()
+function init () {
+  camera = new THREE.PerspectiveCamera(18, window.innerWidth / window.innerHeight, 1, 1600)
+  camera.position.set(35, 20, 35)
+  camera.lookAt(new THREE.Vector3(0, 0, 0))
+
+  scene = new THREE.Scene()
+
+  const loader = new GLTFLoader()
+  loader.load('../../assets/v23.glb', gltf => {
+    model = gltf.scene.children[0]
+
+    // 模型加载完后调用一个函数初始化动画
+    initAnimation(gltf.animations[0])
+
+    const envMap = new THREE.CubeTextureLoader().load(envUrls)
+
+    model.children.forEach(child => {
+      const material = materialConfigs[materialNames[Math.floor(Math.random() * materialNames.length)]]
+      child.children[0].material = new THREE.MeshStandardMaterial({ ...material, envMap, envMapIntensity: 2 })
+    })
+    control = new TrackballControls(camera, renderer.domElement, model)
+    scene.add(model)
+  })
+  renderer = new THREE.WebGLRenderer({ antialias: true })
+
+  renderer.setSize(window.innerWidth, window.innerHeight)
+  renderer.setPixelRatio(3)
+  renderer.setAnimationLoop(animation)
+  document.body.appendChild(renderer.domElement)
+}
+
+function initAnimation (animation) {
+  animations = []
+  clock = new THREE.Clock()
+  mixer = new THREE.AnimationMixer(model)
+
+  // 截取 1 - 64 帧，为第一段过场动画，动画里的每条轨道都需要进行截取
+  const expand = animation.clone()
+  expand.name = 'expand'
+  expand.duration = 64 / 30
+  expand.tracks.forEach(track => track.trim(0, 64 / 30))
+  animations.push(expand)
+
+  // 截取 71 - 150 帧，为第二段过场动画
+  const rolling = animation.clone()
+  rolling.name = 'rolling'
+  rolling.duration = (150 - 71) / 30
+  rolling.tracks.forEach(track => track.trim(71 / 30, 150 / 30))
+  rolling.tracks.forEach(track => (track.times = track.times.map(time => time - 71 / 30)))
+  animations.push(rolling)
+
+  // 最后一段动画涉及较为复杂的相机运动 + 焦距变化，不在 demo 中展示
+
+  actions = {}
+  for (let i = 0; i < animations.length; i++) {
+    const clip = animations[i]
+    const action = mixer.clipAction(clip)
+    action.setLoop(THREE.LoopOnce)
+    action.clampWhenFinished = true
+    actions[clip.name] = action
+  }
+
+  // 循环放映动画 demo
+  function handler () {
+    expandAnimation()
+    setTimeout(() => cancelExpandAnimation(), 5000)
+  }
+  handler()
+  setInterval(handler, 9000)
+}
+
+// 展开动画
+function expandAnimation () {
+  mixer.stopAllAction()
+  activeAction = actions.expand
+  activeAction
+    .crossFadeTo(actions.expand, 0.35) // 在 350ms 内，过渡到另一个动画的状态，注意：0 - 350ms 展开动画正常播放，两个动画是完全混合在一起的
+    .setEffectiveTimeScale(1)
+    .play()
+
+  //展开后循环播放一个漂浮的动画
+  setTimeout(() => {
+    activeAction.crossFadeTo(actions.rolling).play().setLoop(THREE.LoopRepeat)
+  }, actions.expand.getClip().duration * 1000)
+}
+
+// 展开动画还原
+function cancelExpandAnimation () {
+  activeAction = actions.rolling
+  mixer.stopAllAction()
+
+  activeAction
+    .crossFadeTo(actions.expand, 0.35)
+    .setLoop(THREE.LoopRepeat, 1)
+    .setEffectiveTimeScale(-1) // 设置 -1x 播放，即倒放
+    .play()
+}
+
+function animation () {
+  if (clock && mixer) {
+    const dt = clock.getDelta()
+    mixer.update(dt)
+  }
+
+  control && control.update()
+  renderer.render(scene, camera)
+}
+</script>
+</html>

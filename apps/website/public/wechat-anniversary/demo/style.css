@@ -1,0 +1,43 @@
+body {
+    margin: 0
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    font-weight: 500;
+    padding: 8px;
+    margin-left: -8px;
+    font-size: 17px;
+    border: 1px solid transparent;
+    transition: .2s;
+    opacity: 0.8;
+    position: relative;
+    line-height: 21px;
+}
+
+a:hover {
+    opacity: 1;
+    font-weight: 700;
+    border: 1px solid white;
+}
+
+.return-button {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    padding-left: 40px;
+}
+
+.return-button:before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    width: 19px;
+    height: 21px;
+    opacity: 0.8;
+    background: url("../assets/icon.svg") no-repeat;
+    transition: .2s;
+    background-size: contain;
+}

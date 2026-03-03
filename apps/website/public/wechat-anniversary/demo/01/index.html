@@ -1,0 +1,48 @@
+<html lang="en">
+<!-- region html -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../style.css">
+    <title>01 - HelloWord</title>
+</head>
+<body>
+<a href="../../index.html" class="return-button">返回目录</a>
+</body>
+<!-- endregion html -->
+<script type="module">
+import * as THREE from '../../build/three.module.js'
+
+let camera, scene, renderer
+let geometry, material, mesh
+
+init()
+
+function init () {
+  camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10) // 透视相机
+  camera.position.z = 1
+
+  scene = new THREE.Scene()
+
+  geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2) // 几何体，即 "骨架"
+  material = new THREE.MeshNormalMaterial() // 法线材质，根据每个点的法线向量值赋予一个显示颜色
+
+  mesh = new THREE.Mesh(geometry, material)
+  scene.add(mesh)
+
+  renderer = new THREE.WebGLRenderer({ antialias: true }) // antialias - 抗锯齿
+  renderer.setSize(window.innerWidth, window.innerHeight)
+  renderer.setAnimationLoop(animation) // 实际上就是 requestAnimationFrame
+  document.body.appendChild(renderer.domElement)
+}
+
+function animation (time) {
+  mesh.rotation.x = time / 2000
+  mesh.rotation.y = time / 1000
+
+  renderer.render(scene, camera)
+}
+</script>
+</html>

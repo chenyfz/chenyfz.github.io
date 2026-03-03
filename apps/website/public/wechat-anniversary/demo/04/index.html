@@ -1,0 +1,65 @@
+<html lang="en">
+<!-- region html-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>04 - 用环境贴图点亮场景</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a href="../../index.html" class="return-button">返回目录</a>
+</body>
+<!-- endregion -->
+<script type="module">
+import * as THREE from '../../build/three.module.js'
+import { GLTFLoader } from '../../build/gltf-loader.js'
+import { materialConfigs, materialNames } from './config.js'
+import { envUrls } from '../../assets/resource.js'
+
+let camera, scene, renderer, model, light
+
+init()
+
+function init () {
+  camera = new THREE.PerspectiveCamera(18, window.innerWidth / window.innerHeight, 1, 1600)
+  camera.position.set(35, 20, 35)
+  camera.lookAt(new THREE.Vector3(0, 0, 0))
+
+  scene = new THREE.Scene()
+  const light = new THREE.DirectionalLight(0x404040, 3)
+  scene.add(light)
+
+
+  const loader = new GLTFLoader()
+  loader.load('../../assets/v23.glb', gltf => {
+    model = gltf.scene.children[0]
+
+    // 难点完全在于制作这些贴图--，实现时，使用 THREE 提供的 loader 导入即可
+    const envMap = new THREE.CubeTextureLoader().load(envUrls)
+
+    model.children.forEach(child => {
+      const material = materialConfigs[materialNames[Math.floor(Math.random() * materialNames.length)]]
+      // 为材质加上 envMap
+      // 这里其实可以看出，所谓环境贴图并不是真的给环境上了一个可以被反射的盒子，而是经过几何计算，将贴图以某种形式贴在网格上
+      child.children[0].material = new THREE.MeshStandardMaterial({ ...material, envMap, envMapIntensity: 2})
+    })
+
+    scene.add(model)
+
+    renderer = new THREE.WebGLRenderer({ antialias: true })
+    renderer.setSize(window.innerWidth, window.innerHeight)
+    renderer.setPixelRatio(3)
+    renderer.setAnimationLoop(animation)
+    document.body.appendChild(renderer.domElement)
+  })
+}
+
+function animation () {
+  model.rotateX(0.01)
+  model.rotateY(0.01)
+  renderer.render(scene, camera)
+}
+</script>
+</html>

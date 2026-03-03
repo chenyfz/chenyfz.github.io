@@ -16,5 +16,5 @@ const text = t({ en: wechatExperienceEn, zh: wechatExperienceZh }, locale);
 ---
 
 <Layout title={text.meta.title} description={text.meta.description} lang={locale}>
-  <WechatExperiencePage text={text} lang={locale} />
+  <WechatExperiencePage text={text} lang={locale} client:load />
 </Layout>

@@ -1,0 +1,20 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { locales, requireLocaleParam } from '@/i18n/config';
+import { t } from '@/i18n/t';
+import OnecaiPage from '@/components/onecai/OnecaiPage';
+import onecaiEn from '@/i18n/pages/onecai/en';
+import onecaiZh from '@/i18n/pages/onecai/zh';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const rawLang = Astro.params.lang;
+const locale = requireLocaleParam(typeof rawLang === 'string' ? rawLang : undefined);
+const text = t({ en: onecaiEn, zh: onecaiZh }, locale);
+---
+
+<Layout title={text.meta.title} description={text.meta.description} lang={locale}>
+  <OnecaiPage text={text} lang={locale} client:load />
+</Layout>

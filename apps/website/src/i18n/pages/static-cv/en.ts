@@ -42,15 +42,15 @@ const staticCvPageEn: StaticCvPageCopy = {
       title: 'Frontend Engineer (T8), Frontend Refactoring Team, Design Center, Core Product Dept, Tencent WeChat Group (腾讯微信事业群)',
       bullets: [
         {
-          text: '[Weixin Search frontend (搜一搜)](/en/wechat-experience#search): owned the frontend refactor and introduced a scalable architecture.',
+          text: 'Weixin Search frontend (搜一搜): owned the frontend refactor and introduced a scalable architecture.',
           muted: 'During peak demand growth in 2020-2021, the scope was sustained with only 2.5 FTE frontend capacity.'
         },
         {
-          text: '[WeChat 10th Anniversary internal mini program](/en/wechat-experience#anniversary): led the 3D UI design iteration and implementation.',
+          text: 'WeChat 10th Anniversary internal mini program: led the 3D UI design iteration and implementation.',
           muted: 'Delivered a production-ready internal campaign featuring collaborative multi-user interactions.'
         },
         {
-          text: '[Video Channels and Live Streaming frontend (视频号 & 直播)](/en/wechat-experience#video): supported rapid feature iteration in 2021-2022.',
+          text: 'Video Channels and Live Streaming frontend (视频号 & 直播): supported rapid feature iteration in 2021-2022.',
           muted: 'Built campaign pages, component-library modules, and creator payment and settlement workflows.'
         },
         'Promoted via fast-track from T6 to T8 (H2 2021).'
@@ -84,12 +84,12 @@ const staticCvPageEn: StaticCvPageCopy = {
     {
       period: '2025.10 - 2026.1',
       logo: '/static-cv/startup-icon.svg',
-      title: 'Yicheng Intelligence (一成智能)',
+      title: '1cAI (一成智能)',
       accentLabel: '(Startup, part-time)',
       accentDetail: 'UI / UX, product design, frontend development, and agent workflow design',
       bullets: [
         {
-          text: '[Built AI tooling for bid/tender review](/en/yicheng-intelligence): qualification, pricing, commercial, technical, and process compliance checks.',
+          text: 'Built AI tooling for bid/tender review: qualification, pricing, commercial, technical, and process compliance checks.',
           muted: 'Reduced manual cross-checking effort for long tender documents and lowered disqualification risk caused by oversight.'
         },
         'Technical scope: long-context (500+ pages) agent workflow design, multimodal document understanding, and RAG.',

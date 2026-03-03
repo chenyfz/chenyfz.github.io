@@ -17,14 +17,12 @@ const OVERLAY_SWITCH_FRAME_CLASS = 'h-16 w-32 select-none';
 const OVERLAY_LANGUAGE_NAV_DELAY_MS = 980;
 const OVERLAY_MENU_NAV_DELAY_MS = 980;
 const ROUND_GLASS_ITEM = { glassUi: { root: 'rounded-full', inner: 'rounded-full' } };
-type MenuCardKey = 'staticCv' | 'mastersCourses' | 'graduationThesis' | 'wechatExperience' | 'yichengIntelligence';
+type MenuCardKey = 'staticCv' | 'mastersCourses' | 'graduationThesis';
 
 const MENU_CARD_DEFS = [
   { key: 'staticCv', href: (lang: Locale) => `/${lang}/` },
   { key: 'mastersCourses', href: (lang: Locale) => `/${lang}/masters-courses` },
-  { key: 'graduationThesis', href: (lang: Locale) => `/${lang}/graduation-thesis` },
-  { key: 'wechatExperience', href: (lang: Locale) => `/${lang}/wechat-experience` },
-  { key: 'yichengIntelligence', href: (lang: Locale) => `/${lang}/yicheng-intelligence` }
+  { key: 'graduationThesis', href: (lang: Locale) => `/${lang}/graduation-thesis` }
 ] as const satisfies ReadonlyArray<{ key: MenuCardKey; href: (lang: Locale) => string; external?: boolean }>;
 const SWITCH_COUNT = 2;
 const OVERLAY_ITEM_COUNT = SWITCH_COUNT + MENU_CARD_DEFS.length;
@@ -53,8 +51,6 @@ type NavText = {
   staticCv: NavCardText;
   mastersCourses: NavCardText;
   graduationThesis: NavCardText;
-  wechatExperience: NavCardText;
-  yichengIntelligence: NavCardText;
 };
 
 const NAV_TEXT: Record<Locale, NavText> = {
@@ -62,17 +58,13 @@ const NAV_TEXT: Record<Locale, NavText> = {
     openMenu: 'Open menu',
     staticCv: { title: 'Static CV', emoji: '📄', description: 'Resume / CV' },
     mastersCourses: { title: 'Master\'s Courses', emoji: '📚', description: 'MSc Courses' },
-    graduationThesis: { title: 'Graduation Thesis', emoji: '🎓', description: 'MSc Thesis' },
-    wechatExperience: { title: 'WeChat Experience', emoji: '💬', description: 'WeChat Core Product' },
-    yichengIntelligence: { title: 'Yicheng AI', emoji: '🤖', description: 'AI for Tender Review' }
+    graduationThesis: { title: 'Graduation Thesis', emoji: '🎓', description: 'MSc Thesis' }
   },
   zh: {
     openMenu: '打开菜单',
-    staticCv: { title: '静态简历', emoji: '📄', description: '简历 / CV' },
+    staticCv: { title: '简历', emoji: '📄', description: 'CV' },
     mastersCourses: { title: '硕士课程', emoji: '📚', description: 'MSc 课程' },
-    graduationThesis: { title: '毕业设计', emoji: '🎓', description: '硕士论文' },
-    wechatExperience: { title: '微信经历', emoji: '💬', description: '微信基础产品' },
-    yichengIntelligence: { title: '一成智能', emoji: '🤖', description: '招投标 AI 工具' }
+    graduationThesis: { title: '毕业设计', emoji: '🎓', description: '硕士论文' }
   }
 };
 

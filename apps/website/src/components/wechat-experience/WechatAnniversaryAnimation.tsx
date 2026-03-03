@@ -23,11 +23,20 @@ type TrackballModule = {
 };
 
 const CLIP_FPS = 30;
-const DISPLAY_MODEL_SCALE = 2;
+const DISPLAY_MODEL_SCALE = 1;
 const CAMERA_FOV = 18;
 const CAMERA_NEAR = 1;
 const CAMERA_FAR = 1600;
 const CAMERA_POSITION = new THREE.Vector3(35, 20, 35);
+const FORWARD_BLEND_DURATION = 0.35;
+const REVERSE_BLEND_DURATION = 0.35;
+const CLICK_DRAG_THRESHOLD_SQ = 36;
+
+type PlaybackState = 'collapsed' | 'opening' | 'expanded' | 'closing';
+type MixerFinishedEvent = THREE.Event & {
+  action?: THREE.AnimationAction;
+  direction?: 1 | -1;
+};
 
 const MATERIAL_CONFIGS = [
   { metalness: 0.95, roughness: 0.1, color: 0xf7c663 },
@@ -64,7 +73,11 @@ function createClipSegment(
   return clip;
 }
 
-export default function WechatAnniversaryAnimation() {
+interface WechatAnniversaryAnimationProps {
+  className?: string;
+}
+
+export default function WechatAnniversaryAnimation({ className = '' }: WechatAnniversaryAnimationProps) {
   const mountRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -86,62 +99,161 @@ export default function WechatAnniversaryAnimation() {
     mount.appendChild(renderer.domElement);
 
     let rafId: number | null = null;
-    let cycleIntervalId: number | null = null;
     let mixer: THREE.AnimationMixer | null = null;
     let envMap: THREE.CubeTexture | null = null;
     let rotatingRoot: THREE.Group | null = null;
     let model: THREE.Object3D | null = null;
     let control: TrackballControlInstance | null = null;
-    let activeAction: THREE.AnimationAction | null = null;
+    let playbackState: PlaybackState = 'collapsed';
+    let activePointerId: number | null = null;
+    let pointerStartX = 0;
+    let pointerStartY = 0;
+    let pointerMoved = false;
 
-    const actions: Record<string, THREE.AnimationAction> = {};
+    const actions: Partial<Record<'expand' | 'rolling', THREE.AnimationAction>> = {};
     const clock = new THREE.Clock();
-    const timeoutIds: number[] = [];
+    const playRollingLoop = () => {
+      const expand = actions.expand;
+      const rolling = actions.rolling;
+      if (!expand || !rolling) return;
 
-    const cleanupTimers = () => {
-      while (timeoutIds.length > 0) {
-        const id = timeoutIds.pop();
-        if (id !== undefined) window.clearTimeout(id);
+      rolling.reset();
+      rolling.setLoop(THREE.LoopRepeat, Infinity);
+      rolling.clampWhenFinished = false;
+      rolling.setEffectiveTimeScale(1);
+      rolling.play();
+
+      expand.crossFadeTo(rolling, FORWARD_BLEND_DURATION, false);
+      playbackState = 'expanded';
+    };
+
+    const playExpandForward = () => {
+      const expand = actions.expand;
+      if (!expand) return;
+
+      actions.rolling?.stop();
+
+      expand.reset();
+      expand.time = 0;
+      expand.setLoop(THREE.LoopOnce, 1);
+      expand.clampWhenFinished = true;
+      expand.setEffectiveTimeScale(1);
+      expand.play();
+
+      playbackState = 'opening';
+    };
+
+    const setExpandDirection = (direction: 1 | -1) => {
+      const expand = actions.expand;
+      if (!expand) return;
+
+      expand.enabled = true;
+      expand.paused = false;
+      expand.setLoop(THREE.LoopOnce, 1);
+      expand.clampWhenFinished = true;
+
+      if (direction === -1 && expand.time <= 0) {
+        expand.time = expand.getClip().duration;
+      }
+
+      expand.setEffectiveTimeScale(direction);
+      expand.play();
+    };
+
+    const playExpandReverseFromRolling = () => {
+      const expand = actions.expand;
+      const rolling = actions.rolling;
+      if (!expand) return;
+
+      expand.reset();
+      expand.time = expand.getClip().duration;
+      expand.setLoop(THREE.LoopOnce, 1);
+      expand.clampWhenFinished = true;
+      expand.setEffectiveTimeScale(-1);
+      expand.play();
+
+      rolling?.crossFadeTo(expand, REVERSE_BLEND_DURATION, false);
+      playbackState = 'closing';
+    };
+
+    const toggleAnimation = () => {
+      if (!actions.expand) return;
+
+      if (playbackState === 'collapsed') {
+        playExpandForward();
+        return;
+      }
+
+      if (playbackState === 'opening') {
+        setExpandDirection(-1);
+        playbackState = 'closing';
+        return;
+      }
+
+      if (playbackState === 'expanded') {
+        playExpandReverseFromRolling();
+        return;
+      }
+
+      setExpandDirection(1);
+      playbackState = 'opening';
+    };
+
+    const onMixerFinished = (event: THREE.Event) => {
+      const { action, direction } = event as MixerFinishedEvent;
+
+      if (!actions.expand || action !== actions.expand || direction === undefined) {
+        return;
+      }
+
+      if (direction === 1 && playbackState === 'opening') {
+        playRollingLoop();
+        return;
+      }
+
+      if (direction === -1) {
+        actions.rolling?.stop();
+        playbackState = 'collapsed';
       }
     };
 
-    const queueTimeout = (handler: () => void, delay: number) => {
-      const id = window.setTimeout(handler, delay);
-      timeoutIds.push(id);
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!event.isPrimary) return;
+      if (event.pointerType === 'mouse' && event.button !== 0) return;
+
+      activePointerId = event.pointerId;
+      pointerStartX = event.clientX;
+      pointerStartY = event.clientY;
+      pointerMoved = false;
     };
 
-    const playExpandAnimation = () => {
-      if (!mixer || !actions.expand || !actions.rolling) return;
-
-      mixer.stopAllAction();
-      activeAction = actions.expand;
-      activeAction
-        .crossFadeTo(actions.expand, 0.35)
-        .setEffectiveTimeScale(1)
-        .play();
-
-      queueTimeout(() => {
-        if (!activeAction || !actions.rolling) return;
-        activeAction = activeAction.crossFadeTo(actions.rolling).play().setLoop(THREE.LoopRepeat, Infinity);
-      }, actions.expand.getClip().duration * 1000);
+    const clearActivePointer = (event: PointerEvent) => {
+      if (activePointerId !== event.pointerId) return;
+      activePointerId = null;
+      pointerMoved = false;
     };
 
-    const cancelExpandAnimation = () => {
-      if (!mixer || !actions.expand || !actions.rolling) return;
+    const handlePointerMove = (event: PointerEvent) => {
+      if (activePointerId !== event.pointerId) return;
 
-      activeAction = actions.rolling;
-      mixer.stopAllAction();
+      const dx = event.clientX - pointerStartX;
+      const dy = event.clientY - pointerStartY;
 
-      activeAction
-        .crossFadeTo(actions.expand, 0.35)
-        .setLoop(THREE.LoopRepeat, 1)
-        .setEffectiveTimeScale(-1)
-        .play();
+      if (dx * dx + dy * dy > CLICK_DRAG_THRESHOLD_SQ) {
+        pointerMoved = true;
+      }
     };
 
-    const startCycle = () => {
-      playExpandAnimation();
-      queueTimeout(cancelExpandAnimation, 5000);
+    const handlePointerUp = (event: PointerEvent) => {
+      if (activePointerId !== event.pointerId) return;
+
+      const shouldToggle = !pointerMoved;
+      activePointerId = null;
+      pointerMoved = false;
+
+      if (shouldToggle) {
+        toggleAnimation();
+      }
     };
 
     const resize = () => {
@@ -239,11 +351,10 @@ export default function WechatAnniversaryAnimation() {
 
           actions.expand.setLoop(THREE.LoopOnce, 1);
           actions.expand.clampWhenFinished = true;
-          actions.rolling.setLoop(THREE.LoopOnce, 1);
-          actions.rolling.clampWhenFinished = true;
+          actions.rolling.setLoop(THREE.LoopRepeat, Infinity);
+          actions.rolling.clampWhenFinished = false;
 
-          startCycle();
-          cycleIntervalId = window.setInterval(startCycle, 9000);
+          mixer.addEventListener('finished', onMixerFinished);
         }
 
         resize();
@@ -255,22 +366,27 @@ export default function WechatAnniversaryAnimation() {
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(mount);
     window.addEventListener('resize', resize);
+    renderer.domElement.addEventListener('pointerdown', handlePointerDown);
+    window.addEventListener('pointermove', handlePointerMove);
+    window.addEventListener('pointerup', handlePointerUp);
+    window.addEventListener('pointercancel', clearActivePointer);
 
     resize();
     animate();
 
     return () => {
       disposed = true;
-      cleanupTimers();
       resizeObserver.disconnect();
       window.removeEventListener('resize', resize);
+      renderer.domElement.removeEventListener('pointerdown', handlePointerDown);
+      window.removeEventListener('pointermove', handlePointerMove);
+      window.removeEventListener('pointerup', handlePointerUp);
+      window.removeEventListener('pointercancel', clearActivePointer);
 
       if (rafId !== null) {
         window.cancelAnimationFrame(rafId);
       }
-      if (cycleIntervalId !== null) {
-        window.clearInterval(cycleIntervalId);
-      }
+      mixer?.removeEventListener('finished', onMixerFinished);
 
       control?.dispose();
 
@@ -299,7 +415,7 @@ export default function WechatAnniversaryAnimation() {
   return (
     <div
       ref={mountRef}
-      className="mx-auto aspect-square w-full max-w-[26rem] overflow-hidden border border-emerald-500/80"
+      className={`mx-auto aspect-square w-full max-w-[26rem] overflow-hidden rounded-xl border border-black/10 dark:border-white/12 ${className}`}
       aria-label="WeChat anniversary 3D animation"
     />
   );

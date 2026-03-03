@@ -1,0 +1,25 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { locales, requireLocaleParam } from '@/i18n/config';
+import WechatSearchShowcasePage from '@/components/showcase/WechatSearchShowcasePage';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const rawLang = Astro.params.lang;
+const locale = requireLocaleParam(typeof rawLang === 'string' ? rawLang : undefined);
+const pageMeta = locale === 'zh'
+  ? {
+      title: '搜一搜前端重构 | 陈扬帆',
+      description: '微信搜一搜前端重构展示页。'
+    }
+  : {
+      title: 'Weixin Search Frontend | Chen Yangfan',
+      description: 'Showcase page for Weixin Search frontend refactor.'
+    };
+---
+
+<Layout title={pageMeta.title} description={pageMeta.description} lang={locale}>
+  <WechatSearchShowcasePage lang={locale} client:load />
+</Layout>

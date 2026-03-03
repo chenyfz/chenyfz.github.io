@@ -1,0 +1,25 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { locales, requireLocaleParam } from '@/i18n/config';
+import TenderAiToolShowcasePage from '@/components/showcase/TenderAiToolShowcasePage';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const rawLang = Astro.params.lang;
+const locale = requireLocaleParam(typeof rawLang === 'string' ? rawLang : undefined);
+const pageMeta = locale === 'zh'
+  ? {
+      title: '招投标领域 AI 工具 | 陈扬帆',
+      description: '一成智能招投标领域 AI 工具展示页。'
+    }
+  : {
+      title: 'AI Tooling for Tender Review | Chen Yangfan',
+      description: 'Showcase page for the 1cAI tender review product.'
+    };
+---
+
+<Layout title={pageMeta.title} description={pageMeta.description} lang={locale}>
+  <TenderAiToolShowcasePage lang={locale} client:load />
+</Layout>

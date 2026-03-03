@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Locale } from '@/i18n/config';
+import gsap from 'gsap';
 
 type LoadedImage = {
   image: HTMLImageElement;
@@ -27,6 +28,8 @@ type WallLayout = {
 
 type SearchServiceCanvasWallProps = {
   lang: Locale;
+  layout?: 'inline' | 'immersive';
+  immersiveFrameClassName?: string;
 };
 
 const SERVICE_IMAGE_PATHS = Array.from({ length: 70 }, (_, index) => {
@@ -111,7 +114,11 @@ function buildColumnLayout(images: LoadedImage[], viewportWidth: number): WallLa
   };
 }
 
-export default function SearchServiceCanvasWall({ lang }: SearchServiceCanvasWallProps) {
+export default function SearchServiceCanvasWall({
+  lang,
+  layout = 'inline',
+  immersiveFrameClassName = ''
+}: SearchServiceCanvasWallProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const frameRef = useRef<number | null>(null);
@@ -125,6 +132,7 @@ export default function SearchServiceCanvasWall({ lang }: SearchServiceCanvasWal
   const lastPointerXRef = useRef(0);
   const lastPointerYRef = useRef(0);
   const lastPointerTimeRef = useRef(0);
+  const smoothWheelRef = useRef({ x: 0, y: 0 });
 
   const viewportRef = useRef({ width: 0, height: 0, dpr: 1 });
   const imagesRef = useRef<LoadedImage[]>([]);
@@ -153,6 +161,7 @@ export default function SearchServiceCanvasWall({ lang }: SearchServiceCanvasWal
   }, []);
 
   useEffect(() => {
+    if (layout !== 'inline') return;
     if (!isFullscreen) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
@@ -160,7 +169,7 @@ export default function SearchServiceCanvasWall({ lang }: SearchServiceCanvasWal
     return () => {
       document.body.style.overflow = prev;
     };
-  }, [isFullscreen]);
+  }, [isFullscreen, layout]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -169,6 +178,12 @@ export default function SearchServiceCanvasWall({ lang }: SearchServiceCanvasWal
 
     const context = canvas.getContext('2d', { alpha: true });
     if (!context) return;
+
+    const wheelState = smoothWheelRef.current;
+    let lastWheelX = wheelState.x;
+    let lastWheelY = wheelState.y;
+    const smoothWheelX = gsap.quickTo(wheelState, 'x', { duration: 0.34, ease: 'power3.out' });
+    const smoothWheelY = gsap.quickTo(wheelState, 'y', { duration: 0.34, ease: 'power3.out' });
 
     const resize = () => {
       const rect = container.getBoundingClientRect();
@@ -193,6 +208,15 @@ export default function SearchServiceCanvasWall({ lang }: SearchServiceCanvasWal
     };
 
     const draw = (deltaSec: number) => {
+      const wheelDeltaX = wheelState.x - lastWheelX;
+      const wheelDeltaY = wheelState.y - lastWheelY;
+      if (wheelDeltaX !== 0 || wheelDeltaY !== 0) {
+        cameraXRef.current += wheelDeltaX;
+        cameraYRef.current += wheelDeltaY;
+        lastWheelX = wheelState.x;
+        lastWheelY = wheelState.y;
+      }
+
       const viewport = viewportRef.current;
       const { columns, worldWidth } = layoutRef.current;
 
@@ -282,6 +306,14 @@ export default function SearchServiceCanvasWall({ lang }: SearchServiceCanvasWal
       lastPointerTimeRef.current = event.timeStamp;
     };
 
+    const onWheel = (event: WheelEvent) => {
+      event.preventDefault();
+      const nextX = wheelState.x + event.deltaX;
+      const nextY = wheelState.y + event.deltaY;
+      smoothWheelX(nextX);
+      smoothWheelY(nextY);
+    };
+
     const releasePointer = (event: PointerEvent) => {
       if (pointerIdRef.current !== event.pointerId) return;
       draggingRef.current = false;
@@ -299,6 +331,7 @@ export default function SearchServiceCanvasWall({ lang }: SearchServiceCanvasWal
     canvas.addEventListener('pointermove', onPointerMove);
     canvas.addEventListener('pointerup', releasePointer);
     canvas.addEventListener('pointercancel', releasePointer);
+    canvas.addEventListener('wheel', onWheel, { passive: false });
 
     frameRef.current = window.requestAnimationFrame(tick);
 
@@ -308,6 +341,7 @@ export default function SearchServiceCanvasWall({ lang }: SearchServiceCanvasWal
       canvas.removeEventListener('pointermove', onPointerMove);
       canvas.removeEventListener('pointerup', releasePointer);
       canvas.removeEventListener('pointercancel', releasePointer);
+      canvas.removeEventListener('wheel', onWheel);
       if (frameRef.current !== null) {
         window.cancelAnimationFrame(frameRef.current);
         frameRef.current = null;
@@ -320,13 +354,16 @@ export default function SearchServiceCanvasWall({ lang }: SearchServiceCanvasWal
     : (lang === 'zh' ? '全屏查看' : 'Full screen');
   const dragHint = lang === 'zh' ? '鼠标拖拽浏览' : 'Drag to explore';
   const loadingHint = lang === 'zh' ? '加载中...' : 'Loading...';
+  const isImmersive = layout === 'immersive';
 
   return (
-    <div className={isFullscreen ? 'fixed inset-0 z-[90] bg-black' : 'relative'}>
+    <div className={isFullscreen && !isImmersive ? 'fixed inset-0 z-[90] bg-black' : 'relative h-full w-full'}>
       <div
         ref={containerRef}
         className={
-          isFullscreen
+          isImmersive
+            ? `relative h-full w-full overflow-hidden ${immersiveFrameClassName}`
+            : isFullscreen
             ? 'relative h-full w-full overflow-hidden'
             : 'relative h-[23rem] w-full overflow-hidden rounded-lg border border-black/10 dark:border-white/12'
         }
@@ -338,13 +375,15 @@ export default function SearchServiceCanvasWall({ lang }: SearchServiceCanvasWal
           aria-label="Search services photo wall"
         />
 
-        <button
-          type="button"
-          onClick={() => setIsFullscreen((prev) => !prev)}
-          className="absolute right-3 top-3 rounded-md bg-black/55 px-3 py-1.5 text-xs text-white transition hover:bg-black/75"
-        >
-          {toggleLabel}
-        </button>
+        {!isImmersive ? (
+          <button
+            type="button"
+            onClick={() => setIsFullscreen((prev) => !prev)}
+            className="absolute right-3 top-3 rounded-md bg-black/55 px-3 py-1.5 text-xs text-white transition hover:bg-black/75"
+          >
+            {toggleLabel}
+          </button>
+        ) : null}
 
         <div className="pointer-events-none absolute bottom-3 left-3 text-xs text-white/75">
           {isReady ? dragHint : loadingHint}

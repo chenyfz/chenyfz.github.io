@@ -1,7 +1,10 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["vue"],
+  "plugins": [
+    "react",
+    "typescript"
+  ],
   "rules": {
-    "no-unused-vars": "warn"
+    "no-unused-vars": "error"
   }
 }

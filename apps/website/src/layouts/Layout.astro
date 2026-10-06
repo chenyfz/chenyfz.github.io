@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css'
 import NavBar from '@/components/NavBar';
+import { ClientRouter } from 'astro:transitions';
+import ResumeFonts from '@/styles/typography/ResumeFonts.astro';
 import type { Locale } from '@/i18n/config';
 import { DEFAULT_THEME, THEME_STORAGE_KEY } from '@/styles/theme';
 
@@ -13,46 +15,61 @@ interface Props {
 
 const {
 	lang = 'en',
-	title = 'Astro Basics',
+	title = 'Chen Yangfan',
 	description = 'Personal website',
 	pageId
 } = Astro.props;
 
 const initialTheme = DEFAULT_THEME;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const alternatePath = Astro.url.pathname.replace(/^\/(en|zh)(?=\/|$)/, lang === 'zh' ? '/en' : '/zh');
+
 const themeInitScript = `
 (() => {
   try {
     const storageKey = ${JSON.stringify(THEME_STORAGE_KEY)};
     const defaultTheme = ${JSON.stringify(initialTheme)};
     const isThemeMode = (value) => value === 'dark' || value === 'light';
-    const rootTheme = document.documentElement.dataset.theme;
-    const saved = window.localStorage.getItem(storageKey);
+    let saved;
+    try { saved = window.localStorage.getItem(storageKey); } catch {};
     const theme = isThemeMode(saved)
       ? saved
-      : isThemeMode(rootTheme)
-      ? rootTheme
       : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : defaultTheme);
     document.documentElement.dataset.theme = theme;
-    window.localStorage.setItem(storageKey, theme);
   } catch {}
 })();
 `;
 ---
 
 <!doctype html>
-<html lang={lang} data-theme={initialTheme}>
+<html lang={lang} data-theme={initialTheme} transition:animate="none">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+
+        <link rel="canonical" href={canonical} />
+        <link rel="alternate" hreflang={lang === 'zh' ? 'zh-CN' : 'en'} href={canonical} />
+        <link rel="alternate" hreflang={lang === 'zh' ? 'en' : 'zh-CN'} href={new URL(alternatePath, Astro.site)} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonical} />
+        {pageId === 'playground' && <meta name="robots" content="noindex" />}
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<script is:inline set:html={themeInitScript}></script>
+        <ResumeFonts lang={lang} />
+        <ClientRouter fallback="swap" />
+		<script>
+			import '@/lib/page-navigation';
+		</script>
 	</head>
 	<body data-page={pageId}>
-		<NavBar lang={lang} client:load />
-		<slot />
+		<a class="skip-link" href="#page-content">{lang === 'zh' ? '跳转到正文' : 'Skip to content'}</a>
+		<NavBar lang={lang} alternateHref={alternatePath} client:load transition:persist="site-navigation" transition:animate="none" />
+		<div id="navigation-portal" transition:persist="navigation-portal" transition:animate="none"></div>
+		<div id="page-content" tabindex="-1"><slot /></div>
 	</body>
 </html>

@@ -1,19 +1,25 @@
 {
-  "name": "ohyangfan-monorepo",
+  "name": "chenyfz-website",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@10.30.0",
+  "packageManager": "pnpm@12.9.1",
   "scripts": {
     "postinstall": "simple-git-hooks",
-    "dev": "pnpm -r --parallel --if-present run dev",
+    "dev": "pnpm --filter apps-website dev",
     "build": "pnpm --filter apps-website run build",
-    "lint:script": "pnpm exec oxlint apps/website/src"
+    "lint:script": "oxlint --deny-warnings apps/website/src",
+    "check": "pnpm --filter apps-website check",
+    "validate": "pnpm lint:script && pnpm check && pnpm build",
+    "preview": "pnpm --filter apps-website preview"
   },
   "devDependencies": {
-    "oxlint": "^1.46.0",
-    "simple-git-hooks": "^2.13.1"
+    "oxlint": "1.87.0",
+    "simple-git-hooks": "2.14.0"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint:script"
+  },
+  "engines": {
+    "node": ">=24.0.0 <25"
   }
 }

@@ -1,97 +1,40 @@
 import { useEffect, useRef } from 'react';
 import type { Locale } from '@/i18n/config';
 import { t } from '@/i18n/t';
-import tenderAiToolShowcaseEn from '@/i18n/pages/tender-ai-tool-showcase/en';
-import tenderAiToolShowcaseZh from '@/i18n/pages/tender-ai-tool-showcase/zh';
+import en from '@/i18n/pages/tender-ai-tool-showcase/en';
+import zh from '@/i18n/pages/tender-ai-tool-showcase/zh';
 import gsap from 'gsap';
-import useThemeMode from '@/hooks/useThemeMode';
-import {
-  StaticCvFontFace,
-  getStaticCvBodyFontFamily
-} from '@/components/cv/StaticCvTypography';
+import useReducedMotion from '@/hooks/useReducedMotion';
+import PageFrame from '@/components/common/PageFrame';
+import MediaFigure from '@/components/media/MediaFigure';
 
-interface TenderAiToolShowcasePageProps {
-  lang: Locale;
-}
-
-export default function TenderAiToolShowcasePage({ lang }: TenderAiToolShowcasePageProps) {
-  const isDark = useThemeMode() === 'dark';
-  const bodyFontFamily = getStaticCvBodyFontFamily(lang);
-  const text = t({ en: tenderAiToolShowcaseEn, zh: tenderAiToolShowcaseZh }, lang);
-  const scrollRef = useRef<HTMLDivElement | null>(null);
-
+const screenshots = ['/1cAI/error-demo.png', '/1cAI/checked-demo.png', '/1cAI/ui.png'];
+export default function TenderAiToolShowcasePage({ lang }: { lang: Locale }) {
+  const text = t({ en, zh }, lang);
+  const scroll = useRef<HTMLDivElement>(null);
+  const reducedMotion = useReducedMotion();
   useEffect(() => {
-    const element = scrollRef.current;
+    const element = scroll.current;
     if (!element) return;
-
+    let target = element.scrollLeft;
     const onWheel = (event: WheelEvent) => {
-      if (window.innerWidth < 1024) return;
-      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
-
+      if (window.innerWidth < 1024 || Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+      const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? element.clientWidth : 1;
       const max = element.scrollWidth - element.clientWidth;
-      if (max <= 0) return;
-
+      if (max <= 0 || (event.deltaY > 0 && target >= max) || (event.deltaY < 0 && target <= 0)) return;
       event.preventDefault();
-      const next = Math.max(0, Math.min(max, element.scrollLeft + event.deltaY));
-      gsap.to(element, {
-        scrollLeft: next,
-        duration: 0.4,
-        ease: 'power3.out',
-        overwrite: 'auto'
-      });
+      target = Math.max(0, Math.min(max, target + event.deltaY * unit));
+      gsap.to(element, { scrollLeft: target, duration: reducedMotion ? 0 : .35, ease: 'power3.out', overwrite: 'auto' });
     };
-
+    const sync = () => { if (!gsap.isTweening(element)) target = element.scrollLeft; };
     element.addEventListener('wheel', onWheel, { passive: false });
-    return () => {
-      element.removeEventListener('wheel', onWheel);
-    };
-  }, []);
-
-  const cards = [
-    { key: 'error', src: '/1cAI/error-demo.png' },
-    { key: 'checked', src: '/1cAI/checked-demo.png' },
-    { key: 'ui', src: '/1cAI/ui.png' }
-  ] as const;
-
-  return (
-    <>
-      <StaticCvFontFace lang={lang} />
-      <main
-        className={`relative h-[calc(100vh-4rem)] px-4 py-6 sm:px-5 sm:py-8 ${isDark ? 'text-white' : 'text-neutral-900'}`}
-        style={{ fontFamily: bodyFontFamily }}
-      >
-        <p
-          className={`pointer-events-none absolute bottom-10 left-1/2 z-20 -translate-x-1/2 text-[18px] sm:bottom-12 ${isDark ? 'text-white/92' : 'text-neutral-800'}`}
-          style={{ fontFamily: '"SimHei", "Heiti SC", "Microsoft YaHei", sans-serif' }}
-        >
-          {text.caption}
-        </p>
-
-        <div className="mx-auto flex h-full w-full max-w-none flex-col justify-center">
-          <div
-            ref={scrollRef}
-            className="min-h-0 flex-1 overflow-x-auto overflow-y-hidden [scrollbar-width:thin]"
-          >
-            <div className="flex h-full w-max items-center gap-5 px-2 lg:gap-6 lg:px-4">
-              {cards.map((card, index) => (
-                <img
-                  key={card.key}
-                  src={card.src}
-                  alt="1cAI product screenshot"
-                  className={`h-auto shrink-0 border-white ${
-                    index === cards.length - 1
-                      ? 'w-[min(95vw,1200px)] lg:w-[1200px] lg:min-w-[600px]'
-                      : index === 1
-                      ? 'w-[min(88vw,700px)] lg:w-[700px] lg:min-w-[700px]'
-                      : 'w-[min(92vw,980px)] lg:min-w-[600px]'
-                  } ${index === 0 ? 'border-y-[16px] border-x-0' : 'border-[16px]'}`}
-                  loading="lazy"
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </main>
-    </>
-  );
+    element.addEventListener('scroll', sync, { passive: true });
+    return () => { element.removeEventListener('wheel', onWheel); element.removeEventListener('scroll', sync); gsap.killTweensOf(element); };
+  }, [reducedMotion]);
+  return <PageFrame lang={lang} title={text.caption} variant="showcase">
+    <div ref={scroll} className="tender-scroll" role="region" tabIndex={0} aria-label={text.caption}>
+      <div>{screenshots.map((src, index) => <MediaFigure key={src} lang={lang}
+        item={{ type: 'image', src, alt: `${text.caption} (${index + 1} / ${screenshots.length})` }} frameClassName="" />)}</div>
+    </div>
+  </PageFrame>;
 }

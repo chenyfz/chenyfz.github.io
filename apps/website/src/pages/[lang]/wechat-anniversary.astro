@@ -1,14 +1,11 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { locales, requireLocaleParam } from '@/i18n/config';
+import { getLocaleStaticPaths, requireLocaleParam } from '@/i18n/config';
 import WechatAnniversaryShowcasePage from '@/components/showcase/WechatAnniversaryShowcasePage';
 
-export function getStaticPaths() {
-  return locales.map((lang) => ({ params: { lang } }));
-}
+export const getStaticPaths = getLocaleStaticPaths;
 
-const rawLang = Astro.params.lang;
-const locale = requireLocaleParam(typeof rawLang === 'string' ? rawLang : undefined);
+const locale = requireLocaleParam(Astro.params.lang);
 const pageMeta = locale === 'zh'
   ? {
       title: '微信十周年内部活动 | 陈扬帆',
@@ -20,6 +17,6 @@ const pageMeta = locale === 'zh'
     };
 ---
 
-<Layout title={pageMeta.title} description={pageMeta.description} lang={locale}>
-  <WechatAnniversaryShowcasePage lang={locale} client:load />
+<Layout pageId="wechat-anniversary" title={pageMeta.title} description={pageMeta.description} lang={locale}>
+  <WechatAnniversaryShowcasePage lang={locale} client:load transition:persist="wechat-anniversary-page" transition:animate="none" />
 </Layout>

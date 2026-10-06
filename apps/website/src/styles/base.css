@@ -1,0 +1,52 @@
+html {
+  scrollbar-gutter: stable;
+  color-scheme: light;
+}
+html[data-theme='dark'] {
+  color-scheme: dark;
+}
+html, body {
+  scrollbar-color: auto transparent;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+body {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: var(--font-size-lg);
+  background-color: var(--page-bg, var(--app-bg));
+  color: var(--app-fg);
+  transition: background-color var(--motion-theme) ease, color var(--motion-theme) ease;
+}
+:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 4px;
+}
+.skip-link {
+  position: fixed;
+  z-index: 200;
+  top: var(--space-2);
+  left: var(--space-2);
+  transform: translateY(-200%);
+  background: var(--app-bg);
+  color: var(--app-fg);
+  padding: .6rem var(--space-4);
+  border-radius: .3rem;
+}
+.skip-link:focus {
+  transform: none;
+}
+@media (max-width: 767px) {
+  body {
+    font-size: var(--font-size-base);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

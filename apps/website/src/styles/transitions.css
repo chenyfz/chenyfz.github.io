@@ -1,0 +1,28 @@
+html[data-page-transition] #page-content { opacity: 0; }
+.language-motion-text > span { display: inline-block; }
+.language-motion-source {
+  /* Mask glyphs without triggering links' color transitions or changing their underlines. */
+  -webkit-text-fill-color: transparent !important;
+  text-shadow: none;
+}
+.language-motion-source::marker { -webkit-text-fill-color: var(--app-fg); }
+.language-motion-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 55;
+}
+.language-motion-layer > div {
+  position: absolute;
+  overflow: hidden;
+}
+.language-motion-layer span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: pre;
+}
+.language-motion-layer > div > span {
+  will-change: transform, opacity;
+}

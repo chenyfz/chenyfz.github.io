@@ -1,0 +1,30 @@
+---
+import './english.css';
+import type { Locale } from '@/i18n/config';
+import { fontSubsetsManifest } from '@/generated/font-subsets-manifest';
+
+const { lang } = Astro.props as { lang: Locale };
+const zh = fontSubsetsManifest.zh;
+const en = fontSubsetsManifest.en;
+const faces = `
+@font-face {
+  font-family: 'StaticCvOppoSans';
+  src: url('/fonts/subsets/${zh.oppoSans400}') format('woff2'), url('/fonts/OPPO%20Sans%204.0.ttf') format('truetype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'StaticCvFangsong';
+  src: url('/fonts/subsets/${zh.zhuqueFangsong400}') format('woff2'), url('/fonts/ZhuqueFangsong-Regular.ttf') format('truetype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'StaticCvFangsongEn';
+  src: url('/fonts/subsets/${en.zhuqueFangsong400}') format('woff2'), url('/fonts/ZhuqueFangsong-Regular.ttf') format('truetype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}`;
+const preload = lang === 'zh'
+  ? [`/fonts/subsets/${zh.oppoSans400}`, `/fonts/subsets/${zh.zhuqueFangsong400}`]
+  : ['/fonts/english/google-sans-latin.0feef323.woff2', '/fonts/english/newsreader-latin.01817351.woff2'];
+---
+<style is:inline set:html={faces} transition:persist="resume-font-faces" />
+{preload.map(href => <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />)}

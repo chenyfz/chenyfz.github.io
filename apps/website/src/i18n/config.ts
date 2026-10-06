@@ -15,3 +15,7 @@ export function requireLocaleParam(lang: string | undefined): Locale {
 
   return lang;
 }
+
+export function getLocaleStaticPaths() {
+  return locales.map(lang => ({ params: { lang } }));
+}

@@ -1,265 +1,103 @@
-import React from 'react';
+import { Fragment, type ReactNode } from 'react';
 import type { Locale } from '@/i18n/config';
-import useThemeMode from '@/hooks/useThemeMode';
-import type { ThemeMode } from '@/styles/theme';
-import type {
-  StaticCvPageCopy,
-  StaticCvExperience,
-  StaticCvCapability,
-  StaticCvBullet
-} from '@/i18n/pages/static-cv/types';
-import {
-  StaticCvFontFace,
-  getStaticCvBodyFontFamily,
-  getStaticCvHeadingFontFamily
-} from './StaticCvTypography';
-import RichText from './RichText';
+import type { StaticCvPageCopy, StaticCvExperience, StaticCvCapability, StaticCvBullet } from '@/i18n/pages/static-cv/types';
+import RichText from '@/components/common/RichText';
 
-interface StaticCvProps {
-  text: StaticCvPageCopy;
-  lang: Locale;
+type Props = { text: StaticCvPageCopy; lang: Locale };
+
+function HeaderSection({ intro }: { intro: StaticCvPageCopy['intro'] }) {
+  return <header className="cv-header">
+    <h1>{intro.title}</h1>
+    <div className="cv-meta">
+      {intro.metaItems.map((item, index) => <Fragment key={`${item.label}-${item.value}`}>
+        <span className="cv-meta-item">
+          <span className="cv-muted">{item.label}:</span>{' '}
+          {item.href ? <a href={item.href}>{item.value}</a> : <span>{item.value}</span>}
+        </span>
+        {index < intro.metaItems.length - 1 && <span className="cv-meta-divider" aria-hidden="true">|</span>}
+      </Fragment>)}
+    </div>
+    <p className="cv-objective">
+      <span>{intro.objectiveLabel}{intro.objectiveSeparator}</span>
+      <RichText text={intro.objective} />
+    </p>
+  </header>;
 }
 
-function HeaderSection({ intro, theme, headingFontFamily }: { intro: StaticCvPageCopy['intro']; theme: ThemeMode; headingFontFamily: string }) {
-  const isDark = theme === 'dark';
-
-  return (
-    <header className="space-y-4">
-      <h1
-        className="leading-tight text-[var(--primary-color)] text-[18px] md:text-[20px]"
-        style={{ fontFamily: headingFontFamily, fontWeight: 400 }}
-      >
-        {intro.title}
-      </h1>
-
-      <div className={`flex flex-wrap items-center gap-x-3 gap-y-1 ${isDark ? 'text-white/80' : 'text-neutral-700'}`}>
-        {intro.metaItems.map((item, index) => (
-          <React.Fragment key={`${item.label}-${item.value}`}>
-            <span className={isDark ? 'text-white/55' : 'text-neutral-500'}>{item.label}:</span>
-            {item.href ? (
-              <a href={item.href} className={`underline underline-offset-4 ${isDark ? 'decoration-white/50' : 'decoration-neutral-400'}`}>
-                {item.value}
-              </a>
-            ) : (
-              <span>{item.value}</span>
-            )}
-            {index < intro.metaItems.length - 1 && <span className={isDark ? 'text-white/35' : 'text-neutral-300'}>|</span>}
-          </React.Fragment>
-        ))}
-      </div>
-
-      <p className="leading-relaxed">
-        <span>{intro.objectiveLabel}{intro.objectiveSeparator}</span>
-        <RichText text={intro.objective} isDark={isDark} />
-      </p>
-    </header>
-  );
+function BulletContent({ bullet }: { bullet: StaticCvBullet }) {
+  if (typeof bullet === 'string') return <RichText text={bullet} />;
+  return <>
+    <RichText text={bullet.text} />
+    {bullet.detail && <RichText text={bullet.detail} />}
+    {bullet.muted && <p className="cv-bullet-note cv-muted">{bullet.muted}</p>}
+  </>;
 }
 
-function BulletContent({ bullet, theme }: { bullet: StaticCvBullet; theme: ThemeMode }) {
-  const isDark = theme === 'dark';
-
-  if (typeof bullet === 'string') {
-    return <RichText text={bullet} isDark={isDark} />;
-  }
-
-  return (
-    <>
-      <RichText text={bullet.text} isDark={isDark} />
-      {bullet.detail && <RichText text={bullet.detail} isDark={isDark} />}
-      {bullet.muted && <p className={`mt-1 ${isDark ? 'text-white/60' : 'text-neutral-500'}`}>{bullet.muted}</p>}
-    </>
-  );
-}
-
-function BulletItem({ bullet, theme }: { bullet: StaticCvBullet; theme: ThemeMode }) {
-  return (
-    <BulletListItem theme={theme}>
-      <BulletContent bullet={bullet} theme={theme} />
-    </BulletListItem>
-  );
+function BulletListItem({ children }: { children: ReactNode }) {
+  return <li className="cv-bullet">
+    <span className="cv-bullet-marker" aria-hidden="true"><span /></span>
+    <div className="cv-bullet-content">{children}</div>
+  </li>;
 }
 
 function bulletToInlineText(bullet: StaticCvBullet): string {
   if (typeof bullet === 'string') return bullet.trim();
-
-  const detail = bullet.detail ? bullet.detail.trim() : '';
+  const detail = bullet.detail?.trim();
   return `${bullet.text}${detail ? ` ${detail}` : ''}`.trim();
 }
 
-function BulletListItem({ theme, children }: { theme: ThemeMode; children: React.ReactNode }) {
-  const isDark = theme === 'dark';
-
-  return (
-    <li className={`flex items-start gap-3 leading-relaxed ${isDark ? 'text-white/95' : 'text-neutral-800'}`}>
-      <span className="mt-[0.25em] inline-flex h-5 w-5 shrink-0 items-center justify-center" aria-hidden="true">
-        <span className={`inline-block h-1 w-1 rounded-full ${isDark ? 'bg-white/55' : 'bg-neutral-500'}`} />
-      </span>
-      <div className="min-w-0">{children}</div>
-    </li>
-  );
-}
-
-function ExperienceItem({ experience, theme, headingFontFamily, useZhGridLayout }: { experience: StaticCvExperience; theme: ThemeMode; headingFontFamily: string; useZhGridLayout: boolean }) {
-  const isDark = theme === 'dark';
-  const iconSrc = experience.logo || '/favicon.svg';
+function ExperienceItem({ experience, lang }: { experience: StaticCvExperience; lang: Locale }) {
   const isGrid = experience.layout === 'grid-3';
-  const gridLayoutClass = useZhGridLayout
-    ? 'md:grid-cols-2 xl:grid-cols-[300px_300px_minmax(0,1fr)]'
-    : 'md:grid-cols-2 xl:grid-cols-2';
-
-  return (
-    <article className="grid gap-4 lg:grid-cols-[140px_1fr]">
-      {/* Time column - only on wide screens */}
-      <div
-        className={`hidden self-start lg:block leading-snug ${isDark ? 'text-white/90' : 'text-neutral-700'}`}
-        style={{ fontFamily: headingFontFamily, fontWeight: 400 }}
-      >
-        {experience.period}
+  return <article className="cv-experience">
+    <div className="cv-period">{experience.period}</div>
+    <div className="cv-experience-body">
+      <div className="cv-experience-heading">
+        <img src={experience.logo || '/favicon.svg'} alt="" width={20} height={20} />
+        <h3>
+          {experience.title}
+          {experience.accentLabel && <span className="cv-accent"> {experience.accentLabel}</span>}
+          {experience.accentDetail && <span> {experience.accentDetail}</span>}
+        </h3>
       </div>
-      
-      {/* Content column */}
-      <div className="space-y-3">
-        {/* Time inline for narrow screens */}
-        <div
-          className={`lg:hidden ${isDark ? 'text-white/90' : 'text-neutral-700'}`}
-          style={{ fontFamily: headingFontFamily, fontWeight: 400 }}
-        >
-          {experience.period}
-        </div>
-
-        <div className="flex items-start gap-3">
-          <img 
-            src={iconSrc} 
-            alt="" 
-            className="h-5 w-5 shrink-0 object-contain mt-0.5" 
-            width={20} 
-            height={20} 
-          />
-          <h3
-            className="leading-snug"
-            style={{ fontFamily: headingFontFamily, fontWeight: 400 }}
-          >
-            {experience.title}
-            {experience.accentLabel && (
-              <span className={isDark ? 'text-[#60a5fa]' : 'text-sky-700'}> {experience.accentLabel}</span>
-            )}
-            {experience.accentDetail && (
-              <span> {experience.accentDetail}</span>
-            )}
-          </h3>
-        </div>
-
-        {isGrid && !useZhGridLayout ? (
-          <ul className="list-none">
-            <BulletListItem theme={theme}>
-              {experience.bullets.map(bulletToInlineText).join(', ')}
-            </BulletListItem>
-          </ul>
-        ) : isGrid ? (
-          <ul className={`grid list-none gap-y-2 gap-x-3 xl:mr-4 ${gridLayoutClass}`}>
-            {experience.bullets.map((bullet, index) => (
-              <BulletItem key={index} bullet={bullet} theme={theme} />
-            ))}
-          </ul>
-        ) : (
-          <ul className="list-none space-y-2">
-            {experience.bullets.map((bullet, index) => (
-              <BulletItem key={index} bullet={bullet} theme={theme} />
-            ))}
-          </ul>
-        )}
-      </div>
-    </article>
-  );
+      {isGrid && lang === 'en' ? <ul className="cv-bullets">
+        <BulletListItem><RichText text={experience.bullets.map(bulletToInlineText).join(', ')} /></BulletListItem>
+      </ul> : <ul className={`cv-bullets${isGrid ? ' cv-bullets--grid' : ''}`}>
+        {experience.bullets.map((bullet, index) => <BulletListItem key={index}><BulletContent bullet={bullet} /></BulletListItem>)}
+      </ul>}
+    </div>
+  </article>;
 }
 
-function CapabilitySection({ capabilities, label, theme, headingFontFamily }: { capabilities: StaticCvCapability[]; label: string; theme: ThemeMode; headingFontFamily: string }) {
-  return (
-    <section className="space-y-3">
-      <h2
-        className="text-[var(--primary-color)] text-[18px] md:text-[20px]"
-        style={{ fontFamily: headingFontFamily, fontWeight: 400 }}
-      >
-        {label}
-      </h2>
-
-      <div className="grid grid-cols-1 gap-6">
-        {capabilities.map((capability, index) => (
-          <article key={index} className="space-y-2">
-            <h3 style={{ fontFamily: headingFontFamily, fontWeight: 400 }}>{capability.title}</h3>
-            <ul className="list-none space-y-1.5">
-              {capability.items.map((item, itemIndex) => (
-                <BulletListItem key={itemIndex} theme={theme}>{item}</BulletListItem>
-              ))}
-            </ul>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
+function CapabilitySection({ capabilities, label }: { capabilities: StaticCvCapability[]; label: string }) {
+  return <section className="cv-section">
+    <h2>{label}</h2>
+    <div className="cv-capabilities">
+      {capabilities.map((capability, index) => <article key={index}>
+        <h3>{capability.title}</h3>
+        <ul className="cv-bullets cv-bullets--compact">
+          {capability.items.map((item, itemIndex) => <BulletListItem key={itemIndex}>{item}</BulletListItem>)}
+        </ul>
+      </article>)}
+    </div>
+  </section>;
 }
 
-export default function StaticCv({ text, lang }: StaticCvProps) {
-  const theme = useThemeMode();
-  const isDark = theme === 'dark';
-  const useZhGridLayout = lang === 'zh';
-  const headingFontFamily = getStaticCvHeadingFontFamily(lang);
-  const bodyFontFamily = getStaticCvBodyFontFamily(lang);
-  const pageGridClass = useZhGridLayout
-    ? '2xl:grid-cols-[920px_330px]'
-    : '2xl:grid-cols-[1020px_330px]';
-
-  return (
-    <>
-      <StaticCvFontFace lang={lang} />
-      <main
-        className={`min-h-[calc(100vh-4rem)] px-4 py-8 sm:px-6 sm:py-10 lg:px-10 ${
-          lang === 'en' ? 'text-left' : 'text-justify'
-        } ${
-          isDark ? 'text-white' : 'text-neutral-900'
-        }`}
-        style={{ fontFamily: bodyFontFamily }}
-      >
-        <div className={`w-full space-y-10 xl:grid xl:justify-center ${pageGridClass} xl:gap-x-14 xl:gap-y-12 xl:space-y-0`}>
-          <div className="space-y-0 xl:col-span-2">
-            <HeaderSection intro={text.intro} theme={theme} headingFontFamily={headingFontFamily} />
-            <p className={`max-w-[1100px] leading-relaxed ${isDark ? 'text-white/95' : 'text-neutral-800'}`}>
-              <RichText text={text.summary.content} isDark={isDark} />
-            </p>
-          </div>
-
-          <section className="space-y-3 xl:col-start-1">
-            <h2
-              className="text-[var(--primary-color)] text-[18px] md:text-[20px]"
-              style={{ fontFamily: headingFontFamily, fontWeight: 400 }}
-            >
-              {text.timelineLabel}
-            </h2>
-            <div className="space-y-8">
-              {text.experiences.map((experience, index) => (
-                <ExperienceItem
-                  key={index}
-                  experience={experience}
-                  theme={theme}
-                  headingFontFamily={headingFontFamily}
-                  useZhGridLayout={useZhGridLayout}
-                />
-              ))}
-            </div>
-          </section>
-
-          <aside className="xl:col-start-2 xl:row-start-2">
-            <CapabilitySection
-              capabilities={text.capabilities}
-              label={text.capabilityLabel}
-              theme={theme}
-              headingFontFamily={headingFontFamily}
-            />
-          </aside>
+export default function StaticCv({ text, lang }: Props) {
+  return <main className="resume-page" lang={lang}>
+    <div className="cv-layout">
+      <div className="cv-intro">
+        <HeaderSection intro={text.intro} />
+        <p className="cv-summary"><RichText text={text.summary.content} /></p>
+      </div>
+      <section className="cv-section cv-timeline">
+        <h2>{text.timelineLabel}</h2>
+        <div className="cv-experiences">
+          {text.experiences.map((experience, index) => <ExperienceItem key={index} experience={experience} lang={lang} />)}
         </div>
-
-      </main>
-    </>
-  );
+      </section>
+      <aside className="cv-sidebar">
+        <CapabilitySection capabilities={text.capabilities} label={text.capabilityLabel} />
+      </aside>
+    </div>
+  </main>;
 }

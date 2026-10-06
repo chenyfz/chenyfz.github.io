@@ -1,7 +1,11 @@
-import { locales } from './config';
-import type { Locale } from './config';
+import { locales } from './config.ts';
+import type { Locale } from './config.ts';
 
 const localePrefixPattern = new RegExp(`^/(${locales.join('|')})(?=/|$)`);
+
+export const isLocaleNavigation = (from: URL, to: URL): boolean =>
+  from.origin === to.origin && from.pathname !== to.pathname &&
+  from.pathname.replace(localePrefixPattern, '') === to.pathname.replace(localePrefixPattern, '');
 
 export const getAlternateLocale = (locale: Locale): Locale => (locale === 'en' ? 'zh' : 'en');
 

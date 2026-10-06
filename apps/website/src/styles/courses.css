@@ -1,0 +1,76 @@
+.course-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-8);
+  align-items: start;
+}
+.course-content, .course-directory {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.course-directory {
+  border: 1px solid color-mix(in srgb, var(--app-fg) 14%, transparent);
+  border-radius: var(--radius-panel);
+  padding: var(--space-4);
+}
+.course-directory h2 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+.course-directory nav {
+  max-height: 16rem;
+  overflow: auto;
+  font-family: system-ui, sans-serif;
+  font-size: .85rem;
+}
+.course-directory a {
+  display: block;
+  padding-block: .35rem;
+  text-underline-offset: .2em;
+  transition: color var(--motion-hover-out) var(--ease-control);
+}
+.course-directory a:is(:hover, :focus-visible), .course-directory a[aria-current] {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+.course-flash {
+  border-radius: var(--radius-card);
+  background: color-mix(in srgb, var(--primary-color) 9%, transparent);
+}
+.course-article {
+  border-radius: var(--radius-card);
+  transition: background-color var(--motion-hover-out) var(--ease-control);
+  scroll-margin-top: var(--anchor-offset);
+  padding: .5rem;
+  margin-inline: -.5rem;
+}
+.course-article h2 {
+  font-size: 1.15rem;
+  color: var(--primary-color);
+}
+.course-practice {
+  margin-top: var(--space-4);
+  border-radius: var(--radius-card);
+  padding: var(--space-4);
+  background: color-mix(in srgb, var(--app-fg) 4%, transparent);
+}
+@media (min-width: 1024px) {
+  .course-layout {
+    grid-template-columns: minmax(0, 1fr) 17rem;
+    gap: var(--space-12);
+  }
+  .course-directory {
+    grid-column: 2;
+    grid-row: 1;
+    position: sticky;
+    top: var(--anchor-offset);
+  }
+  .course-directory nav {
+    max-height: calc(100dvh - 12rem);
+  }
+  .course-content {
+    grid-column: 1;
+    grid-row: 1;
+  }
+}

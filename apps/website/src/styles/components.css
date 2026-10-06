@@ -1,0 +1,68 @@
+.animated-height {
+  display: grid;
+  transition: grid-template-rows var(--expand-duration, var(--motion-expand)) var(--ease-control);
+}
+.expandable-viewport {
+  position: relative;
+  overflow: hidden;
+  transition: height var(--motion-expand) var(--ease-control);
+}
+.expandable-preview {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--preview-lines);
+  overflow: hidden;
+  line-height: 1.625;
+  transition: opacity var(--motion-hover-in) ease;
+}
+.expandable-full {
+  position: absolute;
+  inset: 0 0 auto;
+  display: flow-root;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity var(--motion-hover-out) ease, transform var(--motion-expand) var(--ease-control);
+}
+.expandable-content[data-expanded='true'] .expandable-preview { opacity: 0; }
+.expandable-content[data-expanded='true'] .expandable-full { opacity: 1; transform: none; }
+.glass-card {
+  position: relative;
+  isolation: isolate;
+  height: 100%;
+  width: 100%;
+  border: 1px solid var(--glass-border-color);
+  border-radius: var(--glass-radius);
+  background: var(--glass-gradient);
+  background-color: var(--glass-bg-color);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(14px) saturate(170%);
+  filter: var(--glass-filter);
+  transition: border-color var(--motion-hover-out) var(--ease-control), box-shadow var(--motion-hover-out) var(--ease-control);
+}
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: var(--glass-highlight-gradient);
+  background-color: var(--glass-highlight-bg-color);
+  opacity: 0;
+  transition: opacity var(--motion-hover-out) var(--ease-control);
+}
+.glass-card:is(:hover, :focus-within, .glass-card--highlighted) {
+  border-color: var(--glass-highlight-border-color);
+  box-shadow: var(--glass-highlight-shadow);
+  transition-duration: var(--motion-hover-in);
+}
+.glass-card:is(:hover, :focus-within, .glass-card--highlighted)::before {
+  opacity: 1;
+  transition-duration: var(--motion-hover-in);
+}
+.glass-card-inner {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+}

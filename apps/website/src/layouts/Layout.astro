@@ -4,6 +4,7 @@ import NavBar from '@/components/NavBar';
 import { ClientRouter } from 'astro:transitions';
 import ResumeFonts from '@/styles/typography/ResumeFonts.astro';
 import type { Locale } from '@/i18n/config';
+import { SHARE_IMAGE, SITE_META } from '@/i18n/site';
 import { DEFAULT_THEME, THEME_STORAGE_KEY } from '@/styles/theme';
 
 interface Props {
@@ -23,6 +24,9 @@ const {
 const initialTheme = DEFAULT_THEME;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const alternatePath = Astro.url.pathname.replace(/^\/(en|zh)(?=\/|$)/, lang === 'zh' ? '/en' : '/zh');
+const siteMeta = SITE_META[lang];
+const shareImage = new URL(`/share/${lang}.png`, Astro.site);
+const shareAlt = `${siteMeta.name} · ${siteMeta.focus}`;
 
 const themeInitScript = `
 (() => {
@@ -45,7 +49,7 @@ const themeInitScript = `
 <html lang={lang} data-theme={initialTheme} transition:animate="none">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
         <link rel="canonical" href={canonical} />
@@ -55,6 +59,19 @@ const themeInitScript = `
         <meta property="og:description" content={description} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonical} />
+        <meta property="og:site_name" content={siteMeta.name} />
+        <meta property="og:locale" content={siteMeta.locale} />
+        <meta property="og:locale:alternate" content={SITE_META[lang === 'zh' ? 'en' : 'zh'].locale} />
+        <meta property="og:image" content={shareImage} />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content={String(SHARE_IMAGE.width)} />
+        <meta property="og:image:height" content={String(SHARE_IMAGE.height)} />
+        <meta property="og:image:alt" content={shareAlt} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={shareImage} />
+        <meta name="twitter:image:alt" content={shareAlt} />
         {pageId === 'playground' && <meta name="robots" content="noindex" />}
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>

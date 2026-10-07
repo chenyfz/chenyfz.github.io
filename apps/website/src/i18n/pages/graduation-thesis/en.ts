@@ -2,12 +2,12 @@ import type { GraduationThesisPageCopy } from './types';
 
 const graduationThesisEn: GraduationThesisPageCopy = {
   meta: {
-    title: 'MSc Thesis and Course Projects | Chen Yangfan',
+    title: 'Master’s Thesis and Course Projects | Chen Yangfan',
     description: 'ZoomPursuit thesis and selected MSc course projects.'
   },
   heading: 'ZoomPursuit: Smooth Pursuit-based Gaze Interaction for General-Purpose GUIs',
   projectInfo: {
-    type: "Master's Graduation Thesis (Utrecht University)",
+    type: "Master's Thesis (Utrecht University)",
     duration: "Feb 2025 - Aug 2025",
     supervisor: "Lynda Hardman",
     supervisorLabel: "Supervisor: "
@@ -134,7 +134,7 @@ const graduationThesisEn: GraduationThesisPageCopy = {
   projects: [
     {
       id: 'zoompursuit',
-      title: 'ZoomPursuit (Graduation Thesis)',
+      title: 'ZoomPursuit (Master’s Thesis)',
       subtitle: 'Smooth Pursuit-based Gaze Interaction for General-Purpose GUIs',
       summary:
         'Focused on making gaze interaction practical in unmodified desktop interfaces, especially under calibration drift and noisy eye-tracking conditions.',

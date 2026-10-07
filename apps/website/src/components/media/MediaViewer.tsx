@@ -35,7 +35,7 @@ export default function MediaViewer({ items, index, lang, onClose, onChange, ret
         <button type="button" onClick={onClose}>{lang === 'zh' ? '关闭预览' : 'Close preview'} ×</button>
       </div>
       <MediaAsset key={item.src} item={item} lang={lang} autoPlay={item.type === 'video'}
-        frameClassName="media-viewer-asset" className="max-h-full max-w-full object-contain" />
+        frameClassName="media-viewer-asset" />
       <div className="media-viewer-footer">
         {items.length > 1 && <button type="button" aria-label={lang === 'zh' ? '上一项' : 'Previous media'} onClick={() => move(-1)}>←</button>}
         <p>{item.caption}</p>

@@ -95,6 +95,8 @@
 .page-action {
   display: inline-flex;
   align-items: center;
+  min-height: 2.75rem;
+  touch-action: manipulation;
   gap: .4rem;
   padding: .4rem .8rem;
   border-radius: .35rem;

@@ -2,30 +2,39 @@ import { characters, textUnits } from './motion';
 
 const headings = 'h1, h2, h3, h4, h5, h6';
 const prose = '.cv-meta, .cv-period, .cv-bullet-content, p, li:not(.cv-bullet), figcaption, dt, dd, th, td, .page-return, .course-directory nav a, a.text-link';
-const visible = (element: HTMLElement) => {
-  const rect = element.getBoundingClientRect();
-  return rect.width > 0 && rect.height > 0 && rect.bottom > 0 && rect.top < innerHeight &&
-    // Modal backgrounds are inert but still visible through the menu's blur.
-    !element.closest('[hidden], [aria-hidden="true"]');
-};
+const intersects = (rect: DOMRect, clip: { left: number; top: number; right: number; bottom: number }) =>
+  rect.width > 0 && rect.height > 0 && rect.bottom > clip.top && rect.top < clip.bottom &&
+  rect.right > clip.left && rect.left < clip.right;
 
-function textClip(element: HTMLElement) {
-  const clip = { left: 0, top: 0, right: innerWidth, bottom: innerHeight, opacity: 1 };
-  for (let parent: HTMLElement | null = element; parent; parent = parent.parentElement) {
-    const style = getComputedStyle(parent);
-    clip.opacity *= Number(style.opacity);
-    if (style.display === 'inline') continue;
-    const rect = parent.getBoundingClientRect();
-    if (style.overflowX !== 'visible') {
-      clip.left = Math.max(clip.left, rect.left + parent.clientLeft);
-      clip.right = Math.min(clip.right, rect.left + parent.clientLeft + parent.clientWidth);
+function cached<T>(read: (element: HTMLElement) => T) {
+  const values = new Map<HTMLElement, T>();
+  return (element: HTMLElement): T => {
+    if (!values.has(element)) values.set(element, read(element));
+    return values.get(element)!;
+  };
+}
+
+function measureText() {
+  // One measurement per element, scoped to this snapshot; never reuse stale layout.
+  const rect = cached(element => element.getBoundingClientRect());
+  const style = cached(element => getComputedStyle(element));
+  const viewport = { left: 0, top: 0, right: innerWidth, bottom: innerHeight, opacity: 1 };
+  const clip: (element: HTMLElement) => typeof viewport = cached(element => {
+    const bounds = { ...(element.parentElement ? clip(element.parentElement) : viewport) };
+    const css = style(element);
+    bounds.opacity *= Number(css.opacity);
+    if (css.display === 'inline') return bounds;
+    if (css.overflowX !== 'visible') {
+      bounds.left = Math.max(bounds.left, rect(element).left + element.clientLeft);
+      bounds.right = Math.min(bounds.right, rect(element).left + element.clientLeft + element.clientWidth);
     }
-    if (style.overflowY !== 'visible') {
-      clip.top = Math.max(clip.top, rect.top + parent.clientTop);
-      clip.bottom = Math.min(clip.bottom, rect.top + parent.clientTop + parent.clientHeight);
+    if (css.overflowY !== 'visible') {
+      bounds.top = Math.max(bounds.top, rect(element).top + element.clientTop);
+      bounds.bottom = Math.min(bounds.bottom, rect(element).top + element.clientTop + element.clientHeight);
     }
-  }
-  return clip;
+    return bounds;
+  });
+  return { rect, style, clip, viewport };
 }
 
 /** Position visual copies over the original text without changing React's nodes or wrapping. */
@@ -33,19 +42,23 @@ function copyText(main: HTMLElement, layer: HTMLElement) {
   const titles: HTMLElement[] = [];
   const bodies: HTMLElement[] = [];
   const sources = new Set<HTMLElement>();
-  const groups = new Map<HTMLElement, { element: HTMLDivElement; clip: ReturnType<typeof textClip> }>();
+  const measure = measureText();
+  const groups = new Map<HTMLElement, { element: HTMLDivElement; clip: typeof measure.viewport }>();
   const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT);
   const range = document.createRange();
   let node: Node | null;
   while ((node = walker.nextNode())) {
     const parent = node.parentElement!;
-    if (!parent.closest(`${headings}, ${prose}`) || !visible(parent)) continue;
-    const style = getComputedStyle(parent);
+    const text = node.textContent ?? '';
+    // Modal backgrounds are inert but still visible through the menu's blur.
+    if (!text.trim() || !parent.closest(`${headings}, ${prose}`) ||
+      parent.closest('[hidden], [aria-hidden="true"]') || !intersects(measure.rect(parent), measure.viewport)) continue;
+    const style = measure.style(parent);
     if (style.visibility !== 'visible') continue;
     const units = parent.closest(headings) ? titles : bodies;
     let group = groups.get(parent);
     if (!group) {
-      const clip = textClip(parent);
+      const clip = measure.clip(parent);
       if (clip.right <= clip.left || clip.bottom <= clip.top || !clip.opacity) continue;
       const element = document.createElement('div');
       Object.assign(element.style, {
@@ -67,13 +80,12 @@ function copyText(main: HTMLElement, layer: HTMLElement) {
       });
       return span;
     };
-    for (const { segment, index } of textUnits(node.textContent ?? '')) {
+    for (const { segment, index } of textUnits(text)) {
       if (!segment.trim()) continue;
       range.setStart(node, index);
       range.setEnd(node, index + segment.length);
       const rect = range.getBoundingClientRect();
-      if (!rect.width || !rect.height || rect.bottom <= clip.top || rect.top >= clip.bottom ||
-        rect.right <= clip.left || rect.left >= clip.right) continue;
+      if (!intersects(rect, clip)) continue;
       let unit = copy(segment, rect);
       if (range.getClientRects().length > 1) {
         // A word broken across lines still shares one delay and one movement.

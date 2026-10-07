@@ -256,7 +256,7 @@ const mastersCoursesZh: MastersCoursesPageCopy = {
     },
     {
       id: 'thesis',
-      title: '研究项目 (毕业论文)',
+      title: '研究项目 (硕士论文)',
       grade: '8.7',
       description:
         `研究主题为通用图形用户界面中的眼动交互精度与校准漂移问题，目标是在不改造既有应用界面的前提下实现可行且具通用化潜力的平滑追视交互。

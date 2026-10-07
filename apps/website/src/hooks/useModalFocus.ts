@@ -45,18 +45,32 @@ export default function useModalFocus(ref: RefObject<HTMLElement | null>, open: 
       }
     };
     dialog.addEventListener('keydown', keydown);
+    let navigationFocus: HTMLElement | null = null;
     const beforeNavigation = (event: TransitionBeforePreparationEvent) => {
       if (!persistOnLocaleChange || event.navigationType === 'traverse' || !isLocaleNavigation(event.from, event.to)) {
         // Finish modal cleanup before Astro moves persisted DOM into the next page.
         flushSync(() => close('navigation'));
+      } else {
+        const target = event.sourceElement ?? document.activeElement;
+        navigationFocus = target instanceof HTMLElement && dialog.contains(target) ? target : null;
       }
     };
+    const restoreNavigationFocus = () => {
+      if (navigationFocus?.isConnected && !dialog.contains(document.activeElement)) {
+        navigationFocus.focus({ preventScroll: true });
+      }
+      navigationFocus = null;
+    };
     document.addEventListener('astro:before-preparation', beforeNavigation);
-    if (persistOnLocaleChange) document.addEventListener('astro:after-swap', lockBackground);
+    if (persistOnLocaleChange) {
+      document.addEventListener('astro:after-swap', lockBackground);
+      document.addEventListener('astro:page-load', restoreNavigationFocus);
+    }
     return () => {
       dialog.removeEventListener('keydown', keydown);
       document.removeEventListener('astro:before-preparation', beforeNavigation);
       document.removeEventListener('astro:after-swap', lockBackground);
+      document.removeEventListener('astro:page-load', restoreNavigationFocus);
       unlockBackground();
       background.clear();
       const target = returnFocus?.current ?? (previous?.isConnected ? previous : null);

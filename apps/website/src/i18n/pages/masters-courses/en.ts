@@ -259,7 +259,7 @@ Practice combines model implementation, paper-based analysis, and reproduction-s
     },
     {
       id: 'thesis',
-      title: 'Research Project (Graduation Thesis)',
+      title: 'Research Project (Master’s Thesis)',
       grade: '8.7',
       description:
         `The thesis addresses gaze-interaction inaccuracy and calibration drift in standard GUIs, targeting a solution that works without modifying existing applications.

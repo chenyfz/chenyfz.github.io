@@ -8,7 +8,7 @@
   top: 0;
   z-index: 50;
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, auto) minmax(0, 1fr) auto;
   align-items: center;
   min-height: var(--nav-height);
   gap: var(--space-3);
@@ -17,6 +17,8 @@
   backdrop-filter: blur(20px);
 }
 .site-brand {
+  min-width: 0;
+  overflow-wrap: anywhere;
   user-select: none;
   color: var(--app-fg);
 }
@@ -24,8 +26,11 @@
   text-decoration: underline;
 }
 .site-menu-trigger {
-  display: block;
-  padding: var(--space-1);
+  display: grid;
+  place-items: center;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  touch-action: manipulation;
   border-radius: .25rem;
   color: var(--text-soft);
   cursor: pointer;
@@ -58,6 +63,12 @@
   flex-shrink: 0;
   font-size: .6875rem;
   box-shadow: 0 8px 14px rgb(88 92 98 / .16);
+}
+.language-switch--sm::after {
+  content: '';
+  position: absolute;
+  inset: -.375rem 0;
+  /* Enlarge the tap target without changing the compact capsule. */
 }
 .language-switch--md {
   font-size: 1rem;
@@ -126,12 +137,43 @@ html[data-theme='dark'] .glass-switch-thumb {
     padding-inline: var(--space-6);
   }
 }
+.navigation-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 1rem .75rem;
+  width: min(19.5rem, calc(100% - 3rem));
+}
+.navigation-layout > div { min-width: 0; }
+.navigation-switch-item {
+  align-self: start;
+  justify-self: start;
+  width: min(8.125rem, 100%);
+}
+.navigation-switch-frame {
+  height: 4rem;
+  width: 100%;
+  user-select: none;
+}
+.navigation-close {
+  position: absolute;
+  z-index: 50;
+  top: max(1rem, env(safe-area-inset-top));
+  right: max(1rem, env(safe-area-inset-right));
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--app-bg);
+  color: var(--app-fg);
+  cursor: pointer;
+  touch-action: manipulation;
+}
 .menu-card {
   display: flex;
   flex-direction: column;
   align-items: start;
   height: 92px;
-  width: 148px;
+  width: 100%;
   max-width: 100%;
   padding: var(--space-2) var(--space-3);
   border-radius: .25rem;
@@ -172,9 +214,13 @@ html[data-theme='dark'] .glass-switch-thumb {
   color: var(--accent-info);
 }
 @media (min-width: 768px) {
+  .navigation-layout {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 34.375rem;
+    gap: 1.5rem 1.25rem;
+  }
   .menu-card {
     height: 108px;
-    width: 168px;
     padding: .625rem .875rem;
   }
   .menu-card p {
@@ -182,9 +228,24 @@ html[data-theme='dark'] .glass-switch-thumb {
   }
 }
 @media (min-width: 1024px) {
+  .navigation-layout {
+    width: 37.125rem;
+    gap: 2rem 1.5rem;
+  }
   .menu-card {
     height: 120px;
-    width: 180px;
     padding: var(--space-3) var(--space-4);
   }
+}
+@media (min-width: 560px) and (max-height: 480px) {
+  .navigation-layout {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: min(34rem, calc(100% - 4rem));
+    gap: .75rem;
+  }
+  .navigation-switch-frame { height: 3rem; }
+  .menu-card { height: 5rem; padding: .5rem .75rem; }
+}
+@media (max-width: 360px) {
+  .site-nav { gap: .5rem; font-size: 1rem; }
 }

@@ -2,8 +2,8 @@ import type { StaticCvPageCopy } from './types';
 
 const staticCvPageZh: StaticCvPageCopy = {
   meta: {
-    title: '陈扬帆 | 静态简历',
-    description: '陈扬帆的中文静态简历页面。'
+    title: '陈扬帆 | 简历',
+    description: '陈扬帆的教育与工作经历，涵盖软件工程、人机交互与产品设计。'
   },
   intro: {
     title: '简历 - 陈扬帆',

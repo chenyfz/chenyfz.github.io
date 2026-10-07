@@ -2,8 +2,8 @@ import type { StaticCvPageCopy } from './types';
 
 const staticCvPageEn: StaticCvPageCopy = {
   meta: {
-    title: 'Chen Yangfan (陈扬帆) | Static CV',
-    description: 'English static CV for Chen Yangfan (陈扬帆).'
+    title: 'Chen Yangfan (陈扬帆) | Resume',
+    description: 'Chen Yangfan’s experience in software engineering, human-computer interaction, and product design.'
   },
   intro: {
     title: 'Resume - Chen Yangfan (陈扬帆)',

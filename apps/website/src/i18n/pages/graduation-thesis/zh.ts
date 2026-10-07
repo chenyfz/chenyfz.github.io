@@ -3,11 +3,11 @@ import type { GraduationThesisPageCopy } from './types';
 const graduationThesisZh: GraduationThesisPageCopy = {
   meta: {
     title: '硕士论文与课程项目 | 陈扬帆',
-    description: 'ZoomPursuit 毕业论文与硕士课程项目介绍。'
+    description: 'ZoomPursuit 硕士论文与硕士课程项目介绍。'
   },
   heading: 'ZoomPursuit: 面向通用 GUI 的平滑追视眼动交互',
   projectInfo: {
-    type: "硕士毕业设计 (Utrecht University)",
+    type: "硕士论文 (Utrecht University)",
     duration: "2025年2月 - 2025年7月",
     supervisor: "Lynda Hardman",
     supervisorLabel: "导师："
@@ -133,7 +133,7 @@ const graduationThesisZh: GraduationThesisPageCopy = {
   projects: [
     {
       id: 'zoompursuit',
-      title: 'ZoomPursuit（毕业论文）',
+      title: 'ZoomPursuit（硕士论文）',
       subtitle: '面向通用 GUI 的 Smooth Pursuit 眼动交互',
       summary: '聚焦解决眼动交互在通用桌面界面中的漂移与精度问题，探索免校准前提下的可用交互方案。',
       bullets: ['毕业阶段在 CWI 完成研究见习。', '通过两轮用户研究迭代并验证两阶段模型。'],

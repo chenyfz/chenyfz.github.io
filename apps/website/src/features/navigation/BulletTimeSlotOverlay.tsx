@@ -64,7 +64,7 @@ export default function BulletTimeSlotOverlay({ isOpen, keyboardActivated = fals
       onKeyDownCapture={() => { keyboardMode.current = true; animation.current?.keepOpenForKeyboard(); }}
       onPointerDown={event => { if (event.target === event.currentTarget) requestClose(); }}>
       <div ref={mask} className="pointer-events-none absolute inset-0" />
-      <button type="button" aria-label={closeLabel} className="absolute right-5 top-5 z-50 rounded-full bg-[var(--app-bg)] px-3 py-1 text-[var(--app-fg)]"
+      <button type="button" aria-label={closeLabel} className="navigation-close"
         onClick={requestClose}>×</button>
       <div className={`pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ${layoutClassName}`}>
         {items.map((item, index) => (

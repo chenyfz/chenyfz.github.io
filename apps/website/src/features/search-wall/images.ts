@@ -1,17 +1,24 @@
-import type { LoadedImage } from './layout';
-/** One unavailable asset must not blank the entire wall. Listeners are removed on abort. */
-export async function loadImages(paths: readonly string[], signal: AbortSignal, createImage = () => new Image()) {
-  const results = await Promise.allSettled(paths.map(src => new Promise<LoadedImage>((resolve, reject) => {
-    if (signal.aborted) { reject(signal.reason); return; }
-    const image = createImage();
-    const cleanup = () => { image.onload = null; image.onerror = null; signal.removeEventListener('abort', abort); };
-    const abort = () => { cleanup(); image.src = ''; reject(signal.reason); };
-    image.onload = () => { cleanup(); resolve({ image, ratio: Math.max(1, image.naturalWidth) / Math.max(1, image.naturalHeight) }); };
-    image.onerror = () => { cleanup(); reject(new Error(`Failed to load image: ${src}`)); };
-    image.decoding = 'async';
-    signal.addEventListener('abort', abort, { once: true });
-    image.src = src;
-  })));
-  return { images: results.flatMap(result => result.status === 'fulfilled' ? [result.value] : []),
-    failed: paths.filter((_, index) => results[index].status === 'rejected') };
+import type { WallImage } from './layout';
+
+/** Load the first row first, then fill the wall without moving its reserved layout. */
+export async function loadImages(images: WallImage[], signal: AbortSignal, onLoad: () => void) {
+  let next = 0;
+  let loaded = 0;
+  const worker = async () => {
+    while (next < images.length && !signal.aborted) {
+      const { image, src } = images[next++];
+      await new Promise<void>(resolve => {
+        if (signal.aborted) { resolve(); return; }
+        const cleanup = () => { image.onload = null; image.onerror = null; signal.removeEventListener('abort', abort); };
+        const abort = () => { cleanup(); image.src = ''; resolve(); };
+        image.onload = () => { cleanup(); loaded += 1; onLoad(); resolve(); };
+        image.onerror = () => { cleanup(); resolve(); };
+        image.decoding = 'async';
+        signal.addEventListener('abort', abort, { once: true });
+        image.src = src;
+      });
+    }
+  };
+  await Promise.all(Array.from({ length: Math.min(6, images.length) }, worker));
+  return loaded;
 }

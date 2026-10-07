@@ -11,9 +11,8 @@ export function createPageTransition(signal: AbortSignal): TransitionMotion {
     async enter() {
       const content = document.getElementById('page-content');
       if (!content || scope.disposed) return;
-      const immersive = !!content.querySelector('.subpage--immersive');
       await scope.run(timeline => {
-        timeline.fromTo(content, { opacity: 0, y: immersive ? 0 : 8 },
+        timeline.fromTo(content, { opacity: 0, y: 8 },
           { opacity: 1, y: 0, duration: motionDuration('page-enter'), ease: 'power3.out' });
       });
       scope.dispose();

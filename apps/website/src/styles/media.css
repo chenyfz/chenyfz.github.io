@@ -79,11 +79,10 @@
   position: fixed;
   inset: 0;
   z-index: 120;
-  background: rgb(0 0 0 / .93);
   padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
   display: grid;
   place-items: center;
-  color: #fff;
+  color: var(--app-fg);
 }
 .media-viewer-panel {
   width: min(90rem, 100%);
@@ -94,6 +93,34 @@
   grid-template-rows: auto minmax(0, 1fr) auto;
   gap: var(--space-3);
 }
+.media-dialog-backdrop { position: absolute; inset: 0; opacity: 0; background: color-mix(in srgb, var(--app-bg) 86%, transparent); backdrop-filter: blur(4px); }
+.media-dialog-content { position: relative; width: 100%; height: 100%; min-height: 0; display: grid; place-items: center; opacity: 0; }
+.media-viewer .media-dialog-close {
+  position: absolute;
+  z-index: 2;
+  bottom: max(var(--space-5), env(safe-area-inset-bottom));
+  left: 50%;
+  translate: -50% 0;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  opacity: 0;
+  border: 1px solid color-mix(in srgb, var(--app-fg) 12%, var(--app-bg));
+  border-radius: 999px;
+  background: var(--glass-gradient), color-mix(in srgb, var(--app-bg) 92%, transparent);
+  color: var(--app-fg);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 14px rgb(0 0 0 / .1), inset 0 1px 0 color-mix(in srgb, var(--app-bg) 80%, transparent);
+  transition: background-color var(--motion-hover-out) var(--ease-control), box-shadow var(--motion-hover-out) var(--ease-control), scale var(--motion-hover-in) var(--ease-control);
+}
+.media-viewer .media-dialog-close:is(:hover, :focus-visible) {
+  background: var(--glass-highlight-gradient), var(--app-bg);
+  box-shadow: 0 5px 16px rgb(0 0 0 / .14);
+}
+.media-dialog-close:focus-visible { outline: 2px solid var(--primary-color); outline-offset: 3px; }
+.media-dialog-close:active { scale: .94; }
 .media-viewer-toolbar, .media-viewer-footer {
   display: flex;
   align-items: center;
@@ -131,9 +158,8 @@
   min-height: 0;
   background: transparent;
 }
-.media-viewer .media-loading, .media-viewer .media-status {
-  color: white;
-}
+.media-viewer .media-loading, .media-viewer .media-status { color: var(--app-fg); }
+.media-viewer-panel { padding-bottom: var(--space-16); }
 .media-viewer-footer p {
   min-width: 0;
   overflow-wrap: anywhere;
@@ -142,28 +168,13 @@
   max-height: 12dvh;
   overflow-y: auto;
 }
-.tender-scroll {
-  overflow: auto;
-  overscroll-behavior-x: contain;
-  scrollbar-width: thin;
-  scroll-snap-type: x proximity;
-}
-.tender-scroll > div {
-  display: flex;
-  gap: 1.5rem;
-  width: max-content;
-  align-items: start;
-  padding: .25rem .25rem 1.5rem;
-}
-.tender-scroll figure {
-  width: min(82vw, 48rem);
-  scroll-snap-align: start;
-}
-.tender-scroll .media-asset {
-  min-height: 18rem;
-}
-.tender-scroll img {
-  width: 100%;
-  height: auto;
-  max-height: 65dvh;
-}
+
+.image-zoom { position: relative; min-height: 0; height: 100%; overflow: hidden; touch-action: none; cursor: grab; user-select: none; overscroll-behavior: contain; }
+.image-zoom.is-panning { cursor: grabbing; }
+.image-zoom-content { position: absolute; inset: 0; transform-origin: center; }
+.image-zoom-content img { pointer-events: none; }
+.image-zoom-content .media-asset { background: transparent; }
+
+.media-viewer--image { padding: 0; }
+.media-viewer--image .media-dialog-content > .image-zoom { position: absolute; inset: 0; width: 100%; height: 100%; }
+.media-viewer--image .media-loading { display: none; }

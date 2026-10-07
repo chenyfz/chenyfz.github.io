@@ -7,13 +7,16 @@ type Props = {
   lang: Locale;
   preview?: boolean;
   autoPlay?: boolean;
+  controls?: boolean;
+  muted?: boolean;
+  loop?: boolean;
   className?: string;
   frameClassName?: string;
   videoRef?: RefObject<HTMLVideoElement | null>;
   retryEnabled?: boolean;
 };
 
-export default function MediaAsset({ item, lang, preview = false, autoPlay = false,
+export default function MediaAsset({ item, lang, preview = false, autoPlay = false, controls = !preview, muted = preview, loop = false,
   className = 'h-full w-full object-contain', frameClassName = '', videoRef, retryEnabled = !preview }: Props) {
   const [failed, setFailed] = useState(false);
   const [ready, setReady] = useState(false);
@@ -28,7 +31,8 @@ export default function MediaAsset({ item, lang, preview = false, autoPlay = fal
     if (asset instanceof HTMLImageElement && asset.complete) {
       if (asset.naturalWidth > 0) setReady(true); else setFailed(true);
     } else if (asset instanceof HTMLVideoElement) {
-      if (asset.error || asset.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) setFailed(true);
+      // Source selection can briefly report NETWORK_NO_SOURCE before loading starts.
+      if (asset.error) setFailed(true);
       else if (asset.readyState >= HTMLMediaElement.HAVE_METADATA) setReady(true);
     }
   }, [src, attempt]);
@@ -42,8 +46,8 @@ export default function MediaAsset({ item, lang, preview = false, autoPlay = fal
     </div> : image ? <img key={`${src}-${attempt}`} src={src} alt={item.alt}
       className={className} loading="lazy" decoding="async" onLoad={() => setReady(true)} onError={() => setFailed(true)} /> :
       <video key={`${src}-${attempt}`} ref={videoRef} src={src} poster={item.poster}
-        aria-label={item.alt} className={className} controls={!preview} muted={preview}
-        tabIndex={preview ? -1 : 0} autoPlay={autoPlay} playsInline preload="metadata"
+        aria-label={item.alt} className={className} controls={controls} muted={muted} loop={loop}
+        tabIndex={controls ? 0 : -1} autoPlay={autoPlay} playsInline preload="metadata"
         onLoadedMetadata={() => setReady(true)} onError={() => setFailed(true)} />}
     {!ready && !failed && <span className="media-loading" aria-hidden="true">{lang === 'zh' ? '加载中…' : 'Loading…'}</span>}
     {preview && item.type === 'video' && !failed && <span className="media-play" aria-hidden="true">▶</span>}

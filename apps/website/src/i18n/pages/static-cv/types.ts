@@ -1,22 +1,16 @@
 export type StaticCvBullet = string | {
   text: string;
   detail?: string;
-  muted?: string;
+  fullWidth?: boolean;
 };
 
 export type StaticCvExperience = {
+  name: string;
   period: string;
   logo?: string;
   title: string;
   bullets: StaticCvBullet[];
-  accentLabel?: string;
-  accentDetail?: string;
-  layout?: 'list' | 'grid-3';
-};
-
-export type StaticCvCapability = {
-  title: string;
-  items: string[];
+  courses?: StaticCvBullet[];
 };
 
 export type StaticCvMetaItem = {
@@ -33,15 +27,10 @@ export type StaticCvPageCopy = {
   intro: {
     title: string;
     metaItems: StaticCvMetaItem[];
-    objectiveLabel: string;
-    objectiveSeparator: string;
-    objective: string;
   };
   summary: {
-    content: string;
+    content: string[];
   };
   timelineLabel: string;
-  capabilityLabel: string;
   experiences: StaticCvExperience[];
-  capabilities: StaticCvCapability[];
 };

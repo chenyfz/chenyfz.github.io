@@ -20,16 +20,6 @@ export default defineConfig({
   })],
   vite: {
     resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
-    plugins: [tailwindcss()],
-    build: {
-      rolldownOptions: {
-        output: {
-          codeSplitting: { groups: [
-            { name: 'three-core', test: /node_modules[\\/]three[\\/]build[\\/]three\.core\.js/ },
-            { name: 'three-renderer', test: /node_modules[\\/]three[\\/]build[\\/]three\.module\.js/ }
-          ] }
-        }
-      }
-    }
+    plugins: [tailwindcss()]
   }
 });

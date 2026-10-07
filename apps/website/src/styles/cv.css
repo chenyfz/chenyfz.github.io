@@ -1,38 +1,60 @@
 .resume-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   min-height: calc(100dvh - var(--nav-height));
-  padding: var(--space-8) var(--space-4) var(--space-16);
+  padding: var(--space-8) var(--space-4);
   font-family: var(--page-body-font);
   line-height: 1.625;
   color: var(--text-body);
 }
+/* Use only a small, capped share of spare height above the content. */
+.resume-page::before {
+  content: '';
+  flex: 1 0 0;
+  max-height: var(--space-6);
+}
+.resume-page::after {
+  content: '';
+  flex: 3 0 0;
+}
 .resume-page:lang(zh) {
   text-align: justify;
 }
-.resume-page :is(h1, h2, h3, .cv-period) {
+.cv-title,
+.cv-experience-heading {
   font-family: var(--page-heading-font);
+  font-size: inherit;
   font-weight: 400;
   line-height: 1.375;
+  text-align: start;
 }
-.resume-page :is(h1, h2) {
-  font-size: 1.125rem;
+.cv-title {
+  margin: 0;
   color: var(--primary-color);
 }
 .cv-layout {
   display: grid;
+  flex-shrink: 0;
+  align-items: start;
   grid-template-columns: minmax(0, 1fr);
   gap: var(--space-10);
+  width: 100%;
   max-width: 88rem;
   margin-inline: auto;
+}
+.cv-profile {
+  display: grid;
+  gap: var(--space-8);
+  min-width: 0;
 }
 .cv-header {
   display: grid;
   gap: var(--space-4);
 }
 .cv-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--space-1) var(--space-3);
+  display: grid;
+  gap: var(--space-1);
   color: var(--text-soft);
 }
 .cv-meta-item {
@@ -43,19 +65,18 @@
   text-decoration-color: var(--text-soft);
   text-underline-offset: .25em;
 }
-.cv-meta-divider {
-  color: var(--text-divider);
-}
 .cv-muted {
   color: var(--text-muted);
 }
 .cv-summary {
-  max-width: 69rem;
-}
-.cv-section {
   display: grid;
-  gap: var(--space-3);
   align-content: start;
+  gap: var(--space-4);
+  min-width: 0;
+}
+.cv-timeline {
+  min-width: 0;
+  container: cv-timeline / inline-size;
 }
 .cv-experiences {
   display: grid;
@@ -64,44 +85,59 @@
 .cv-experience {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: var(--space-2);
+  gap: var(--space-3);
 }
 .cv-period {
   color: var(--text-soft);
-}
-.cv-experience-body {
-  min-width: 0;
-  display: grid;
-  gap: var(--space-3);
+  white-space: nowrap;
 }
 .cv-experience-heading {
   display: flex;
-  align-items: start;
-  gap: var(--space-3);
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
 }
 .cv-experience-heading img {
+  width: 1.25rem;
+  height: 1.25rem;
   flex-shrink: 0;
-  margin-top: .125rem;
+  align-self: flex-start;
+  /* Center on the first heading line, including when the heading wraps. */
+  margin-top: calc((1.375em - 1.25rem) / 2);
   object-fit: contain;
 }
-.cv-experience-heading h3 {
+.cv-experience-details {
+  flex: 1;
   min-width: 0;
 }
-.cv-accent {
-  color: var(--accent-info);
+.cv-experience-name {
+  display: inline;
+  margin: 0;
+  margin-inline-end: 8px;
+  font: inherit;
 }
+.cv-experience-heading img[src$="/cwi-logo.png"] {
+  transform: translateY(-.0625rem);
+}
+.cv-experience-body,
 .cv-bullets {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-2);
-  list-style: none;
 }
-.cv-bullets--compact {
-  gap: .375rem;
+.cv-bullets {
+  list-style: none;
+  line-height: 1.5;
 }
 .cv-bullet {
   display: flex;
   align-items: start;
   gap: var(--space-3);
+}
+.cv-bullet--full-width {
+  grid-column: 1 / -1;
+  /* Spanning courses must not determine individual column widths. */
+  contain: inline-size;
 }
 .cv-bullet-marker {
   display: inline-flex;
@@ -121,56 +157,35 @@
 .cv-bullet-content {
   min-width: 0;
 }
-.cv-bullet-note {
-  margin-top: var(--space-1);
-}
-.cv-capabilities {
-  display: grid;
-  gap: var(--space-6);
-}
-.cv-capabilities article {
-  display: grid;
-  gap: var(--space-2);
-}
 @media (min-width: 640px) {
   .resume-page {
-    padding: var(--space-10) var(--space-6) var(--space-16);
+    padding: var(--space-10) var(--space-6);
   }
 }
 @media (min-width: 768px) {
-  .resume-page :is(h1, h2) {
-    font-size: 1.25rem;
-  }
   .cv-bullets--grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, auto);
     gap: var(--space-2) var(--space-3);
+    justify-content: start;
+    text-align: start;
   }
 }
 @media (min-width: 1024px) {
   .resume-page {
     padding-inline: var(--space-10);
   }
-  .cv-experience {
-    grid-template-columns: 8.75rem minmax(0, 1fr);
-    gap: var(--space-4);
-  }
-}
-@media (min-width: 1280px) {
   .cv-layout {
-    grid-template-columns: minmax(0, 1fr) minmax(16rem, 20.625rem);
-    column-gap: clamp(2rem, 4vw, 3.5rem);
-    row-gap: var(--space-12);
-  }
-  .cv-intro {
-    grid-column: 1 / -1;
-  }
-  .cv-sidebar {
-    grid-column: 2;
-    grid-row: 2;
+    grid-template-columns: minmax(18rem, 1fr) minmax(0, 2.5fr);
+    column-gap: clamp(2.5rem, 4vw, 4rem);
   }
 }
-@media (min-width: 1536px) {
+/* At 18px, the first two Chinese columns need ~261/266px including
+   markers; the compact third needs 104px. With two 12px gaps, 736px
+   leaves ~80px spare after the last column. */
+@container cv-timeline (min-width: 46rem) {
   .resume-page:lang(zh) .cv-bullets--grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, auto);
+    justify-content: start;
+    text-align: start;
   }
 }

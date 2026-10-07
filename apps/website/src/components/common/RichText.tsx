@@ -2,14 +2,16 @@ import React from 'react';
 import { normalizePageHref } from '@/lib/navigation';
 
 type RichTextMode = 'inline' | 'block';
+type LinkComponent = React.ComponentType<React.ComponentProps<'a'>> | 'a';
 
 interface RichTextProps {
   text: string;
   mode?: RichTextMode;
   className?: string;
+  linkComponent?: LinkComponent;
 }
 
-function parseInline(text: string): React.ReactNode[] {
+function parseInline(text: string, Link: LinkComponent = 'a'): React.ReactNode[] {
   const nodes: React.ReactNode[] = [];
   const tokenRegex = /(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g;
   let cursor = 0;
@@ -31,7 +33,7 @@ function parseInline(text: string): React.ReactNode[] {
         const [, label, href] = linkMatch;
         const isExternal = /^https?:\/\//.test(href);
         nodes.push(
-          <a
+          <Link
             key={`link-${tokenIndex}`}
             href={normalizePageHref(href)}
             target={isExternal ? '_blank' : undefined}
@@ -39,7 +41,7 @@ function parseInline(text: string): React.ReactNode[] {
             className="text-link"
           >
             {label}
-          </a>
+          </Link>
         );
       } else {
         nodes.push(token);
@@ -57,7 +59,7 @@ function parseInline(text: string): React.ReactNode[] {
   return nodes;
 }
 
-function renderBlocks(text: string): React.ReactNode[] {
+function renderBlocks(text: string, Link: LinkComponent): React.ReactNode[] {
   const lines = text.split('\n');
   const blocks: React.ReactNode[] = [];
 
@@ -73,7 +75,7 @@ function renderBlocks(text: string): React.ReactNode[] {
     if (content) {
       blocks.push(
         <p key={`p-${blocks.length}`} className="leading-relaxed">
-          {parseInline(content)}
+          {parseInline(content, Link)}
         </p>
       );
     }
@@ -113,7 +115,7 @@ function renderBlocks(text: string): React.ReactNode[] {
         <ListTag className={`${baseClass} space-y-1 ${depthIndent}`}>
           {nodes.map((node, index) => (
             <li key={`${depth}-${index}`} className="leading-relaxed">
-              {parseInline(node.content)}
+              {parseInline(node.content, Link)}
               {node.children.length > 0 ? renderTree(node.children, depth + 1) : null}
             </li>
           ))}
@@ -147,7 +149,7 @@ function renderBlocks(text: string): React.ReactNode[] {
       const sizeClass = level === 2 ? 'text-[1.06em]' : 'text-[1em]';
       blocks.push(
         <h4 key={`h-${blocks.length}`} className={`${headingClass} ${sizeClass} font-medium`}>
-          {parseInline(content)}
+          {parseInline(content, Link)}
         </h4>
       );
       continue;
@@ -187,10 +189,10 @@ function renderBlocks(text: string): React.ReactNode[] {
   return blocks;
 }
 
-export default function RichText({ text, mode = 'inline', className = '' }: RichTextProps) {
+export default function RichText({ text, mode = 'inline', className = '', linkComponent = 'a' }: RichTextProps) {
   if (mode === 'inline') {
-    return <span className={className}>{parseInline(text)}</span>;
+    return <span className={className}>{parseInline(text, linkComponent)}</span>;
   }
 
-  return <div className={`space-y-2.5 ${className}`}>{renderBlocks(text)}</div>;
+  return <div className={`space-y-2.5 ${className}`}>{renderBlocks(text, linkComponent)}</div>;
 }

@@ -1,11 +1,11 @@
 {
-  "_build": "383f94eeecf76b5726aa6db36c34a3415eed22f38ac949bfc686d17e2dc6368b",
+  "_build": "3bbee5b6e26c1ca347a32855c9b5999d4dec11ee28e399b9569501eca11550e5",
   "en": {
-    "oppoSans400": "oppo-sans-400-en.3ef3e417.woff2",
-    "zhuqueFangsong400": "zhuque-fangsong-400-en.a00d99e5.woff2"
+    "oppoSans400": "oppo-sans-400-en.3146a734.woff2",
+    "zhuqueFangsong400": "zhuque-fangsong-400-en.d781a038.woff2"
   },
   "zh": {
-    "oppoSans400": "oppo-sans-400-zh.4856efbb.woff2",
-    "zhuqueFangsong400": "zhuque-fangsong-400-zh.ebec9274.woff2"
+    "oppoSans400": "oppo-sans-400-zh.2b69ee9b.woff2",
+    "zhuqueFangsong400": "zhuque-fangsong-400-zh.9f85cf0c.woff2"
   }
 }

@@ -6,6 +6,7 @@
 @import "./courses.css";
 @import "./media.css";
 @import "./cv.css";
+@import "./project-preview.css";
 @import "./navigation.css";
 @import "./transitions.css";
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));

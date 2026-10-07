@@ -75,23 +75,6 @@
 .subpage--showcase > .page-container {
   max-width: 80rem;
 }
-.subpage--immersive {
-  padding: 0;
-  height: calc(100dvh - var(--nav-height));
-  min-height: 24rem;
-  position: relative;
-  overflow: hidden;
-}
-.page-return-float {
-  position: absolute;
-  left: 1rem;
-  bottom: 1rem;
-  z-index: 30;
-  padding: .5rem .8rem;
-  border-radius: 2rem;
-  background: var(--app-bg);
-  box-shadow: var(--glass-shadow);
-}
 .page-action {
   display: inline-flex;
   align-items: center;
@@ -132,8 +115,5 @@
   }
   .subpage--story > .page-container {
     padding-inline: var(--space-8);
-  }
-  .subpage--immersive {
-    padding: 0;
   }
 }

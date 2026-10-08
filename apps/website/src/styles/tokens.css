@@ -48,7 +48,8 @@
 
 
 html[data-theme='dark'] {
-  --app-bg: #0b1118;
+  /* Cyanotype-inspired ink blue, softened for large screen backgrounds. */
+  --app-bg: #142e58;
   --app-fg: #e6edf3;
   --text-body: rgb(255 255 255 / .95);
   --text-muted: rgb(255 255 255 / .6);
